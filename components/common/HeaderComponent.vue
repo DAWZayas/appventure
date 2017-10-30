@@ -1,21 +1,31 @@
 <template>
     <header class="flex">
         <div class="flex top-bar">
-            <a class="top-link icon-menu"></a>
+            <a class="top-link icon-menu" @click="handleOnClick">Hola</a>
             <a class="top-link"><span class="logo"/></a>
             <a href="html/login.html" class="top-link icon-user"></a>
         </div>    
-        <nav class="flex nav-lateral">
-           <a class="top-link desk-top-link icon-home3"> Tu cuenta</a>
-           <a class="top-link desk-top-link icon-trophy"> Mis torneos</a>
-           <a class="top-link desk-top-link icon-stats-dots"> Clasificación</a>
-           <a class="top-link desk-top-link icon-bubbles3"> Ayuda</a>
-           <a class="top-link desk-top-link icon-exit"> Cerrar sesión</a>
+        <nav :class="{ none: !isOpened }" class="flex nav-lateral">
+           <a class="top-link icon-home3"> Tu cuenta</a>
+           <a class="top-link icon-trophy"> Mis torneos</a>
+           <a class="top-link icon-stats-dots"> Clasificación</a>
+           <a class="top-link icon-bubbles3"> Ayuda</a>
+           <a class="top-link icon-exit"> Cerrar sesión</a>
         </nav>
     </header>
 </template>
 <script>
   export default {
+    data () {
+      return {
+        isOpened: false
+      }
+    },
+    methods: {
+      handleOnClick () {
+        this.isOpened = !this.isOpened
+      }
+    }
   }
 </script>
 <style>
@@ -24,11 +34,12 @@
   }
 
   .top-bar {
-    justify-content: space-between;
-    background-color: #306e64;
-    align-items: center;
-    margin: -1em;
+      justify-content: space-between;
+      background-color: #306e64;
+      align-items: center;
+      margin: -1em;
   }
+
 
   .top-link {
       padding: .5em;
@@ -53,5 +64,26 @@
   .none {
       margin-left: -85%;
       transition: all .5s ease-in-out;
+  }
+
+  @media (-webkit-min-width: 768px) {
+      
+      .nav-lateral {
+          flex-direction: row;
+          justify-content: space-between;
+          border-radius: 0;
+          padding-bottom: .5em;
+          height: auto;
+          width: 100%;
+          margin-left: -1em;
+      }
+      
+      main {
+          padding-top: 4em;
+      }
+      
+      .icon-menu {
+          display: none;        
+      }
   }
 </style>

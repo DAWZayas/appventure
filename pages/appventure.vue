@@ -1,7 +1,9 @@
 <template>
   <div>
     <header-component></header-component>
-    Main
+    <main>
+      Main
+    </main>
     <footer-component></footer-component>
   </div>
 </template>
@@ -19,4 +21,7 @@
   }
 </script>
 <style lang="scss">
+  main {
+    padding: 5em;
+  }
 </style>
