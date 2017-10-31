@@ -1,24 +1,42 @@
 <template>
     <header class="flex">
-        <div class="flex top-bar">
-            <a class="top-link icon-menu" @click="handleOnClick">Hola</a>
-            <a class="top-link"><span class="logo"/></a>
-            <a href="html/login.html" class="top-link icon-user"></a>
-        </div>    
-        <nav :class="{ none: !isOpened }" class="flex nav-lateral">
-           <a class="top-link icon-home3"> Tu cuenta</a>
-           <a class="top-link icon-trophy"> Mis torneos</a>
-           <a class="top-link icon-stats-dots"> Clasificación</a>
-           <a class="top-link icon-bubbles3"> Ayuda</a>
-           <a class="top-link icon-exit"> Cerrar sesión</a>
-        </nav>
+      <div class="flex top-bar">
+        <a class="top-link icon-menu" @click="handleOnClick"> Hola</a>
+        <a class="top-link"><span class="logo"/></a>
+        <a href="html/login.html" class="top-link icon-user"></a>
+      </div>
+      <nav :class="{ none: !isOpened }" class="flex nav-lateral">
+        <a class="top-link" v-for="(link, index) in topLink" :key="index" :class="link.class">{{ link.text }}</a>
+      </nav>
     </header>
 </template>
 <script>
   export default {
     data () {
       return {
-        isOpened: false
+        isOpened: false,
+        topLink: [
+          {
+            text: ' Tu cuenta',
+            class: 'icon-home3'
+          },
+          {
+            text: ' Mis torneos',
+            class: 'icon-trophy'
+          },
+          {
+            text: ' Clasificación',
+            class: 'icon-stats-dots'
+          },
+          {
+            text: ' Ayuda',
+            class: 'icon-bubbles3'
+          },
+          {
+            text: ' Cerrar sesión',
+            class: 'icon-exit'
+          }
+        ]
       }
     },
     methods: {
@@ -28,16 +46,18 @@
     }
   }
 </script>
-<style>
+<style lang="scss">
+  @import 'assets/icons/style.css';
+  
   .flex {
     display: flex;
   }
 
   .top-bar {
+      width: 100%;
       justify-content: space-between;
       background-color: #306e64;
       align-items: center;
-      margin: -1em;
   }
 
 
@@ -45,7 +65,7 @@
       padding: .5em;
       border-radius: 1em;
       margin: 0.25em .5em;
-      color: rgb(0, 0, 0, .7);
+      color: rgb(0, 0, 0);
       cursor: pointer;
   }
 
@@ -56,7 +76,7 @@
       position: absolute;
       height: 100vh;
       width: 80%; 
-      margin-left: -1em;
+      margin-top: 3em;
       background-color: #306e64;
       transition: all .5s ease-in-out;
   }
@@ -75,7 +95,6 @@
           padding-bottom: .5em;
           height: auto;
           width: 100%;
-          margin-left: -1em;
       }
       
       main {
