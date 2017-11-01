@@ -24,6 +24,9 @@
   }
 </script>
 <style lang="scss">
+  :root {
+    overflow-x: hidden;
+  }
   main {
     padding: 5em;
   }

@@ -92,6 +92,7 @@
           flex-direction: row;
           justify-content: space-between;
           border-radius: 0;
+          margin: 2em 0 0;
           padding-bottom: .5em;
           height: auto;
           width: 100%;

@@ -3,7 +3,7 @@
     <h3>Torneos cerca de ti</h3>
     <section class="flex slide">
       <p></p>
-      <article-tournament-component></article-tournament-component>
+      <article-tournament-component class="flex"></article-tournament-component>
     </section>
   </section>
 </template>
@@ -33,7 +33,8 @@
       margin: -1em -1.5em 0 -1.5em;
       overflow-x: scroll;
   }
-  .slide > article {
+  div > article {
+    margin: 1em;
     padding-right: 1.5em;
     padding-left: 1.5em;
     padding: 1em;
@@ -42,5 +43,5 @@
     cursor: pointer;
     display: flex;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
-}
+  }
 </style>
