@@ -2,13 +2,14 @@
   <div>
     <header-component></header-component>
     <main>
-      Main
+      <section-principal-component></section-principal-component>
+      <section-categories-component></section-categories-component>
     </main>
     <footer-component></footer-component>
   </div>
 </template>
 <script>
-  import { HeaderComponent, FooterComponent } from '~/components/common'
+  import { HeaderComponent, SectionPrincipalComponent, SectionCategoriesComponent, FooterComponent } from '~/components/common'
 
   export default {
     data () {
@@ -16,6 +17,8 @@
     },
     components: {
       HeaderComponent,
+      SectionPrincipalComponent,
+      SectionCategoriesComponent,
       FooterComponent
     }
   }
