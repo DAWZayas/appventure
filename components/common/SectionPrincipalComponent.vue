@@ -8,7 +8,7 @@
   </section>
 </template>
 <script>
-  import ArticleTournamentComponent from '~/components/common'
+  import { ArticleTournamentComponent } from '~/components/common'
 
   export default {
     data () {
@@ -34,19 +34,13 @@
       overflow-x: scroll;
   }
   .slide > article {
-      padding-right: 1.5em;
-      padding-left: 1.5em;
-      padding: 1em;
-      border-radius: 0.20em;
-      flex-direction: column;
-      cursor: pointer;
-      display: flex;
-      box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
-  }
-  .slide > article > * {
-      cursor: pointer;
-  }
-  .img-slide {
-      width: 10em;
-  }
+    padding-right: 1.5em;
+    padding-left: 1.5em;
+    padding: 1em;
+    border-radius: 0.20em;
+    flex-direction: column;
+    cursor: pointer;
+    display: flex;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+}
 </style>
