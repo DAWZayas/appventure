@@ -1,7 +1,6 @@
 <template>
   <div>
     <appventure></appventure>
-    Hello Nuxt!
   </div>
 </template>
 <script>

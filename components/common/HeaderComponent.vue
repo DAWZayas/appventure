@@ -1,7 +1,7 @@
 <template>
     <header class="flex">
       <div class="flex top-bar">
-        <a class="top-link icon-menu" @click="handleOnClick"> Hola</a>
+        <a class="top-link icon-menu" @click="handleOnClick"></a>
         <a class="top-link"><span class="logo"/></a>
         <a href="html/login.html" class="top-link icon-user"></a>
       </div>

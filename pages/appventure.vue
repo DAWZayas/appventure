@@ -2,6 +2,7 @@
   <div>
     <header-component></header-component>
     <main>
+      <section-search-component></section-search-component>
       <section-principal-component></section-principal-component>
       <section-categories-component></section-categories-component>
     </main>
@@ -9,7 +10,7 @@
   </div>
 </template>
 <script>
-  import { HeaderComponent, SectionPrincipalComponent, SectionCategoriesComponent, FooterComponent } from '~/components/common'
+  import { HeaderComponent, SectionSearchComponent, SectionPrincipalComponent, SectionCategoriesComponent, FooterComponent } from '~/components/common'
 
   export default {
     data () {
@@ -17,6 +18,7 @@
     },
     components: {
       HeaderComponent,
+      SectionSearchComponent,
       SectionPrincipalComponent,
       SectionCategoriesComponent,
       FooterComponent
@@ -27,7 +29,17 @@
   :root {
     overflow-x: hidden;
   }
+  *, ::after, ::before {
+    box-sizing: inherit;
+    cursor: default;
+  }
+  ::-webkit-scrollbar { 
+    display: none;
+  }
   main {
-    padding: 5em;
+    padding: 0em 1em 1em 1em;
+  }
+  * + * {
+    margin: 1em;
   }
 </style>
