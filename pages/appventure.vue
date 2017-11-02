@@ -42,4 +42,7 @@
   * + * {
     margin: 1em;
   }
+  body {
+    background-color: #AAA;
+  }
 </style>

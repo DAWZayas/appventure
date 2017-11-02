@@ -23,7 +23,7 @@
 </script>
 <style lang="css">
     footer {
-    background-color: #ccc;
+    background-color: #598b83;
     padding: .25em;
     margin: 0 -1em -1em;
     text-align: center;

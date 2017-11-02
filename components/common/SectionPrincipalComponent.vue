@@ -3,7 +3,7 @@
     <h3>Torneos cerca de ti</h3>
     <section class="flex slide">
       <p></p>
-      <article-tournament-component class="flex"></article-tournament-component>
+      <article-tournament-component v-for="tournament in tournaments" :key="tournament.strong" :tournament="tournament"></article-tournament-component>
     </section>
   </section>
 </template>
@@ -12,7 +12,34 @@
 
   export default {
     data () {
-      return {}
+      return {
+        tournaments: [
+          {
+            strong: 'Padel',
+            src: require('../../assets/images/torneos/torneopadel.jpg'),
+            location: 'Majadahonda',
+            level: 'Principiante'
+          },
+          {
+            strong: 'e-Sports',
+            src: require('../../assets/images/torneos/torneoe-sports.jpg'),
+            location: 'Majadahonda',
+            level: 'Principiante'
+          },
+          {
+            strong: 'Poker',
+            src: require('../../assets/images/torneos/torneopoker.jpg'),
+            location: 'Majadahonda',
+            level: 'Principiante'
+          },
+          {
+            strong: 'Futbol',
+            src: require('../../assets/images/torneos/torneofutbol.jpg'),
+            location: 'Majadahonda',
+            level: 'Principiante'
+          }
+        ]
+      }
     },
     components: {
       ArticleTournamentComponent
@@ -25,7 +52,7 @@
   }
   .slide-top {
     background-color: white;
-    padding: 0 1em;
+    padding: 1em 1em;
     margin: 1em -2em 0;
     flex-direction: column; 
   }

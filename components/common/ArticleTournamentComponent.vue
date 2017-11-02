@@ -1,6 +1,6 @@
 <template>
 <div>
-  <article v-for="tournament in tournaments" :key="tournament.strong">
+  <article>
     <strong>{{ tournament.strong }}</strong>
     <img :src="tournament.src" class="img-slide">
     {{ tournament.location }}
@@ -10,34 +10,9 @@
 </template>
 <script>
   export default {
+    props: ['tournament'],
     data () {
       return {
-        tournaments: [
-          {
-            strong: 'Padel',
-            src: require('../../assets/images/torneos/torneopadel.jpg'),
-            location: 'Majadahonda',
-            level: 'Principiante'
-          },
-          {
-            strong: 'e-Sports',
-            src: require('../../assets/images/torneos/torneoe-sports.jpg'),
-            location: 'Majadahonda',
-            level: 'Principiante'
-          },
-          {
-            strong: 'Poker',
-            src: require('../../assets/images/torneos/torneopoker.jpg'),
-            location: 'Majadahonda',
-            level: 'Principiante'
-          },
-          {
-            strong: 'Futbol',
-            src: require('../../assets/images/torneos/torneofutbol.jpg'),
-            location: 'Majadahonda',
-            level: 'Principiante'
-          }
-        ]
       }
     }
   }
