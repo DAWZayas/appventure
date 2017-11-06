@@ -1,5 +1,5 @@
 module.exports = {
-  css: ['~/assets/styles/main.scss'],
+  // css: ['~/assets/styles/main.scss'],
   /*
   ** Headers of the page
   */
@@ -16,11 +16,13 @@ module.exports = {
       { hid: 'ogdescription', property: 'og:description', name: 'og:description', content: 'ProFitOro is a Pomodoro timer implementation combined with office workouts. Take breaks during work. Exercise during breaks ' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', type: 'text/css', href: 'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css' }
     ],
     script: [
       { type: 'text/javascript', src: '/jquery.js' },
       { type: 'text/javascript', src: '/tether.js' },
+      { type: 'text/javascript', src: 'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/js/mdb.min.js' },
       { type: 'text/javascript', src: '/bootstrap.js' }
     ]
   },
