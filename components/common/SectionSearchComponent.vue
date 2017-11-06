@@ -16,7 +16,6 @@
   .search-box {
       width: 100%;
       background-color: white;
-      margin: 2em 0 0;
       align-items: center;
       border: 1px solid black;
   }

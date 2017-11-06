@@ -39,9 +39,6 @@
   main {
     padding: 0em 1em 1em 1em;
   }
-  * + * {
-    margin: 1em;
-  }
   body {
     background-color: #AAA;
   }

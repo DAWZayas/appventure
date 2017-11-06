@@ -1,12 +1,12 @@
 <template>
-    <header class="flex">
-      <div class="flex top-bar">
-        <a class="top-link icon-menu" @click="handleOnClick"></a>
+    <header class="">
+      <div class="d-flex justify-content-between align-items-center p-1 top-bar">
+        <a class="top-link fa fa-bars" @click="handleOnClick"></a>
         <a class="top-link"><span class="logo"/></a>
         <a href="html/login.html" class="top-link icon-user"></a>
       </div>
-      <nav :class="{ none: !isOpened }" class="flex nav-lateral">
-        <a class="top-link" v-for="(link, index) in topLink" :key="index" :class="link.class">{{ link.text }}</a>
+      <nav :class="{ visible: !isOpened }" class="d-flex flex-column flex-lg-row nav-lateral">
+        <a class="top-link nav-item" v-for="(link, index) in topLink" :key="index" :class="link.class">{{ link.text }}</a>
       </nav>
     </header>
 </template>
@@ -48,18 +48,10 @@
 </script>
 <style lang="scss">
   @import 'assets/icons/style.css';
-  
-  .flex {
-    display: flex;
-  }
 
   .top-bar {
-      width: 100%;
-      justify-content: space-between;
       background-color: #306e64;
-      align-items: center;
   }
-
 
   .top-link {
       padding: .5em;
@@ -70,40 +62,37 @@
   }
 
   .nav-lateral {
-      flex-direction: column;
       justify-content: flex-start;
       border-radius: 0 0 1em;
       position: absolute;
       height: 100vh;
-      width: 80%; 
-      margin-top: 3em;
+      width: 80%;
       background-color: #306e64;
       transition: all .5s ease-in-out;
   }
 
-  .none {
+  .visible {
       margin-left: -85%;
       transition: all .5s ease-in-out;
   }
 
   @media (-webkit-min-width: 768px) {
       
-      .nav-lateral {
-          flex-direction: row;
-          justify-content: space-between;
-          border-radius: 0;
-          margin: 2em 0 0;
-          padding-bottom: .5em;
-          height: auto;
-          width: 100%;
-      }
-      
-      main {
-          padding-top: 4em;
-      }
-      
-      .icon-menu {
-          display: none;        
-      }
+    .nav-lateral {
+      position: absolute;
+      border-radius: 0;
+      height: auto;
+      width: 100%;
+      margin: 0;
+    }
+
+    .fa-bars {
+        display: none;
+    }
+    
+    main {
+      position: relative;
+      top: 2.8em;
+    }
   }
 </style>

@@ -23,12 +23,13 @@
 </script>
 <style lang="css">
     footer {
-    background-color: #598b83;
-    padding: .25em;
-    margin: 0 -1em -1em;
-    text-align: center;
+      position: relative;
+      top: 100vh;
+      background-color: #598b83;
+      padding: .25em;
+      text-align: center;
     }
-
+    
     footer a {
       padding: 0.30em;
     }

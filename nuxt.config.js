@@ -1,5 +1,5 @@
 module.exports = {
-  // css: ['~/assets/styles/main.scss'],
+  css: ['~/assets/styles/main.scss'],
   /*
   ** Headers of the page
   */
@@ -21,6 +21,7 @@ module.exports = {
     ],
     script: [
       { type: 'text/javascript', src: '/jquery.js' },
+      { type: 'text/javascript', src: 'https://use.fontawesome.com/6492ecb9b0.js' },
       { type: 'text/javascript', src: '/tether.js' },
       { type: 'text/javascript', src: 'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/js/mdb.min.js' },
       { type: 'text/javascript', src: '/bootstrap.js' }

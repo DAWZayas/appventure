@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <appventure></appventure>
-  </div>
+  <appventure></appventure>
 </template>
 <script>
   import appventure from '~/pages/appventure'
@@ -15,3 +13,10 @@
     }
   }
 </script>
+<style>
+  body, html {
+    margin: 0;
+    height: 100%;
+  }
+</style>
+
