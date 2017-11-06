@@ -1,5 +1,6 @@
 <template>
   <div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css">
     <header-component></header-component>
     <main>
       <section-search-component></section-search-component>
@@ -36,8 +37,8 @@
   ::-webkit-scrollbar { 
     display: none;
   }
-  main {
-    padding: 0em 1em 1em 1em;
+  section+section {
+    margin-top: 1em;
   }
   body {
     background-color: #AAA;

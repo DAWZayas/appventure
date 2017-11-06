@@ -1,5 +1,5 @@
 <template>
- <footer class="footer-grid">
+ <footer class="fixed-bottom">
   <div class="copy">&copy Soy Programador S.L.</div>
     <div class="social">
       <a href="https://www.facebook.com/"><img class="social-img" :src="facebook" alt="facebook"></a>
@@ -23,8 +23,6 @@
 </script>
 <style lang="css">
     footer {
-      position: relative;
-      top: 100vh;
       background-color: #598b83;
       padding: .25em;
       text-align: center;

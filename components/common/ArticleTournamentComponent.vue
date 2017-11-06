@@ -1,6 +1,6 @@
 <template>
 <div>
-  <article>
+  <article class="venture">
     <strong>{{ tournament.strong }}</strong>
     <img :src="tournament.src" class="img-slide">
     {{ tournament.location }}
@@ -18,7 +18,7 @@
   }
 </script>
 <style>
-  article {
+  .venture {
       padding-right: 1.5em;
       padding-left: 1.5em;
       padding: 1em;
@@ -28,7 +28,7 @@
       display: flex;
       box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
   }
-  * {
+  .venture, .venture > * {
       cursor: pointer;
   }
   .img-slide {

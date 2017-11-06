@@ -47,18 +47,18 @@
   }
 </script>
 <style>
+  h3 {
+    padding: .5em;
+  }
   .flex {
       display: flex;
   }
   .slide-top {
     background-color: white;
-    padding: 1em 1em;
-    margin: 1em -2em 0;
     flex-direction: column; 
   }
   .slide {
-      margin: -1em -1.5em 0 -1.5em;
-      overflow-x: scroll;
+    overflow-x: scroll;
   }
   div > article {
     margin: 1em;

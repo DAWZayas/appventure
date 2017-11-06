@@ -1,12 +1,16 @@
 <template>
-    <header class="">
-      <div class="d-flex justify-content-between align-items-center p-1 top-bar">
-        <a class="top-link fa fa-bars" @click="handleOnClick"></a>
-        <a class="top-link"><span class="logo"/></a>
-        <a href="html/login.html" class="top-link icon-user"></a>
-      </div>
-      <nav :class="{ visible: !isOpened }" class="d-flex flex-column flex-lg-row nav-lateral">
-        <a class="top-link nav-item" v-for="(link, index) in topLink" :key="index" :class="link.class">{{ link.text }}</a>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <button type="button" class="top-link btn btn-primary">AppVenture</button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="navbar-nav ml-lg-auto mt-lg-0">
+            <a class="top-link nav-item" v-for="(link, index) in navLink" :key="index" :class="link.class">{{ link.text }}</a>
+          </div>
+        </div>
       </nav>
     </header>
 </template>
@@ -14,8 +18,7 @@
   export default {
     data () {
       return {
-        isOpened: false,
-        topLink: [
+        navLink: [
           {
             text: ' Tu cuenta',
             class: 'icon-home3'
@@ -38,61 +41,41 @@
           }
         ]
       }
-    },
-    methods: {
-      handleOnClick () {
-        this.isOpened = !this.isOpened
-      }
     }
   }
 </script>
 <style lang="scss">
   @import 'assets/icons/style.css';
 
-  .top-bar {
-      background-color: #306e64;
+  header {
+    background: url("https://i.imgur.com/OI5u1YI.png")no-repeat center center;
+    background-size: cover;
   }
 
   .top-link {
-      padding: .5em;
-      border-radius: 1em;
-      margin: 0.25em .5em;
-      color: rgb(0, 0, 0);
-      cursor: pointer;
+    padding: 1em .5em;
+    border-radius: .5rem;
+    margin: 0.25em .5em;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
   }
 
-  .nav-lateral {
-      justify-content: flex-start;
-      border-radius: 0 0 1em;
-      position: absolute;
-      height: 100vh;
-      width: 80%;
-      background-color: #306e64;
-      transition: all .5s ease-in-out;
+  .navbar {
+    background-color: #306e64;
   }
 
-  .visible {
-      margin-left: -85%;
-      transition: all .5s ease-in-out;
-  }
-
-  @media (-webkit-min-width: 768px) {
-      
-    .nav-lateral {
-      position: absolute;
-      border-radius: 0;
-      height: auto;
-      width: 100%;
-      margin: 0;
-    }
-
-    .fa-bars {
-        display: none;
+  @media (-webkit-min-width: 992px) {   
+    .navbar {
+      background-color: transparent;
     }
     
-    main {
-      position: relative;
-      top: 2.8em;
+    .top-link {
+      background-color: rgba(89, 139, 131, .74);
+      transition: all .2s;
+    }
+
+    .top-link:hover {
+      background-color: rgb(89, 139, 131);
     }
   }
 </style>
