@@ -1,15 +1,22 @@
 <template>
-  <appventure class></appventure>
+  <div>
+    <appventure v-if="isAuthenticated"></appventure>
+    <login v-if="!isAuthenticated"></login>
+  </div>
 </template>
 <script>
   import appventure from '~/pages/appventure'
+  import login from '~/pages/login'
 
   export default {
     data () {
-      return {}
+      return {
+        isAuthenticated: true
+      }
     },
     components: {
-      appventure
+      appventure,
+      login
     }
   }
 </script>
