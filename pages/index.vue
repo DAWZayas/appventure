@@ -30,5 +30,9 @@
     background: url("https://i.pinimg.com/originals/29/62/cc/2962ccc1e3818bbfdd6cb6aafd32dc8d.jpg")no-repeat center center;
     background-size: cover;
   }
+
+  .container {
+    box-shadow: none !important;
+  }
 </style>
 

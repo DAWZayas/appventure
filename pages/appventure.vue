@@ -45,4 +45,11 @@
   body {
     background-color: #AAA;
   }
+
+  @media (-webkit-min-width: 992px) {   
+    main {
+      max-width: 1140px;
+      margin: auto;
+    }
+  }
 </style>
