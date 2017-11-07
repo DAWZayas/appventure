@@ -48,7 +48,7 @@
 </script>
 <style>
   h3 {
-    padding: .5em;
+    padding: .5em .5em 0;
   }
   .flex {
       display: flex;

@@ -3,7 +3,7 @@
     <p></p>
     <article>&#9917; Futbol</article>
     <article>&#9918; Padel</article>
-    <article>;Tenis</article>
+    <article>&#128513; Tenis</article>
     <article>;Karts</article>
     <article>;Baloncesto</article>
     <article>;Golf</article>
