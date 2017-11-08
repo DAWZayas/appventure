@@ -11,7 +11,7 @@
   export default {
     data () {
       return {
-        isAuthenticated: true
+        isAuthenticated: false
       }
     },
     components: {
@@ -35,4 +35,3 @@
     box-shadow: none !important;
   }
 </style>
-

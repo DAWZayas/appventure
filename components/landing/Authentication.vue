@@ -18,7 +18,15 @@
                           
                 <div class="col-md-6 col-xl-5 offset-xl-1">
                   <!--Form-->
-                  <div class="card wow fadeInRight" data-wow-delay="0.3s">
+                   <ul class="nav nav-tabs tabs-2 light-blue darken-3" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#login" role="tab"><i class="fa fa-user mr-1"></i> Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#register" role="tab"><i class="fa fa-user-plus mr-1"></i> Register</a>
+                    </li>
+                  </ul>
+                  <div id="login" class="card wow fadeInRight tab-pane fade in show active" data-wow-delay="0.3s" role="tabpanel">
                     <div class="card-body z-depth-2">
                       <!--Header-->
                       <div class="text-center">
@@ -45,6 +53,40 @@
                         <button class="btn peach-gradient">Entrar</button>
                         <hr>
                         <nuxt-link class="btn peach-gradient" to="appventure" tag="button"> Iniciar sin usuario </nuxt-link>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="register" class="card wow fadeInRight tab-pane fade" data-wow-delay="0.3s" role="tabpanel">
+                    <div class="card-body z-depth-2">
+                      <!--Header-->
+                      <div class="text-center">
+                        <div>'¿Todavia no te has dado de alta?, Registrate!'</div>
+                      </div>        
+                      <br>  
+                      <div class="d-flex align-items-center">
+                        <i class="fa fa-user prefix grey-text"></i>
+                        <input  type="text" id="form3" class="form-control" placeholder="Nombre">
+                      </div> 
+                      <br>
+                      <div class="d-flex align-items-center">
+                        <i class="fa fa-user prefix grey-text"></i>
+                        <input  v-model="email" type="email" id="form3" class="form-control" placeholder="E-mail">
+                      </div>
+                      <br>
+                      <div class="d-flex align-items-center">
+                        <i class="fa fa-envelope prefix grey-text"></i>
+                        <input v-model="password" type="password" id="form2" class="form-control" placeholder="Contraseña">
+                      </div>
+                      <br>
+                      <div v-show="this.authError !== ''">
+                        <button type="button">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong> </strong>{{ this.errorText }}
+                      </div>  
+                      <div class="text-center">
+                        <button class="btn peach-gradient">Entrar</button>
                       </div>
                     </div>
                   </div>
