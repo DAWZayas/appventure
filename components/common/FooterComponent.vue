@@ -21,7 +21,7 @@
     }
   }
 </script>
-<style lang="css">
+<style scoped>
     footer {
       background-color: #B2EBF2;
       padding: .25em;

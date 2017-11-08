@@ -8,7 +8,7 @@
         <button type="button" class="btn btn-primary">AppVenture</button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="navbar-nav ml-lg-auto mt-lg-0">
-            <a class="top-link nav-item" v-for="(link, index) in navLink" :key="index" :class="link.class">{{ link.text }}</a>
+            <nuxt-link class="top-link nav-item" v-for="(link, index) in navLink" :key="index" :class="link.class" :to="link.link">{{ link.text }}</nuxt-link>
           </div>
         </div>
       </nav>
@@ -21,30 +21,35 @@
         navLink: [
           {
             text: ' Tu cuenta',
-            class: 'icon-home3'
+            class: 'icon-home3',
+            link: 'users'
           },
           {
             text: ' Mis torneos',
-            class: 'icon-trophy'
+            class: 'icon-trophy',
+            link: ''
           },
           {
             text: ' Clasificación',
-            class: 'icon-stats-dots'
+            class: 'icon-stats-dots',
+            link: ''
           },
           {
             text: ' Ayuda',
-            class: 'icon-bubbles3'
+            class: 'icon-bubbles3',
+            link: ''
           },
           {
             text: ' Cerrar sesión',
-            class: 'icon-exit'
+            class: 'icon-exit',
+            link: ''
           }
         ]
       }
     }
   }
 </script>
-<style lang="scss">
+<style scoped>
   @import 'assets/icons/style.css';
 
   header {

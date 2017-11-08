@@ -6,13 +6,13 @@
       <section-search-component></section-search-component>
       <section-principal-component></section-principal-component>
       <section-categories-component></section-categories-component>
-      <related-tournament-component></related-tournament-component>
+      <section-related-component></section-related-component>
     </main>
     <footer-component></footer-component>
   </div>
 </template>
 <script>
-  import { HeaderComponent, SectionSearchComponent, SectionPrincipalComponent, SectionCategoriesComponent, RelatedTournamentComponent, FooterComponent } from '~/components/common'
+  import { HeaderComponent, SectionSearchComponent, SectionPrincipalComponent, SectionCategoriesComponent, SectionRelatedComponent, FooterComponent } from '~/components/common'
 
   export default {
     data () {
@@ -23,7 +23,7 @@
       SectionSearchComponent,
       SectionPrincipalComponent,
       SectionCategoriesComponent,
-      RelatedTournamentComponent,
+      SectionRelatedComponent,
       FooterComponent
     }
   }
@@ -41,9 +41,6 @@
   }
   section+section {
     margin-top: 1em;
-  }
-  body {
-    background-color: #AAA;
   }
 
   @media (-webkit-min-width: 992px) {   

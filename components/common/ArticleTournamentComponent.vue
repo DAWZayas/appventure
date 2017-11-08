@@ -1,6 +1,6 @@
 <template>
 <div>
-  <article class="d-flex flex-direction-column venture">
+  <article class="d-flex flex-column venture">
     <div class="view hm-zoom">
       <img :src="tournament.src" class="img-slide">
     </div>
@@ -20,14 +20,14 @@
     }
   }
 </script>
-<style>
+<style scoped>
   .venture {
-    padding: 0;
     border-radius: 0.20em;
     border-bottom-right-radius: 0;
     cursor: pointer;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
     position: relative;
+    margin: 1em;
   }
   .venture-strong {
     background-color: #00BCD4;

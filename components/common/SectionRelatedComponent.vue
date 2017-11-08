@@ -56,7 +56,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
   .related-tnm {
     background-color: #fff;
     margin-bottom: 2rem;

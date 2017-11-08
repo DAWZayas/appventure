@@ -1,6 +1,5 @@
 <template>
-  <section class="categories flex">
-    <p></p>
+  <section class="categories d-flex flex-wrap justify-content-around">
     <article>&#9917; Futbol</article>
     <article>&#9918; Padel</article>
     <article>&#128513; Tenis</article>
@@ -14,15 +13,10 @@
 <script>
 
 </script>
-<style>
-  .flex {
-    display: flex;
-  }
+<style scoped>
   .categories {
     padding: 1em;
     background-color: white;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
   }
   .categories > article {
       box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);

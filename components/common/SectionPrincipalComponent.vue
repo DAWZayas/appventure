@@ -1,8 +1,7 @@
 <template>
-  <section class="flex slide-top">
+  <section class="d-flex flex-column slide-top">
     <h3>Torneos cerca de ti</h3>
-    <section class="flex slide">
-      <p></p>
+    <section class="d-flex slide">
       <article-tournament-component v-for="tournament in tournaments" :key="tournament.strong" :tournament="tournament"></article-tournament-component>
     </section>
   </section>
@@ -82,29 +81,14 @@
     }
   }
 </script>
-<style>
+<style scoped>
   h3 {
     padding: .5em .5em 0;
   }
-  .flex {
-      display: flex;
-  }
   .slide-top {
     background-color: white;
-    flex-direction: column; 
   }
   .slide {
     overflow-x: scroll;
-  }
-  div > article {
-    margin: 1em;
-    padding-right: 1.5em;
-    padding-left: 1.5em;
-    padding: 1em;
-    border-radius: 0.20em;
-    flex-direction: column;
-    cursor: pointer;
-    display: flex;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
   }
 </style>

@@ -10,7 +10,7 @@
     <h4 class="mb-3">{{ tournament.highlight }}</h4>
     <p>by <a><strong>{{ tournament.announcer }}</strong></a>, {{ tournament.date }}</p>
     <p><a>{{ tournament.sport }} </a>{{ tournament.description }}</p>
-    <a class="btn btn-pink btn-rounded">¡Apúntate!</a>
+    <a class="btn btn-light-green btn-rounded">¡Apúntate!</a>
   </div>
 </template>
 <script>
