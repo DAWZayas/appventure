@@ -2,33 +2,21 @@
   <div>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css">
     <header-component></header-component>
-    <main>
-      <section-search-component></section-search-component>
-      <section-principal-component></section-principal-component>
-      <section-categories-component></section-categories-component>
-      <section-related-component></section-related-component>
-    </main>
+    <router-view></router-view>
     <footer-component></footer-component>
   </div>
 </template>
 <script>
-  import { HeaderComponent, SectionSearchComponent, SectionPrincipalComponent, SectionCategoriesComponent, SectionRelatedComponent, FooterComponent } from '~/components/common'
+  import { HeaderComponent, FooterComponent } from '~/components/common'
 
   export default {
-    data () {
-      return {}
-    },
     components: {
       HeaderComponent,
-      SectionSearchComponent,
-      SectionPrincipalComponent,
-      SectionCategoriesComponent,
-      SectionRelatedComponent,
       FooterComponent
     }
   }
 </script>
-<style lang="scss">
+<style>
   :root {
     overflow-x: hidden;
   }
@@ -38,15 +26,5 @@
   }
   ::-webkit-scrollbar { 
     display: none;
-  }
-  section+section {
-    margin-top: 1em;
-  }
-
-  @media (-webkit-min-width: 992px) {   
-    main {
-      max-width: 1140px;
-      margin: auto;
-    }
   }
 </style>

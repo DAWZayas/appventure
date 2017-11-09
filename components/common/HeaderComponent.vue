@@ -5,7 +5,7 @@
           aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <button type="button" class="btn btn-primary">AppVenture</button>
+        <nuxt-link class="btn btn-primary" to="/appventure/">AppVenture</nuxt-link>
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="navbar-nav ml-lg-auto mt-lg-0">
             <nuxt-link class="top-link nav-item" v-for="(link, index) in navLink" :key="index" :class="link.class" :to="link.link">{{ link.text }}</nuxt-link>
@@ -22,7 +22,7 @@
           {
             text: ' Tu cuenta',
             class: 'icon-home3',
-            link: 'users'
+            link: '/appventure/users'
           },
           {
             text: ' Mis torneos',
@@ -69,13 +69,13 @@
     padding-bottom: 0;
   }
 
-  @media (-webkit-min-width: 992px) {   
+  @media (min-width: 992px) {   
     .navbar {
       background-color: transparent;
     }
     
     .top-link {
-      transition: all .5s;
+      transition: border-bottom .5s;
       border-bottom: 3px solid rgba(0, 188, 212, .5);
     }
 

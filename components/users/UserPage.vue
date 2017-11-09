@@ -1,7 +1,5 @@
 <template>
   <div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css">
-    <header-component></header-component>
     <div v-if="isCreator">
 
       <input type="text" placeholder="Nombre del torneo">
@@ -42,24 +40,18 @@
   </div>
 </template>
 <script>
-  import { HeaderComponent } from '~/components/common'
-
   export default {
     data () {
       return {
         isCreator: true
-        }
       }
-    }
-    components: {
-      HeaderComponent
-    }
+    }/*,
     methods: {
       selectedIndex: function () {
         this.selectedIndex = this.options.indexOf(this.)
-      }
-    }
+     }
+    } */
+  }
 </script>
 <style>
-
 </style>

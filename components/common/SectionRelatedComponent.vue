@@ -1,5 +1,6 @@
 <template>
   <section class="related-tnm p-lg-2 section extra-margins text-center pb-3">
+    <hr>
     <div class="row">
       <tag-tournament-component v-for="tournament in tournaments" :key="tournament.key" :tournament="tournament"></tag-tournament-component>
     </div>
@@ -14,7 +15,7 @@
         tournaments: [
           {
             sport: 'Parapente',
-            src: 'http://conceptodefinicion.de/wp-content/uploads/2017/06/Parapente.jpg',
+            src: require('~/assets/images/sports/parapente.jpg'),
             location: 'Madrid',
             highlight: '¡Apúntate a volar!',
             announcer: 'eXperience',
@@ -23,7 +24,7 @@
           },
           {
             sport: 'Parapente',
-            src: 'http://conceptodefinicion.de/wp-content/uploads/2017/06/Parapente.jpg',
+            src: require('~/assets/images/sports/parapente.jpg'),
             location: 'Madrid',
             highlight: '¡Apúntate a volar!',
             announcer: 'eXperience',
@@ -32,7 +33,7 @@
           },
           {
             sport: 'Parapente',
-            src: 'http://conceptodefinicion.de/wp-content/uploads/2017/06/Parapente.jpg',
+            src: require('~/assets/images/sports/parapente.jpg'),
             location: 'Madrid',
             highlight: '¡Apúntate a volar!',
             announcer: 'eXperience',
@@ -41,7 +42,7 @@
           },
           {
             sport: 'Parapente',
-            src: 'http://conceptodefinicion.de/wp-content/uploads/2017/06/Parapente.jpg',
+            src: require('~/assets/images/sports/parapente.jpg'),
             location: 'Madrid',
             highlight: '¡Apúntate a volar!',
             announcer: 'eXperience',
@@ -60,5 +61,8 @@
   .related-tnm {
     background-color: #fff;
     margin-bottom: 2rem;
+  }
+  hr {
+    border-bottom: 1px solid #BDBDBD;
   }
 </style>

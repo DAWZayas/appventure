@@ -16,7 +16,7 @@ module.exports = {
       { hid: 'ogdescription', property: 'og:description', name: 'og:description', content: 'ProFitOro is a Pomodoro timer implementation combined with office workouts. Take breaks during work. Exercise during breaks ' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
       { type: 'text/javascript', src: '/jquery.js' },
@@ -47,5 +47,18 @@ module.exports = {
         })
       }
     }
-  }
+  } /*,
+  router: {
+    middleware: 'check-auth'
+  },
+  router: {
+    extendRoutes (routes, resolve) {
+      const route = routes.find(({path}) => path === '/')
+      if (route) {
+        route.redirect = '/appventure'
+        route.component = resolve(__dirname, 'pages/appventure')
+      }
+      console.log('>>>>', routes.find(({path}) => path === '/'))
+    }
+  } */
 }

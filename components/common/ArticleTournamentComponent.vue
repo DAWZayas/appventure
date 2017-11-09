@@ -47,7 +47,7 @@
     border: none;
     cursor: pointer;
     background-color: #8BC34A;
-    transition: all .2s;
+    transition: background-color .2s;
     border-top-left-radius: 20%;
     position: absolute;
     margin: 0;
