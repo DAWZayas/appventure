@@ -1,10 +1,8 @@
 <template>
-  <section class="related-tnm p-lg-2 section extra-margins text-center pb-3">
-    <hr>
     <div class="row">
+      <hr>
       <tag-tournament-component v-for="tournament in tournaments" :key="tournament.key" :tournament="tournament"></tag-tournament-component>
     </div>
-  </section>
 </template>
 <script>
   import { TagTournamentComponent } from '~/components/common'
@@ -53,7 +51,7 @@
       }
     },
     components: {
-      TagTournamentComponent
+      'tag-tournament-component': TagTournamentComponent
     }
   }
 </script>
