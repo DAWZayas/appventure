@@ -29,20 +29,24 @@
     position: relative;
     margin: 1em;
   }
+  
   .venture-strong {
     background-color: #00BCD4;
     color: #FFFFFF;
     border-bottom: 1px solid #BDBDBD;
     padding: .2em;
   }
+
   .venture-location, .venture-dificult {
     color: #212121;
     padding: .1em .5em;
     margin: 0;
   }
+
   .article-icon {
     color: #757575;
   }
+
   .see-more {
     border: none;
     cursor: pointer;
@@ -53,10 +57,10 @@
     margin: 0;
     bottom: 0;
     right: 0;
+    
+    &:hover { background-color: rgba(139, 195, 74, .8); }
   }
-  .see-more:hover {
-    background-color: rgba(139, 195, 74, .8);
-  }
+
   .img-slide {
     width: 10em;
     margin: 0;

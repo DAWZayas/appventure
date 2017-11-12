@@ -1,5 +1,5 @@
 <template>
-  <div class="col-6 col-lg-3 mb-r">
+  <div class="col-6 col-lg-4 mb-r">
     <div class="view overlay hm-white-slight z-depth-1-half mb-2">
       <img :src="sport.src" class="img-fluid" :alt="sport.sport">
       <a>

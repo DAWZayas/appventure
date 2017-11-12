@@ -34,7 +34,7 @@
         </select>
 
         <select v-if="selected == 'esports'" name="categoria-esports">
-          <option value="lol">League of Legend</option>
+          <option value="lol">League of Legends</option>
           <option value="csgo">CS:GO</option>
           <option value="dota2">Dota2</option>
           <option value="fifa">Fifa</option>
@@ -86,7 +86,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
   * + * {
     margin-top: 0.5em;
   }

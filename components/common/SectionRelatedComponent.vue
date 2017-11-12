@@ -1,9 +1,9 @@
-  <template>
-    <div class="row">
-      <hr>
-      <tag-related-component v-for="sport in sports" :key="sport.key" :sport="sport"></tag-related-component>
-    </div>
-  </template>
+<template>
+  <div class="row">
+    <hr>
+    <tag-related-component v-for="sport in sports" :key="sport.key" :sport="sport"></tag-related-component>
+  </div>
+</template>
 <script>
   import TagRelatedComponent from '~/components/common/TagRelatedComponent'
 
@@ -56,6 +56,9 @@
   }
 </script>
 <style scoped>
+  div {
+    margin: 0;
+  }
   .related-tnm {
     background-color: #fff;
     margin-bottom: 2rem;

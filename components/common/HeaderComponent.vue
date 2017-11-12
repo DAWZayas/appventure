@@ -6,20 +6,29 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <nuxt-link to="/appventure/"><img :src="logo" class="logo"></nuxt-link>
-        <span @click="showSBar" class="search-button navbar-toggler fa fa-search"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSearch" aria-controls="navbarNav"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler fa fa-search"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="navbar-nav ml-lg-auto mt-lg-0">
             <nuxt-link class="top-link nav-item" v-for="(link, index) in navLink" :key="index" :class="link.class" :to="link.link">{{ link.text }}</nuxt-link>
+          </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSearch">
+          <div class="navbar-nav ml-lg-auto mt-lg-0">
+            <section-search-component></section-search-component>
           </div>
         </div>
       </nav>
     </header>
 </template>
 <script>
+  import { SectionSearchComponent } from '~/components/common'
+
   export default {
     data () {
       return {
-        opened: false,
         logo: require('~/assets/logo.svg'),
         navLink: [
           {
@@ -50,15 +59,35 @@
         ]
       }
     },
+    mounted () {
+      this.$nextTick(function () {
+        window.addEventListener('resize', this.getWindowWidth)
+        this.getWindowWidth()
+      })
+    },
     methods: {
-      showSBar () { this.$root.$emit('showSBar') }
+      getWindowWidth (event) {
+        this.windowWidth = document.documentElement.clientWidth
+        if (this.windowWidth > 992) {
+          this.logo = require('~/assets/logo-lg.svg')
+        } else {
+          this.logo = require('~/assets/logo.svg')
+        }
+      }
+    },
+    beforeDestroy () {
+      window.removeEventListener('resize', this.getWindowWidth)
+    },
+    components: {
+      SectionSearchComponent
     }
   }
 </script>
 <style scoped>
   @import 'assets/icons/style.css';
-  .shoes {
-    margin: 0 !important;
+
+  header {
+    background-color: white;
   }
 
   .logo {
@@ -75,29 +104,43 @@
   }
 
   .navbar {
+    padding: 0 !important;
     border: 0;
     border-radius: 0;
     box-shadow: none;
-    padding-top: 0;
-    padding-bottom: 0;
   }
 
-  @media (min-width: 992px) {  
-    .search-button {
-      display: none;
+  .navbar-nav {
+    border-bottom: 1px solid rgba(117, 117, 117, .5);
+  }
+
+  @media (min-width: 992px) {
+
+    header {
+      background-color: #00bcd4
+    }
+
+    #navbarSearch, .search-button {
+      display: none !important;
+    }
+
+    .navbar {
+      padding: 0 1em !important;
     }
 
     .logo:hover {
       transform: scale(1.1);
     }
+
+    .navbar-nav {
+      border: 0;
+    }
     
     .top-link {
       transition: border-bottom .5s;
-      border-bottom: 3px solid rgba(0, 188, 212, .5);
-    }
+      border-bottom: 3px solid transparent;
 
-    .top-link:hover {
-      border-bottom: 3px solid #00BCD4;
+      &:hover { border-bottom: 3px solid #212121; }
     }
   }
 </style>
