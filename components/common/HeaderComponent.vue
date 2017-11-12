@@ -5,7 +5,8 @@
           aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <nuxt-link class="btn btn-primary" to="/appventure/">AppVenture</nuxt-link>
+        <nuxt-link to="/appventure/"><img :src="logo" class="logo"></nuxt-link>
+        <span class="search-button navbar-toggler fa fa-search"></span>
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="navbar-nav ml-lg-auto mt-lg-0">
             <nuxt-link class="top-link nav-item" v-for="(link, index) in navLink" :key="index" :class="link.class" :to="link.link">{{ link.text }}</nuxt-link>
@@ -18,6 +19,7 @@
   export default {
     data () {
       return {
+        logo: require('~/assets/logo.svg'),
         navLink: [
           {
             text: ' Tu cuenta',
@@ -52,8 +54,10 @@
 <style scoped>
   @import 'assets/icons/style.css';
 
-  header {
-    background-color: #0097A7;
+  .logo {
+    max-width: 50px;
+    transition: transform 1s;
+    cursor: pointer;
   }
 
   .top-link {
@@ -64,14 +68,20 @@
   }
 
   .navbar {
-    background-color: #0097A7;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
     padding-top: 0;
     padding-bottom: 0;
   }
 
-  @media (min-width: 992px) {   
-    .navbar {
-      background-color: transparent;
+  @media (min-width: 992px) {  
+    .search-button {
+      display: none;
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
     }
     
     .top-link {

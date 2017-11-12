@@ -1,16 +1,16 @@
-<template>
+  <template>
     <div class="row">
       <hr>
-      <tag-tournament-component v-for="tournament in tournaments" :key="tournament.key" :tournament="tournament"></tag-tournament-component>
+      <tag-related-component v-for="sport in sports" :key="sport.key" :sport="sport"></tag-related-component>
     </div>
-</template>
+  </template>
 <script>
-  import { TagTournamentComponent } from '~/components/common'
+  import TagRelatedComponent from '~/components/common/TagRelatedComponent'
 
   export default {
     data () {
       return {
-        tournaments: [
+        sports: [
           {
             sport: 'Parapente',
             src: require('~/assets/images/sports/parapente.jpg'),
@@ -51,7 +51,7 @@
       }
     },
     components: {
-      'tag-tournament-component': TagTournamentComponent
+      'tag-related-component': TagRelatedComponent
     }
   }
 </script>
@@ -62,5 +62,14 @@
   }
   hr {
     border-bottom: 1px solid #BDBDBD;
+  }
+  h3 {
+    padding: .5em .5em 0;
+  }
+  .slide-top {
+    background-color: white;
+  }
+  .slide {
+    overflow-x: scroll;
   }
 </style>

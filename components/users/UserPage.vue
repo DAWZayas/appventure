@@ -4,7 +4,7 @@
 
       <input type="text" placeholder="Nombre del torneo">
 
-      <select name="categorias" class="">
+      <select id="categorias" @change="whatCategory" class="">
         <option value="deportes">Deportes</option>
         <option value="esports">E-sports</option>
         <option value="casinos">Juegos de cartas</option>
@@ -51,8 +51,10 @@
     },
     methods: {
       whatCategory: function () {
-        var lista = document.getElementByTagName('categorias')
+        var lista = document.getElementById('categorias')
+        console.log('holiii')
         this.category = lista.selectedIndex.value
+        console.log('holas')
       }
     }
   }
