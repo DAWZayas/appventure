@@ -11,31 +11,33 @@
         <option value="motor">Motor</option>
       </select>
 
-      <select v-if="isDeportes" name="categoria-deportes">
+      <p>{{ category }}</p>
+
+      <select v-if="category === 'deportes'" name="categoria-deportes">
         <option value="futbol">Futbol</option>
         <option value="padel">Padel</option>
         <option value="baloncesto">Baloncesto</option>
         <option value="golf">Golf</option>
       </select>
 
-      <select v-if="isEsports" name="categoria-esports">
+      <select v-if="category === 'esports'" name="categoria-esports">
         <option value="lol">League of Legend</option>
         <option value="csgo">CS:GO</option>
         <option value="dota2">Dota2</option>
         <option value="fifa">Fifa</option>
       </select>
 
-      <select v-if="isCasinos" name="categoria-casinos">
+      <select v-if="category === 'casinos'" name="categoria-casinos">
         <option value="poker">Poker</option>
       </select>
 
-      <select v-if="isMotor" name="categoria-motor">
+      <select v-if="category == 'motor'" name="categoria-motor">
         <option value="Karts">Karts</option>
         <option value="rally">Rally</option>
         <option value="motos">Motos</option>
       </select>
       
-      <nuxt-link type="button" class="btn btn-light-green">Crear torneo</nuxt-link>
+      <button type="button" class="btn btn-light-green">Crear torneo</button>
     </div>
   </div>
 </template>
@@ -43,14 +45,16 @@
   export default {
     data () {
       return {
-        isCreator: true
+        isCreator: true,
+        category: ''
       }
-    }/*,
+    },
     methods: {
-      selectedIndex: function () {
-        this.selectedIndex = this.options.indexOf(this.)
-     }
-    } */
+      whatCategory: function () {
+        var lista = document.getElementByTagName('categorias')
+        this.category = lista.selectedIndex.value
+      }
+    }
   }
 </script>
 <style>
