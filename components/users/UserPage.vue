@@ -56,8 +56,9 @@
   </div>
 </template>
 <script>
+  import { SectionPrincipalComponent } from '~/components/common'
+
   export default {
-    props: ['tournament'],
     data () {
       return {
         isCreator: true,
@@ -67,15 +68,20 @@
         level: ''
       }
     },
+    components: {
+      SectionPrincipalComponent
+    },
     methods: {
       pushArray: function () {
-        var newArt = new Object();
-        newArt.strong = this.name
-        newArt.src = 'https://footballmadeinghana.com/wp-content/uploads/2017/10/IMG-20171002-WA0103-1024x720.jpg'
-        newArt.location = this.location
-        newArt.level = this.level
-
-        tournment.push(newArt)
+        var newArt = {
+          strong: this.name,
+          src: 'https://footballmadeinghana.com/wp-content/uploads/2017/10/IMG-20171002-WA0103-1024x720.jpg',
+          location: this.location,
+          level: this.level
+        }
+        console.log(newArt)
+        SectionPrincipalComponent.data().tournaments.push(newArt)
+        console.log(SectionPrincipalComponent.data().tournaments)
       }
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <section class="search-bar">
-    <form>
+    <form :class="{ showB: !open }">
       <div class="d-flex align-items-center search-box">
         <span class="search-button fa fa-search"></span>
         <input type="search" placeholder="Buscar nombre de torneo" class="search-bar">
@@ -10,9 +10,18 @@
   </section>
 </template>
 <script>
+  export default {
+    data () {
+      return { open: true }
+    },
+    events: {
+      openSBar: function (open) {
+        this.open = !this.open
+      }
+    }
+  }
 </script>
 <style scoped>
-
   .search-bar {
     padding: 0;
   }
@@ -44,6 +53,10 @@
   .search-bar:focus {
     border: 0px;
     box-shadow: none;
+  }
+
+  .showB {
+    display: none;
   }
 
   @media (min-width: 992px){

@@ -6,7 +6,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <nuxt-link to="/appventure/"><img :src="logo" class="logo"></nuxt-link>
-        <span class="search-button navbar-toggler fa fa-search"></span>
+        <span @click="showSBar" class="search-button navbar-toggler fa fa-search"></span>
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="navbar-nav ml-lg-auto mt-lg-0">
             <nuxt-link class="top-link nav-item" v-for="(link, index) in navLink" :key="index" :class="link.class" :to="link.link">{{ link.text }}</nuxt-link>
@@ -19,6 +19,7 @@
   export default {
     data () {
       return {
+        opened: false,
         logo: require('~/assets/logo.svg'),
         navLink: [
           {
@@ -48,11 +49,17 @@
           }
         ]
       }
+    },
+    methods: {
+      showSBar () { this.$root.$emit('showSBar') }
     }
   }
 </script>
 <style scoped>
   @import 'assets/icons/style.css';
+  .shoes {
+    margin: 0 !important;
+  }
 
   .logo {
     max-width: 50px;
