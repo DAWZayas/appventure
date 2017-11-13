@@ -3,7 +3,6 @@
     <div class="view head-image">
       <img :src="headImg" class="img-fluid">
       <div class="mask flex-center"></div>
-      <p class="superpossed text-uppercase font-weight-bold">¡Apúntate, participa y gana!</p>
     </div>
     <section-search-component class="show-s-bar"></section-search-component>
     <section-principal-component></section-principal-component>
