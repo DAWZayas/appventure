@@ -21,18 +21,18 @@
           
               <div class="field-wrap">
                 <label>Last Name<span class="req">*</span></label>
-                <input type="text"required autocomplete="off"/>
+                <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" type="text"required autocomplete="off"/>
               </div>
             </div>
 
             <div class="field-wrap">
               <label>Email Address<span class="req">*</span></label>
-              <input type="email"required autocomplete="off"/>
+              <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" type="email"required autocomplete="off"/>
             </div>
             
             <div class="field-wrap">
               <label>Set A Password<span class="req">*</span></label>
-              <input type="password"required autocomplete="off"/>
+              <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" type="password"required autocomplete="off"/>
             </div>
             
             <button type="submit" class="button button-block">Get Started</button>
@@ -47,12 +47,12 @@
           
             <div class="field-wrap">
               <label>Email Address<span class="req">*</span></label>
-              <input type="email"required autocomplete="off"/>
+              <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" type="email"required autocomplete="off"/>
             </div>
           
             <div class="field-wrap">
               <label>Password<span class="req">*</span></label>
-              <input type="password"required autocomplete="off"/>
+              <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" type="password"required autocomplete="off"/>
             </div>
                       
             <button class="button button-block">Log In</button>
