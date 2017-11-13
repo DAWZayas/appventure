@@ -1,5 +1,5 @@
 <template>
-  <div id="this-page">
+  <div>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css">
     <header-component class="sticky-top"></header-component>
     <router-view></router-view>

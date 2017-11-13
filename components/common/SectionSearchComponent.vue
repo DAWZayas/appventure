@@ -25,10 +25,10 @@
   .search-button {
       padding: 0 .5em;
       margin: 0;
-      cursor: pointer;
   }
 
   input[type=search].search-bar {
+      cursor: text;
       flex-grow: 3;
       margin: 0;
       padding: .5em;
