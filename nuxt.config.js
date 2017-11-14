@@ -1,5 +1,8 @@
 module.exports = {
-  css: ['~/assets/styles/main.scss'],
+  css: ['~/assets/styles/main.scss',
+    {
+      src: '~/assets/css/app.styl'
+    }],
   /*
   ** Headers of the page
   */
@@ -26,6 +29,7 @@ module.exports = {
       { type: 'text/javascript', src: '/bootstrap.js' }
     ]
   },
+  plugins: ['~plugins/vuetify.js'],
   /*
   ** Customize the progress-bar color
   */
@@ -34,6 +38,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    vendor: ['vuetify'],
     /*
     ** Run ESLINT on save
     */
@@ -47,18 +52,5 @@ module.exports = {
         })
       }
     }
-  } /*,
-  router: {
-    middleware: 'check-auth'
-  },
-  router: {
-    extendRoutes (routes, resolve) {
-      const route = routes.find(({path}) => path === '/')
-      if (route) {
-        route.redirect = '/appventure'
-        route.component = resolve(__dirname, 'pages/appventure')
-      }
-      console.log('>>>>', routes.find(({path}) => path === '/'))
-    }
-  } */
+  }
 }
