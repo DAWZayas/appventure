@@ -1,3 +1,4 @@
 export default {
-  getTournaments: state => state.tournaments
+  getTournaments: state => state.tournaments,
+  getIsAuthenticated: state => state.isAuthenticated
 }

@@ -58,7 +58,7 @@
               <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" type="password"required autocomplete="off"/>
             </div>
                       
-            <button class="button button-block">Log In</button>
+            <nuxt-link to="/appventure/"><button class="button button-block" @click="setLoginStatus">Log In</button></nuxt-link>
             <p class="home-forgot"><a href="#">Forgot Password?</a></p>
           </form>
         </div>
@@ -75,6 +75,7 @@
   }
 
   import { FooterComponent } from '~/components/common'
+  import { mapActions } from 'vuex'
 
   export default {
     data () {
@@ -119,7 +120,8 @@
         } else if (e.type === 'focus') {
           eHthis.value === '' ? label.remove('highlight') : label.add('highlight')
         }
-      }
+      },
+      ...mapActions([ 'setLoginStatus' ])
     },
     components: {
       FooterComponent
@@ -284,6 +286,7 @@
   }
 
   .button {
+    cursor: pointer;
     border: 0;
     padding: .5em 0;
     font-size: 2rem;

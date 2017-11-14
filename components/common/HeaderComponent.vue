@@ -11,8 +11,11 @@
           <span class="navbar-toggler fa fa-search"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <div class="navbar-nav ml-lg-auto mt-lg-0">
-            <nuxt-link class="top-link nav-item" v-for="(link, index) in navLink" :key="index" :class="link.class" :to="link.link">{{ link.text }}</nuxt-link>
+          <div v-if="isAuthenticated" class="navbar-nav ml-lg-auto mt-lg-0">
+            <nuxt-link class="top-link nav-item" v-for="(link, index) in navLinkIn" :key="index" :class="link.class" :to="link.link">{{ link.text }}</nuxt-link>
+          </div>
+          <div v-else class="navbar-nav ml-lg-auto mt-lg-0">
+            <nuxt-link class="top-link nav-item" v-for="(link, index) in navLinkGuest" :key="index" :class="link.class" :to="link.link">{{ link.text }}</nuxt-link>            
           </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSearch">
@@ -25,12 +28,13 @@
 </template>
 <script>
   import { SectionSearchComponent } from '~/components/common'
+  import { mapGetters } from 'vuex'
 
   export default {
     data () {
       return {
         logo: require('~/assets/logo.svg'),
-        navLink: [
+        navLinkIn: [
           {
             text: ' Tu cuenta',
             class: 'icon-home3',
@@ -56,6 +60,28 @@
             class: 'icon-exit',
             link: ''
           }
+        ],
+        navLinkGuest: [
+          {
+            text: ' Iniciar sesión',
+            class: 'icon-home3',
+            link: '/login/'
+          },
+          {
+            text: ' Torneos',
+            class: 'icon-trophy',
+            link: ''
+          },
+          {
+            text: ' Clasificación',
+            class: 'icon-stats-dots',
+            link: ''
+          },
+          {
+            text: ' Ayuda',
+            class: 'icon-bubbles3',
+            link: ''
+          }
         ]
       }
     },
@@ -64,6 +90,9 @@
         window.addEventListener('resize', this.getWindowWidth)
         this.getWindowWidth()
       })
+    },
+    computed: {
+      ...mapGetters({ isAuthenticated: 'getIsAuthenticated' })
     },
     methods: {
       getWindowWidth (event) {

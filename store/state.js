@@ -60,6 +60,10 @@ const tournaments = [
     level: 'Principiante'
   }
 ]
+
+const isAuthenticated = false
+
 export default {
-  tournaments
+  tournaments,
+  isAuthenticated
 }

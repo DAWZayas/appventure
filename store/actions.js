@@ -5,5 +5,8 @@ export default {
 */
   setArticleAppventure ({commit, state}, newTournament) {
     commit('setArticleAppventure', newTournament)
+  },
+  setLoginStatus ({commit, state}) {
+    commit('setLoginStatus')
   }
 }
