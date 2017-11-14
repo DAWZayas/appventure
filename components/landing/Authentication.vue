@@ -3,6 +3,9 @@
   <section class="d-flex justify-content-center">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <div class="form">
+      <div class="logo">
+        <img :src="logo" alt="AppVenture">  
+      </div>
       <ul class="tab-group">
         <li class="tab active" @click.prevent="toggleLog"><a href="#signup">Sign Up</a></li>
         <li class="tab" @click.prevent="toggleLog"><a href="#login">Log In</a></li>
@@ -36,7 +39,7 @@
             </div>
             
             <button type="submit" class="button button-block">Get Started</button>
-            <p class="skip"><a href="/appventure/">Skip to home</a></p>
+            <p class="home-forgot"><a href="/appventure/">Go home</a></p>
           </form>
         </div>
         
@@ -56,7 +59,7 @@
             </div>
                       
             <button class="button button-block">Log In</button>
-            <p class="skip"><a href="#">Forgot Password?</a></p>
+            <p class="home-forgot"><a href="#">Forgot Password?</a></p>
           </form>
         </div>
       </div>
@@ -76,6 +79,7 @@
   export default {
     data () {
       return {
+        logo: require('~/assets/logo.svg'),
         isLogin: true,
         email: '',
         password: '',
@@ -122,32 +126,43 @@
     }
   }
 </script>
-<style scoped>
+<style lang="scss" scoped>
+  $primary-blue: #00BCD4; // #179b77;
+  $dark-blue: #0097A7; // #1ab188;
+  $soft-grey: #a0b3b0;
+
   .hide {
     display: none;
   }
   
   section {
-    min-width: 25em;
     height: 100vh;
+    min-width: 16em;
     background: rgba(19, 35, 47, 0.9);
   }
 
   a {
     text-decoration: none;
-    color: #1ab188;
-    -webkit-transition: .5s ease;
+    color: $dark-blue;
     transition: .5s ease;
 
     &:hover {
-      color: #179b77;
+      color: $primary-blue;
+    }
+  }
+
+  .logo {
+    text-align: center;
+
+    img {
+      max-width: 5em;
     }
   }
 
   .form {
     width: 100%;
-    padding: 1em;
-    max-width: 600px;
+    padding: 0 1em 1em;
+    max-width: 40em;
   }
 
   .tab-group {
@@ -155,101 +170,101 @@
     padding: 0;
     margin: 0;
     margin-bottom: 2em;
-  }
 
-  .tab-group:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
 
-  .tab-group li a {
-    display: block;
-    text-decoration: none;
-    padding: 15px;
-    background: rgba(160, 179, 176, 0.25);
-    color: #a0b3b0;
-    font-size: 20px;
-    float: left;
-    width: 50%;
-    text-align: center;
-    cursor: pointer;
-    transition: .5s ease;
-  }
+    li a {
+      display: block;
+      text-decoration: none;
+      padding: 1em;
+      background: rgba(160, 179, 176, 0.25);
+      color: $soft-grey;
+      font-size: 1.2em;
+      float: left;
+      width: 50%;
+      text-align: center;
+      cursor: pointer;
+      transition: .5s ease;
 
-  .tab-group li a:hover {
-    background: #179b77;
-    color: #ffffff;
-  }
+      &:hover {
+        background: $primary-blue;
+        color: white;
+      }
+    }
 
-  .tab-group .active a {
-    background: #1ab188;
-    color: #ffffff;
+    .active a {
+      background: $dark-blue;
+      color: white;
+    }
   }
 
   h1 {
     text-align: center;
-    color: #ffffff;
+    color: white;
     font-weight: 300;
-    margin: 0 0 40px;
+    margin: 0 0 2em;
   }
 
   label {
     position: absolute;
-    transform: translateY(6px);
-    left: 13px;
+    left: .5em;
+    bottom: -.1em;
     color: rgba(255, 255, 255, 0.5);
     transition: all 0.25s ease;
     pointer-events: none;
-    font-size: 22px;
-  }
+    font-size: 1.4em;
 
-  label .req {
-    margin: 2px;
-    color: #1ab188;
-  }
+    .req {
+      margin: 2px;
+      color: $dark-blue;
+    }
 
-  label.active {
-    transform: translateY(-1em);
-    left: 2px;
-    font-size: 14px;
-  }
+    &.active {
+      transform: translateY(-2em);
+      left: .1em;
+      font-size: 14px;
 
-  label.active .req {
-    opacity: 0;
-  }
+      .req {
+        opacity: 0;
+      }
+    }
 
-  label.highlight {
-    color: #ffffff;
+    &.highlight {
+      color: white;
+    }
   }
 
   input, textarea {
-    font-size: 22px;
+    font-size: 1.4em;
     width: 100%;
     height: 100%;
-    padding: 5px 10px;
+    padding: .4em .4em;
     background: none;
     background-image: none;
     border: 0;
-    border-bottom: 1px solid #a0b3b0 !important;
-    color: #ffffff;
+    border-bottom: 1px solid $soft-grey !important;
+    color: white;
     border-radius: 0;
     transition: border-color .25s ease, box-shadow .25s ease;
-  }
 
-  input:focus, textarea:focus {
-    outline: 0;
-    border-color: #1ab188;
+    &:focus {
+      outline: 0;
+      border-color: $dark-blue;
+    }
   }
 
   textarea {
-    border-bottom: 2px solid #a0b3b0;
+    border-bottom: 2px solid $soft-grey;
     resize: vertical;
   }
 
   .field-wrap {
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 2em;
   }
 
   .top-row:after {
@@ -262,27 +277,26 @@
     float: left;
     width: 48%;
     margin-right: 4%;
-  }
 
-  .top-row > div:last-child {
-    margin: 0;
+    &:last-child {
+      margin: 0;
+    }
   }
 
   .button {
     border: 0;
-    outline: none;
-    border-radius: 0;
-    padding: 15px 0;
+    padding: .5em 0;
     font-size: 2rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .1em;
-    background: #1ab188;
-    color: #ffffff;
+    background: $dark-blue;
+    color: white;
     transition: all 0.5s ease;
   }
+
   .button:hover, .button:focus {
-    background: #179b77;
+    background: $primary-blue;
   }
 
   .button-block {
@@ -290,11 +304,7 @@
     width: 100%;
   }
 
-  .forgot {
-    margin-top: -1em;
-    text-align: right;
-  }
-  .skip {
+  .home-forgot {
     padding-top: 1em;
     margin: 0;
     text-align: right;

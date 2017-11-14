@@ -1,6 +1,6 @@
 <template>
  <footer class="sticky-bottom">
-  <div class="copy">&copy Soy Programador S.L.</div>
+  <div class="copy">2017 &copy AppVenture</div>
     <div class="social">
       <a href="https://www.facebook.com/"><img class="social-img" :src="facebook" alt="facebook"></a>
       <a href="https://www.twitter.com/"><img class="social-img" :src="twitter" alt="twitter"></a>
@@ -29,14 +29,16 @@
   }
 
   .copy {
-      font-size: 1em;
-      color: black;
-      opacity: .60;
-      padding: .25em;
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 1rem;
+    color: black;
+    opacity: .75;
+    padding: .25em;
   }
 
   .social-img {
-    width: 1em;
+    width: 1.2rem;
     filter: grayscale(100%);
     transition: filter .25s;
     margin: .3em;
