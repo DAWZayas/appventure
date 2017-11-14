@@ -65,11 +65,12 @@
       </div>
 
     </div>
-    <button @click="pushArray" type="button" class="btn btn-light-green">Crear torneo</button>
+    <button @click="addTournament" type="button" class="btn btn-light-green">Crear torneo</button>
   </div>
 </template>
 <script>
   import { SectionPrincipalComponent } from '~/components/common'
+  import {mapGetters, mapActions} from 'vuex'
 
   export default {
     data () {
@@ -81,21 +82,25 @@
         level: ''
       }
     },
+    computed: {
+      ...mapGetters({
+        tournaments: 'getTournaments'
+      })
+    },
     components: {
       SectionPrincipalComponent
     },
     methods: {
-      pushArray: function () {
-        var newArt = {
+      addTournament: function () {
+        const newArt = {
           strong: this.name,
           src: 'https://footballmadeinghana.com/wp-content/uploads/2017/10/IMG-20171002-WA0103-1024x720.jpg',
           location: this.location,
           level: this.level
         }
-        console.log(newArt)
-        SectionPrincipalComponent.data().tournaments.push(newArt)
-        console.log(SectionPrincipalComponent.data().tournaments)
-      }
+        this.setArticleAppventure(newArt)
+      },
+      ...mapActions(['setArticleAppventure'])
     }
   }
 </script>
