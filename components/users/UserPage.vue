@@ -1,72 +1,27 @@
 <template>
-  <div>
-    <div v-if="isCreator" class="formulario d-flex flex-column">
-      <div>
-        <input v-model="name" value="" type="text" placeholder="Nombre del torneo">
-        <input v-model="location" value="location" type="text" placeholder="Lugar del torneo">
-        <input value="" type="number" placeholder="Cantidad de participantes" max="1000">
-        <input value="" type="number" placeholder="Precio por persona" max="100">
-        <input v-model="level" value="level" type="text" placeholder="Dificultad" max="100">
+  <v-app v-if="isCreator" class="container">
+    <v-flex xs12 sm4>
+      <v-text-field v-model="name" label="Nombre del torneo"></v-text-field>
+      <v-text-field v-model="location" label="Lugar del torneo"></v-text-field>
+      <v-text-field value="" type="number" label="Cantidad de participantes" max="1000"></v-text-field>
+      <v-text-field value="" type="number" label="Precio por persona" max="100"></v-text-field>
+      <v-select :items="difficulty" v-model="level" label="Dificultad"></v-select>
 
-        <div class="d-flex align-items-center genre">
-          <input type="radio" name="genero" value="masculino"><p>Masculino</p>
-          <input type="radio" name="genero" value="femenino"><p>Femenino</p>
-          <input type="radio" name="genero" value="mixto"><p>Mixto</p>
-        </div>
+      <v-radio-group>
+        <v-radio label="Masculino" value="m"></v-radio>
+        <v-radio label="Femenino" value="f"></v-radio>
+        <v-radio label="Mixtos" value="mf"></v-radio>
+      </v-radio-group>
 
-      </div>
-      <div class="select">
-      <select class="select-style" v-model="selected" id="categorias" >
-        <option value="deportes">Deportes</option>
-        <option value="esports">E-sports</option>
-        <option value="casinos">Juegos de cartas</option>
-        <option value="motor">Motor</option>
-      </select>
-      <div class="select_arrow"></div>
-      </div>
-
-
-      <div class="categories">
-        <div class="select">
-        <select v-if="selected == 'deportes'" name="categoria-deportes">
-          <option value="futbol">Futbol</option>
-          <option value="baloncesto">Baloncesto</option>
-          <option value="Padel">Padel</option>
-          <option value="Golf">Golf</option>
-        </select>
-        <div v-show="selected == 'deportes'" class="select_arrow"></div>
-        </div>
-
-        <div class="select">
-        <select v-if="selected == 'esports'" name="categoria-esports">
-          <option value="lol">League of Legends</option>
-          <option value="csgo">CS:GO</option>
-          <option value="dota2">Dota2</option>
-          <option value="fifa">Fifa</option>
-        </select>
-        <div v-show="selected == 'esports'" class="select_arrow"></div>
-        </div>
-
-        <div class="select">
-        <select v-if="selected == 'casinos'" name="categoria-casinos">
-          <option value="poker">Poker</option>
-        </select>
-        <div v-show="selected == 'casinos'" class="select_arrow"></div>
-        </div>
-
-        <div class="select">
-        <select v-if="selected == 'motor'" name="categoria-motor">
-          <option value="Karts">Karts</option>
-          <option value="rally">Rally</option>
-          <option value="motos">Motos</option>
-        </select>
-        <div v-show="selected == 'motor'" class="select_arrow"></div>
-        </div>
-      </div>
-
-    </div>
-    <button @click="addTournament" type="button" class="btn btn-light-green">Crear torneo</button>
-  </div>
+      <v-select :items="categories.main" v-model="selected" label="Categoría"></v-select>
+      <v-select :items="categories.sports" v-if="selected === 'sports'" label="Deporte"></v-select>
+      <v-select :items="categories.esports" v-if="selected === 'esports'" label="Videojuego"></v-select>
+      <v-select :items="categories.cardgames" v-if="selected === 'cardgames'" label="Juego"></v-select>
+      <v-select :items="categories.motor" v-if="selected === 'motor'" label="Tipo"></v-select>
+      
+      <v-btn block color="secondary" @click="addTournament">Crear torneo</v-btn>
+    </v-flex>
+  </v-app>
 </template>
 <script>
   import { SectionPrincipalComponent } from '~/components/common'
@@ -75,6 +30,40 @@
   export default {
     data () {
       return {
+        categories: {
+          main: [
+            { text: 'Deportes', value: 'sports' },
+            { text: 'e-Sports', value: 'esports' },
+            { text: 'Juegos de cartas', value: 'cardgames' },
+            { text: 'Motor', value: 'motor' }
+          ],
+          sports: [
+            { text: 'Fútbol', value: 'football' },
+            { text: 'Baloncesto', value: 'basketball' },
+            { text: 'Padel', value: 'padel' },
+            { text: 'Golf', value: 'golf' }
+          ],
+          esports: [
+            { text: 'League of Legends', value: 'lol-esport' },
+            { text: 'CSGO', value: 'csgo' },
+            { text: 'Dota 2', value: 'dota2' },
+            { text: 'FIFA', value: 'fifa-esport' }
+          ],
+          cardgames: [
+            { text: 'Poker', value: 'Poker' }
+          ],
+          motor: [
+            { text: 'Karts', value: 'Karts' },
+            { text: 'Rally', value: 'Rally' },
+            { text: 'Motos', value: 'Motos' }
+          ]
+        },
+        difficulty: [
+          { text: 'Principiante', value: 'Principiante' },
+          { text: 'Medio', value: 'Medio' },
+          { text: 'Alto', value: 'Alto' },
+          { text: 'Maestro', value: 'Maestro' }
+        ],
         isCreator: true,
         selected: '',
         name: '',
@@ -104,14 +93,3 @@
     }
   }
 </script>
-<style scoped>
-  .genre > * {
-    margin: .5em .3em .5em .1em;
-  }
-  .formulario {
-    margin: 1em 10%;
-  }
-  .categories{ 
-    margin-top: 0.5em;
-  }
-</style>
