@@ -295,7 +295,7 @@
     letter-spacing: .1em;
     background: $dark-blue;
     color: white;
-    transition: all 0.5s ease;
+    transition: background 0.5s ease;
   }
 
   .button:hover, .button:focus {
@@ -308,6 +308,7 @@
   }
 
   .home-forgot {
+    cursor: pointer;
     padding-top: 1em;
     margin: 0;
     text-align: right;

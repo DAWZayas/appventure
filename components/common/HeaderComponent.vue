@@ -12,7 +12,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <div v-if="isAuthenticated" class="navbar-nav ml-lg-auto mt-lg-0">
-            <nuxt-link class="top-link nav-item" v-for="(link, index) in navLinkIn" :key="index" :class="link.class" :to="link.link">{{ link.text }}</nuxt-link>
+            <nuxt-link class="top-link nav-item" v-for="(link, index) in navLinkIn" :key="index" :class="link.class" :to="link.link" @click="link.eFunction">{{ link.text }}</nuxt-link>
           </div>
           <div v-else class="navbar-nav ml-lg-auto mt-lg-0">
             <nuxt-link class="top-link nav-item" v-for="(link, index) in navLinkGuest" :key="index" :class="link.class" :to="link.link">{{ link.text }}</nuxt-link>            
@@ -28,7 +28,7 @@
 </template>
 <script>
   import { SectionSearchComponent } from '~/components/common'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     data () {
@@ -58,7 +58,8 @@
           {
             text: ' Cerrar sesión',
             class: 'icon-exit',
-            link: ''
+            link: '/login/',
+            eFunction: 'logout'
           }
         ],
         navLinkGuest: [
@@ -102,7 +103,11 @@
         } else {
           this.logo = require('~/assets/logo.svg')
         }
-      }
+      },
+      logout () {
+        this.setLoginStatus()
+      },
+      ...mapActions(['setLoginStatus'])
     },
     beforeDestroy () {
       window.removeEventListener('resize', this.getWindowWidth)
