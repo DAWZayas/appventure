@@ -14,10 +14,7 @@
       </v-radio-group>
 
       <v-select :items="categories.main" v-model="selected" label="Categoría"></v-select>
-      <v-select :items="categories.sports" v-if="selected === 'sports'" label="Deporte"></v-select>
-      <v-select :items="categories.esports" v-if="selected === 'esports'" label="Videojuego"></v-select>
-      <v-select :items="categories.cardgames" v-if="selected === 'cardgames'" label="Juego"></v-select>
-      <v-select :items="categories.motor" v-if="selected === 'motor'" label="Tipo"></v-select>
+      <v-select :items="categories[selected]" v-if="selected !== ''" :label="categories['label'][selected]"></v-select>
       
       <v-btn block color="secondary" @click="addTournament">Crear torneo</v-btn>
     </v-flex>
@@ -56,7 +53,13 @@
             { text: 'Karts', value: 'Karts' },
             { text: 'Rally', value: 'Rally' },
             { text: 'Motos', value: 'Motos' }
-          ]
+          ],
+          label: {
+            sports: 'Deporte',
+            esports: 'Videojuego',
+            cardgames: 'Juego',
+            motor: 'Carrera'
+          }
         },
         difficulty: [
           { text: 'Principiante', value: 'Principiante' },
