@@ -1,9 +1,9 @@
 <template>
+<div>
     <header>
       <nav class="navbar navbar-expand-lg navbar-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button">
+          <span class="navbar-toggler-icon" @click.stop="drawer = !drawer"></span>
         </button>
         <nuxt-link to="/appventure/"><img :src="logo" class="logo"></nuxt-link>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSearch" aria-controls="navbarNav"
@@ -15,7 +15,7 @@
             <nuxt-link class="top-link nav-item" v-for="(link, index) in navLinkIn" :key="index" :class="link.class" :to="link.link" @click="link.eFunction">{{ link.text }}</nuxt-link>
           </div>
           <div v-else class="navbar-nav ml-lg-auto mt-lg-0">
-            <nuxt-link class="top-link nav-item" v-for="(link, index) in navLinkGuest" :key="index" :class="link.class" :to="link.link">{{ link.text }}</nuxt-link>            
+            <nuxt-link class="top-link nav-item" v-for="(link, index) in navLinkGuest" :key="index" :class="link.class" :to="link.link" @click="link.eFunction">{{ link.text }}</nuxt-link>
           </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSearch">
@@ -25,6 +25,47 @@
         </div>
       </nav>
     </header>
+    <v-navigation-drawer
+      temporary
+      v-model="drawer"
+      absolute
+      style="background-color: white;"
+    >
+      <v-list class="pa-1">
+        <v-list-tile avatar tag="div">
+          <v-avatar :tile="true">
+            <img :src="logo" :tile="false" />
+          </v-avatar>
+          <v-list-tile-content>
+            <v-list-tile-title>AppVenture</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+      <v-list class="pt-0" dense>
+        <v-divider light></v-divider>
+        <div v-if="isAuthenticated">
+        <v-list-tile v-for="(link, index) in navLinkIn" :key="index" :to="link.link" @click="link.eFunction">
+          <v-list-tile-action>
+            <v-icon :class="link.class"></v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ link.text }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        </div>
+        <div v-else>
+        <v-list-tile v-for="(link, index) in navLinkGuest" :key="index" :to="link.link" @click="link.eFunction">
+          <v-list-tile-action>
+            <v-icon :class="link.class"></v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ link.text }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        </div>
+      </v-list>
+    </v-navigation-drawer>
+</div>
 </template>
 <script>
   import { SectionSearchComponent } from '~/components/common'
@@ -33,6 +74,7 @@
   export default {
     data () {
       return {
+        drawer: null,
         logo: require('~/assets/logo.svg'),
         navLinkIn: [
           {
@@ -43,17 +85,17 @@
           {
             text: ' Mis torneos',
             class: 'icon-trophy',
-            link: ''
+            link: '/appventure/'
           },
           {
             text: ' Clasificación',
             class: 'icon-stats-dots',
-            link: ''
+            link: '/appventure/users'
           },
           {
             text: ' Ayuda',
             class: 'icon-bubbles3',
-            link: ''
+            link: '/appventure/users'
           },
           {
             text: ' Cerrar sesión',
@@ -71,17 +113,17 @@
           {
             text: ' Torneos',
             class: 'icon-trophy',
-            link: ''
+            link: '/login/'
           },
           {
             text: ' Clasificación',
             class: 'icon-stats-dots',
-            link: ''
+            link: '/login/'
           },
           {
             text: ' Ayuda',
             class: 'icon-bubbles3',
-            link: ''
+            link: '/login/'
           }
         ]
       }
@@ -122,6 +164,10 @@
 
   header {
     background-color: white;
+  }
+
+  .overlay {
+    z-index: 1070!important;
   }
 
   .logo {
@@ -169,7 +215,7 @@
     .navbar-nav {
       border: 0;
     }
-    
+
     .top-link {
       transition: border-bottom .5s;
       border-bottom: 3px solid transparent;

@@ -2,7 +2,7 @@
   <div>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-    <header-component class="sticky-top"></header-component>
+    <header-component></header-component>
     <router-view></router-view>
     <footer-component></footer-component>
   </div>
@@ -22,7 +22,7 @@
     box-sizing: inherit;
     cursor: default;
   }
-  ::-webkit-scrollbar { 
+  ::-webkit-scrollbar {
     display: none;
   }
 </style>

@@ -1,0 +1,26 @@
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <nuxt-link to="/appventure/"><img :src="logo" class="logo"></nuxt-link>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSearch" aria-controls="navbarNav"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler fa fa-search"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div v-if="isAuthenticated" class="navbar-nav ml-lg-auto mt-lg-0">
+            <nuxt-link class="top-link nav-item" v-for="(link, index) in navLinkIn" :key="index" :class="link.class" :to="link.link" @click="link.eFunction">{{ link.text }}</nuxt-link>
+          </div>
+          <div v-else class="navbar-nav ml-lg-auto mt-lg-0">
+            <nuxt-link class="top-link nav-item" v-for="(link, index) in navLinkGuest" :key="index" :class="link.class" :to="link.link">{{ link.text }}</nuxt-link>
+          </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSearch">
+          <div class="navbar-nav ml-lg-auto mt-lg-0">
+            <section-search-component></section-search-component>
+          </div>
+        </div>
+      </nav>
+    </header>
