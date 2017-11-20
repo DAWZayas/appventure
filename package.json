@@ -13,8 +13,9 @@
     "vuetify": "^0.17.0"
   },
   "scripts": {
-    "devHome": "cross-env HOST=192.168.1.49 PORT=3000 nuxt",
+    "devGarlos": "cross-env HOST=192.168.1.49 PORT=3000 nuxt",
     "devJuanjo": "cross-env HOST=10.42.0.1 PORT=3000 nuxt",
+    "devWifi": "cross-env HOST=192.168.137.1 PORT=3000 nuxt",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",

@@ -1,15 +1,15 @@
 <template>
-  <v-app v-if="isCreator" class="container">
-    <v-flex xs12 sm4>
-      <div>
-        <v-carousel delimiter-icon="stop">
-          <v-carousel-item v-for="(item,i) in items" v-bind:src="item.src" :key="i"></v-carousel-item>
-        </v-carousel>
-        <strong>Crack</strong>
-        <p>Majadahonda</p>
+<v-app v-touch="{ right: () => swipe('#prev'), left: () => swipe('#next') }">
+  <div id="carousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+      <div v-for="(item, i) in items" :key="i" :class="item.class" class="carousel-item">
+          <img class="d-block w-100" :src="item.src" :alt="item.alt">
       </div>
-    </v-flex>
-  </v-app>
+      <a id="prev" class="carousel-control-prev" href="#carousel" role="button" data-slide="prev"></a>
+      <a id="next" class="carousel-control-next" href="#carousel" role="button" data-slide="next"></a>
+    </div>
+  </div>
+</v-app>
 </template>
 <script>
 export default {
@@ -17,19 +17,31 @@ export default {
     return {
       items: [
         {
-          src: '/static/doc-images/carousel/squirrel.jpg'
+          src: require('~/assets/images/torneos/torneopoker.jpg'),
+          class: 'active',
+          alt: 'First'
         },
         {
-          src: '/static/doc-images/carousel/sky.jpg'
+          src: require('~/assets/images/torneos/torneopoker.jpg'),
+          alt: 'Second'
         },
         {
-          src: '/static/doc-images/carousel/bird.jpg'
-        },
-        {
-          src: '/static/doc-images/carousel/planet.jpg'
+          src: require('~/assets/images/torneos/torneopoker.jpg'),
+          alt: 'Third'
         }
       ]
+    }
+  },
+  methods: {
+    swipe (direction) {
+      var event = new MouseEvent('click', { bubbles: true })
+      document.querySelector(direction).dispatchEvent(event)
     }
   }
 }
 </script>
+<style scoped>
+  #carousel {
+    height: auto;
+  }
+</style>
