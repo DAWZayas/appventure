@@ -14,6 +14,7 @@
   },
   "scripts": {
     "devHome": "cross-env HOST=192.168.1.49 PORT=3000 nuxt",
+    "devJuanjo": "cross-env HOST=10.42.0.1 PORT=3000 nuxt",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
