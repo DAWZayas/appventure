@@ -9,11 +9,18 @@
 </template>
 <script>
   import { HeaderComponent, FooterComponent } from '~/components/common'
+  import { mapActions } from 'vuex'
 
   export default {
     components: {
       HeaderComponent,
       FooterComponent
+    },
+    methods: {
+      ...mapActions(['bindFirebaseReferences'])
+    },
+    created () {
+      this.bindFirebaseReferences()
     }
   }
 </script>

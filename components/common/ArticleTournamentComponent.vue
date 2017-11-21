@@ -2,7 +2,7 @@
 <div>
   <article class="d-flex flex-column venture">
     <div class="view hm-zoom">
-      <nuxt-link to="/tournaments"><img :src="tournament.src" class="img-slide"></nuxt-link>
+      <nuxt-link to="/tournaments"><img class="img-slide"></nuxt-link>
     </div>
     <strong class="venture-strong">{{ tournament.strong }}</strong>
     <p class="venture-location"><i class="fa fa-globe article-icon" aria-hidden="true"></i> {{ tournament.location }}</p>
