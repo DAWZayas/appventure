@@ -10,7 +10,6 @@ export default {
     commit('setLoginStatus')
   },
   setArticleAppventure ({commit, state}, newTournament) {
-    commit('setArticleAppventure', newTournament)
     if (state.configRef) {
       state.configRef.update({newTournament})
     } else {
