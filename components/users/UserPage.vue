@@ -16,7 +16,18 @@
       <v-select :items="categories.main" v-model="selected" label="Categoría"></v-select>
       <v-select :items="categories[selected]" v-if="selected !== ''" :label="categories['label'][selected]"></v-select>
       
-      <v-btn block color="secondary" @click="addTournament">Crear torneo</v-btn>
+      <v-dialog v-model="dialog" persistent max-width="290">
+        <v-btn block color="secondary" dark slot="activator" @click="addTournament">Crear torneo</v-btn>
+        <v-card>
+          <v-card-title class="headline">¿Desea crear el torneo ?</v-card-title>
+          <v-card-text>Dandole al boton crear, el torneo se creara y no se podra borrar, tambien acepta la politica de datos.</v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="green darken-1" flat @click.native="dialog = false">Cancelar</v-btn>
+            <nuxt-link to="/appventure"><v-btn color="green darken-1" flat @click.native="dialog = false">Crear</v-btn></nuxt-link>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-flex>
   </v-app>
 </template>
