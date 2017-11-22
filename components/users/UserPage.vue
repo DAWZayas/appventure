@@ -15,7 +15,7 @@
 
       <v-select :items="categories.main" v-model="selected" label="Categoría"></v-select>
       <v-select :items="categories[selected]" v-if="selected !== ''" :label="categories['label'][selected]"></v-select>
-      
+
       <v-dialog v-model="dialog" persistent max-width="290">
         <v-btn block color="secondary" dark slot="activator" @click="addTournament">Crear torneo</v-btn>
         <v-card>
@@ -23,7 +23,7 @@
           <v-card-text>Dandole al boton crear, el torneo se creara y no se podra borrar, tambien acepta la politica de datos.</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="green darken-1" flat @click.native="dialog = false">Cancelar</v-btn>
+            <v-btn color="green darken-1" flat @click.native="dialog = true">Cancelar</v-btn>
             <nuxt-link to="/appventure"><v-btn color="green darken-1" flat @click.native="dialog = false">Crear</v-btn></nuxt-link>
           </v-card-actions>
         </v-card>
@@ -38,6 +38,7 @@
   export default {
     data () {
       return {
+        dialog: false,
         categories: {
           main: [
             { text: 'Deportes', value: 'sports' },
@@ -97,7 +98,7 @@
       addTournament: function () {
         const newArt = {
           strong: this.name,
-          src: 'https://footballmadeinghana.com/wp-content/uploads/2017/10/IMG-20171002-WA0103-1024x720.jpg',
+          src: 'esports',
           location: this.location,
           level: this.level
         }
