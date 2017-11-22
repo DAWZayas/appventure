@@ -56,22 +56,26 @@
             {
               text: ' Tu cuenta',
               class: 'icon-home3',
-              link: '/appventure/users'
+              link: '/appventure/users',
+              eFunction: 'doNothing'
             },
             {
               text: ' Mis torneos',
               class: 'icon-trophy',
-              link: '/appventure/'
+              link: '/appventure/',
+              eFunction: 'doNothing'
             },
             {
               text: ' Clasificación',
               class: 'icon-stats-dots',
-              link: '/appventure/users'
+              link: '/appventure/users',
+              eFunction: 'doNothing'
             },
             {
               text: ' Ayuda',
               class: 'icon-bubbles3',
-              link: '/appventure/users'
+              link: '/appventure/',
+              eFunction: 'doNothing'
             },
             {
               text: ' Cerrar sesión',
@@ -84,22 +88,26 @@
             {
               text: ' Iniciar sesión',
               class: 'icon-home3',
-              link: '/login/'
+              link: '/login/',
+              eFunction: 'doNothing'
             },
             {
               text: ' Torneos',
               class: 'icon-trophy',
-              link: '/login/'
+              link: '/appventure/',
+              eFunction: 'doNothing'
             },
             {
               text: ' Clasificación',
               class: 'icon-stats-dots',
-              link: '/login/'
+              link: '/appventure/',
+              eFunction: 'doNothing'
             },
             {
               text: ' Ayuda',
               class: 'icon-bubbles3',
-              link: '/login/'
+              link: '/appventure/',
+              eFunction: 'doNothing'
             }
           ]
         }
@@ -126,6 +134,9 @@
       logout () {
         this.setLoginStatus()
       },
+      doNothing () {
+        console.log('Pls! Stop!')
+      },
       ...mapActions(['setLoginStatus'])
     },
     beforeDestroy () {
@@ -142,7 +153,7 @@
   header {
     background-color: white;
   }
-  
+
   .logo {
     max-width: 50px;
     transition: transform 1s;
@@ -169,7 +180,7 @@
 
   @media (min-width: 992px) {
 
-    #navbarSearch { 
+    #navbarSearch {
       display: none !important
     }
 

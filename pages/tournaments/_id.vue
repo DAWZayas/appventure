@@ -1,5 +1,6 @@
 <template>
   <div>
+    <span>{{$route.params.id}}</span>
     <tournament-details></tournament-details>
   </div>
 </template>
