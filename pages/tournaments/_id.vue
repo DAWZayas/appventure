@@ -1,15 +1,30 @@
 <template>
   <div>
-    <span>{{$route.params.id}}</span>
-    <tournament-details></tournament-details>
+    <tournament-details :tournament="tournaments[this.id]"></tournament-details>
+    <footer-component></footer-component>
   </div>
 </template>
 <script>
-  import { TournamentDetails } from '~/components/common'
+  import { TournamentDetails, FooterComponent } from '~/components/common'
+  import { mapGetters } from 'vuex'
 
   export default {
+    data () {
+      return {
+        id: this.$route.params.id
+      }
+    },
     components: {
-      TournamentDetails
+      TournamentDetails,
+      FooterComponent
+    },
+    computed: {
+      ...mapGetters({
+        tournaments: 'getTournaments'
+      })
+    },
+    created () {
+      console.log(this.tournaments)
     }
   }
 </script>

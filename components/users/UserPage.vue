@@ -20,7 +20,7 @@
         <v-btn block color="secondary" dark slot="activator" @click="addTournament">Crear torneo</v-btn>
         <v-card>
           <v-card-title class="headline">¿Desea crear el torneo ?</v-card-title>
-          <v-card-text>Dandole al boton crear, el torneo se creara y no se podra borrar, tambien acepta la politica de datos.</v-card-text>
+          <v-card-text>Dandole al boton crear, el torneo se creara y no se podrá borrar, tambien acepta la politica de priacidad.</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="green darken-1" flat @click.native="dialog = false">Cancelar</v-btn>

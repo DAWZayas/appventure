@@ -1,18 +1,23 @@
 <template>
-<v-app v-touch="{ right: () => swipe('#prev'), left: () => swipe('#next') }">
-  <div id="carousel" class="carousel slide" data-ride="carousel">
+<div>
+  <div id="carousel" class="carousel slide" data-ride="carousel" v-touch="{ right: () => swipe('#prev'), left: () => swipe('#next') }">
     <div class="carousel-inner" role="listbox">
       <div v-for="(item, i) in items" :key="i" :class="item.class" class="carousel-item">
-          <img class="d-block w-100" :src="item.src" :alt="item.alt">
+          <img class="d-block w-100 aaa" :src="item.src" :alt="item.alt">
       </div>
       <a id="prev" class="carousel-control-prev" href="#carousel" role="button" data-slide="prev"></a>
       <a id="next" class="carousel-control-next" href="#carousel" role="button" data-slide="next"></a>
     </div>
   </div>
-</v-app>
+  <div class="main-data">
+    <h1>{{ tournament.strong }}</h1>
+    <p>{{ tournament.location }}</p>
+</div>
+</div>
 </template>
 <script>
 export default {
+  props: ['tournament'],
   data () {
     return {
       items: [
@@ -41,7 +46,12 @@ export default {
 }
 </script>
 <style scoped>
+  .aaa {
+    margin-top: -2em;
+  }
   #carousel {
-    height: auto;
+    height: 25vh;
+  }
+  .main-data {
   }
 </style>
