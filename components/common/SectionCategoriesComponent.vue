@@ -2,22 +2,24 @@
   <div>
     <h6>Categorías</h6>
     <section class="categories d-flex flex-wrap justify-content-around">
-      <article>&#9917; Futbol</article>
-      <article>&#9918; Padel</article>
-      <article>&#127934; Tenis</article>
-      <article>&#128664; Karts</article>
-      <article>&#127936; Baloncesto</article>
-      <article>&#127918; E-Sports</article>
-      <article>&#127183; Poker</article>
-      <article>&#9917; Futbol</article>
-      <article>&#127918; E-Sports</article>
-      <article>&#127183; Poker</article>
+      <v-chip class="chip" small outline color="primary">&#9917; Futbol</v-chip>
+      <v-chip class="chip" small outline color="primary">&#9918; Padel</v-chip>
+      <v-chip class="chip" small outline color="primary">&#127934; Tenis</v-chip>
+      <v-chip class="chip" small outline color="primary">&#128664; Karts</v-chip>
+      <v-chip class="chip" small outline color="primary">&#127936; Baloncesto</v-chip>
+      <v-chip class="chip" small outline color="primary">&#127918; E-Sports</v-chip>
+      <v-chip class="chip" small outline color="primary">&#127183; Poker</v-chip>
+      <v-chip class="chip" small outline color="primary">&#9917; Futbol</v-chip>
     </section>
   </div>
 </template>
 <script>
 </script>
 <style scoped>
+  .chip {
+    max-width: 8em!important;
+    justify-content: center!important;
+  }
   h6 {
     margin: 0;
     padding: .5em 1em 0;
