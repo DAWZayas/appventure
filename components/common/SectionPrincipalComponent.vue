@@ -22,11 +22,6 @@
   }
 </script>
 <style scoped>
-  h5 {
-    margin: 0;
-    padding: .5em 1em 0;
-    color: #757575
-  }
   .slide-top {
     background-color: white;
   }

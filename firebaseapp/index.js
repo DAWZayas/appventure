@@ -2,7 +2,7 @@
 import firebase from 'firebase'
 
 let config = {
-  apiKey: 'apiKey',
+  apiKey: 'AIzaSyBwJGI2Xe6hkT4H-CLLd3c-9o0poG0euKI',
   databaseURL: 'https://appventure-web.firebaseio.com',
   authDomain: 'appventure-web.firebaseapp.com',
   storageBucket: 'gs://appventure-web.appspot.com'

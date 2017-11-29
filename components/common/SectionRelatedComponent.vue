@@ -1,11 +1,13 @@
 <template>
-  <div class="row">
-    <hr>
-    <tag-related-component v-for="sport in sports" :key="sport.key" :sport="sport"></tag-related-component>
+  <div>
+    <h5>Relacionado con tus gustos</h5>
+    <div class="d-flex slide">
+      <article-tournament-component v-for="sport in sports" :key="sport.key" :tournament="sport"></article-tournament-component>
+    </div>
   </div>
 </template>
 <script>
-  import TagRelatedComponent from '~/components/common/TagRelatedComponent'
+  import ArticleTournamentComponent from '~/components/common/ArticleTournamentComponent'
 
   export default {
     data () {
@@ -13,37 +15,37 @@
         sports: [
           {
             sport: 'Parapente',
-            src: require('~/assets/images/sports/parapente.jpg'),
             location: 'Madrid',
             highlight: '¡Apúntate a volar!',
             announcer: 'eXperience',
+            src: 'esports',
             date: '15/11/2017',
             description: 'Disfruta de una experiencia única saltando en parapente en la sierra de Madrid. Desde 24.99€.'
           },
           {
             sport: 'Parapente',
-            src: require('~/assets/images/sports/parapente.jpg'),
             location: 'Madrid',
             highlight: '¡Apúntate a volar!',
             announcer: 'eXperience',
+            src: 'esports',
             date: '15/11/2017',
             description: 'Disfruta de una experiencia única saltando en parapente en la sierra de Madrid. Desde 24.99€.'
           },
           {
             sport: 'Parapente',
-            src: require('~/assets/images/sports/parapente.jpg'),
             location: 'Madrid',
             highlight: '¡Apúntate a volar!',
             announcer: 'eXperience',
+            src: 'esports',
             date: '15/11/2017',
             description: 'Disfruta de una experiencia única saltando en parapente en la sierra de Madrid. Desde 24.99€.'
           },
           {
             sport: 'Parapente',
-            src: require('~/assets/images/sports/parapente.jpg'),
             location: 'Madrid',
             highlight: '¡Apúntate a volar!',
             announcer: 'eXperience',
+            src: 'esports',
             date: '15/11/2017',
             description: 'Disfruta de una experiencia única saltando en parapente en la sierra de Madrid. Desde 24.99€.'
           }
@@ -51,7 +53,7 @@
       }
     },
     components: {
-      'tag-related-component': TagRelatedComponent
+      ArticleTournamentComponent
     }
   }
 </script>

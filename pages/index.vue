@@ -2,7 +2,7 @@
 </template>
 <script>
   export default {
-    middleware: 'check-auth'
+    middleware: 'authenticated'
   }
 </script>
 <style>

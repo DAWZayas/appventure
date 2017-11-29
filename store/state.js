@@ -1,6 +1,7 @@
 const tournaments = []
 const isAuthenticated = false
 const configRef = null
+const user = null
 
 const images = {
   padel: require('~/assets/images/torneos/torneopadel.jpg'),
@@ -13,5 +14,7 @@ export default {
   tournaments,
   isAuthenticated,
   images,
-  configRef
+  configRef,
+  user,
+  authError: ''
 }
