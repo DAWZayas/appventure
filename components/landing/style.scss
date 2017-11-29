@@ -2,27 +2,13 @@ $primary-blue: #00BCD4; // #179b77;
 $dark-blue: #0097A7; // #1ab188;
 $soft-grey: #a0b3b0;
 
-li a {
-  display: block;
+a {
   text-decoration: none;
-  padding: 1em;
-  background: rgba(160, 179, 176, 0.25);
-  color: $soft-grey;
-  font-size: 1.2em;
-  float: left;
-  width: 50%;
-  text-align: center;
-  cursor: pointer;
+  color: $dark-blue;
   transition: .5s ease;
 
   &:hover {
-    background: $primary-blue;
-    color: white;
-  }
-
-  .active a {
-    background: $dark-blue;
-    color: white;
+    color: $primary-blue;
   }
 }
 

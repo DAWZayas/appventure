@@ -65,7 +65,7 @@ export default {
         dispatch('bindFirebaseReferences', user)
       }
       if (!user) {
-        dispatch('unbindFirebaseReferences')
+        dispatch('bindFirebaseReferences')
       }
     })
   },

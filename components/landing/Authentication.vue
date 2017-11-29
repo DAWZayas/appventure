@@ -62,16 +62,6 @@
     background: rgba(19, 35, 47, 0.9);
   }
 
-  a {
-    text-decoration: none;
-    color: $dark-blue;
-    transition: .5s ease;
-
-    &:hover {
-      color: $primary-blue;
-    }
-  }
-
   .logo {
     text-align: center;
 
