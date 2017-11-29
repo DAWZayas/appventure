@@ -12,7 +12,7 @@
   <div class="main-data">
     <h1>{{ tournament.strong }}</h1>
     <p>{{ tournament.location }}</p>
-</div>
+  </div>
 </div>
 </template>
 <script>
@@ -53,5 +53,9 @@ export default {
     height: 25vh;
   }
   .main-data {
+    margin-top: 0.25em;
+  }
+  .practical-information {
+    width: 90%;
   }
 </style>

@@ -22,9 +22,6 @@
       ...mapGetters({
         tournaments: 'getTournaments'
       })
-    },
-    created () {
-      console.log(this.tournaments)
     }
   }
 </script>

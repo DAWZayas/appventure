@@ -1,4 +1,4 @@
-const tournaments = []
+const tournaments = {}
 const isAuthenticated = false
 const configRef = null
 const user = null

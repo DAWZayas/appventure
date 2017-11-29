@@ -2,7 +2,7 @@
 <div>
   <article class="d-flex flex-column venture">
     <div class="view hm-zoom">
-      <nuxt-link :to="'/tournaments/' + tournament['.key']"><img :src="images[this.src]" class="img-slide"></nuxt-link>
+      <nuxt-link :to="'/tournaments/' + id"><img :src="images[this.src]" class="img-slide"></nuxt-link>
     </div>
     <strong class="venture-strong">{{ tournament.strong }}</strong>
     <p class="venture-location"><i class="fa fa-globe article-icon" aria-hidden="true"></i> {{ tournament.location }}</p>
@@ -15,7 +15,7 @@
   import { mapGetters } from 'vuex'
 
   export default {
-    props: ['tournament'],
+    props: ['tournament', 'id'],
     data () {
       return {
         src: this.tournament.src
