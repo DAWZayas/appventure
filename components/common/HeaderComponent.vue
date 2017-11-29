@@ -81,7 +81,7 @@
               text: ' Cerrar sesión',
               class: 'icon-exit',
               link: '/login/',
-              eFunction: 'logout'
+              eFunction: 'onLogout'
             }
           ],
           false: [
@@ -120,7 +120,7 @@
       })
     },
     computed: {
-      ...mapGetters({ isAuthenticated: 'getIsAuthenticated' })
+      ...mapGetters({ isAuthenticated: 'isAuthenticated' })
     },
     methods: {
       getWindowWidth (event) {
@@ -131,13 +131,13 @@
           this.logo = require('~/assets/logo.svg')
         }
       },
-      logout () {
-        this.setLoginStatus()
+      onLogout () {
+        this.logout()
       },
       doNothing () {
         console.log('Pls! Stop!')
       },
-      ...mapActions(['setLoginStatus'])
+      ...mapActions(['logout'])
     },
     beforeDestroy () {
       window.removeEventListener('resize', this.getWindowWidth)

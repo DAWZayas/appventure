@@ -23,9 +23,11 @@ export default {
   authenticate ({state, commit}, {email, password}) {
     firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
       commit('setAuthError', '')
-      this.$router.push('/appventure/')
+      commit('setIsAuthenticated', true)
+      console.log(state.isAuthenticated)
     }).catch(err => {
       commit('setAuthError', err.message)
+      console.log(err.message)
     })
   },
   /**

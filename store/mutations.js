@@ -10,5 +10,8 @@ export default {
   },
   setAuthError (state, value) {
     state.authError = value
+  },
+  setIsAuthenticated (state, value) {
+    state.isAuthenticated = value
   }
 }

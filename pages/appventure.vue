@@ -12,15 +12,15 @@
   import { mapActions } from 'vuex'
 
   export default {
-    components: {
-      HeaderComponent,
-      FooterComponent
-    },
     methods: {
       ...mapActions(['bindFirebaseReferences'])
     },
     created () {
       this.bindFirebaseReferences()
+    },
+    components: {
+      HeaderComponent,
+      FooterComponent
     }
   }
 </script>
