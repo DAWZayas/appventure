@@ -77,4 +77,9 @@
   .slide {
     overflow-x: scroll;
   }
+  h5 {
+    margin: 0;
+    padding: .5em 1em 0;
+    color: #757575
+  }
 </style>

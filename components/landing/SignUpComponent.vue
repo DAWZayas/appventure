@@ -26,7 +26,7 @@
       </div>
 
       <div class="button button-block" @click="onRegister">Get Started</div>
-      <p class="home-forgot"><a href="/appventure/">Go home</a></p>
+      <p class="home-forgot"><nuxt-link to="/appventure/">Go home</nuxt-link></p>
     </form>
   </div>
 </template>
@@ -61,5 +61,5 @@
   }
 </script>
 <style lang="scss" scoped>
-  @import './logs.scss';
+  @import './style.scss';
 </style>

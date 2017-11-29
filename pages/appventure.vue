@@ -13,10 +13,10 @@
 
   export default {
     methods: {
-      ...mapActions(['bindFirebaseReferences'])
+      ...mapActions(['bindAuth'])
     },
     created () {
-      this.bindFirebaseReferences()
+      this.bindAuth()
     },
     components: {
       HeaderComponent,

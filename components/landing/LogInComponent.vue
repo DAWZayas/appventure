@@ -50,5 +50,5 @@
   }
 </script>
 <style lang="scss" scoped>
-  @import './logs.scss';
+  @import './style.scss';
 </style>
