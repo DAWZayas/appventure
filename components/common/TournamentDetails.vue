@@ -1,5 +1,6 @@
 <template>
   <div>
+    <header-component></header-component>
     <div class="container-box">
       <div id="carousel" class="carousel slide" data-ride="carousel" v-touch="{ right: () => swipe('#prev'), left: () => swipe('#next') }">
         <div class="carousel-inner" role="listbox">
@@ -38,6 +39,8 @@
   </div>
 </template>
 <script>
+import { HeaderComponent } from '~/components/common'
+
 export default {
   props: ['tournament'],
   data () {
@@ -64,6 +67,9 @@ export default {
       var event = new MouseEvent('click', { bubbles: true })
       document.querySelector(direction).dispatchEvent(event)
     }
+  },
+  components: {
+    HeaderComponent
   }
 }
 </script>
