@@ -5,7 +5,7 @@
       <div id="carousel" class="carousel slide" data-ride="carousel" v-touch="{ right: () => swipe('#prev'), left: () => swipe('#next') }">
         <div class="carousel-inner" role="listbox">
           <div v-for="(item, i) in items" :key="i" :class="item.class" class="carousel-item">
-              <img class="d-block w-100 aaa" :src="item.src" :alt="item.alt">
+              <img class="d-block w-100 slider-img" :src="item.src" :alt="item.alt">
           </div>
           <a id="prev" class="carousel-control-prev" href="#carousel" role="button" data-slide="prev"></a>
           <a id="next" class="carousel-control-next" href="#carousel" role="button" data-slide="next"></a>
@@ -74,44 +74,53 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  * + * {
-    margin-top: 0.60em
+  p, h1, .container-box {
+    margin: 0;
+    padding: 0;
   }
+
   .container-box {
     max-width: 100%;
-    padding: 0;
     background-color: #E8E8E8;
+    
+    * + * {
+      margin-top: 0.60em
+    }
   }
-  .aaa {
+
+  .slider-img {
     margin-top: -2em;
   }
+
   #carousel {
     height: 25vh;
   }
+
   .section-style {
     background-color: #FFFFFF;
     padding: .25em;
+
+    h5 {
+      padding-top: .5em;
+    }
 
     &.main-data {
       margin-top: 0;
       font-family: apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
     }
   }
+
   .section-style {
     padding: 0 0.5em;
   }
+
   .practical-information {
     width: 90%;
   }
-  p {
-    margin: 0
-  }
+
   iframe {
     margin: 0 auto;
     width: 100%;
     height: 20vh;
-  }
-  h1 {
-    padding: 0
   }
 </style>

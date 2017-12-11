@@ -138,8 +138,16 @@
     }
   }
 </script>
-<style scoped>
+<style lang="scss" scoped>
   @import 'assets/icons/style.css';
+
+  button {
+    border: none;
+
+    span {
+      border: none;
+    }
+  }
 
   header {
     background-color: white;
