@@ -2,7 +2,7 @@ export default {
   setArticleAppventure (state, newTournament) {
     state.tournaments.push(newTournament)
   },
-  setConfigRef (state, value) {
+  setTournamentsRef (state, value) {
     state.configRef = value
   },
   setUser (state, value) {

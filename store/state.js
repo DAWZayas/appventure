@@ -1,6 +1,6 @@
 const tournaments = {}
 const isAuthenticated = false
-const configRef = null
+const tournamentsRef = null
 const user = null
 
 const images = {
@@ -14,7 +14,7 @@ export default {
   tournaments,
   isAuthenticated,
   images,
-  configRef,
+  tournamentsRef,
   user,
   authError: ''
 }

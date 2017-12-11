@@ -27,7 +27,7 @@
     }
   }
 </script>
-<style soped>
+<style lang="scss" scoped>
   .show-s-bar, .head-image {
     display: none;
   }

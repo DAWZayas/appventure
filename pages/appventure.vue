@@ -12,15 +12,15 @@
   import { mapActions } from 'vuex'
 
   export default {
+    components: {
+      HeaderComponent,
+      FooterComponent
+    },
     methods: {
       ...mapActions(['bindAuth'])
     },
     created () {
       this.bindAuth()
-    },
-    components: {
-      HeaderComponent,
-      FooterComponent
     }
   }
 </script>

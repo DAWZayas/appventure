@@ -29,6 +29,15 @@ export default {
     })
   },
   /**
+   * Authenticates anonymous user
+   * @param {object} store
+   */
+  authenticateAnonymous ({state}) {
+    firebaseApp.auth().signInAnonymously().catch(error => {
+      console.log(error.code, error.message)
+    })
+  },
+  /**
    * Resets authentication error
    * @param commit
    */
@@ -48,8 +57,8 @@ export default {
    * @param {object} newTournament
    */
   setArticleAppventure ({commit, state}, newTournament) {
-    if (state.configRef) {
-      state.configRef.update({newTournament})
+    if (state.tournamentsRef) {
+      state.tournamentsRef.update({newTournament})
     } else {
       commit('setArticleAppventure', newTournament)
     }
@@ -61,7 +70,7 @@ export default {
   bindAuth ({commit, dispatch, state}) {
     firebaseApp.auth().onAuthStateChanged(user => {
       commit('setUser', user)
-      if (user) {
+      if (user && !user.isAnonymous) {
         dispatch('bindFirebaseReferences', user)
       }
       if (!user) {
@@ -75,22 +84,11 @@ export default {
   */
   bindFirebaseReferences: firebaseAction(({state, commit, dispatch}, user) => {
     let db = firebaseApp.database()
-    let configRef = db.ref('/tournaments/')
+    let tournamentsRef = db.ref('/tournaments')
 
-    dispatch('bindFirebaseReference', {reference: configRef, toBind: 'tournaments'}).then(() => {
-      commit('setConfigRef', configRef)
+    dispatch('bindFirebaseReference', {reference: tournamentsRef, toBind: 'tournaments'}).then(() => {
+      commit('setTournamentsRef', tournamentsRef)
     })
-  }),
-  /**
-  * Undbinds firebase references
-  */
-  unbindFirebaseReferences: firebaseAction(({unbindFirebaseRef, commit}) => {
-    commit('setConfigRef', null)
-    try {
-      unbindFirebaseRef('tournaments')
-    } catch (error) {
-      return
-    }
   }),
   bindFirebaseReference: firebaseAction(({bindFirebaseRef, state}, {reference, toBind}) => {
     return reference.once('value').then(snapshot => {
@@ -101,5 +99,16 @@ export default {
       }
       bindFirebaseRef(toBind, reference)
     })
+  }),
+  /**
+  * Undbinds firebase references
+  */
+  unbindFirebaseReferences: firebaseAction(({unbindFirebaseRef, commit}) => {
+    commit('setTournamentsRef', null)
+    try {
+      unbindFirebaseRef('tournaments')
+    } catch (error) {
+      return
+    }
   })
 }
