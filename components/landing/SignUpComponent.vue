@@ -6,23 +6,23 @@
       <div class="top-row">
         <div class="field-wrap">
           <label>First Name<span class="req">*</span></label>
-          <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" type="text" required autocomplete="off">
+          <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" type="text" required>
         </div>
 
         <div class="field-wrap">
           <label>Last Name<span class="req">*</span></label>
-          <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" type="text"required autocomplete="off"/>
+          <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" type="text" required/>
         </div>
       </div>
 
       <div class="field-wrap">
         <label>Email Address<span class="req">*</span></label>
-        <input @keyup="inputStyle" @focus="inputStyle" v-model="email" @blur="inputStyle" type="email"required autocomplete="off"/>
+        <input @keyup="inputStyle" @focus="inputStyle" v-model="email" @blur="inputStyle" type="email" required/>
       </div>
 
       <div class="field-wrap">
         <label>Set A Password<span class="req">*</span></label>
-        <input @keyup="inputStyle" @focus="inputStyle" v-model="password" @blur="inputStyle" type="password"required autocomplete="off"/>
+        <input @keyup="inputStyle" @focus="inputStyle" v-model="password" @blur="inputStyle" type="password" required/>
       </div>
 
       <div class="button button-block" @click="onRegister">Get Started</div>

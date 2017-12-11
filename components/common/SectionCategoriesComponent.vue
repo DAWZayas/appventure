@@ -2,13 +2,13 @@
   <div>
     <h6>Categorías</h6>
     <section class="categories row justify-content-center">
-      <v-chip class="chip" small outline color="primary">&#9917; Futbol</v-chip>
-      <v-chip class="chip" small outline color="primary">&#9918; Padel</v-chip>
-      <v-chip class="chip" small outline color="primary">&#127934; Tenis</v-chip>
-      <v-chip class="chip" small outline color="primary">&#128664; Karts</v-chip>
-      <v-chip class="chip" small outline color="primary">&#127936; Baloncesto</v-chip>
-      <v-chip class="chip" small outline color="primary">&#127918; E-Sports</v-chip>
-      <v-chip class="chip" small outline color="primary">&#127183; Poker</v-chip>
+      <v-chip class="chip" small outline>&#9917; Futbol</v-chip>
+      <v-chip class="chip" small outline>&#9918; Padel</v-chip>
+      <v-chip class="chip" small outline>&#127934; Tenis</v-chip>
+      <v-chip class="chip" small outline>&#128664; Karts</v-chip>
+      <v-chip class="chip" small outline>&#127936; Baloncesto</v-chip>
+      <v-chip class="chip" small outline>&#127918; E-Sports</v-chip>
+      <v-chip class="chip" small outline>&#127183; Poker</v-chip>
     </section>
   </div>
 </template>

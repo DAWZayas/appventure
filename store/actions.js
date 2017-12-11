@@ -3,6 +3,18 @@ import { firebaseAction } from 'vuexfire'
 
 export default {
   /**
+   * Add new tournaments to firebase
+   * @param {object} store
+   * @param {object} newTournament
+   */
+  setArticleAppventure ({commit, state}, newTournament) {
+    if (state.tournamentsRef) {
+      state.tournamentsRef.update({newTournament})
+    } else {
+      commit('setArticleAppventure', newTournament)
+    }
+  },
+  /**
    * Creates a new user with this email and password and stores it into database
    * @param {object} store
    * @param {object} email and password
@@ -23,7 +35,6 @@ export default {
   authenticate ({state, commit}, {email, password}) {
     firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
       commit('setAuthError', '')
-      commit('setIsAuthenticated', true)
     }).catch(err => {
       commit('setAuthError', err.message)
     })
@@ -50,18 +61,6 @@ export default {
   */
   logout ({state}) {
     firebaseApp.auth().signOut()
-  },
-  /**
-   * Add new tournaments to firebase
-   * @param {object} store
-   * @param {object} newTournament
-   */
-  setArticleAppventure ({commit, state}, newTournament) {
-    if (state.tournamentsRef) {
-      state.tournamentsRef.update({newTournament})
-    } else {
-      commit('setArticleAppventure', newTournament)
-    }
   },
   /**
    * Binds firebase auth listener to the auth changes to the callback that will set the store's user object

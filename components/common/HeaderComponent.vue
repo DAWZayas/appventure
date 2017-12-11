@@ -19,6 +19,7 @@
             <v-list-tile-title class="black-text">{{ link.text }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+        <span @click="onLogout">Creck</span>
       </v-list>
     </v-navigation-drawer>
     <header>
@@ -84,7 +85,7 @@
               eFunction: 'onLogout'
             }
           ],
-          false: [
+          null: [
             {
               text: ' Iniciar sesión',
               class: 'icon-home3',
@@ -123,6 +124,7 @@
       ...mapGetters({ isAuthenticated: 'isAuthenticated' })
     },
     methods: {
+      ...mapActions(['logout']),
       getWindowWidth (event) {
         this.windowWidth = document.documentElement.clientWidth
         if (this.windowWidth > 992) {
@@ -133,11 +135,11 @@
       },
       onLogout () {
         this.logout()
+        this.$router.push('/')
       },
       doNothing () {
         console.log('Pls! Stop!')
-      },
-      ...mapActions(['logout'])
+      }
     },
     beforeDestroy () {
       window.removeEventListener('resize', this.getWindowWidth)

@@ -6,12 +6,12 @@
 
       <div class="field-wrap">
         <label>Email Address<span class="req">*</span></label>
-        <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" v-model="email" type="email"required autocomplete="off"/>
+        <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" v-model="email" type="email"required/>
       </div>
 
       <div class="field-wrap">
         <label>Password<span class="req">*</span></label>
-        <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" v-model="password" type="password"required autocomplete="off"/>
+        <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" v-model="password" type="password"required />
       </div>
 
       <div class="button button-block" @click="onLogIn">Log In</div>
@@ -45,6 +45,7 @@
       ...mapActions(['authenticate']),
       onLogIn () {
         this.authenticate({email: this.email, password: this.password})
+        this.$router.push('/appventure')
       }
     }
   }
