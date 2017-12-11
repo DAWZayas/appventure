@@ -12,21 +12,28 @@
       </div>
       <section class="main-data section-style">
         <h1>{{ tournament.strong }}</h1>
-        <p>{{ tournament.location }}</p>
+        <p><span class="icon-location"></span> {{ tournament.location }}</p>
+        <p>Nivel: {{ tournament.level }}</p>
       </section>
       <section class="description p-1">
         <v-card color="white darken-2" class="black--text">
           <v-card-title primary-title>
             <div class="headline">Una pequeña descripción</div>
-            <div>Listen to your favorite artists and albums whenever and wherever, online and offline.</div>
+            <div>{{ tournament.description }}</div>
           </v-card-title>
         </v-card>
       </section>
       <section class="section-style">
-        <h6>Información practica</h6>
-        
-
+        <h5>Información practica</h5>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48568.21108244509!2d-3.898194344274192!3d40.46391031592675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4184ecb204803f%3A0xcafdc908f78db4ef!2sMajadahonda%2C+Madrid!5e0!3m2!1ses!2ses!4v1512993521697" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <h6>Transporte público</h6>
+        <p>Autobuses 685, 651, 652, 653, 654</p>
+        <h6>Hora de inicio del torneo</h6>
+        <p>13:00</p>
+        <h6>Hora de fin del torneo</h6>
+        <p>Entre las 15:00 y las 16:00</p>
       </section>
+      <br>
     </div>
   </div>
 </template>
@@ -37,16 +44,16 @@ export default {
     return {
       items: [
         {
-          src: require('~/assets/images/torneos/torneopoker.jpg'),
+          src: require('~/assets/images/torneos/torneo' + this.tournament.src + '.jpg'),
           class: 'active',
           alt: 'First'
         },
         {
-          src: require('~/assets/images/torneos/torneopoker.jpg'),
+          src: require('~/assets/images/torneos/torneo' + this.tournament.src + '.jpg'),
           alt: 'Second'
         },
         {
-          src: require('~/assets/images/torneos/torneopoker.jpg'),
+          src: require('~/assets/images/torneos/torneo' + this.tournament.src + '.jpg'),
           alt: 'Third'
         }
       ]
@@ -81,12 +88,24 @@ export default {
 
     &.main-data {
       margin-top: 0;
+      font-family: apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
     }
+  }
+  .section-style {
+    padding: 0 0.5em;
   }
   .practical-information {
     width: 90%;
   }
   p {
     margin: 0
+  }
+  iframe {
+    margin: 0 auto;
+    width: 100%;
+    height: 20vh;
+  }
+  h1 {
+    padding: 0
   }
 </style>
