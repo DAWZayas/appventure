@@ -9,7 +9,7 @@ export default {
    */
   setArticleAppventure ({commit, state}, newTournament) {
     if (state.tournamentsRef) {
-      state.tournamentsRef.update({newTournament})
+      state.tournamentsRef['.value'].update({newTournament})
     } else {
       commit('setArticleAppventure', newTournament)
     }

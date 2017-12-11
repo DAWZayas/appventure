@@ -11,7 +11,7 @@
       </v-list>
       <v-list class="pt-0" dense>
         <v-divider light></v-divider>
-        <v-list-tile ripple v-for="(link, index) in navLinkIn[isAuthenticated]" :key="index" :to="link.link" @click="link.eFunction">
+        <v-list-tile ripple v-for="(link, index) in navLinkIn[isAuthenticated]" :key="index" @click="redirect(link)">
           <v-list-tile-action>
             <v-icon color="blue-grey darken-2" :class="link.class"></v-icon>
           </v-list-tile-action>
@@ -19,7 +19,6 @@
             <v-list-tile-title class="black-text">{{ link.text }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <span @click="onLogout">Creck</span>
       </v-list>
     </v-navigation-drawer>
     <header>
@@ -30,7 +29,7 @@
         <nuxt-link to="/appventure/"><img :src="logo" class="logo"></nuxt-link>
         <div class="collapse navbar-collapse">
           <div class="ml-lg-auto">
-            <nuxt-link class="top-link nav-item" v-for="(link, index) in navLinkIn[isAuthenticated]" :key="index" :class="link.class" :to="link.link" @click="link.eFunction">{{ link.text }}</nuxt-link>
+            <span class="top-link nav-item" v-for="(link, index) in navLinkIn[isAuthenticated]" :key="index" :class="link.class" @click="redirect(link)">{{ link.text }}</span>
           </div>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSearch">
@@ -57,58 +56,49 @@
             {
               text: ' Tu cuenta',
               class: 'icon-home3',
-              link: '/appventure/users',
-              eFunction: 'doNothing'
+              link: '/appventure/users'
             },
             {
               text: ' Mis torneos',
               class: 'icon-trophy',
-              link: '/appventure/',
-              eFunction: 'doNothing'
+              link: '/appventure/'
             },
             {
               text: ' Clasificación',
               class: 'icon-stats-dots',
-              link: '/appventure/users',
-              eFunction: 'doNothing'
+              link: '/appventure/users'
             },
             {
               text: ' Ayuda',
               class: 'icon-bubbles3',
-              link: '/appventure/',
-              eFunction: 'doNothing'
+              link: '/appventure/'
             },
             {
               text: ' Cerrar sesión',
               class: 'icon-exit',
-              link: '/login/',
-              eFunction: 'onLogout'
+              link: '/login'
             }
           ],
           null: [
             {
               text: ' Iniciar sesión',
               class: 'icon-home3',
-              link: '/login/',
-              eFunction: 'doNothing'
+              link: '/login/'
             },
             {
               text: ' Torneos',
               class: 'icon-trophy',
-              link: '/appventure/',
-              eFunction: 'doNothing'
+              link: '/appventure/'
             },
             {
               text: ' Clasificación',
               class: 'icon-stats-dots',
-              link: '/appventure/',
-              eFunction: 'doNothing'
+              link: '/appventure/'
             },
             {
               text: ' Ayuda',
               class: 'icon-bubbles3',
-              link: '/appventure/',
-              eFunction: 'doNothing'
+              link: '/appventure/'
             }
           ]
         }
@@ -133,12 +123,11 @@
           this.logo = require('~/assets/logo.svg')
         }
       },
-      onLogout () {
-        this.logout()
-        this.$router.push('/')
-      },
-      doNothing () {
-        console.log('Pls! Stop!')
+      redirect (route) {
+        if (route.text === ' Cerrar sesión') {
+          this.logout()
+        }
+        this.$router.push(route.link)
       }
     },
     beforeDestroy () {
