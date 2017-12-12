@@ -3,7 +3,7 @@ export default {
     state.tournaments.push(newTournament)
   },
   setTournamentsRef (state, value) {
-    state.configRef = value
+    state.tournamentsRef = value
   },
   setUser (state, value) {
     state.user = value

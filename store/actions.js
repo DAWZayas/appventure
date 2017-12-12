@@ -9,7 +9,7 @@ export default {
    */
   setArticleAppventure ({commit, state}, newTournament) {
     if (state.tournamentsRef) {
-      state.tournamentsRef['.value'].update({newTournament})
+      state.tournamentsRef.push(newTournament)
     } else {
       commit('setArticleAppventure', newTournament)
     }
@@ -25,6 +25,7 @@ export default {
       commit('setAuthError', '')
     }).catch(error => {
       commit('setAuthError', error.message)
+      console.log(error.message)
     })
   },
   /**
@@ -35,8 +36,9 @@ export default {
   authenticate ({state, commit}, {email, password}) {
     firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
       commit('setAuthError', '')
-    }).catch(err => {
-      commit('setAuthError', err.message)
+    }).catch(error => {
+      commit('setAuthError', error.message)
+      console.log(error.message)
     })
   },
   /**
@@ -73,7 +75,7 @@ export default {
         dispatch('bindFirebaseReferences', user)
       }
       if (!user) {
-        dispatch('bindFirebaseReferences')
+        dispatch('unbindFirebaseReferences')
       }
     })
   },
