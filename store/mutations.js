@@ -1,6 +1,6 @@
 export default {
   setArticleAppventure (state, newTournament) {
-    state.tournaments['.value'].push(newTournament)
+    state.tournaments.push(newTournament)
   },
   setTournamentsRef (state, value) {
     state.configRef = value

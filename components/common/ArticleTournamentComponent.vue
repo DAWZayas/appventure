@@ -7,7 +7,26 @@
     <strong class="tournament-strong">{{ tournament.strong }}</strong>
     <p class="tournament-text"><i class="fa fa-globe"></i> {{ tournament.location }}</p>
     <p class="tournament-text"><i class="fa fa-gears"></i> {{ tournament.level }}</p>
-    <button class="see-more">···</button>
+    <v-layout row justify-center>
+      <v-dialog v-model="dialog" width="600px">
+        <button class="see-more" color="primary" dark slot="activator">...</button>
+        <v-card>
+        <v-card-title>
+          <span class="headline">{{ tournament.strong }}</span>
+        </v-card-title>
+        <v-card-text>
+          <p class="tournament-text"><i class="fa fa-globe"></i> {{ tournament.location }}</p>
+          <p class="tournament-text"><i class="fa fa-gears"></i> {{ tournament.level }}</p>
+          <p class="tournament-text"><i class="fa fa-calendar"> </i></p>
+        </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="green darken-1" flat="flat" @click="dialog = false">Disagree</v-btn>
+            <v-btn color="green darken-1" flat="flat" @click="dialog = false">Agree</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-layout>
   </article>
 </div>
 </template>
@@ -18,7 +37,8 @@
     props: ['tournament', 'id'],
     data () {
       return {
-        src: this.tournament.src
+        src: this.tournament.src,
+        dialog: false
       }
     },
     computed: {
