@@ -1,56 +1,51 @@
+const nodeExternals = require('webpack-node-externals')
+
 module.exports = {
-  css: ['~/assets/styles/main.scss',
-    {
-      src: '~/assets/css/app.styl'
-    }],
   /*
-  ** Headers of the page
+  ** Head elements
+  ** Add Roboto font and Material Icons
   */
   head: {
     title: 'AppVenture',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'ProFitOro is a Pomodoro timer implementation combined with office workouts. Take breaks during work. Exercise during breaks ' },
-      { hid: 'keywords', name: 'keywords', content: 'Pomodoro, workouts, fit, time management, office workouts, pomodoro technique' },
-      { hid: 'image', property: 'og:image', name: 'og:image', content: 'https://firebasestorage.googleapis.com/v0/b/profitoro-ad0f0.appspot.com/o/assets%2Fsharing.png?alt=media&token=d8687d98-24a7-4a8a-b0c4-06a39b127443' },
       { hid: 'url', property: 'og:url', name: 'og:url', content: 'https://www.appventure.com' },
-      { hid: 'title', property: 'og:title', name: 'og:title', content: 'AppVenture' },
-      { hid: 'ogdescription', property: 'og:description', name: 'og:description', content: 'ProFitOro is a Pomodoro timer implementation combined with office workouts. Take breaks during work. Exercise during breaks ' }
+      { hid: 'title', property: 'og:title', name: 'og:title', content: 'AppVenture' }
     ],
     link: [
+      { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' },
       { rel: 'icon', type: 'image/svg', href: '/favicon.ico' }
     ],
     script: [
-      { type: 'text/javascript', src: '/jquery.js' },
-      { type: 'text/javascript', src: 'https://use.fontawesome.com/6492ecb9b0.js' },
-      { type: 'text/javascript', src: '/tether.js' },
-      { type: 'text/javascript', src: 'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/js/mdb.min.js' },
-      { type: 'text/javascript', src: '/bootstrap.js' }
+      { type: 'text/javascript', src: 'https://use.fontawesome.com/6492ecb9b0.js' }
     ]
   },
-  plugins: ['~plugins/vuetify.js'],
   /*
-  ** Customize the progress-bar color
-  */
-  loading: false,
-  /*
-  ** Build configuration
+  ** Add Vuetify into vendor.bundle.js
   */
   build: {
     vendor: ['vuetify'],
-    /*
-    ** Run ESLINT on save
-    */
-    extend (config, ctx) {
-      if (ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
+    extractCSS: true,
+    extend(config, ctx) {
+      if (ctx.isServer) {
+        config.externals = [
+          nodeExternals({
+            whitelist: [/^vuetify/]
+          })
+        ]
       }
     }
-  }
+  },
+  /*
+  ** Load Vuetify into the app
+  */
+  plugins: ['~/plugins/vuetify'],
+  /*
+  ** Load Vuetify CSS globally
+  */
+  css: [
+    '~/assets/app.styl',
+    '@/assets/styles/main.scss'
+  ]
 }

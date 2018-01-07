@@ -1,12 +1,13 @@
 <template>
 <div>
-  <article class="d-flex flex-column tournament">
+  <article class="tournament">
     <div class="view hm-zoom">
       <nuxt-link :to="'/tournaments/' + id"><img :src="images[this.src]" class="img-slide"></nuxt-link>
     </div>
     <strong class="tournament-strong">{{ tournament.strong }}</strong>
-    <p class="tournament-text"><i class="fa fa-globe"></i> {{ tournament.location }}</p>
-    <p class="tournament-text"><i class="fa fa-gears"></i> {{ tournament.level }}</p>
+    <p class="tournament-text"><v-icon>fa-globe</v-icon> {{ tournament.location }}</p>
+    <p class="tournament-text"><v-icon>fa-gears</v-icon> {{ tournament.level }}</p>
+
     <v-layout row justify-center>
       <v-dialog v-model="dialog" width="600px">
         <button class="see-more" color="primary" dark slot="activator">...</button>
@@ -15,14 +16,14 @@
           <span class="headline">{{ tournament.strong }}</span>
         </v-card-title>
         <v-card-text>
-          <p class="tournament-text"><i class="fa fa-globe"></i> {{ tournament.location }}</p>
-          <p class="tournament-text"><i class="fa fa-gears"></i> {{ tournament.level }}</p>
-          <p class="tournament-text"><i class="fa fa-calendar"> </i></p>
+          <p class="tournament-text"><v-icon>fa-globe</v-icon> {{ tournament.location }}</p>
+          <p class="tournament-text"><v-icon>fa-gears</v-icon> {{ tournament.level }}</p>
+          <p class="tournament-text"><v-icon>fa-calendar</v-icon></p>
         </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="green darken-1" flat="flat" @click="dialog = false">Disagree</v-btn>
-            <v-btn color="green darken-1" flat="flat" @click="dialog = false">Agree</v-btn>
+            <v-btn color="green darken-1" flat @click="dialog = false">Disagree</v-btn>
+            <v-btn color="green darken-1" flat @click="dialog = false">Agree</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -50,6 +51,9 @@
 </script>
 <style lang="scss" scoped>
   .tournament {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     border-radius: 0.20em;
     border-bottom-right-radius: 0;
     width: 10em;

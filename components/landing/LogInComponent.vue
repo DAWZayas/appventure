@@ -1,22 +1,32 @@
 <template>
-  <div id="login">
-    <h1>Welcome Back!</h1>
+    <div id="login">
+      <h1>Welcome Back!</h1>
 
-    <form action="/" method="post">
+    <v-form v-model="valid" ref="form" lazy-validation>
+      <v-text-field
+        label="E-mail"
+        v-model="email"
+        :rules="emailRules"
+        required
+      ></v-text-field>
 
-      <div class="field-wrap">
-        <label>Email Address<span class="req">*</span></label>
-        <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" v-model="email" type="email"required/>
-      </div>
+      <v-text-field
+        label="Password"
+        v-model="password"
+        :rules="passRules"
+        type="password"
+        required
+      ></v-text-field>
 
-      <div class="field-wrap">
-        <label>Password<span class="req">*</span></label>
-        <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" v-model="password" type="password"required />
-      </div>
-
-      <div class="button button-block" @click="onLogIn">Log In</div>
+      <v-btn
+        @click="onLogIn"
+        block
+        :disabled="!valid"
+      >
+        Log In
+      </v-btn>
       <p class="home-forgot"><a href="#">Forgot Password?</a></p>
-    </form>
+    </v-form>
   </div>
 </template>
 <script>
@@ -25,27 +35,25 @@
   export default {
     data () {
       return {
+        valid: true,
         email: '',
-        password: ''
+        password: '',
+        emailRules: [
+          (v) => !!v || 'E-mail is required',
+          (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ],
+        passRules: [
+          (v) => !!v || 'Name is required',
+          (v) => v.length >= 6 || 'Password must be at least 6 characters'
+        ]
       }
     },
     methods: {
-      inputStyle (e) {
-        var eHthis = e.currentTarget
-        var label = eHthis.previousSibling.classList
-
-        if (e.type === 'keyup') {
-          eHthis.value === '' ? label.remove('active', 'highlight') : label.add('active', 'highlight')
-        } else if (e.type === 'blur') {
-          eHthis.value === '' ? label.remove('active', 'highlight') : label.remove('highlight')
-        } else if (e.type === 'focus') {
-          eHthis.value === '' ? label.remove('highlight') : label.add('highlight')
-        }
-      },
       ...mapActions(['authenticate']),
       onLogIn () {
-        this.authenticate({email: this.email, password: this.password})
-        this.$router.push('/appventure')
+        if (this.$refs.form.validate()) {
+          this.authenticate({email: this.email, password: this.password})
+        }
       }
     }
   }

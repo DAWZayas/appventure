@@ -13,5 +13,8 @@ export default {
   },
   setIsAuthenticated (state, value) {
     state.isAuthenticated = value
+  },
+  setDarkTheme (state, darkTheme) {
+    state.darkTheme = darkTheme
   }
 }

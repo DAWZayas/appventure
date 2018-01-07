@@ -7,6 +7,7 @@
   import { Authentication } from '~/components/landing'
 
   export default {
+    layout: 'login',
     components: {
       Authentication
     }

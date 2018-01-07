@@ -1,2 +1,12 @@
-// NOTE: This is only global inside the vue.js component.
 @import 'vendors/module';
+@import 'custom/custom';
+
+/*  CUSTOM GLOBAL STYLES  */
+
+*, ::after, ::before {
+  box-sizing: inherit;
+  cursor: default;
+}
+::-webkit-scrollbar {
+  display: none;
+}

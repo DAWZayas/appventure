@@ -1,7 +1,6 @@
 <template>
 <div>
   <section class="d-flex justify-content-center">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <div class="form">
       <div class="logo">
         <img :src="logo" alt="AppVenture">
@@ -17,16 +16,13 @@
       </div>
     </div>
   </section>
-  <footer-component></footer-component>
 </div>
 </template>
 <script>
   import { LogInComponent, SignUpComponent } from '~/components/landing'
-  import { FooterComponent } from '~/components/common'
 
   export default {
     components: {
-      FooterComponent,
       LogInComponent,
       SignUpComponent
     },

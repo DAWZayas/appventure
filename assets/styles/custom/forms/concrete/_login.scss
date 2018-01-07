@@ -1,0 +1,28 @@
+$primary-blue: #00BCD4; // #179b77;
+$dark-blue: #0097A7; // #1ab188;
+$soft-grey: #a0b3b0;
+
+#login > form, #signup > form {
+  /deep/input {
+    color: $primary-blue!important;
+  }
+
+  /deep/.input-group__details, /deep/.input-group__details::before {
+    color: $dark-blue!important;
+    text-decoration-color: $dark-blue!important;
+  }
+
+  /deep/.input-group--focused > label {
+    color: $dark-blue!important;
+  }
+
+  /deep/label {
+    color: rgba(255, 255, 255, 0.5)!important;
+    font-size: 1.4em!important;
+    font-weight: 300!important;
+  }
+
+  /deep/.btn--disabled {
+    background-color: $dark-blue!important;
+  }
+}

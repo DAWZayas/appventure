@@ -1,0 +1,18 @@
+@import 'concrete/login';
+
+
+/*  GENERAL FORM STYLING  */
+
+input {
+  font-size: 1.4em;
+  transition: border-color .25s, box-shadow .25s;
+  
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+    transition: all 5000s ease-in-out 0s;    
+  }
+}
+
+input:-webkit-autofill, select:-webkit-autofill {
+  background-color: none!important;
+}

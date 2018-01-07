@@ -2,32 +2,40 @@
   <div id="signup">
     <h1>Sign Up for Free</h1>
 
-    <form action="/" method="post">
-      <div class="top-row">
-        <div class="field-wrap">
-          <label>First Name<span class="req">*</span></label>
-          <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" type="text" required>
-        </div>
+    <v-form v-model="valid" ref="form" lazy-validation>
 
-        <div class="field-wrap">
-          <label>Last Name<span class="req">*</span></label>
-          <input @keyup="inputStyle" @focus="inputStyle" @blur="inputStyle" type="text" required/>
-        </div>
-      </div>
+      <v-text-field
+        label="E-mail"
+        v-model="email"
+        :rules="emailRules"
+        required
+      ></v-text-field>
 
-      <div class="field-wrap">
-        <label>Email Address<span class="req">*</span></label>
-        <input @keyup="inputStyle" @focus="inputStyle" v-model="email" @blur="inputStyle" type="email" required/>
-      </div>
+      <v-text-field
+        label="Password"
+        v-model="password"
+        :rules="passRules"
+        type="password"
+        required
+      ></v-text-field>
 
-      <div class="field-wrap">
-        <label>Set A Password<span class="req">*</span></label>
-        <input @keyup="inputStyle" @focus="inputStyle" v-model="password" @blur="inputStyle" type="password" required/>
-      </div>
+      <v-text-field
+        label="Confirm password"
+        v-model="confirmPassword"
+        :rules="confirmPassRules"
+        type="password"
+        required
+      ></v-text-field>
 
-      <div class="button button-block" @click="onRegister">Get Started</div>
-      <p class="home-forgot"><nuxt-link to="/appventure/">Go home</nuxt-link></p>
-    </form>
+      <v-btn
+        @click="onRegister"
+        block
+        :disabled="!valid"
+      >
+        Sign Up
+      </v-btn>
+      <p class="home-forgot"><nuxt-link to="/">Go home</nuxt-link></p>
+    </v-form>
   </div>
 </template>
 <script>
@@ -36,26 +44,31 @@
   export default {
     data () {
       return {
+        valid: true,
         email: '',
-        password: ''
+        password: '',
+        confirmPassword: '',
+        isCreator: false,
+        emailRules: [
+          (v) => !!v || 'E-mail is required',
+          (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ],
+        passRules: [
+          (v) => !!v || 'Password is required',
+          (v) => v.length >= 6 || 'Password must be at least 6 characters'
+        ],
+        confirmPassRules: [
+          (v) => !!v || 'Please confirm your password',
+          (v) => (v === this.password) || "Passwords don't match"
+        ]
       }
     },
     methods: {
-      inputStyle (e) {
-        var eHthis = e.currentTarget
-        var label = eHthis.previousSibling.classList
-
-        if (e.type === 'keyup') {
-          eHthis.value === '' ? label.remove('active', 'highlight') : label.add('active', 'highlight')
-        } else if (e.type === 'blur') {
-          eHthis.value === '' ? label.remove('active', 'highlight') : label.remove('highlight')
-        } else if (e.type === 'focus') {
-          eHthis.value === '' ? label.remove('highlight') : label.add('highlight')
-        }
-      },
       ...mapActions(['createUser']),
       onRegister () {
-        this.createUser({email: this.email, password: this.password})
+        if (this.$refs.form.validate()) {
+          this.createUser({email: this.email, password: this.password, name: this.username, creator: this.isCreator})
+        }
       }
     }
   }

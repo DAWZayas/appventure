@@ -1,3 +1,4 @@
+const darkTheme = false
 const tournaments = {}
 const tournamentsRef = null
 const user = null
@@ -14,5 +15,6 @@ export default {
   images,
   tournamentsRef,
   user,
-  authError: ''
+  authError: '',
+  darkTheme
 }

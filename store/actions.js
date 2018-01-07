@@ -15,6 +15,14 @@ export default {
     }
   },
   /**
+   * Set theme to Dark (light by default)
+   * @param {object} store
+   * @param {boolean} darkTheme
+   */
+  setDarkTheme ({commit, state}, darkTheme) {
+    commit('setDarkTheme', darkTheme)
+  },
+  /**
    * Creates a new user with this email and password and stores it into database
    * @param {object} store
    * @param {object} email and password
@@ -33,9 +41,10 @@ export default {
    * @param {object} store
    * @param {object} email and password
    */
-  authenticate ({state, commit}, {email, password}) {
+  authenticate ({state, commit}, {email, password}, router) {
     firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
       commit('setAuthError', '')
+      this.$router.push('/')
     }).catch(error => {
       commit('setAuthError', error.message)
       console.log(error.message)
@@ -61,8 +70,9 @@ export default {
   * Logouts the user from the application
   * @param {object} store
   */
-  logout ({state}) {
+  logout ({state}, router) {
     firebaseApp.auth().signOut()
+    this.$router.push('/login')
   },
   /**
    * Binds firebase auth listener to the auth changes to the callback that will set the store's user object
@@ -85,7 +95,7 @@ export default {
   */
   bindFirebaseReferences: firebaseAction(({state, commit, dispatch}, user) => {
     let db = firebaseApp.database()
-    let tournamentsRef = db.ref('/tournaments')
+    let tournamentsRef = db.ref(`/tournaments`)
 
     dispatch('bindFirebaseReference', {reference: tournamentsRef, toBind: 'tournaments'}).then(() => {
       commit('setTournamentsRef', tournamentsRef)
