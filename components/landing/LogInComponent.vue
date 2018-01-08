@@ -55,8 +55,8 @@
 </template>
 <script>
   import { mapActions } from 'vuex'
-  import firebase from 'firebase';
-  import firebaseApp from '~/firebaseapp';
+  import firebase from 'firebase'
+  import firebaseApp from '~/firebaseapp'
 
   export default {
     data () {
@@ -68,7 +68,7 @@
         imgGoogle: require('../../assets/images/social/google-plus.png'),
         emailRules: [
           (v) => !!v || 'E-mail is required',
-          (v) => /^\w([\.-]?\w)*@\w([\.-]?\w)*(\.\w{2,3})$/.test(v) || 'E-mail must be valid'
+          (v) => /^\w([.-]?\w)*@\w([.-]?\w)*(\.\w{2,3})$/.test(v) || 'E-mail must be valid'
         ],
         passRules: [
           (v) => !!v || 'Name is required',
@@ -83,19 +83,19 @@
           this.authenticate({email: this.email, password: this.password})
         }
       },
-      loginWithFacebook(){
-        let provider = new firebase.auth.FacebookAuthProvider();
-        firebaseApp.auth().signInWithPopup(provider).then(function(result) {
+      loginWithFacebook () {
+        let provider = new firebase.auth.FacebookAuthProvider()
+        firebaseApp.auth().signInWithPopup(provider).then(function (result) {
           console.log(result)
-        }).catch(function(error) {
+        }).catch(function (error) {
           console.log(error)
-        });
+        })
       },
-      loginWithGoogle(){
-        firebaseApp.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider());
-          firebaseApp.auth().getRedirectResult().catch(function(error) {
-            this.error = error;
-        }); 
+      loginWithGoogle () {
+        firebaseApp.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider())
+        firebaseApp.auth().getRedirectResult().catch(function (error) {
+          this.error = error
+        })
       }
     }
   }

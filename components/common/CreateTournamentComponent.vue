@@ -55,7 +55,7 @@ export default {
     uploadImages () {
       document.getElementById('inputfile').click()
     },
-    ...mapActions(['setArticleAppventure'])   
+    ...mapActions(['setArticleAppventure'])
   },
   data () {
     return {

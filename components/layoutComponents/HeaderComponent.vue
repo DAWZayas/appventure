@@ -61,12 +61,12 @@
     methods: {
       ...mapActions(['logout']),
       onResize () {
-        this.isMobile = window.innerWidth < 1264 ? true : false
-        this.mini = window.innerWidth < 350 ? true : false
+        this.isMobile = window.innerWidth < 1264
+        this.mini = window.innerWidth < 350
       },
       goTo (item) {
         this.isMobile ? this.drawer = false : null
-        if(item.title === 'Cerrar sesión') {
+        if (item.title === 'Cerrar sesión') {
           this.logout()
         } else {
           this.$router.push(item.link)
