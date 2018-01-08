@@ -1,5 +1,5 @@
 <template>
-  <section class="d-flex flex-column slide-top">
+  <section class="d-flex flex-column">
     <h5>Relacionado con tus gustos</h5>
     <section class="d-flex slide">
       <article-tournament-component v-for="(tournament , key) in tournaments" :key="key" :tournament="tournament" :id="key"></article-tournament-component>
@@ -22,9 +22,6 @@
   }
 </script>
 <style scoped>
-  .slide-top {
-    background-color: white;
-  }
   .slide {
     overflow-x: scroll;
   }
