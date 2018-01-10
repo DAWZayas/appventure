@@ -36,13 +36,8 @@
         </div>
       </div>
       <div class="d-flex flex-wrap">
-        <button @click="loginWithFacebook" class="loginBtn loginBtn--facebook">
-          Login with Facebook
-        </button>
-
-        <button @click="loginWithGoogle" class="loginBtn loginBtn--google">
-          Login with Google
-        </button>
+        <div class="loginBtn loginBtn--facebook" @click="loginWithFacebook"> Login with Facebook</div>
+        <div class="loginBtn loginBtn--google" @click="loginWithGoogle"> Login with Google</div>
       </div>
       <p class="home-forgot"><a href="#">Forgot Password?</a></p>
     </v-form>
