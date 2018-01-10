@@ -5,7 +5,7 @@
       <div class="logo">
         <img :src="logo" alt="AppVenture">
       </div>
-      <ul class="tab-group">
+      <ul class="tab-group" ref="tabs">
         <li class="tab active" @click.prevent="toggleLog"><a href="#signup">Sign Up</a></li>
         <li class="tab" @click.prevent="toggleLog"><a href="#login">Log In</a></li>
       </ul>
@@ -36,7 +36,7 @@
       toggleLog (ev) {
         ev.stopPropagation()
         if (!ev.currentTarget.classList.contains('active')) {
-          ev.currentTarget.parentNode.childNodes.forEach(function (element) { element.classList.toggle('active') })
+          this.$refs.tabs.childNodes.forEach(function (element) { element.classList.toggle('active') })
           this.isSignUp = !this.isSignUp
         }
       }
