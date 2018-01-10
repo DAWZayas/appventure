@@ -11,9 +11,14 @@
       <v-btn icon @click="controlSearchBar">
         <v-icon>search</v-icon>
       </v-btn>
-      <v-btn icon v-if="!isMobile">
-        <v-icon>person</v-icon>
-      </v-btn>
+      <v-avatar
+          v-show="isAuthenticated"
+          v-if="!isMobile"
+          :size="'35px'"
+          class="grey lighten-4"
+        >
+          <img :src="userPhoto" alt="avatar">
+        </v-avatar>
     </v-toolbar>
     
     <v-navigation-drawer
@@ -56,7 +61,7 @@
       })
     },
     computed: {
-      ...mapGetters({ isAuthenticated: 'isAuthenticated' })
+      ...mapGetters({ isAuthenticated: 'isAuthenticated', userPhoto: 'getUserPhoto' })
     },
     methods: {
       ...mapActions(['logout']),

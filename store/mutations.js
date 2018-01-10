@@ -8,6 +8,9 @@ export default {
   setUser (state, value) {
     state.user = value
   },
+  setCurrentUser (state, user) {
+    state.user = user
+  },
   setAuthError (state, value) {
     state.authError = value
   },
