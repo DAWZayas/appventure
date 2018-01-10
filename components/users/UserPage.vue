@@ -1,13 +1,12 @@
 <template>
-  <v-flex xs12 sm4>
+  <div>
     <v-switch
       @click="changeTheme"
       v-model="isDark"
       :color="isDark === true ? 'red accent-1' : ''"
       hide-details
     ></v-switch>
-
-    <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" :overlay=false>
+    <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" lazy>
       <v-btn block color="secondary" slot="activator">Crear torneo</v-btn>
       <v-card>
         <v-toolbar>
@@ -20,11 +19,11 @@
         <create-tournament-component></create-tournament-component>
       </v-card>
     </v-dialog>
-  </v-flex>
+  </div>
 </template>
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import { CreateTournamentComponent } from '~/components/common'
+  import { CreateTournamentComponent } from '~/components/create'
 
   export default {
     data () {
