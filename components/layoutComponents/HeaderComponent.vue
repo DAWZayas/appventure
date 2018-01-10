@@ -36,6 +36,13 @@
       </v-list>
       <v-list class="pt-0" dense>
         <v-divider v-if="isMobile" class="mt-0"></v-divider>
+        <div class="avatar-menu"><v-avatar
+          v-show="isAuthenticated && isMobile"
+          :size="'100px'"
+          class="grey lighten-4"
+        >
+          <img :src="userPhoto" alt="avatar">
+        </v-avatar></div>
         <v-list-tile v-for="item in items[isAuthenticated]" :key="item.title" @click="goTo(item)">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -148,5 +155,8 @@
 <style lang="scss" scoped>
   .icon {
     font-size: 2rem!important;
+  }
+  .avatar-menu {
+    margin: 0 6.5em;
   }
 </style>
