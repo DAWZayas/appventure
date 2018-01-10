@@ -29,32 +29,30 @@
       <div class="d-flex justify-content-between align-items-center">
         <div>
           <hr>
-        </div>
-        <div>
-          <v-btn
-            @click="loginWithFacebook"
-          >
-          <img :src="this.imgFacebook">
-          </v-btn>
-        </div>        
+        </div>      
         <div style="max-width: 1em"> O </div>
-        <div>
-          <v-btn
-            @click="loginWithGoogle"
-          >
-          <img :src="this.imgGoogle">
-          </v-btn>
-        </div>
         <div>
           <hr>
         </div>
       </div>
+      <div class="d-flex flex-wrap">
+        <button @click="loginWithFacebook" class="loginBtn loginBtn--facebook">
+          Login with Facebook
+        </button>
+
+        <button @click="loginWithGoogle" class="loginBtn loginBtn--google">
+          Login with Google
+        </button>
+      </div>
       <p class="home-forgot"><a href="#">Forgot Password?</a></p>
     </v-form>
+    <v-alert v-show="this.authError !== ''" type="error" :value="true">
+      {{ this.authError }}
+    </v-alert>
   </div>
 </template>
 <script>
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
   import firebase from 'firebase'
   import firebaseApp from '~/firebaseapp'
 
@@ -64,8 +62,6 @@
         valid: true,
         email: '',
         password: '',
-        imgFacebook: require('../../assets/images/social/facebook.png'),
-        imgGoogle: require('../../assets/images/social/google-plus.png'),
         emailRules: [
           (v) => !!v || 'E-mail is required',
           (v) => /^\w([.-]?\w)*@\w([.-]?\w)*(\.\w{2,3})$/.test(v) || 'E-mail must be valid'
@@ -76,6 +72,9 @@
         ]
       }
     },
+    computed: {
+      ...mapGetters(['authError'])
+    },
     methods: {
       ...mapActions(['authenticate']),
       onLogIn () {
@@ -84,22 +83,61 @@
         }
       },
       loginWithFacebook () {
-        let provider = new firebase.auth.FacebookAuthProvider()
-        firebaseApp.auth().signInWithPopup(provider).then(function (result) {
-          console.log(result)
-        }).catch(function (error) {
-          console.log(error)
-        })
+        this.loginWithProvider(new firebase.auth.FacebookAuthProvider())
       },
       loginWithGoogle () {
-        firebaseApp.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider())
-        firebaseApp.auth().getRedirectResult().catch(function (error) {
-          this.error = error
-        })
+        this.loginWithProvider(new firebase.auth.GoogleAuthProvider())
+      },
+      loginWithProvider (provider) {
+        firebaseApp.auth().signInWithPopup(provider)
+          .then(() => this.$router.push('/'))
+          .catch((error) => { this.authError = error })
       }
     }
   }
 </script>
 <style lang="scss" scoped>
   @import './style.scss';
+  .loginBtn {
+    box-sizing: border-box;
+    position: relative;
+    margin: 0.2em;
+    padding: 0 15px 0 46px;
+    border: none;
+    text-align: left;
+    line-height: 34px;
+    white-space: nowrap;
+    border-radius: 0.2em;
+    font-size: 16px;
+    color: #FFF;
+  }
+  .loginBtn:before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 100%;
+  }
+
+  /* Facebook */
+  .loginBtn--facebook {
+    background-color: #4C69BA;
+    background-image: linear-gradient(#4C69BA, #3B55A0);
+    text-shadow: 0 -1px 0 #354C8C;
+  }
+  .loginBtn--facebook:before {
+    border-right: #364e92 1px solid;
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
+  }
+
+  /* Google */
+  .loginBtn--google {
+    background: #DD4B39;
+  }
+  .loginBtn--google:before {
+    border-right: #BB3F30 1px solid;
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+  }
 </style>
