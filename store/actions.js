@@ -10,8 +10,31 @@ import uuidv1 from 'uuid/v1'
 + */
 function _uploadImage (file) {
   let ref = firebaseApp.storage().ref().child('images/tournaments')
-  return ref.child(uuidv1()).child(file.name).put(file).then(snapshot => {
-    return snapshot.downloadURL
+  var uploadTask = ref.child(uuidv1()).child(file.name).put(file)
+
+  return new Promise(function (resolve, reject) {
+    uploadTask.on('state_changed',
+    function (snapshot) {
+      var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+      console.log('Upload is ', progress, '% done')
+    },
+    function (error) {
+      switch (error.code) {
+        case 'storage/unauthorized':
+          break
+
+        case 'storage/canceled':
+          break
+
+        case 'storage/unknown':
+          break
+      }
+      reject()
+    },
+    function () {
+      console.log(uploadTask.snapshot.downloadURL)
+      resolve(uploadTask.snapshot.downloadURL)
+    })
   })
 }
 
@@ -33,6 +56,7 @@ export default {
    */
   setArticleAppventure ({commit, state}, newTournament) {
     if (state.tournamentsRef) {
+      console.log('>>>>>', newTournament)
       state.tournamentsRef.push(newTournament)
     } else {
       commit('setArticleAppventure', newTournament)

@@ -21,7 +21,7 @@
           <v-text-field value="" type="number" label="Precio por persona" max="100" required></v-text-field>
           <v-select :items="difficulty" v-model="level" label="Dificultad"></v-select>
           <v-btn color="primary" @click="nextStep(1)">Continue</v-btn>
-          <v-btn flat>Cancel</v-btn>
+          <v-btn flat>Cancelar</v-btn>
         </v-stepper-content>
 
         <v-stepper-content step="2">
@@ -33,7 +33,7 @@
           <v-select :items="categories.main" v-model="selected" label="Categoría" required></v-select>
           <v-select :items="categories[selected]" v-if="selected !== ''" :label="categories['label'][selected]" required></v-select>
           <v-btn color="primary" @click="nextStep(2)">Continue</v-btn>
-          <v-btn flat>Cancel</v-btn>
+          <v-btn flat>Cancelar</v-btn>
         </v-stepper-content>
 
         <v-stepper-content step="3">
@@ -48,11 +48,12 @@
             </div>
           </div>
           <span v-if="imageSrc.length === 0">Si no seleccionas una imagen, se colocará una por defecto en función de la categoría</span>
-          <div class="d-flex">
-            <v-btn color="secondary">Crear torneo</v-btn>
-            <v-btn flat>Cancel</v-btn>
+          <div>
+            
+            <v-btn flat>Cancelar</v-btn>
           </div>
           <v-dialog v-model="confirm" persistent max-width="290">
+            <v-btn color="secondary" slot="activator">Crear torneo</v-btn>
             <v-card>
               <v-card-title class="headline">¿Desea crear el torneo?</v-card-title>
               <v-card-text>Dándole al botón crear, el torneo se creará y no se podrá borrar. También acepta la política de privacidad.</v-card-text>
