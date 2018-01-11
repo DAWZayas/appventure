@@ -107,7 +107,7 @@
             {
               title: 'Mis torneos',
               icon: 'fa-trophy',
-              link: '/'
+              link: '/userTournaments'
             },
             {
               title: 'Clasificación',
