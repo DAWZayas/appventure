@@ -1,9 +1,11 @@
 const darkTheme = false
-const tournaments = {}
-const tournamentsRef = null
+const uploadProgress = []
 const user = null
 
-const images = {
+const tournaments = {}
+const tournamentsRef = null
+
+const defaultImg = {
   padel: require('~/assets/images/torneos/torneopadel.jpg'),
   futbol: require('~/assets/images/torneos/torneofutbol.jpg'),
   esports: require('~/assets/images/torneos/torneoesports.jpg'),
@@ -11,10 +13,12 @@ const images = {
 }
 
 export default {
-  tournaments,
-  images,
-  tournamentsRef,
+  darkTheme,
+  uploadProgress,
   user,
-  authError: '',
-  darkTheme
+
+  tournaments,
+  tournamentsRef,
+
+  defaultImg
 }

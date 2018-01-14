@@ -2,52 +2,51 @@ import firebaseApp from '~/firebaseapp'
 import { firebaseAction } from 'vuexfire'
 import uuidv1 from 'uuid/v1'
 
-/**
-+ * Uploads individual file
-+ * @param file
-+ * @returns {firebase.Promise}
-+ * @private
-+ */
-function _uploadImage (file) {
-  let ref = firebaseApp.storage().ref().child('images/tournaments')
-  var uploadTask = ref.child(uuidv1()).child(file.name).put(file)
-
-  return new Promise(function (resolve, reject) {
-    uploadTask.on('state_changed',
-    function (snapshot) {
-      var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-      console.log('Upload is ', progress, '% done')
-    },
-    function (error) {
-      switch (error.code) {
-        case 'storage/unauthorized':
-          break
-
-        case 'storage/canceled':
-          break
-
-        case 'storage/unknown':
-          break
-      }
-      reject()
-    },
-    function () {
-      console.log(uploadTask.snapshot.downloadURL)
-      resolve(uploadTask.snapshot.downloadURL)
-    })
-  })
-}
-
 export default {
-  _uploadImage,
+  /**
+   * Uploads individual file
+   * @param file
+   * @returns {firebase.Promise}
+   */
+  async uploadImage ({commit}, { file, index }) {
+    let ref = firebaseApp.storage().ref().child('images/tournaments')
+    var uploadTask = ref.child(uuidv1()).child(file.name).put(file)
+    // commit('setNumber', index)
+
+    return new Promise(function (resolve, reject) {
+      uploadTask.on('state_changed',
+      (snapshot) => {
+        let progress = snapshot.bytesTransferred / snapshot.totalBytes * 100
+        commit('setProgress', { index, progress })
+      },
+      (error) => {
+        switch (error.code) {
+          case 'storage/unauthorized':
+            break
+
+          case 'storage/canceled':
+            break
+
+          case 'storage/unknown':
+            break
+        }
+        reject()
+      },
+      () => {
+        resolve(uploadTask.snapshot.downloadURL)
+      })
+    })
+  },
   /**
    * Uploads images to the firebase datastore
-   * @param state
+   * @param {object} dispatch
    * @param files
    * @returns {Promise}
    */
-  uploadImages ({state}, files) {
-    return Promise.all(files.map(_uploadImage))
+  uploadImages ({dispatch}, files) {
+    return Promise.all(files.map(async (file, index) => {
+      return await dispatch('uploadImage', { file, index })
+    }))
   },
   /**
    * Add new tournaments to firebase
@@ -56,7 +55,7 @@ export default {
    */
   setArticleAppventure ({commit, state}, newTournament) {
     if (state.tournamentsRef) {
-      console.log('>>>>>', newTournament)
+      // console.log('>>T>>>', newTournament)
       state.tournamentsRef.push(newTournament)
     } else {
       commit('setArticleAppventure', newTournament)

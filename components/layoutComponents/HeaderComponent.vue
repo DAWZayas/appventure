@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar :fixed="isMobile" :absolute="!isMobile" :clipped-left="!isMobile" scroll-off-screen flat app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon v-if="isMobile" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-spacer v-if="isMobile"></v-spacer>
       <div class="d-flex flex-row align-items-center" @click="goHome">
         <v-avatar :tile="true"><img :src="logo" :tile="false" /></v-avatar>
@@ -59,11 +59,9 @@
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    mounted: function () {
-      this.onResize()
-    },
-    updated: function () {
-      this.$nextTick(function () {
+    mounted () {
+      this.$nextTick(() => {
+        window.addEventListener('resize', this.onResize)
         this.onResize()
       })
     },
@@ -91,12 +89,15 @@
         this.$emit('controlSearchBar', 'clicked')
       }
     },
+    beforeDestroy () {
+      window.removeEventListener('resize', this.onResize)
+    },
     data () {
       return {
         isMobile: null,
         mini: null,
-        logo: require('~/assets/logo.svg'),
         drawer: null,
+        logo: require('~/assets/logo.svg'),
         items: {
           true: [
             {

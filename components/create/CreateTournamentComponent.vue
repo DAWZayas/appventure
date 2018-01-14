@@ -1,11 +1,11 @@
 <template>
   <div>
-    <v-stepper v-model="e1">
+    <v-stepper v-model="step">
       <v-stepper-header>
         <div v-for="n in 3" :key="n">
           <v-stepper-step
             :step="n"
-            :complete="e1 > n"
+            :complete="step > n"
             editable
           >
             Step {{ n }}
@@ -20,7 +20,7 @@
           <v-text-field value="" type="number" label="Cantidad de participantes" max="1000" required></v-text-field>
           <v-text-field value="" type="number" label="Precio por persona" max="100" required></v-text-field>
           <v-select :items="difficulty" v-model="level" label="Dificultad"></v-select>
-          <v-btn color="primary" @click="nextStep(1)">Continue</v-btn>
+          <v-btn color="primary" @click="step = 2">Continue</v-btn>
           <v-btn flat>Cancelar</v-btn>
         </v-stepper-content>
 
@@ -32,24 +32,41 @@
           </v-radio-group>
           <v-select :items="categories.main" v-model="selected" label="Categoría" required></v-select>
           <v-select :items="categories[selected]" v-if="selected !== ''" :label="categories['label'][selected]" required></v-select>
-          <v-btn color="primary" @click="nextStep(2)">Continue</v-btn>
+          <v-btn color="primary" @click="step = 3">Continue</v-btn>
           <v-btn flat>Cancelar</v-btn>
         </v-stepper-content>
 
         <v-stepper-content step="3">
           <div>
             <input type="file" ref="imageFile" class="d-none" @change="previewImage" multiple required>
-            <v-btn color="info m-0" @click="onClick">{{imageSrc ? 'Cambiar imagen' : 'Sube tus imágenes'}}</v-btn>
-            <div class="row">
-              <div v-for="(src, key) in imageSrc" :key="key"
-                class="img-preview col-6 col-md-2 p-0"
+            <v-btn color="info m-0" @click="onClick">{{imageSrc.length !== 0 ? (imageSrc.length === 1 ? 'Cambiar imagen' : 'Cambiar imágenes') : 'Sube tus imágenes'}}</v-btn>
+            <div class="row m-0">
+              <div v-for="(src, index) in imageSrc" :key="index" class="img-preview col-6 col-md-2 p-0"
                 :style="{ 'background-image': 'url(' + src + ')' }"
-              ></div>
+                >
+                <i v-if="!uploading"
+                   aria-hidden="true"
+                   class="icon material-icons"
+                   style="position:absolute; top: .25rem; right: .25rem;color: #d34836;cursor: pointer;"
+                   @click="dismissImg(index)"
+                >
+                  cancel
+                </i>
+                <v-progress-linear
+                  v-if="uploadProgress[index]"
+                  v-model="uploadProgress[index]"
+                  :active="true"
+                  height="3" 
+                  color="blue"
+                  background-color="blue-grey"
+                  class="m-0"
+                  style="position: absolute; bottom: 0;"
+                ></v-progress-linear>
+              </div>
             </div>
           </div>
           <span v-if="imageSrc.length === 0">Si no seleccionas una imagen, se colocará una por defecto en función de la categoría</span>
           <div>
-            
             <v-btn flat>Cancelar</v-btn>
           </div>
           <v-dialog v-model="confirm" persistent max-width="290">
@@ -71,15 +88,13 @@
 </template>
 <script>
 import { StepsComponent } from '~/components/create'
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   methods: {
-    ...mapGetters({
-      tournaments: 'getTournaments'
-    }),
     addTournament: function () {
-      this.uploadImages([...this.input.files]).then(picUrls => {
+      this.uploading = true
+      this.uploadImages([...this.imagesBuffer]).then(picUrls => {
         const newArt = {
           strong: this.name,
           src: 'esports',
@@ -87,52 +102,50 @@ export default {
           level: this.level,
           imagesURL: picUrls
         }
+        this.clearProgress()
         this.setArticleAppventure(newArt)
         this.$router.push('/')
       })
     },
-    previewImage: function (event) {
-      this.input = event.target
+    previewImage (event) {
+      Array.prototype.push.apply(this.imagesBuffer, event.target.files)
+      // Clears the input field
+      event.target.value = ''
+      this.imageSrc = []
       var vm = this
 
-      for (let i = 0; i < this.input.files.length; i++) {
+      for (let i = 0; i < this.imagesBuffer.length; i++) {
         var reader = new FileReader()
 
-        reader.onload = function (event) {
+        reader.onload = (event) => {
           vm.imageSrc.push(event.target.result)
         }
 
-        reader.readAsDataURL(vm.input.files[i])
+        reader.readAsDataURL(vm.imagesBuffer[i])
       }
     },
-    nextStep (n) {
-      if (n === this.steps) {
-        this.e1 = 1
-      } else {
-        this.e1 = n + 1
-      }
+    dismissImg (index) {
+      this.imageSrc.splice(index, 1)
+      this.imagesBuffer.splice(index, 1)
     },
-    onClick () {
-      this.$refs.imageFile.click()
-    },
-    ...mapActions(['setArticleAppventure', 'uploadImages'])
+    onClick () { this.$refs.imageFile.click() },
+    ...mapActions(['setArticleAppventure', 'uploadImages']),
+    ...mapMutations(['clearProgress'])
   },
-  watch: {
-    steps (val) {
-      if (this.e1 > val) {
-        this.e1 = val
-      }
-    }
+  computed: {
+    ...mapGetters({ tournaments: 'getTournaments', uploadProgress: 'getProgress' })
   },
   components: {
     StepsComponent
   },
   data () {
     return {
-      input: null,
+      confirm: false,
+      imagesBuffer: [],
       imageSrc: [],
-      e1: 1,
-      steps: 3,
+      step: 1,
+      uploading: false,
+
       categories: {
         main: [
           { text: 'Deportes', value: 'sports' },
@@ -176,8 +189,7 @@ export default {
       selected: '',
       name: '',
       location: '',
-      level: '',
-      confirm: false
+      level: ''
     }
   }
 }
@@ -194,5 +206,9 @@ export default {
       display: block;
       padding-top: (100% / (16/9));
     }
+  }
+
+  .stepper {
+    box-shadow: none!important;
   }
 </style>
