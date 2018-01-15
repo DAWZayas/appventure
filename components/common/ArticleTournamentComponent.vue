@@ -1,8 +1,10 @@
 <template>
 <div>
   <article class="tournament">
-    <div class="view hm-zoom">
-      <nuxt-link :to="'/tournaments/' + id"><img :src="images[this.src]" class="img-slide"></nuxt-link>
+    <div>
+      <nuxt-link :to="'/tournaments/' + id">
+        <div class="tournament-img p-0"><img :src="src" style="width: 100%; overflow:hidden;"></div>
+      </nuxt-link>
     </div>
     <strong class="tournament-strong">{{ tournament.name }}</strong>
     <p class="tournament-text"><v-icon>fa-globe</v-icon> {{ tournament.location }}</p>
@@ -32,20 +34,13 @@
 </div>
 </template>
 <script>
-  import { mapGetters } from 'vuex'
-
   export default {
     props: ['tournament', 'id'],
     data () {
       return {
-        src: this.tournament.category,
+        src: this.tournament.imagesURL[0],
         dialog: false
       }
-    },
-    computed: {
-      ...mapGetters({
-        images: 'getImages'
-      })
     }
   }
 </script>
@@ -76,6 +71,14 @@
     margin: 0;
   }
 
+  .tournament-img {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 10rem!important;
+    height: ( 10rem / (16/9) )!important;
+  }
+
   .see-more {
     position: absolute;
     bottom: 0;
@@ -89,10 +92,5 @@
     margin: 0;
     
     &:hover { background-color: rgba(139, 195, 74, .8); }
-  }
-
-  .img-slide {
-    width: 10em;
-    margin: 0;
   }
 </style>

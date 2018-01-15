@@ -1,7 +1,7 @@
 <template>
   <div class="blue-grey lighten-3">
     <v-carousel id="carousel" hide-delimiters hide-controls>
-      <v-carousel-item v-for="(item,i) in items" :src="item.src" :alt="item.alt" :key="i" class="ma-0"></v-carousel-item>
+      <v-carousel-item v-for="(src,i) in tournament.imagesURL" :src="src" :key="i" class="ma-0"></v-carousel-item>
     </v-carousel>
 
     <section class="mt-0 pa-2 white">
@@ -38,25 +38,6 @@ import {mapGetters} from 'vuex'
 
 export default {
   props: ['tournament'],
-  data () {
-    return {
-      items: [
-        {
-          src: require('~/assets/images/torneos/torneo' + this.tournament.category + '.jpg'),
-          class: 'active',
-          alt: 'First'
-        },
-        {
-          src: require('~/assets/images/torneos/torneo' + this.tournament.category + '.jpg'),
-          alt: 'Second'
-        },
-        {
-          src: require('~/assets/images/torneos/torneo' + this.tournament.category + '.jpg'),
-          alt: 'Third'
-        }
-      ]
-    }
-  },
   computed: {
     ...mapGetters({user: 'getUser'})
   },

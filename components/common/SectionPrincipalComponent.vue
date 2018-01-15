@@ -15,9 +15,7 @@
       ArticleTournamentComponent
     },
     computed: {
-      ...mapGetters({
-        tournaments: 'getTournaments'
-      })
+      ...mapGetters({ tournaments: 'getTournaments' })
     }
   }
 </script>
