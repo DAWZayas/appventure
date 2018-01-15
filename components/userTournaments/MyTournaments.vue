@@ -23,12 +23,12 @@
   
 </template>
 <script>
-export default {
-  data () {
-    return {
-      src: require('../../assets/images/torneos/torneopadel.jpg')
+  export default {
+    data () {
+      return {
+        src: require('../../assets/images/torneos/torneopadel.jpg')
+      }
     }
   }
-}
 </script>
 

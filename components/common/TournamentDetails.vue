@@ -26,10 +26,15 @@
       <p>13:00</p>
       <h6>Hora de fin del torneo</h6>
       <p>Entre las 15:00 y las 16:00</p>
+      <br>
+      <v-btn color="info" @click="addTournamentToUser">¡ Apuntarte !</v-btn>
     </section>
   </div>
 </template>
 <script>
+
+import {mapGetters} from 'vuex'
+// import firebaseApp from '~/firebaseapp'
 
 export default {
   props: ['tournament'],
@@ -50,6 +55,17 @@ export default {
           alt: 'Third'
         }
       ]
+    }
+  },
+  computed: {
+    ...mapGetters({user: 'getUser'})
+  },
+  methods: {
+    addTournamentToUser () {
+      // let db = firebaseApp.database()
+      // let addTournamentRef = db.ref(`/users/participating`)
+      console.log(this.$route.params.id)
+      // addTournamentRef.child(this.tournament).set('')
     }
   }
 }

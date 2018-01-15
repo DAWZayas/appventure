@@ -1,7 +1,7 @@
 const darkTheme = false
 const uploadProgress = []
 const user = null
-
+const userData = null
 const tournaments = {}
 const tournamentsRef = null
 
@@ -16,7 +16,8 @@ export default {
   darkTheme,
   uploadProgress,
   user,
-
+  authError: '',
+  userData,
   tournaments,
   tournamentsRef,
 
