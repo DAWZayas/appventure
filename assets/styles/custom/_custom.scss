@@ -9,19 +9,23 @@
   padding-left: 0!important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
+
 .icon {
   &.fa {
     font-size: 1rem!important;
   }
 }
+
 h5 {
   margin: 0;
   padding: .5em 1em 0;
   color: #757575;
 }
+
 .btn--floating {
   border-radius: 50%;
 }
+
 .btn__content::before {
   cursor: pointer;
 }

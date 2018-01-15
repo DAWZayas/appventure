@@ -2,23 +2,18 @@
   <div>
     <v-stepper v-model="step">
       <v-stepper-header>
-        <div v-for="n in 3" :key="n">
-          <v-stepper-step
-            :step="n"
-            :complete="step > n"
-          >
-            Step {{ n }}
-          </v-stepper-step>
-          <v-divider v-if="n !== 3" :key="n"></v-divider>
-        </div>
+        <v-stepper-step step="1" :complete="step > 1">Name of step 1</v-stepper-step>
+        <v-divider></v-divider>
+        <v-stepper-step step="2" :complete="step > 2">Name of step 2</v-stepper-step>
+        <v-divider></v-divider>
+        <v-stepper-step step="3">Name of step 3</v-stepper-step>
       </v-stepper-header>
       <v-stepper-items>
-        
-        <v-stepper-content step="1">
+        <v-stepper-content class="pt-2" step="1">
           <step-one-component @stepOne="stepOneInputs"></step-one-component>
         </v-stepper-content>
 
-        <v-stepper-content step="2">
+        <v-stepper-content class="pt-2" step="2">
           <step-two-component @stepTwo="stepTwoInputs"></step-two-component>      
         </v-stepper-content>
 

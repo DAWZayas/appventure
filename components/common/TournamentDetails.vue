@@ -5,7 +5,7 @@
     </v-carousel>
 
     <section class="mt-0 pa-2 white">
-      <h1>{{ tournament.strong }}</h1>
+      <h1>{{ tournament.name }}</h1>
       <p><span class="icon-location"></span> {{ tournament.location }}</p>
       <p>Nivel: {{ tournament.level }}</p>
     </section>
@@ -42,16 +42,16 @@ export default {
     return {
       items: [
         {
-          src: require('~/assets/images/torneos/torneo' + this.tournament.src + '.jpg'),
+          src: require('~/assets/images/torneos/torneo' + this.tournament.category + '.jpg'),
           class: 'active',
           alt: 'First'
         },
         {
-          src: require('~/assets/images/torneos/torneo' + this.tournament.src + '.jpg'),
+          src: require('~/assets/images/torneos/torneo' + this.tournament.category + '.jpg'),
           alt: 'Second'
         },
         {
-          src: require('~/assets/images/torneos/torneo' + this.tournament.src + '.jpg'),
+          src: require('~/assets/images/torneos/torneo' + this.tournament.category + '.jpg'),
           alt: 'Third'
         }
       ]

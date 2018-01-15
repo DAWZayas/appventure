@@ -27,7 +27,7 @@ module.exports = {
   build: {
     vendor: ['vuetify'],
     extractCSS: true,
-    extend(config, ctx) {
+    extend (config, ctx) {
       if (ctx.isServer) {
         config.externals = [
           nodeExternals({

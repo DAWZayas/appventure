@@ -3,26 +3,34 @@ $dark-blue: #0097A7; // #1ab188;
 $soft-grey: #a0b3b0;
 
 #login > form, #signup > form {
-  /deep/input {
+  & > *:not(.error--text) > * > input {
     color: $primary-blue!important;
   }
 
-  /deep/.input-group__details, /deep/.input-group__details::before {
+  & > .error--text > * > input {
+    color: #F44336!important;
+  }
+
+  & > *:not(.error--text) > .input-group__details {
     color: $dark-blue!important;
     text-decoration-color: $dark-blue!important;
   }
 
-  /deep/.input-group--focused > label {
+  & > * > .input-group--focused > label {
     color: $dark-blue!important;
   }
 
-  /deep/label {
-    color: rgba(255, 255, 255, 0.5)!important;
+  & > .error--text > label,
+  & > *:not(.error--text) > label {
     font-size: 1.4em!important;
-    font-weight: 300!important;
+    font-weight: 300!important;  
   }
 
-  /deep/.btn--disabled {
+  & > *:not(.error--text) > label {
+    color: rgba(255, 255, 255, 0.5)!important;
+  }
+
+  & > .btn--disabled {
     background-color: $dark-blue!important;
   }
 }

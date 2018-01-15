@@ -4,7 +4,7 @@
     <div class="view hm-zoom">
       <nuxt-link :to="'/tournaments/' + id"><img :src="images[this.src]" class="img-slide"></nuxt-link>
     </div>
-    <strong class="tournament-strong">{{ tournament.strong }}</strong>
+    <strong class="tournament-strong">{{ tournament.name }}</strong>
     <p class="tournament-text"><v-icon>fa-globe</v-icon> {{ tournament.location }}</p>
     <p class="tournament-text"><v-icon>fa-gears</v-icon> {{ tournament.level }}</p>
 
@@ -13,7 +13,7 @@
         <button class="see-more" color="primary" dark slot="activator">...</button>
         <v-card>
         <v-card-title>
-          <span class="headline">{{ tournament.strong }}</span>
+          <span class="headline">{{ tournament.name }}</span>
         </v-card-title>
         <v-card-text>
           <p class="tournament-text"><v-icon>fa-globe</v-icon> {{ tournament.location }}</p>
@@ -38,7 +38,7 @@
     props: ['tournament', 'id'],
     data () {
       return {
-        src: this.tournament.src,
+        src: this.tournament.category,
         dialog: false
       }
     },
