@@ -32,9 +32,7 @@
       }
     },
     computed: {
-      ...mapGetters({
-        isDark: 'getDarkTheme'
-      })
+      ...mapGetters({ isDark: 'getDarkTheme' })
     },
     methods: {
       changeTheme () {
