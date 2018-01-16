@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar :fixed="isMobile" :absolute="!isMobile" :clipped-left="!isMobile" scroll-off-screen flat app>
+    <v-toolbar absolute :clipped-left="!isMobile" scroll-off-screen flat app>
       <v-toolbar-side-icon v-if="isMobile" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-spacer v-if="isMobile"></v-spacer>
       <div class="d-flex flex-row align-items-center" @click="goHome">

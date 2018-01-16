@@ -27,26 +27,49 @@
       <h6>Hora de fin del torneo</h6>
       <p>Entre las 15:00 y las 16:00</p>
       <br>
-      <v-btn color="info" @click="addTournamentToUser">¡ Apuntarte !</v-btn>
+      <v-btn :color="isParticipating ? 'secondary' : 'info'" @click="addTournamentToUser">{{ isParticipating ? 'Desapuntarse' : '¡ Apuntarte !' }}</v-btn>
     </section>
+
+    <div id="alert">
+      <v-alert
+        type="success"
+        :value="true"
+        transition="scale-transition"
+      >
+        ¡ BN !
+      </v-alert>
+    </div>
   </div>
 </template>
 <script>
 
 import {mapGetters} from 'vuex'
-// import firebaseApp from '~/firebaseapp'
+import firebaseApp from '~/firebaseapp'
 
 export default {
-  props: ['tournament'],
+  props: ['tournament', 'id'],
+  data () {
+    return {
+      isParticipating: false
+    }
+  },
   computed: {
     ...mapGetters({user: 'getUser'})
   },
   methods: {
     addTournamentToUser () {
-      // let db = firebaseApp.database()
-      // let addTournamentRef = db.ref(`/users/participating`)
-      console.log(this.$route.params.id)
-      // addTournamentRef.child(this.tournament).set('')
+      let db = firebaseApp.database()
+      let addTournamentRef = db.ref(`/users/` + this.user.uid + `/participating`)
+      addTournamentRef.child(this.$route.params.id).set('')
+      this.isParticipating = true
+    }
+  },
+  watch: {
+    isParticipating: function () {
+      document.getElementById('alert').style.marginTop = 0
+      setTimeout(function () {
+        document.getElementById('alert').style.marginTop = '-6rem'
+      }, 2500)
     }
   }
 }
@@ -70,5 +93,14 @@ export default {
     margin: 0 auto;
     width: 100%;
     height: 20vh;
+  }
+  #alert {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    margin-top: -6rem;
+    transition: margin-top 1s ease-out;
+    z-index: 1000;
   }
 </style>
