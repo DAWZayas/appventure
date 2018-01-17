@@ -1,7 +1,7 @@
 <template>
   <div class="blue-grey lighten-3">
     <v-carousel id="carousel" hide-delimiters hide-controls>
-      <v-carousel-item v-for="(src,i) in tournament.imagesURL" :src="src" :key="i" class="ma-0"></v-carousel-item>
+      <v-carousel-item v-for="(src,i) in tournament.imagesURL" :src="src" :key="i" class="m-0 p-0 carousel-image"></v-carousel-item>
     </v-carousel>
 
     <section class="mt-0 pa-2 white">
@@ -81,13 +81,6 @@ export default {
   }
   h6 {
     margin: 1rem 0 0;
-  }
-  #carousel {
-    height: 25vh;
-
-    .carousel__item {
-      background-position-y: 0!important;
-    }
   }
   iframe {
     margin: 0 auto;

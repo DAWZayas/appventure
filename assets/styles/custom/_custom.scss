@@ -29,3 +29,14 @@ h5 {
 .btn__content::before {
   cursor: pointer;
 }
+
+#carousel {
+  height: 30vh;
+  top: 60%!important;
+
+  .carousel-image > * > img {
+    max-width: 100%!important;
+  }
+}
+
+

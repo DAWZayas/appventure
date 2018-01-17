@@ -83,9 +83,6 @@
   }
 
   .tournament-img {
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
     width: 10rem!important;
     height: ( 10rem / (16/9) )!important;
   }
