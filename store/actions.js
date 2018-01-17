@@ -107,6 +107,40 @@ export default {
     })
   },
   /**
+   * Updates user display name
+   * @param state
+   * @param commit
+   * @param {string} displayName
+   */
+  updateUserName ({state, commit}, displayName) {
+    state.user.updateProfile({
+      displayName
+    })
+    commit('setDisplayName', displayName)
+  },
+  /**
+   * Updates user's profile pic
+   * @param state
+   * @param {string} photoURL
+   */
+  updatePhotoURL ({state}, photoURL) {
+    state.user.updateProfile({
+      photoURL
+    })
+  },
+  /**
+   * Updates user's email address
+   * @param state
+   * @param {string} email
+   */
+  updateUserEmail ({state}, email) {
+    state.user.updateEmail(email).then(() => {
+      // Update successful.
+    }, error => {
+      console.log(error)
+    })
+  },
+  /**
    * Resets authentication error
    * @param commit
    */
@@ -132,7 +166,12 @@ export default {
       commit('setUser', user)
       commit('setUsersRef', usersRef)
       if (user && !user.isAnonymous) {
+        let displayName = user.displayName || user.email.split('@')[0]
         let id = user.uid
+        if (!user.displayName) {
+          dispatch('updateUserName', displayName)
+        }
+        commit('setDisplayName', displayName)
         dispatch('bindFirebaseReferences', user)
         dispatch('bindUserData', {usersRef, id})
         usersRef.child(user.uid).child('exist').set(true)

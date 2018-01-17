@@ -36,13 +36,21 @@
       </v-list>
       <v-list class="pt-0" dense>
         <v-divider v-if="isMobile" class="mt-0"></v-divider>
-        <div class="avatar-menu"><v-avatar
-          v-show="isAuthenticated && isMobile"
-          :size="'100px'"
-          class="grey lighten-4"
-        >
-          <img :src="userPhoto" alt="avatar">
-        </v-avatar></div>
+        <div class="avatar-menu d-flex">
+          <div>
+            <v-avatar
+              v-show="isAuthenticated && isMobile"
+              :size="'60px'"
+              class="grey lighten-4"
+            >
+              <img :src="userPhoto" alt="avatar">
+            </v-avatar>
+          </div>
+          <div>
+            {{this.displayName}}
+          </div>
+        </div>
+        <br>
         <v-list-tile v-for="item in items[isAuthenticated]" :key="item.title" @click="goTo(item)">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -66,7 +74,7 @@
       })
     },
     computed: {
-      ...mapGetters({ isAuthenticated: 'isAuthenticated', userPhoto: 'getUserPhoto' })
+      ...mapGetters({ isAuthenticated: 'isAuthenticated', userPhoto: 'getUserPhoto', displayName: 'getDisplayName' })
     },
     methods: {
       ...mapActions(['logout']),
@@ -158,6 +166,6 @@
     font-size: 2rem!important;
   }
   .avatar-menu {
-    margin: 0 6.5em;
+    margin: 0 1.2em;
   }
 </style>

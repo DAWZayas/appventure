@@ -29,6 +29,9 @@ export default {
   setUsersRef (state, value) {
     state.usersRef = value
   },
+  setDisplayName (state, value) {
+    state.displayName = value
+  },
   /*
    * Tournaments mutations
    */

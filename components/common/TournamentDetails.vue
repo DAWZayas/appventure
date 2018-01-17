@@ -36,7 +36,7 @@
         :value="true"
         transition="scale-transition"
       >
-        ¡ BN !
+        ¡ La inscripcion se ha realizado con exito !
       </v-alert>
     </div>
   </div>
