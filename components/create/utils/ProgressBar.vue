@@ -1,7 +1,6 @@
 <template>
   <v-progress-linear
-    v-if="uploading"
-    v-model="uploadProgress"
+    v-model="uploadProgress[index]"
     :active="true"
     color="blue"
     background-color="blue-grey"
@@ -10,7 +9,10 @@
   ></v-progress-linear>
 </template>
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  props: ['uploading', 'uploadProgress']
+  props: ['index'],
+  computed: { ...mapGetters({uploadProgress: 'getProgress'}) }
 }
 </script>

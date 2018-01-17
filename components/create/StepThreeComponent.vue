@@ -11,26 +11,9 @@
         :style="{ 'background-image': 'url(' + src + ')' }"
         @click="setDefault(index)"
         >
-        <div class="complete-overlay" v-if="uploadProgress[index] === 100">
-          <i class="material-icons">done</i>
-        </div>
-        <i v-if="!uploading"
-            aria-hidden="true"
-            class="icon material-icons"
-            style="position:absolute; top: .25rem; right: .25rem;color: #d34836;cursor: pointer;"
-            @click.stop="dismissImg(index)"
-        >
-          cancel
-        </i>
-        <v-progress-linear
-          v-if="uploading"
-          v-model="uploadProgress[index]"
-          :active="true"
-          color="blue"
-          background-color="blue-grey"
-          class="m-0"
-          style="position: absolute; bottom: 0;"
-        ></v-progress-linear>
+        <overlay :index="index"></overlay>
+        <dismiss-img @click.native.stop="dismissImg(index)" v-if="!uploading"></dismiss-img>
+        <progress-bar v-if="uploading" :index="index"></progress-bar>
       </div>
     </div>
   </div>
@@ -41,7 +24,8 @@
 </div>
 </template>
 <script>
-  import { mapActions, mapGetters, mapMutations } from 'vuex'
+  import { mapActions, mapMutations } from 'vuex'
+  import { DismissImg, ProgressBar, Overlay } from '~/components/create/utils'
 
   export default {
     props: ['newArt'],
@@ -88,7 +72,7 @@
       dismissImg (index) {
         this.imageSrc.splice(index, 1)
         this.imagesBuffer.splice(index, 1)
-        if (index <= this.defaultImg) {
+        if (index <= this.defaultImg && this.defaultImg > 0) {
           this.defaultImg--
         }
       },
@@ -101,12 +85,12 @@
       ...mapActions(['setArticleAppventure', 'uploadImages']),
       ...mapMutations(['clearProgress'])
     },
-    computed: { ...mapGetters({uploadProgress: 'getProgress'}) },
     watch: {
       imageSrc: function () {
         this.btnLabel = this.imageSrc.length !== 0 ? 'Añadir imágenes' : 'Sube tus imágenes'
       }
-    }
+    },
+    components: { DismissImg, ProgressBar, Overlay }
   }
 </script>
 <style lang="scss" scoped>
@@ -127,21 +111,5 @@
 
   .defaultImg {
     box-shadow: inset 0px 0px 10px 5px rgb(41,181,246);
-  }
-
-  .complete-overlay {
-    background-color: rgba(0, 0, 0, .5);
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-
-    i {
-      color: #8bc34a;
-      font-size: 4rem;
-      position: absolute;
-      top: calc( 50% - 2rem );
-      left: calc( 50% - 2rem );
-    }
   }
 </style>

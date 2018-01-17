@@ -1,17 +1,8 @@
 <template>
 <div>
-  <i v-if="!uploading"
-    class="icon material-icons dismiss"
-  >
-      cancel
-  </i>
+  <i class="icon material-icons dismiss">cancel</i>
 </div>
 </template>
-<script>
-export default {
-  props: ['uploading']
-}
-</script>
 <style lang="scss" scoped>
   .dismiss {
     position:absolute;
