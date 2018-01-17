@@ -1,12 +1,33 @@
 <template>
   <v-form>
-    <v-radio-group v-model="genre" required>
-      <v-radio label="Masculino" value="m"></v-radio>
-      <v-radio label="Femenino" value="f"></v-radio>
-      <v-radio label="Mixtos" value="mf"></v-radio>
-    </v-radio-group>
-    <v-select :items="categories.main" v-model="category" label="Categoría" required></v-select>
-    <v-select :items="categories[category]" v-if="category !== ''" :label="categories['label'][category]" required></v-select>
+    <v-text-field v-model="location" label="Lugar del torneo" required></v-text-field>
+    
+    <v-dialog
+      v-model="modal"
+      lazy
+      full-width
+      width="290px"
+    >
+      <v-text-field
+        slot="activator"
+        label="Fecha"
+        v-model="initDate"
+        prepend-icon="event"
+        readonly
+      ></v-text-field>
+      <v-date-picker v-model="initDate" scrollable actions>
+        <template slot-scope="{ save, cancel }">
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn flat color="primary" @click="cancel">Cancelar</v-btn>
+            <v-btn flat color="primary" @click="save">OK!</v-btn>
+          </v-card-actions>
+        </template>
+      </v-date-picker>
+    </v-dialog>
+
+    <v-text-field v-model="prize" type="number" label="Precio por persona" max="100" required></v-text-field>
+    <v-text-field v-model="gauging" type="number" label="Cantidad de participantes" max="1000" required></v-text-field>
     <v-btn color="primary" @click="submit">Continue</v-btn>
     <v-btn flat>Cancelar</v-btn>  
   </v-form>
@@ -15,47 +36,31 @@
 export default {
   methods: {
     submit () {
-      this.$emit('stepTwo', { genre: this.genre, category: this.category, nextStep: this.nextStep })
+      this.$emit('stepTwo', { location: this.location, initDate: this.initDate, createDate: this.getDate(), prize: this.prize, gauging: this.gauging, nextStep: this.nextStep })
+    },
+    getDate () {
+      var today = new Date()
+      var dd = today.getDate()
+      var mm = today.getMonth() + 1
+      var yyyy = today.getFullYear()
+
+      dd < 10 ? dd = '0' + dd : dd
+      mm < 10 ? mm = '0' + mm : mm
+
+      return (dd + '/' + mm + '/' + yyyy)
     }
   },
   data () {
     return {
-      categories: {
-        main: [
-          { text: 'Deportes', value: 'sports' },
-          { text: 'e-Sports', value: 'esports' },
-          { text: 'Juegos de cartas', value: 'cardgames' },
-          { text: 'Motor', value: 'motor' }
-        ],
-        sports: [
-          { text: 'Fútbol', value: 'football' },
-          { text: 'Baloncesto', value: 'basketball' },
-          { text: 'Padel', value: 'padel' },
-          { text: 'Golf', value: 'golf' }
-        ],
-        esports: [
-          { text: 'League of Legends', value: 'lol-esport' },
-          { text: 'CSGO', value: 'csgo' },
-          { text: 'Dota 2', value: 'dota2' },
-          { text: 'FIFA', value: 'fifa-esport' }
-        ],
-        cardgames: [
-          { text: 'Poker', value: 'Poker' }
-        ],
-        motor: [
-          { text: 'Karts', value: 'Karts' },
-          { text: 'Rally', value: 'Rally' },
-          { text: 'Motos', value: 'Motos' }
-        ],
-        label: {
-          sports: 'Deporte',
-          esports: 'Videojuego',
-          cardgames: 'Juego',
-          motor: 'Carrera'
-        }
-      },
-      category: '',
-      genre: '',
+      modal: 'false',
+      menu: '',
+
+      location: '',
+      initDate: '',
+      createDate: '',
+      prize: '',
+      gauging: '',
+
       nextStep: 3
     }
   }

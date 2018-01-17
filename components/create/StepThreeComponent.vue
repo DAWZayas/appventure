@@ -31,9 +31,9 @@
     </div>
   </div>
   <div>
-    <v-btn color="primary">Cancelar</v-btn>
+    <v-btn flat>Cancelar</v-btn>
     <v-dialog v-model="confirm" persistent max-width="290">
-      <v-btn color="secondary" slot="activator">Crear torneo</v-btn>
+      <v-btn :disabled="imageSrc.length === 0" color="secondary" slot="activator">Crear torneo</v-btn>
       <v-card>
         <v-card-title class="headline">¿Desea crear el torneo?</v-card-title>
         <v-card-text>Dándole al botón crear, el torneo se creará y no se podrá borrar. También acepta la política de privacidad.</v-card-text>

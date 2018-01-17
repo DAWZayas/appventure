@@ -30,20 +30,22 @@ import { StepOneComponent, StepTwoComponent, StepThreeComponent } from '~/compon
 export default {
   methods: {
     stepOneInputs (event) {
-      this.newArt.strong = event.name
-
       this.newArt.name = event.name
-      this.newArt.location = event.location
-      this.newArt.gauging = event.gauging
-      this.newArt.prize = event.prize
+      this.newArt.description = event.description
+      this.newArt.genre = event.genre
+      this.newArt.category = event.category
+      this.newArt.subCategory = event.subCategory
       this.newArt.level = event.level
+
       this.step = event.nextStep
     },
     stepTwoInputs (event) {
-      this.newArt.src = event.category
+      this.newArt.location = event.location
+      this.newArt.initDate = event.initDate
+      this.newArt.createDate = event.createDate
+      this.newArt.prize = event.prize
+      this.newArt.gauging = event.gauging
 
-      this.newArt.genre = event.genre
-      this.newArt.category = event.category
       this.step = event.nextStep
     }
   },
@@ -57,10 +59,6 @@ export default {
       step: 1,
 
       newArt: {
-        // Temporary data
-        strong: '',
-        src: '',
-        // Final data
         name: '',
         location: '',
         gauging: '',
