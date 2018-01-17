@@ -26,6 +26,9 @@ export default {
   setCurrentUser (state, user) {
     state.user = user
   },
+  setUsersRef (state, value) {
+    state.usersRef = value
+  },
   /*
    * Tournaments mutations
    */
@@ -35,7 +38,6 @@ export default {
   setTournamentsRef (state, value) {
     state.tournamentsRef = value
   },
-
   setAuthError (state, value) {
     state.authError = value
   },

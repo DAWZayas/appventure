@@ -1,34 +1,17 @@
 <template>
-  <v-layout row wrap m-3>
-    <v-flex xs12 sm6 offset-sm3>
-      <v-card>
-        <v-card-media
-          height="150px"
-          :src="this.src"
-        >
-        </v-card-media>
-        <v-card-title>
-          <div>
-            <span class="grey--text">Campeonato nacional de padel 2018</span><br><br>
-            <span>Deporte: Padel</span><br>
-            <span>Fecha: </span>
-          </div>
-        </v-card-title>
-        <v-card-actions>
-          <v-btn flat color="orange">Ver resultado</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
-  
+  <div>
+    <tournament-card v-for="userTournament in userTournaments" :tournament="tournaments[userTournament]" :key="userTournament"></tournament-card>
+  </div>
 </template>
 <script>
+  import { TournamentCard } from '~/components/userTournaments'
+  import { mapGetters } from 'vuex'
   export default {
-    data () {
-      return {
-        src: require('../../assets/images/torneos/torneopadel.jpg')
-      }
+    components: {
+      TournamentCard
+    },
+    computed: {
+      ...mapGetters({ tournaments: 'getTournaments', userTournaments: 'getUserTournaments' })
     }
   }
 </script>
-

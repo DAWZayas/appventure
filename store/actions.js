@@ -130,9 +130,11 @@ export default {
     let usersRef = db.ref(`/users`)
     firebaseApp.auth().onAuthStateChanged(user => {
       commit('setUser', user)
+      commit('setUsersRef', usersRef)
       if (user && !user.isAnonymous) {
+        let id = user.uid
         dispatch('bindFirebaseReferences', user)
-        dispatch('bindUserData', user.uid)
+        dispatch('bindUserData', {usersRef, id})
         usersRef.child(user.uid).child('exist').set(true)
       }
       if (!user) {
@@ -163,9 +165,7 @@ export default {
       bindFirebaseRef(toBind, reference)
     })
   }),
-  bindUserData: firebaseAction(({state, dispatch}, id) => {
-    let db = firebaseApp.database()
-    let usersRef = db.ref(`/users`)
+  bindUserData: firebaseAction(({state, dispatch}, {usersRef, id}) => {
     dispatch('bindFirebaseReference', {reference: usersRef.child(id), toBind: 'userData'})
   }),
   /**

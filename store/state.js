@@ -1,9 +1,10 @@
 const darkTheme = false
 const uploadProgress = []
 const user = null
-const userData = null
+const userData = {}
 const tournaments = {}
 const tournamentsRef = null
+const usersRef = null
 
 const defaultImg = {
   padel: require('~/assets/images/torneos/torneopadel.jpg'),
@@ -20,6 +21,7 @@ export default {
   userData,
   tournaments,
   tournamentsRef,
+  usersRef,
 
   defaultImg
 }
