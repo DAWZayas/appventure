@@ -2,7 +2,7 @@
 <div>
   <article class="tournament">
     <div>
-      <nuxt-link :to="'/tournaments/' + slugDate + '/' + id">
+      <nuxt-link :to="{ name: 'tournaments', params: { date: slugDate, slug: slugName, id: id } }">
         <div class="tournament-img p-0"><img :src="src" style="width: 100%; overflow:hidden;"></div>
       </nuxt-link>
     </div>

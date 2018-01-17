@@ -45,6 +45,15 @@ module.exports = {
       }
     }
   },
+  router: {
+    extendRoutes (routes, resolve) {
+      routes.push({
+        path: '/tournaments/:date/:slug',
+        name: 'tournaments',
+        component: resolve(__dirname, 'pages/tournaments/_id.vue')
+      })
+    }
+  },
   /*
   ** Load Vuetify into the app
   */
