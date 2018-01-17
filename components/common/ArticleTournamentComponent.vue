@@ -2,7 +2,7 @@
 <div>
   <article class="tournament">
     <div>
-      <nuxt-link :to="'/tournaments/' + id">
+      <nuxt-link :to="'/tournaments/' + slugDate + '/' + id">
         <div class="tournament-img p-0"><img :src="src" style="width: 100%; overflow:hidden;"></div>
       </nuxt-link>
     </div>
@@ -20,7 +20,7 @@
         <v-card-text>
           <p class="tournament-text"><v-icon>fa-globe</v-icon> {{ tournament.location }}</p>
           <p class="tournament-text"><v-icon>fa-gears</v-icon> {{ tournament.level }}</p>
-          <p class="tournament-text"><v-icon>fa-calendar</v-icon></p>
+          <p class="tournament-text"><v-icon>fa-calendar</v-icon> {{ tournament.initDate }} </p>
         </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -34,11 +34,15 @@
 </div>
 </template>
 <script>
+  import speakingurl from 'speakingurl'
+
   export default {
     props: ['tournament', 'id'],
     data () {
       return {
-        src: this.tournament.imagesURL[0],
+        src: this.tournament.imagesURL[this.tournament.defaultImg],
+        slugDate: speakingurl(this.tournament.createDate),
+        slugName: speakingurl(this.tournament.name),
         dialog: false
       }
     }

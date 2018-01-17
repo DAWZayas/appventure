@@ -3,7 +3,7 @@
     <v-text-field v-model="location" label="Lugar del torneo" required></v-text-field>
     
     <v-dialog
-      v-model="modal"
+      v-model="date"
       lazy
       full-width
       width="290px"
@@ -15,7 +15,7 @@
         prepend-icon="event"
         readonly
       ></v-text-field>
-      <v-date-picker v-model="initDate" scrollable actions>
+      <v-date-picker v-model="initDate" scrollable actions locale="es-es">
         <template slot-scope="{ save, cancel }">
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -36,7 +36,7 @@
 export default {
   methods: {
     submit () {
-      this.$emit('stepTwo', { location: this.location, initDate: this.initDate, createDate: this.getDate(), prize: this.prize, gauging: this.gauging, nextStep: this.nextStep })
+      this.$emit('stepTwo', { location: this.location, initDate: this.formatDate(), createDate: this.getDate(), prize: this.prize, gauging: this.gauging, nextStep: this.nextStep })
     },
     getDate () {
       var today = new Date()
@@ -48,11 +48,14 @@ export default {
       mm < 10 ? mm = '0' + mm : mm
 
       return (dd + '/' + mm + '/' + yyyy)
+    },
+    formatDate () {
+      return this.initDate.split('-').reverse().join('-')
     }
   },
   data () {
     return {
-      modal: 'false',
+      date: 'false',
       menu: '',
 
       location: '',

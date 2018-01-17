@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "nuxt": "next",
+    "speakingurl": "^14.0.1",
     "uuid": "^3.1.0",
     "vform": "^0.8.1",
     "vuetify": "next"

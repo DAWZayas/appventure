@@ -7,24 +7,22 @@
       <div
         v-for="(src, index) in imageSrc" :key="index"
         class="img-preview col-6 col-md-2 p-0"
-        :class="(index === defaultImg) && !uploading ? 'defaultImg' : null"
+        :class="index === defaultImg ? 'defaultImg' : null"
         :style="{ 'background-image': 'url(' + src + ')' }"
         @click="setDefault(index)"
         >
-        <div class="complete-overlay" v-if="uploadProgress[index] === 100">
+        <div class="complete-overlay">
           <i class="material-icons">done</i>
         </div>
-        <i v-if="!uploading"
-            aria-hidden="true"
-            class="icon material-icons"
-            style="position:absolute; top: .25rem; right: .25rem;color: #d34836;cursor: pointer;"
-            @click.stop="dismissImg(index)"
+        <i
+          aria-hidden="true"
+          class="icon material-icons"
+          style="position:absolute; top: .25rem; right: .25rem;color: #d34836;cursor: pointer;"
+          @click="dismissImg(index)"
         >
           cancel
         </i>
         <v-progress-linear
-          v-if="uploading"
-          v-model="uploadProgress[index]"
           :active="true"
           color="blue"
           background-color="blue-grey"
@@ -36,13 +34,11 @@
   </div>
   <div>
     <v-btn flat>Cancelar</v-btn>
-    <v-btn :disabled="imageSrc.length === 0" color="secondary" @click="addTournament">Crear torneo</v-btn>
+    <v-btn :disabled="imageSrc.length === 0" color="secondary">Crear torneo</v-btn>
   </div>
 </div>
 </template>
 <script>
-  import { mapActions, mapGetters, mapMutations } from 'vuex'
-
   export default {
     props: ['newArt'],
     data () {
@@ -56,16 +52,6 @@
       }
     },
     methods: {
-      addTournament: function () {
-        this.uploading = true
-        this.uploadImages([...this.imagesBuffer]).then(picUrls => {
-          this.newArt.defaultImg = this.defaultImg
-          this.newArt.imagesURL = picUrls
-          this.setArticleAppventure(this.newArt)
-          this.reset()
-          this.$router.push('/')
-        })
-      },
       setDefault (index) {
         this.defaultImg = index
       },
@@ -88,20 +74,10 @@
       dismissImg (index) {
         this.imageSrc.splice(index, 1)
         this.imagesBuffer.splice(index, 1)
-        if (index <= this.defaultImg) {
-          this.defaultImg--
-        }
+        this.defaultImg = 0
       },
-      reset () {
-        this.imagesBuffer = []
-        this.imageSrc = []
-        this.clearProgress()
-      },
-      onClick () { this.$refs.imageFile.click() },
-      ...mapActions(['setArticleAppventure', 'uploadImages']),
-      ...mapMutations(['clearProgress'])
+      onClick () { this.$refs.imageFile.click() }
     },
-    computed: { ...mapGetters({uploadProgress: 'getProgress'}) },
     watch: {
       imageSrc: function () {
         this.btnLabel = this.imageSrc.length !== 0 ? 'Añadir imágenes' : 'Sube tus imágenes'

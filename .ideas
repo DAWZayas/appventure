@@ -1,4 +1,11 @@
 CreateTournament: {
-  Elegir imagen destacada,
+  Elegir imagen destacada, // done!
+  Estilo,
   Control de validación
+}
+
+customSlug {
+  speakingurl, // done!
+  passing params,
+  changing url
 }
