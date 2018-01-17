@@ -7,7 +7,7 @@ export default {
   getUser: state => state.user,
   getUserPhoto: state => state.user ? state.user.photoURL : null,
   getUserData: state => state.userData,
-  getUserTournaments: state => Object.keys(state.userData.participating),
+  getUserTournaments: state => state.userData ? Object.keys(state.userData.participating) : null,
   getDisplayName: state => state.displayName,
   isAuthenticated: state => state.user && !state.user.isAnonymous,
   authError: state => state.authError,

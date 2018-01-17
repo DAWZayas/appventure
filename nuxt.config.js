@@ -50,7 +50,7 @@ module.exports = {
       routes.push({
         path: '/tournaments/:date/:slug',
         name: 'tournaments',
-        component: resolve(__dirname, 'pages/tournaments/_id.vue')
+        component: resolve(__dirname, 'pages/tournaments/_date/_name.vue')
       })
     }
   },
