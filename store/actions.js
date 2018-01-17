@@ -218,7 +218,8 @@ export default {
       return
     }
   }),
-  unbindUserData: firebaseAction(({state, dispatch}) => {
+  unbindUserData: firebaseAction(({state, dispatch, commit}) => {
+    commit('setDisplayName', '')
     dispatch('unbindFirebaseReferences', {toUnbind: 'userData'})
   })
 }

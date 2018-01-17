@@ -36,7 +36,7 @@
       </v-list>
       <v-list class="pt-0" dense>
         <v-divider v-if="isMobile" class="mt-0"></v-divider>
-        <div class="avatar-menu d-flex">
+        <div v-if="isAuthenticated && isMobile" class="avatar-menu d-flex align-items-center" :style="{'background-color': color}">
           <div>
             <v-avatar
               v-show="isAuthenticated && isMobile"
@@ -47,10 +47,19 @@
             </v-avatar>
           </div>
           <div>
-            {{this.displayName}}
+            {{this.displayName}} <br>
+            <v-chip color="orange" text-color="white" class="ml-0" small>
+              <v-icon left>build</v-icon>
+              Administrador
+            </v-chip> <br>
+            <v-chip color="indigo" text-color="white" class="ml-0" small>
+              <v-avatar>
+                <v-icon>star</v-icon>
+              </v-avatar>
+              Maestro en csgo
+            </v-chip>
           </div>
         </div>
-        <br>
         <v-list-tile v-for="item in items[isAuthenticated]" :key="item.title" @click="goTo(item)">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -102,6 +111,7 @@
     },
     data () {
       return {
+        color: this.$vuetify.theme.neutral,
         isMobile: null,
         mini: null,
         drawer: null,
@@ -165,7 +175,11 @@
   .icon {
     font-size: 2rem!important;
   }
+  hr {
+    margin: 0;
+  }
   .avatar-menu {
-    margin: 0 1.2em;
+    padding: 1em 1.2em;
+    margin: 0;
   }
 </style>
