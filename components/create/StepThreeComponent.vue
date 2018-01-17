@@ -9,7 +9,7 @@
         class="img-preview col-6 col-md-2 p-0"
         :class="(index === defaultImg) && !uploading ? 'defaultImg' : null"
         :style="{ 'background-image': 'url(' + src + ')' }"
-        @click="setDefault(index)"
+        @click="defaultImg = index"
         >
         <overlay :index="index"></overlay>
         <dismiss-img @click.native.stop="dismissImg(index)" v-if="!uploading"></dismiss-img>
@@ -29,16 +29,6 @@
 
   export default {
     props: ['newArt'],
-    data () {
-      return {
-        confirm: false,
-        imagesBuffer: [],
-        imageSrc: [],
-        btnLabel: 'Sube tus imágenes',
-        uploading: false,
-        defaultImg: 0
-      }
-    },
     methods: {
       addTournament: function () {
         this.uploading = true
@@ -49,9 +39,6 @@
           this.reset()
           this.$router.push('/')
         })
-      },
-      setDefault (index) {
-        this.defaultImg = index
       },
       previewImage (event) {
         var vm = this
@@ -88,6 +75,18 @@
     watch: {
       imageSrc: function () {
         this.btnLabel = this.imageSrc.length !== 0 ? 'Añadir imágenes' : 'Sube tus imágenes'
+      }
+    },
+    data () {
+      return {
+        btnLabel: 'Sube tus imágenes',
+
+        imagesBuffer: [],
+        imageSrc: [],
+        defaultImg: 0,
+
+        confirm: false,
+        uploading: false
       }
     },
     components: { DismissImg, ProgressBar, Overlay }
