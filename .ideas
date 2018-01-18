@@ -6,6 +6,6 @@ CreateTournament: {
 
 customSlug {
   speakingurl, // done!
-  passing params,
-  changing url
+  passing params, // done!
+  changing url  // done!
 }

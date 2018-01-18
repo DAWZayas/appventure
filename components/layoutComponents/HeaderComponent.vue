@@ -8,7 +8,7 @@
         <v-toolbar-title v-if="!isMobile">AppVenture</v-toolbar-title>
       </div>
       <v-spacer></v-spacer>
-      <v-btn icon @click="controlSearchBar">
+      <v-btn icon @click="openSearch = !openSearch">
         <v-icon>search</v-icon>
       </v-btn>
       <v-avatar
@@ -20,6 +20,7 @@
           <img :src="userPhoto" alt="avatar">
         </v-avatar>
     </v-toolbar>
+    <search-bar :open="openSearch"></search-bar>
     
     <v-navigation-drawer
       v-model="drawer"
@@ -36,145 +37,59 @@
       </v-list>
       <v-list class="pt-0" dense>
         <v-divider v-if="isMobile" class="mt-0"></v-divider>
-        <div v-if="isAuthenticated && isMobile" class="avatar-menu d-flex align-items-center" :style="{'background-color': color}">
-          <div>
-            <v-avatar
-              v-show="isAuthenticated && isMobile"
-              :size="'60px'"
-              class="grey lighten-4"
-            >
-              <img :src="userPhoto" alt="avatar">
-            </v-avatar>
-          </div>
-          <div>
-            {{this.displayName}} <br>
-            <v-chip color="orange" text-color="white" class="ml-0" small>
-              <v-icon left>build</v-icon>
-              Administrador
-            </v-chip> <br>
-            <v-chip color="indigo" text-color="white" class="ml-0" small>
-              <v-avatar>
-                <v-icon>star</v-icon>
-              </v-avatar>
-              Maestro en csgo
-            </v-chip>
-          </div>
-        </div>
-        <v-list-tile v-for="item in items[isAuthenticated]" :key="item.title" @click="goTo(item)">
-          <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+        <user-info :isAuthenticated="isAuthenticated" :isMobile="isMobile"></user-info>
+        <items-list-component :isAuthenticated="isAuthenticated"></items-list-component>
       </v-list>
     </v-navigation-drawer>
   </div>
 </template>
 <script>
   import { mapActions, mapGetters } from 'vuex'
+  import { itemsListComponent, userInfo, searchBar } from './header'
 
   export default {
+    methods: {
+      onResize () {
+        this.isMobile = window.innerWidth < 1264
+        this.mini = window.innerWidth < 350
+      },
+      goHome () {
+        this.$router.push('/')
+      },
+      ...mapActions(['logout', 'bindAuth', 'bindFirebaseReferences'])
+    },
+    beforeMount () {
+      this.isAuthenticated ? this.bindAuth() : this.bindFirebaseReferences()
+    },
     mounted () {
       this.$nextTick(() => {
         window.addEventListener('resize', this.onResize)
         this.onResize()
       })
     },
-    computed: {
-      ...mapGetters({ isAuthenticated: 'isAuthenticated', userPhoto: 'getUserPhoto', displayName: 'getDisplayName' })
-    },
-    methods: {
-      ...mapActions(['logout']),
-      onResize () {
-        this.isMobile = window.innerWidth < 1264
-        this.mini = window.innerWidth < 350
-      },
-      goTo (item) {
-        this.isMobile ? this.drawer = false : null
-        if (item.title === 'Cerrar sesión') {
-          this.logout()
-        } else {
-          this.$router.push(item.link)
-        }
-      },
-      goHome () {
-        this.$router.push('/')
-      },
-      controlSearchBar (event) {
-        this.$emit('controlSearchBar', 'clicked')
-      }
-    },
     beforeDestroy () {
       window.removeEventListener('resize', this.onResize)
     },
+    computed: {
+      ...mapGetters({ isAuthenticated: 'isAuthenticated', userPhoto: 'getUserPhoto' })
+    },
+    components: {
+      itemsListComponent,
+      userInfo,
+      searchBar
+    },
     data () {
       return {
-        color: this.$vuetify.theme.neutral,
         isMobile: null,
         mini: null,
         drawer: null,
-        logo: require('~/assets/logo.svg'),
-        items: {
-          true: [
-            {
-              title: 'Tu cuenta',
-              icon: 'home',
-              link: '/users'
-            },
-            {
-              title: 'Mis torneos',
-              icon: 'fa-trophy',
-              link: '/userTournaments'
-            },
-            {
-              title: 'Clasificación',
-              icon: 'trending_up',
-              link: '/users'
-            },
-            {
-              title: 'Ayuda',
-              icon: 'chat_bubble_outline',
-              link: '/'
-            },
-            {
-              title: 'Cerrar sesión',
-              icon: 'close',
-              link: '/login'
-            }
-          ],
-          null: [
-            {
-              title: 'Iniciar sesión',
-              icon: 'home',
-              link: '/login'
-            },
-            {
-              title: 'Mis torneos',
-              icon: 'fa-trophy',
-              link: '/'
-            },
-            {
-              title: 'Clasificación',
-              icon: 'trending_up',
-              link: '/users'
-            },
-            {
-              title: 'Ayuda',
-              icon: 'chat_bubble_outline',
-              link: '/'
-            }
-          ]
-        }
+        openSearch: false,
+        logo: require('~/assets/logo.svg')
       }
     }
   }
 </script>
 <style lang="scss" scoped>
-  .icon {
-    font-size: 2rem!important;
-  }
   hr {
     margin: 0;
   }
