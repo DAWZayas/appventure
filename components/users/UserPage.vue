@@ -13,7 +13,7 @@
            >
            <v-avatar
               :size="'100px'"
-              class="grey lighten-4 yisus"
+              class="grey lighten-4 img-style"
             >
               <img :src="userPhoto" alt="avatar">
             </v-avatar>
@@ -22,7 +22,17 @@
         <v-card class="p-2 py-5 mt-2 square">
           <div class="d-flex" >
             <div>
-              
+              Logros: <br>
+              <v-chip color="orange" text-color="white" class="ml-0" small>
+                <v-icon left>build</v-icon>
+                Administrador
+              </v-chip> <br>
+              <v-chip color="indigo" text-color="white" class="ml-0" small>
+                <v-avatar>
+                  <v-icon>star</v-icon>
+                </v-avatar>
+                Maestro en csgo
+              </v-chip>
             </div>
           </div>
         </v-card>
@@ -31,19 +41,54 @@
           <h3>Datos de mi cuenta</h3>
           <hr>
           <div>
-            <v-icon>perm_identity</v-icon><span> Nombre: </span> <br>
-            <span class="mx-4">{{this.user.displayName}}</span> <br> <br>
-            <v-icon>email</v-icon><span> Email: </span> <br>
-            <span class="mx-4">{{this.user.email}}</span>
+            <v-layout row>
+              <v-flex xs2>
+                <v-subheader><v-icon>perm_identity</v-icon></v-subheader>
+              </v-flex>
+              <v-flex xs8>
+                <v-text-field
+                  v-model="userName"
+                  name="input-3"
+                  label="Nombre: "
+                ></v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout row>
+              <v-flex xs2>
+                <v-subheader><v-icon>email</v-icon></v-subheader>
+              </v-flex>
+              <v-flex xs8>
+                <v-text-field
+                  name="input-3"
+                  label="Email: "
+                  :value="user.email"
+                  disabled
+                ></v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-btn
+              :loading="loading3"
+              @click.native="loader = 'loading3'"
+              @click="changeDisplayName()"
+              :disabled="loading3"
+              color="blue-grey"
+              class="white--text"
+            >
+              Guardar
+              <v-icon right dark>save</v-icon>
+            </v-btn>
           </div>
         </v-card>
-        Tema en negro:
-        <v-switch
-          @click="changeTheme"
-          v-model="isDark"
-          :color="isDark === true ? 'red accent-1' : ''"
-          hide-details
-        ></v-switch>
+        <br>
+        <v-card class="p-2 square">
+          Tema en negro:
+          <v-switch
+            @click="changeTheme"
+            v-model="isDark"
+            :color="isDark === true ? 'red accent-1' : ''"
+            hide-details
+          ></v-switch>
+        </v-card>
         <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" lazy>
           <v-btn block color="secondary" slot="activator">Crear torneo</v-btn>
           <v-card>
@@ -70,20 +115,44 @@
       return {
         color: this.$vuetify.theme.neutral,
         src: require('~/assets/images/social/material.png'),
-        dialog: false
+        dialog: false,
+        userName: null,
+        loader: null,
+        loading: false,
+        loading2: false,
+        loading3: false,
+        loading4: false
       }
     },
     computed: {
-      ...mapGetters({ isDark: 'getDarkTheme', user: 'getUser', userData: 'getUserData', userPhoto: 'getUserPhoto' })
+      ...mapGetters({ isDark: 'getDarkTheme', user: 'getUser', userData: 'getUserData', userPhoto: 'getUserPhoto', displayName: 'getDisplayName' })
+    },
+    mounted: function () {
+      this.$nextTick(function () {
+        this.userName = this.displayName
+      })
     },
     methods: {
       changeTheme () {
         this.setDarkTheme(!this.isDark)
       },
-      ...mapActions(['setDarkTheme'])
+      changeDisplayName () {
+        this.updateUserName(this.userName)
+      },
+      ...mapActions(['setDarkTheme', 'updateUserName'])
     },
     components: {
       CreateTournamentComponent
+    },
+    watch: {
+      loader () {
+        const l = this.loader
+        this[l] = !this[l]
+
+        setTimeout(() => (this[l] = false), 2000)
+
+        this.loader = null
+      }
     }
   }
 </script>
@@ -92,9 +161,22 @@
     border-radius: 0!important;
     box-shadow: none!important;
   }
-  .yisus {
+  .img-style {
     margin-left: calc( 50% - 50px );
     margin-top: calc( 50% - 50px );
     z-index: 1;
   }
+  .custom-loader {
+    animation: loader 1s infinite;
+    display: flex;
+  }
+  loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
 </style>

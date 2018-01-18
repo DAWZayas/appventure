@@ -1,5 +1,5 @@
 <template>
-  <div class="blue-grey lighten-3">
+  <div class="neutral lighten-3">
     <v-carousel id="carousel" hide-delimiters hide-controls>
       <v-carousel-item v-for="(src,i) in tournament.imagesURL" :src="src" :key="i" class="m-0 p-0 carousel-image"></v-carousel-item>
     </v-carousel>
