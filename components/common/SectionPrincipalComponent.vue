@@ -2,7 +2,7 @@
   <section>
     <h5>Torneos cerca de ti</h5>
     <section class="d-flex slide">
-      <article-tournament-component v-for="(tournament , key) in tournamentsDisplay" :key="key" :tournament="tournament" :id="key"></article-tournament-component>
+      <article-tournament-component v-for="(tournament, key) in tournamentsDisplay" :key="key" :tournament="tournament" :id="key"></article-tournament-component>
       <nuxt-link to="/moreTournaments"><show-more-component></show-more-component></nuxt-link>
     </section>
   </section>
@@ -21,7 +21,7 @@
       tournamentsDisplay: function () {
         const xs = []
         for (var i in this.tournaments) {
-          if (xs.lenght < 8) {
+          if (xs.length < 8) {
             xs.push(this.tournaments[i])
           }
         }

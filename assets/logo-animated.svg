@@ -3,6 +3,16 @@
 	 viewBox="0 0 612 371" style="enable-background:new 0 0 612 371;" xml:space="preserve">
 
 	<style type="text/css">
+		@keyframes blue {
+			0%, 100% { transform: translate(0, 0); }
+			25%, 75% { transform: translate(1rem, .5rem); }
+		}
+
+		@keyframes grey {
+			0%, 100% { transform: translate(0);	}
+			25%, 75% { transform: translate(-1rem, -.5rem);	}
+		}
+
 		.blue-v{fill:#0097A6; animation-name: blue; animation-duration: 1.5s; animation-iteration-count: infinite; animation-fill-mode: both;}
 		.grey-a{fill:#757575; animation-name: grey; animation-duration: 1.5s; animation-iteration-count: infinite; animation-fill-mode: both;}
 	</style>
