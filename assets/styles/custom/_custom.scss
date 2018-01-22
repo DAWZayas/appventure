@@ -39,4 +39,13 @@ h5 {
   }
 }
 
+#my-account-avatar {
+  position: absolute!important;
+  bottom: calc( 0 - 50px )!important;
+  left: calc( 50% - 50px )!important;
+  z-index: 1!important;
+}
 
+.container {
+  max-width: 100%;
+}

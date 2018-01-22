@@ -3,16 +3,18 @@
     <h5>Torneos cerca de ti</h5>
     <section class="d-flex slide">
       <article-tournament-component v-for="(tournament , key) in tournaments" :key="key" :tournament="tournament" :id="key"></article-tournament-component>
+      <show-more-component></show-more-component>
     </section>
   </section>
 </template>
 <script>
-  import { ArticleTournamentComponent } from '~/components/common'
+  import { ArticleTournamentComponent, ShowMoreComponent } from '~/components/common'
   import { mapGetters } from 'vuex'
 
   export default {
     components: {
-      ArticleTournamentComponent
+      ArticleTournamentComponent,
+      ShowMoreComponent
     },
     computed: {
       ...mapGetters({ tournaments: 'getTournaments' })

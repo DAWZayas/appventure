@@ -13,6 +13,7 @@
            >
            <v-avatar
               :size="'100px'"
+              id="my-account-avatar"
               class="grey lighten-4 img-style"
             >
               <img :src="userPhoto" alt="avatar">
@@ -160,11 +161,6 @@
   .square {
     border-radius: 0!important;
     box-shadow: none!important;
-  }
-  .img-style {
-    margin-left: calc( 50% - 50px );
-    margin-top: calc( 50% - 50px );
-    z-index: 1;
   }
   .custom-loader {
     animation: loader 1s infinite;

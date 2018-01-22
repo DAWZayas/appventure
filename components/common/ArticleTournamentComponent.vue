@@ -56,6 +56,7 @@
     border-radius: 0.20em;
     border-bottom-right-radius: 0;
     width: 10em;
+    height: 11em;
     cursor: pointer;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
     position: relative;
