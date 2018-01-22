@@ -12,7 +12,7 @@
 
     <v-card color="white darken-2 ma-2" class="black--text">
       <v-card-title primary-title>
-        <div class="headline">Una pequeña descripción</div>
+        <div class="headline">Una pequeña descripción</div><br>
         <div>{{ tournament.description }}</div>
       </v-card-title>
     </v-card>

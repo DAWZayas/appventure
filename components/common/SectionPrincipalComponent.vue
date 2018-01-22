@@ -3,7 +3,7 @@
     <h5>Torneos cerca de ti</h5>
     <section class="d-flex slide">
       <article-tournament-component v-for="(tournament , key) in tournaments" :key="key" :tournament="tournament" :id="key"></article-tournament-component>
-      <show-more-component></show-more-component>
+      <nuxt-link to="/moreTournaments"><show-more-component></show-more-component></nuxt-link>
     </section>
   </section>
 </template>

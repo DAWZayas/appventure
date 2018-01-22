@@ -9,7 +9,7 @@
         </v-card-media>
         <v-card-title>
           <div>
-            <span class="grey--text">{{tournament.name}}</span><br><br>
+            <p class="grey--text">{{tournament.name}}</p>
             <span>Deporte: {{tournament.category}}</span><br>
             <span>Fecha: {{tournament.initDate}}</span>
           </div>
