@@ -14,9 +14,9 @@
            <v-avatar
               :size="'100px'"
               id="my-account-avatar"
-              class="grey lighten-4 img-style"
+              class="grey lighten-4 "
             >
-              <img :src="userPhoto" alt="avatar">
+              <img class="img-style" :src="userPhoto" alt="avatar">
             </v-avatar>
            </v-card-media>
         </v-card>
@@ -165,6 +165,10 @@
   .custom-loader {
     animation: loader 1s infinite;
     display: flex;
+  }
+  .img-style {
+    border: 4px solid white;
+    border-radius: 50%;
   }
   loader {
     from {
