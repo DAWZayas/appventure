@@ -10,11 +10,13 @@
       <p>Nivel: {{ tournament.level }}</p>
     </section>
 
-    <v-card color="white darken-2 ma-2" class="black--text">
+    <v-card color="white darken-2 ma-2" class="black--text square">
       <v-card-title primary-title>
-        <div class="headline">Una pequeña descripción</div><br>
-        <div>{{ tournament.description }}</div>
+        <div class="headline">Una pequeña descripción</div>
       </v-card-title>
+      <v-card-text>
+        <div class="grey--text">{{ tournament.description }}</div>
+      </v-card-text>
     </v-card>
 
     <section class="pa-2 white">
@@ -95,5 +97,9 @@ export default {
     margin-top: -6rem;
     transition: margin-top 1s ease-out;
     z-index: 1000;
+  }
+  .square {
+    border-radius: 0!important;
+    box-shadow: none!important;
   }
 </style>

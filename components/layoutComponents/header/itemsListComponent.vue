@@ -11,9 +11,12 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   props: ['isAuthenticated'],
   methods: {
+    ...mapActions(['logout']),
     goTo (item) {
       this.isMobile ? this.drawer = false : null
       if (item.title === 'Cerrar sesión') {

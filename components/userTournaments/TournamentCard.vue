@@ -1,5 +1,5 @@
 <template>
-  <v-layout row wrap m-3>
+  <v-layout row wrap m-2>
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
         <v-card-media
@@ -9,9 +9,9 @@
         </v-card-media>
         <v-card-title>
           <div>
-            <p class="grey--text">{{tournament.name}}</p>
-            <span>Deporte: {{tournament.category}}</span><br>
-            <span>Fecha: {{tournament.initDate}}</span>
+            <p>{{tournament.name}}</p>
+            <span class="grey--text">Deporte: {{tournament.category}}</span><br>
+            <span class="grey--text">Fecha: {{tournament.initDate}}</span>
           </div>
         </v-card-title>
         <v-card-actions>

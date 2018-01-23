@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-  import { TournamentCard } from '~/components/userTournaments'
+  import { TournamentCard } from '~/components/common/tournaments'
   import { mapGetters } from 'vuex'
   export default {
     components: {
