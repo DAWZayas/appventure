@@ -3,7 +3,7 @@
   <section class="d-flex justify-content-center">
     <div class="form">
       <div class="logo">
-        <img :src="logo" alt="AppVenture">
+        <img :src="logo" alt="AppVenture" class="my-4">
       </div>
       <ul class="tab-group" ref="tabs">
         <li class="tab active" @click.prevent="toggleLog"><a href="#signup">Sign Up</a></li>
@@ -62,7 +62,7 @@
     text-align: center;
 
     img {
-      max-width: 5em;
+      max-width: 7em;
     }
   }
 

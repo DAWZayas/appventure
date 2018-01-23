@@ -5,8 +5,6 @@
   import { TournamentPagination } from '~/components/common/tournaments'
 
   export default {
-    components: {
-      TournamentPagination
-    }
+    components: { TournamentPagination }
   }
 </script>

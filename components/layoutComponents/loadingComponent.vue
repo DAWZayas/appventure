@@ -10,7 +10,6 @@
 </template>
 <script>
 export default {
-  layout: 'login',
   data () {
     return {
       logo: require('~/assets/logo-animated.svg'),
