@@ -17,16 +17,9 @@
       ShowMoreComponent
     },
     computed: {
-      ...mapGetters({ tournaments: 'getTournaments' }),
+      ...mapGetters({ tournaments: 'getArrayTournaments' }),
       tournamentsDisplay: function () {
-        const xs = []
-        for (var i in this.tournaments) {
-          if (xs.length < 8) {
-            xs.push(this.tournaments[i])
-            xs[xs.length - 1]['key'] = i
-          }
-        }
-        return xs
+        return this.tournaments.slice(0, 8)
       }
     }
   }
