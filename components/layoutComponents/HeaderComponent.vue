@@ -1,14 +1,14 @@
 <template>
   <div>
     <v-toolbar absolute :clipped-left="!isMobile" scroll-off-screen flat app>
-      <v-toolbar-side-icon v-if="isMobile" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon v-if="isMobile" @click.stop="latDrawer = !latDrawer"></v-toolbar-side-icon>
       <v-spacer v-if="isMobile"></v-spacer>
       <div class="d-flex flex-row align-items-center" @click="goHome">
         <v-avatar :tile="true"><img :src="logo" :tile="false" /></v-avatar>
         <v-toolbar-title v-if="!isMobile">AppVenture</v-toolbar-title>
       </div>
       <v-spacer></v-spacer>
-      <v-btn icon @click="openSearch = !openSearch">
+      <v-btn icon @click.prevent="toggleSBar">
         <v-icon>search</v-icon>
       </v-btn>
       <v-avatar
@@ -18,12 +18,13 @@
           class="grey lighten-4"
         >
           <img :src="userPhoto" alt="avatar">
-        </v-avatar>
+      </v-avatar>
     </v-toolbar>
-    <search-bar :open="openSearch"></search-bar>
-    
+
+    <transition name="fade"><search-bar v-if="sBar" @toggleSearch="toggleSBar"></search-bar></transition>
+
     <v-navigation-drawer
-      v-model="drawer"
+      v-model="latDrawer"
       :mini-variant.sync="mini"
       absolute
       :clipped="!isMobile"
@@ -56,6 +57,10 @@
       goHome () {
         this.$router.push('/')
       },
+      toggleSBar () {
+        this.sBar = !this.sBar
+        console.log(this.sBar)
+      },
       ...mapActions(['logout', 'bindAuth', 'bindFirebaseReferences'])
     },
     beforeMount () {
@@ -82,8 +87,8 @@
       return {
         isMobile: null,
         mini: null,
-        drawer: null,
-        openSearch: false,
+        latDrawer: null,
+        sBar: false,
         logo: require('~/assets/logo.svg')
       }
     }

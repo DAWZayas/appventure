@@ -1,0 +1,17 @@
+#search-bar {
+  position: fixed;
+  right: 0;
+  width: 40%;
+  z-index: 10;
+  margin-top: .9rem!important;
+
+  .input-group {
+    padding-top: 0!important;
+    padding-right: 1.5rem!important;
+
+    & > * > .input-group__append-icon {
+      margin-right: -.3rem!important;
+      opacity: 0;
+    }
+  }
+}

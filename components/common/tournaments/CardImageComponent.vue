@@ -17,7 +17,7 @@ export default {
   },
   mounted: function () {
     this.$nextTick(function () {
-      setTimeout(() => { this.loading = true }, 1000)
+      setTimeout(() => { this.loading = true }, Math.floor((Math.random() * 2000) + 1000))
     })
   }
 }
@@ -31,14 +31,6 @@ export default {
     25% { transform: rotate(45deg); }
     75% { transform: rotate(270deg); }
     100% { transform: rotate(360deg); }
-  }
-
-  .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-  }
-
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
   }
 
   .tournament {

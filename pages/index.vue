@@ -1,6 +1,6 @@
 <template>
   <div>
-    <loading-component v-show="!loaded"></loading-component>
+    <transition name="fade"><loading-component v-show="!loaded"></loading-component></transition>
     <router-view></router-view>
   </div>
 </template>
@@ -11,7 +11,7 @@ export default {
   components: { LoadingComponent },
   mounted () {
     this.$nextTick(() => {
-      setTimeout(() => { this.loaded = true }, 2000)
+      setTimeout(() => { this.loaded = true }, Math.floor((Math.random() * 3000) + 2000))
     })
   },
   data () {

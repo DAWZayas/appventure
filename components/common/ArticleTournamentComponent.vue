@@ -3,7 +3,7 @@
   <article class="tournament">
     <div>
       <nuxt-link :to="{ name: 'tournaments', params: { date: slugDate, slug: slugName, id: id } }">
-        <div class="tournament-img p-0"><img src="http://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" style="width: 100%; overflow:hidden;" v-img="src"></div>
+        <div class="tournament-img p-0"><img style="width: 100%; overflow:hidden;" v-img="src"></div>
       </nuxt-link>
     </div>
     <strong class="tournament-strong">{{ tournament.name }}</strong>
