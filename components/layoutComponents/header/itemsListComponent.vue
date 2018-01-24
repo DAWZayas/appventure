@@ -70,7 +70,7 @@ export default {
           {
             title: 'Clasificación',
             icon: 'trending_up',
-            link: '/users'
+            link: '/login'
           },
           {
             title: 'Ayuda',

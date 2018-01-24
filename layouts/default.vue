@@ -2,7 +2,7 @@
   <v-app :dark="isDark">
     <header-component></header-component>
 
-    <transition name="fade"><v-content>
+    <transition name="fade"><v-content class="pb-5 mb-2">
       <v-container fluid class="p-0">
         <nuxt/>
         <footer-component></footer-component>

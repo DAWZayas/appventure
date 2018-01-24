@@ -59,7 +59,6 @@
       },
       toggleSBar () {
         this.sBar = !this.sBar
-        console.log(this.sBar)
       },
       ...mapActions(['logout', 'bindAuth', 'bindFirebaseReferences'])
     },

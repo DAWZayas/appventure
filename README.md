@@ -1,11 +1,14 @@
-# AppVenture
+<p align="center">
+  <img src="assets/images/social/logo.png" alt="AppVenture Logo" style="width: 200px;" />
+</p>
+<h1 align="center">AppVenture</h1>
 
-> Compete to be the best.
+## Compete to be the best.
 
-## What is 'Appventure'?
-
-AppVenture is a website for competition lovers. Here you can 
+>AppVenture is a website for competition lovers. Here you can 
 search for tournaments or sports and fight for trophies versus other people.
+
+[Test our website!](https://appventure-web.firebaseapp.com/) :metal:
 
 ## Build Setup
 
@@ -24,7 +27,7 @@ $ npm start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+For detailed explanation on how things work, checkout the [Nuxt.js docs](https://nuxtjs.org/).
 
 ## Licensing
 

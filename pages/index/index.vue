@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pa-0 ma-0 mb-5">
+  <v-container class="p-0 m-0">
     <section-principal-component></section-principal-component>
     <section-categories-component></section-categories-component>
     <section-related-component></section-related-component>

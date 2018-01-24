@@ -3,7 +3,7 @@
     <transition name="fade"><div v-if="!loading" class="d-flex flex-column align-items-center">
       <img :src="logo" class="load-img" alt="AppVenture">
     </div></transition>
-    <transition name="fade"><img v-show="loading" class="tournament" src="http://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" v-img="src"></transition>
+    <transition name="fade"><img v-show="loading" class="tournament" v-img="src"></transition>
   </div>
 </template>
 <script>
