@@ -5,18 +5,18 @@
     <transition name="fade"><v-content>
       <v-container fluid class="p-0">
         <nuxt/>
+        <footer-component></footer-component>
       </v-container>
     </v-content></transition>
 
-    <v-footer/>
   </v-app>
 </template>
 <script>
-  import { HeaderComponent } from '~/components/layoutComponents'
+  import { HeaderComponent, FooterComponent } from '~/components/layoutComponents'
   import { mapGetters } from 'vuex'
 
   export default {
-    components: { HeaderComponent },
+    components: { HeaderComponent, FooterComponent },
     computed: {
       ...mapGetters({ isDark: 'getDarkTheme' })
     },
