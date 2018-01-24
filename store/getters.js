@@ -3,6 +3,15 @@ export default {
     delete state.tournaments['.key']
     return state.tournaments
   },
+  getArrayTournaments: state => {
+    const xs = []
+    delete state.tournaments['.key']
+    for (var i in state.tournaments) {
+      xs.push(state.tournaments[i])
+      xs[xs.length - 1]['key'] = i
+    }
+    return xs
+  },
   getImages: state => state.defaultImg,
   getUser: state => state.user,
   getUserPhoto: state => state.user ? state.user.photoURL : null,
