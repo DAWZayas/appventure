@@ -1,9 +1,10 @@
 <template>
   <v-app :dark="isDark">
+    <loading-component v-show="!loaded"></loading-component>    
+    
     <header-component></header-component>
 
-    <loading-component v-show="!loaded"></loading-component>
-    <transition name="fade"><v-content v-show="loaded">
+    <transition name="fade"><v-content>
       <v-container fluid class="p-0">
         <nuxt/>
       </v-container>

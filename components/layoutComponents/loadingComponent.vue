@@ -1,10 +1,12 @@
 <template>
-  <div class="loader-container">
-    <div class="d-flex flex-column align-items-center">
-      <img :src="logo" class="load-img" alt="AppVenture">
-    </div>
-    <div class="load-t">
-      <span>{{ loadingT }}</span>
+  <div class="main-loader">
+    <div class="loader-container">
+      <div class="d-flex flex-column align-items-center">
+        <img :src="logo" class="load-img" alt="AppVenture">
+      </div>
+      <div class="load-t">
+        <span>{{ loadingT }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -15,9 +17,6 @@ export default {
       logo: require('~/assets/logo-animated.svg'),
       loadingT: 'Cargando'
     }
-  },
-  methods: {
-
   }
 }
 </script>
@@ -36,6 +35,16 @@ export default {
     0%, 100% { width: 0; }
     20% { width: 0; }
     50% { width: 2.5rem; }
+  }
+
+  .main-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    z-index: 10;
   }
 
   .loader-container {
