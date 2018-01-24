@@ -1,7 +1,7 @@
 <p align="center">
-  <img src="assets/images/social/logo.png" alt="AppVenture Logo" style="width: 200px;" />
+  <img src="https://raw.githubusercontent.com/DAWZayas/appventure/dev/assets/images/social/logo.png" alt="AppVenture Logo" style="max-width: 25%;" />
 </p>
-<h1 align="center">AppVenture</h1>
+<h1 align="center" style="margin-top: 0;">AppVenture</h1>
 
 ## Compete to be the best.
 
