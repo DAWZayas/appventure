@@ -1,7 +1,5 @@
 <template>
   <v-app :dark="isDark">
-    <loading-component v-show="!loaded"></loading-component>    
-    
     <header-component></header-component>
 
     <transition name="fade"><v-content>
@@ -14,18 +12,13 @@
   </v-app>
 </template>
 <script>
-  import { HeaderComponent, LoadingComponent } from '~/components/layoutComponents'
+  import { HeaderComponent } from '~/components/layoutComponents'
   import { mapGetters } from 'vuex'
 
   export default {
-    components: { HeaderComponent, LoadingComponent },
+    components: { HeaderComponent },
     computed: {
       ...mapGetters({ isDark: 'getDarkTheme' })
-    },
-    mounted () {
-      this.$nextTick(() => {
-        setTimeout(() => { this.loaded = true }, 4000)
-      })
     },
     methods: {
       changeTheme (theme) { this.$vuetify.theme = theme }
@@ -35,8 +28,6 @@
     },
     data () {
       return {
-        // Handle loading with arrray of 'trues'
-        loaded: false,
         isClosed: true,
         lightTheme: { primary: '#29B6F6', secondary: '#66BB6A', accent: '#F44336', error: '#F44336', warning: '#ffeb3b', info: '#2196F3', success: '#4CAF50' },
         darkTheme: { primary: '#D32F2F', secondary: '#FF5252', accent: '#546E7A', error: '#D50000', warning: '#FFA000', info: '#42A5F5', success: '#81C784' }

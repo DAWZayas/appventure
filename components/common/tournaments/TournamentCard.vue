@@ -3,9 +3,7 @@
       <v-flex xs12 sm6 offset-sm3 m-1>
         <nuxt-link :to="{ name: 'tournaments', params: { date: slugDate, slug: slugName, id: id } }">
           <v-card>
-            <div class="p-0 container-p">
-              <img class="tournament" src="http://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" v-img="src">
-            </div>
+            <card-image-component :src="src"></card-image-component>
             <v-card-title>
               <div>
                 <span>{{ tournament.name }}</span><br>
@@ -20,6 +18,7 @@
 </template>
 <script>
   import speakingurl from 'speakingurl'
+  import { CardImageComponent } from '~/components/common/tournaments'
 
   export default {
     props: ['tournament', 'id'],
@@ -29,16 +28,7 @@
         slugDate: speakingurl(this.tournament.createDate),
         slugName: speakingurl(this.tournament.name)
       }
-    }
+    },
+    components: { CardImageComponent }
   }
 </script>
-<style lang="scss" scoped>
-  .tournament {
-    width: 100%;
-  }
-
-  .container-p {
-    height: 10em!important;
-    overflow: hidden;
-  }
-</style>
