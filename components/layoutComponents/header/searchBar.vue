@@ -12,7 +12,6 @@ export default {
   },
   watch: {
     open: function () {
-      console.log(this.open)
       this.open ? this.openBar() : this.closeBar()
     }
   }
