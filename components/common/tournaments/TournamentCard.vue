@@ -3,11 +3,9 @@
       <v-flex xs12 sm6 offset-sm3 m-1>
         <nuxt-link :to="{ name: 'tournaments', params: { date: slugDate, slug: slugName, id: id } }">
           <v-card>
-            <v-card-media
-              height="150px"
-              :src="tournament.imagesURL[0]"
-            >
-            </v-card-media>
+            <div class="p-0 container-p">
+              <img class="tournament" src="http://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" v-img="src">
+            </div>
             <v-card-title>
               <div>
                 <span>{{ tournament.name }}</span><br>
@@ -34,3 +32,13 @@
     }
   }
 </script>
+<style lang="scss" scoped>
+  .tournament {
+    width: 100%;
+  }
+
+  .container-p {
+    height: 10em!important;
+    overflow: hidden;
+  }
+</style>
