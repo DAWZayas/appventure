@@ -3,16 +3,18 @@
     <section-principal-component></section-principal-component>
     <section-categories-component></section-categories-component>
     <section-related-component></section-related-component>
+    <filter-button-component></filter-button-component>
   </v-container>
 </template>
 <script>
-  import { SectionPrincipalComponent, SectionCategoriesComponent, SectionRelatedComponent } from '~/components/common'
+  import { SectionPrincipalComponent, SectionCategoriesComponent, SectionRelatedComponent, FilterButtonComponent } from '~/components/common'
 
   export default {
     components: {
       SectionPrincipalComponent,
       SectionCategoriesComponent,
-      SectionRelatedComponent
+      SectionRelatedComponent,
+      FilterButtonComponent
     }
   }
 </script>
