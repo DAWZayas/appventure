@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" lazy>
+  <v-dialog v-model="dialog" persistent max-width="500px">
     <v-btn fixed
       bottom
       small
@@ -9,17 +9,36 @@
       class="mb-5" 
       slot="activator"
     >
-       <v-icon>add</v-icon>
+       <v-icon>search</v-icon>
     </v-btn>
     <v-card>
-      <v-toolbar>
-        <v-btn icon @click.native="dialog = false">
-          <v-icon>close</v-icon>
-        </v-btn>
-        <v-toolbar-title>Buscar Torneo</v-toolbar-title>
-        <v-spacer></v-spacer>
-        
-      </v-toolbar>
+      <v-card-text>
+        <v-flex>
+          <v-select
+            :items="categories.main"
+            v-model="category"
+            label="Categoría"
+            single-line
+            auto
+            append-icon="touch_app"
+            hide-details
+          ></v-select>
+          <v-select 
+            :items="categories[category]" 
+            v-if="category !== ''" 
+            :label="categories['label'][category]" 
+            v-model="subCategory"
+            single-line
+            auto
+            append-icon="touch_app"
+            hide-details
+          ></v-select>
+        </v-flex>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn color="blue darken-1" flat @click.native="dialog = false">Cerrar</v-btn>
+        <v-btn color="blue darken-1" flat @click.native="dialog = false">Buscar</v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -27,7 +46,43 @@
 export default {
   data () {
     return {
-      dialog: false
+      dialog: false,
+      category: '',
+      subCategory: '',
+      categories: {
+        main: [
+          { text: 'Deportes', value: 'sports' },
+          { text: 'e-Sports', value: 'esports' },
+          { text: 'Juegos de cartas', value: 'cardgames' },
+          { text: 'Motor', value: 'motor' }
+        ],
+        sports: [
+          { text: 'Fútbol', value: 'football' },
+          { text: 'Baloncesto', value: 'basketball' },
+          { text: 'Padel', value: 'padel' },
+          { text: 'Golf', value: 'golf' }
+        ],
+        esports: [
+          { text: 'League of Legends', value: 'lol-esport' },
+          { text: 'CSGO', value: 'csgo' },
+          { text: 'Dota 2', value: 'dota2' },
+          { text: 'FIFA', value: 'fifa-esport' }
+        ],
+        cardgames: [
+          { text: 'Poker', value: 'Poker' }
+        ],
+        motor: [
+          { text: 'Karts', value: 'Karts' },
+          { text: 'Rally', value: 'Rally' },
+          { text: 'Motos', value: 'Motos' }
+        ],
+        label: {
+          sports: 'Deporte',
+          esports: 'Videojuego',
+          cardgames: 'Juego',
+          motor: 'Carrera'
+        }
+      }
     }
   }
 }
