@@ -11,7 +11,6 @@ export default {
   async uploadImage ({commit}, { file, index }) {
     let ref = firebaseApp.storage().ref().child('images/tournaments')
     var uploadTask = ref.child(uuidv1()).child(file.name).put(file)
-    // commit('setNumber', index)
 
     return new Promise(function (resolve, reject) {
       uploadTask.on('state_changed',
@@ -48,6 +47,21 @@ export default {
       return await dispatch('uploadImage', { file, index })
     }))
   },
+  filterBy ({commit}, { category, subcategory }) {
+    var ref = firebaseApp.database().ref('tournaments')
+    var field, query
+    var tournaments = []
+
+    subcategory
+      ? (field = 'subCategory', query = subcategory)
+      : (field = 'category', query = category)
+
+    ref.orderByChild(field).equalTo(query).on('value', function (snapshot) {
+      tournaments.push(snapshot.val())
+    })
+
+    commit('setFilteredTournaments', tournaments)
+  },
   /**
    * Add new tournaments to firebase
    * @param {object} store
@@ -55,7 +69,6 @@ export default {
    */
   setArticleAppventure ({commit, state}, newTournament) {
     if (state.tournamentsRef) {
-      // console.log('>>T>>>', newTournament)
       state.tournamentsRef.push(newTournament)
     } else {
       commit('setArticleAppventure', newTournament)

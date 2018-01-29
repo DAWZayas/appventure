@@ -2,8 +2,8 @@
 <div>
   <h5>Categorías</h5>
   <section class="categories">
-    <v-chip color="secundary" class="chip" small>&#9917; Futbol</v-chip>
-    <v-chip color="secundary" class="chip" small>&#9918; Padel</v-chip>
+    <v-chip color="secundary" class="chip" small @click="goToCategory">&#9917; Futbol</v-chip>
+    <v-chip color="secundary" class="chip" small @click="goToCategory">&#9918; Padel</v-chip>
     <v-chip color="secundary" class="chip" small>&#127934; Tenis</v-chip>
     <v-chip color="secundary" class="chip" small>&#128664; Karts</v-chip>
     <v-chip color="secundary" class="chip" small>&#127936; Baloncesto</v-chip>
@@ -12,6 +12,27 @@
   </section>
 </div>
 </template>
+<script>
+  import { mapActions } from 'vuex'
+
+  export default {
+    data () {
+      return {
+        category: 'sports',
+        subcategory: 'Padel'
+      }
+    },
+    methods: {
+      goToCategory () {
+        let category = this.category
+        let subcategory = this.subcategory
+        this.filterBy({ category, subcategory })
+      },
+      ...mapActions(['filterBy'])
+    }
+  }
+</script>
+
 <style scoped>
   .chip {
     max-width: 8rem;

@@ -41,6 +41,9 @@ export default {
   setTournamentsRef (state, value) {
     state.tournamentsRef = value
   },
+  setFilteredTournaments (state, value) {
+    state.tFiltered = value
+  },
   setAuthError (state, value) {
     state.authError = value
   },

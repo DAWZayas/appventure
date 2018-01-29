@@ -6,6 +6,7 @@ const tournaments = {}
 const tournamentsRef = null
 const usersRef = null
 const displayName = ''
+const tFiltered = null
 
 const defaultImg = {
   padel: require('~/assets/images/torneos/torneopadel.jpg'),
@@ -24,6 +25,6 @@ export default {
   tournamentsRef,
   usersRef,
   displayName,
-
+  tFiltered,
   defaultImg
 }
