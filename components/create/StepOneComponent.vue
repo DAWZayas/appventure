@@ -50,12 +50,12 @@
             { text: 'FIFA', value: 'fifa-esport' }
           ],
           cardgames: [
-            { text: 'Poker', value: 'Poker' }
+            { text: 'Poker', value: 'poker' }
           ],
           motor: [
-            { text: 'Karts', value: 'Karts' },
-            { text: 'Rally', value: 'Rally' },
-            { text: 'Motos', value: 'Motos' }
+            { text: 'Karts', value: 'karts' },
+            { text: 'Rally', value: 'rally' },
+            { text: 'Motos', value: 'motos' }
           ],
           label: {
             sports: 'Deporte',

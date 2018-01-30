@@ -12,6 +12,7 @@ export default {
     }
     return xs
   },
+  getFilteredTournaments: state => state.tFiltered,
   getImages: state => state.defaultImg,
   getUser: state => state.user,
   getUserPhoto: state => state.user ? state.user.photoURL : null,

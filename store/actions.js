@@ -47,6 +47,11 @@ export default {
       return await dispatch('uploadImage', { file, index })
     }))
   },
+  /**
+   * Filters tournaments by category
+   * @param {object} store
+   * @param {object} category & subcategory
+   */
   filterBy ({commit}, { category, subcategory }) {
     var ref = firebaseApp.database().ref('tournaments')
     var field, query
@@ -60,7 +65,13 @@ export default {
       tournaments.push(snapshot.val())
     })
 
-    commit('setFilteredTournaments', tournaments)
+    const xs = []
+    for (var i in tournaments[0]) {
+      xs.push(tournaments[0][i])
+      xs[xs.length - 1]['key'] = i
+    }
+
+    commit('setFilteredTournaments', xs)
   },
   /**
    * Add new tournaments to firebase

@@ -44,6 +44,9 @@ export default {
   setFilteredTournaments (state, value) {
     state.tFiltered = value
   },
+  /**
+   * Connection mutations
+   */
   setAuthError (state, value) {
     state.authError = value
   },

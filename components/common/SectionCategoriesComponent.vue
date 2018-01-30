@@ -2,13 +2,13 @@
 <div>
   <h5>Categorías</h5>
   <section class="categories">
-    <v-chip color="secundary" class="chip" small @click="goToCategory">&#9917; Futbol</v-chip>
-    <v-chip color="secundary" class="chip" small @click="goToCategory">&#9918; Padel</v-chip>
-    <v-chip color="secundary" class="chip" small>&#127934; Tenis</v-chip>
-    <v-chip color="secundary" class="chip" small>&#128664; Karts</v-chip>
-    <v-chip color="secundary" class="chip" small>&#127936; Baloncesto</v-chip>
-    <v-chip color="secundary" class="chip" small>&#127918; E-Sports</v-chip>
-    <v-chip color="secundary" class="chip" small>&#127183; Poker</v-chip>
+    <v-chip color="secundary" class="chip" small @click="goToCategory('sports', 'football')">&#9917; Fútbol</v-chip>
+    <v-chip color="secundary" class="chip" small @click="goToCategory('sports', 'padel')">&#127934; Padel</v-chip>
+    <v-chip color="secundary" class="chip" small @click="goToCategory('sports', 'golf')">&#127948; Golf</v-chip>
+    <v-chip color="secundary" class="chip" small @click="goToCategory('motor', 'karts')">&#128664; Karts</v-chip>
+    <v-chip color="secundary" class="chip" small @click="goToCategory('sports', 'basketball')">&#127936; Baloncesto</v-chip>
+    <v-chip color="secundary" class="chip" small @click="goToCategory('esports')">&#127918; E-Sports</v-chip>
+    <v-chip color="secundary" class="chip" small @click="goToCategory('cardgames', 'poker')">&#127183; Poker</v-chip>
   </section>
 </div>
 </template>
@@ -16,17 +16,10 @@
   import { mapActions } from 'vuex'
 
   export default {
-    data () {
-      return {
-        category: 'sports',
-        subcategory: 'Padel'
-      }
-    },
     methods: {
-      goToCategory () {
-        let category = this.category
-        let subcategory = this.subcategory
+      goToCategory (category, subcategory) {
         this.filterBy({ category, subcategory })
+        this.$router.push('filteredTournaments')
       },
       ...mapActions(['filterBy'])
     }
