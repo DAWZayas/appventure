@@ -8,7 +8,7 @@
         <v-toolbar-title v-if="!isMobile">AppVenture</v-toolbar-title>
       </div>
       <v-spacer></v-spacer>
-      <v-btn icon @click.prevent="toggleSBar">
+      <v-btn icon style="opacity: 0;">
         <v-icon>search</v-icon>
       </v-btn>
       <v-avatar
@@ -20,8 +20,6 @@
           <img :src="userPhoto" alt="avatar">
       </v-avatar>
     </v-toolbar>
-
-    <transition name="fade"><search-bar v-if="sBar" @toggleSearch="toggleSBar"></search-bar></transition>
 
     <v-navigation-drawer
       v-model="latDrawer"
@@ -46,7 +44,7 @@
 </template>
 <script>
   import { mapActions, mapGetters } from 'vuex'
-  import { itemsListComponent, userInfo, searchBar } from './header'
+  import { itemsListComponent, userInfo } from './header'
 
   export default {
     methods: {
@@ -56,9 +54,6 @@
       },
       goHome () {
         this.$router.push('/')
-      },
-      toggleSBar () {
-        this.sBar = !this.sBar
       },
       ...mapActions(['logout', 'bindAuth', 'bindFirebaseReferences'])
     },
@@ -79,8 +74,7 @@
     },
     components: {
       itemsListComponent,
-      userInfo,
-      searchBar
+      userInfo
     },
     data () {
       return {

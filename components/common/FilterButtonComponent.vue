@@ -14,6 +14,7 @@
     <v-card>
       <v-card-text>
         <v-flex>
+          <v-text-field color="primary" placeholder=" Search..." hide-details autofocus :append-icon="'search'" :append-icon-cb="searchCb"></v-text-field>
           <v-select
             :items="categories.main"
             v-model="category"
@@ -44,6 +45,9 @@
 </template>
 <script>
 export default {
+  methods: {
+    searchCb () { console.log('search-cb') }
+  },
   data () {
     return {
       dialog: false,
