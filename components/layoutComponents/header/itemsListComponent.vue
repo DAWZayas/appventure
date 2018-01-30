@@ -43,7 +43,7 @@ export default {
           {
             title: 'Clasificación',
             icon: 'trending_up',
-            link: '/users'
+            link: '/test'
           },
           {
             title: 'Ayuda',
@@ -70,7 +70,7 @@ export default {
           {
             title: 'Clasificación',
             icon: 'trending_up',
-            link: '/login'
+            link: '/test'
           },
           {
             title: 'Ayuda',
