@@ -8,7 +8,7 @@
 >AppVenture is a website for competition lovers. Here you can 
 search for tournaments or sports and fight for trophies versus other people.
 
-[Test our website!](https://appventure-web.firebaseapp.com/) :metal:
+[Test our website! :metal:](https://appventure-web.firebaseapp.com/)
 
 ## Build Setup
 

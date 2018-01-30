@@ -13,15 +13,21 @@
 </template>
 <script>
   import { HeaderComponent, FooterComponent } from '~/components/layoutComponents'
-  import { mapGetters } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
 
   export default {
     components: { HeaderComponent, FooterComponent },
     computed: {
       ...mapGetters({ isDark: 'getDarkTheme' })
     },
+    created () {
+      if (process.browser) {
+        window.onNuxtReady((app) => { this.bindAuth() })
+      }
+    },
     methods: {
-      changeTheme (theme) { this.$vuetify.theme = theme }
+      changeTheme (theme) { this.$vuetify.theme = theme },
+      ...mapActions(['bindAuth'])
     },
     watch: {
       isDark: function () { this.isDark ? this.changeTheme(this.darkTheme) : this.changeTheme(this.lightTheme) }
@@ -39,7 +45,7 @@
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to {
   opacity: 0;
 }
 </style>

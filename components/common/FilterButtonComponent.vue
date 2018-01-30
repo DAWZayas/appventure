@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" persistent max-width="500px">
+  <v-dialog v-model="dialog" max-width="500px">
     <v-btn fixed
       bottom
       small
