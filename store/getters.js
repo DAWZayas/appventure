@@ -1,4 +1,7 @@
 export default {
+  /**
+   * Tournament Getters
+   */
   getTournaments: state => {
     delete state.tournaments['.key']
     return state.tournaments
@@ -13,14 +16,19 @@ export default {
     return xs
   },
   getFilteredTournaments: state => state.tFiltered,
-  getImages: state => state.defaultImg,
+  /**
+   * User Getters
+   */
   getUser: state => state.user,
-  getUserPhoto: state => state.user ? state.user.photoURL : null,
   getUserData: state => state.userData,
+  getDarkTheme: state => state.userData ? state.userData.darkTheme : false,
+  getDisplayName: state => state.userData ? state.userData.displayName : null,
+  getUserPhoto: state => state.user ? state.user.photoURL : null,
   getUserTournaments: state => state.userData ? Object.keys(state.userData.participating) : null,
-  getDisplayName: state => state.displayName,
+  /**
+   * Aux data Getters
+   */
   isAuthenticated: state => state.user && !state.user.isAnonymous,
   authError: state => state.authError,
-  getDarkTheme: state => state.darkTheme,
   getProgress: state => state.uploadProgress
 }

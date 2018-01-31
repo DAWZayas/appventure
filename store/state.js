@@ -1,30 +1,18 @@
-const darkTheme = false
-const uploadProgress = []
 const user = null
+const usersRef = null
 const userData = null
+const uploadProgress = []
 const tournaments = {}
 const tournamentsRef = null
-const usersRef = null
-const displayName = ''
 const tFiltered = null
 
-const defaultImg = {
-  padel: require('~/assets/images/torneos/torneopadel.jpg'),
-  futbol: require('~/assets/images/torneos/torneofutbol.jpg'),
-  esports: require('~/assets/images/torneos/torneoesports.jpg'),
-  poker: require('~/assets/images/torneos/torneopoker.jpg')
-}
-
 export default {
-  darkTheme,
-  uploadProgress,
   user,
-  authError: '',
+  usersRef,
   userData,
+  authError: '',
+  uploadProgress,
   tournaments,
   tournamentsRef,
-  usersRef,
-  displayName,
-  tFiltered,
-  defaultImg
+  tFiltered
 }

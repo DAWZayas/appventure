@@ -6,6 +6,7 @@
 <script>
   import { TournamentCard } from '~/components/userTournaments'
   import { mapGetters } from 'vuex'
+
   export default {
     components: {
       TournamentCard

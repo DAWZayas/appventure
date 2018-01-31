@@ -25,7 +25,6 @@
     }
   }
 </script>
-
 <style scoped>
   .chip {
     max-width: 8rem;

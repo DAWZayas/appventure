@@ -1,5 +1,6 @@
 <template>
 <div>
+  <created-overlay v-show="created"></created-overlay>
   <div>
     <input type="file" ref="imageFile" class="d-none" @change="previewImage" multiple required>
     <v-btn v-if="!uploading" color="info m-0" @click="onClick">{{ btnLabel }}</v-btn>
@@ -13,7 +14,7 @@
         >
         <overlay :index="index"></overlay>
         <dismiss-img @click.native.stop="dismissImg(index)" v-if="!uploading"></dismiss-img>
-        <progress-bar v-if="uploading" :index="index"></progress-bar>
+        <progress-bar v-show="uploading" :index="index"></progress-bar>
       </div>
     </div>
   </div>
@@ -25,7 +26,7 @@
 </template>
 <script>
   import { mapActions, mapMutations } from 'vuex'
-  import { DismissImg, ProgressBar, Overlay } from '~/components/create/utils'
+  import { CreatedOverlay, DismissImg, ProgressBar, Overlay } from '~/components/create/utils'
 
   export default {
     props: ['newArt'],
@@ -36,8 +37,7 @@
           this.newArt.defaultImg = this.defaultImg
           this.newArt.imagesURL = picUrls
           this.setArticleAppventure(this.newArt)
-          this.reset()
-          this.$router.push('/')
+          this.createdF()
         })
       },
       previewImage (event) {
@@ -68,6 +68,13 @@
         this.imageSrc = []
         this.clearProgress()
       },
+      createdF () {
+        this.created = true
+        setTimeout(() => {
+          this.reset()
+          this.$router.push('/')
+        }, 3000)
+      },
       onClick () { this.$refs.imageFile.click() },
       ...mapActions(['setArticleAppventure', 'uploadImages']),
       ...mapMutations(['clearProgress'])
@@ -86,10 +93,11 @@
         defaultImg: 0,
 
         confirm: false,
-        uploading: false
+        uploading: false,
+        created: false
       }
     },
-    components: { DismissImg, ProgressBar, Overlay }
+    components: { CreatedOverlay, DismissImg, ProgressBar, Overlay }
   }
 </script>
 <style lang="scss" scoped>

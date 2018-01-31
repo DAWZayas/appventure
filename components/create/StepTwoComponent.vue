@@ -55,7 +55,7 @@ export default {
   },
   data () {
     return {
-      date: 'false',
+      date: false,
       menu: '',
 
       location: '',

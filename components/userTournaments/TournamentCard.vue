@@ -6,7 +6,7 @@
         <v-card-title>
           <div>
             <p>{{tournament.name}}</p>
-            <span class="grey--text">Deporte: {{tournament.category}}</span><br>
+            <span class="grey--text">Deporte: {{tournament.subcategory}}</span><br>
             <span class="grey--text">Fecha: {{tournament.initDate}}</span>
           </div>
         </v-card-title>
@@ -16,7 +16,6 @@
       </v-card>
     </v-flex>
   </v-layout>
-  
 </template>
 <script>
   import { CardImageComponent } from '~/components/common/tournaments'

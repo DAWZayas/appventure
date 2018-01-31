@@ -90,9 +90,7 @@ export default {
    * @param {object} store
    * @param {boolean} darkTheme
    */
-  setDarkTheme ({commit, state}, darkTheme) {
-    commit('setDarkTheme', darkTheme)
-  },
+  setDarkTheme ({state}, darkTheme) { state.usersRef.child(state.user.uid).child('darkTheme').set(darkTheme) },
   /**
    * Creates a new user with this email and password and stores it into database
    * @param {object} store
@@ -122,25 +120,14 @@ export default {
     })
   },
   /**
-   * Authenticates anonymous user
-   * @param {object} store
-   */
-  authenticateAnonymous ({state}) {
-    firebaseApp.auth().signInAnonymously().catch(error => {
-      console.log(error.code, error.message)
-    })
-  },
-  /**
    * Updates user display name
    * @param state
    * @param commit
    * @param {string} displayName
    */
-  updateUserName ({state, commit}, displayName) {
-    state.user.updateProfile({
-      displayName
-    })
-    commit('setDisplayName', displayName)
+  updateUserName ({state}, displayName) {
+    state.user.updateProfile({ displayName: displayName })
+    state.usersRef.child(state.user.uid).child('displayName').set(displayName)
   },
   /**
    * Updates user's profile pic
@@ -148,9 +135,8 @@ export default {
    * @param {string} photoURL
    */
   updatePhotoURL ({state}, photoURL) {
-    state.user.updateProfile({
-      photoURL
-    })
+    state.user.updateProfile({ photoURL: photoURL })
+    state.usersRef.child(state.user.uid).child('photoURL').set(photoURL)
   },
   /**
    * Updates user's email address
@@ -168,37 +154,40 @@ export default {
    * Resets authentication error
    * @param commit
    */
-  resetAuthError ({commit}) {
-    commit('setAuthError', '')
-  },
+  resetAuthError ({commit}) { commit('setAuthError', '') },
   /**
   * Logouts the user from the application
   * @param {object} store
   */
-  logout ({state}, router) {
+  logout ({state, dispatch}, router) {
     firebaseApp.auth().signOut()
+    dispatch('unbindUserData', {toUnbind: 'userData'})
     this.$router.push('/login')
   },
   /**
    * Binds firebase auth listener to the auth changes to the callback that will set the store's user object
    * @param {object} store
    */
-  bindAuth ({commit, dispatch, state}) {
+  bindAuth ({commit, dispatch}) {
     let db = firebaseApp.database()
     let usersRef = db.ref(`/users`)
     firebaseApp.auth().onAuthStateChanged(user => {
       commit('setUser', user)
       commit('setUsersRef', usersRef)
+
       if (user && !user.isAnonymous) {
         let displayName = user.displayName || user.email.split('@')[0]
         let id = user.uid
-        if (!user.displayName) {
-          dispatch('updateUserName', displayName)
-        }
-        commit('setDisplayName', displayName)
+
+        if (!user.displayName) { dispatch('updateUserName', {displayName, id}) }
         dispatch('bindFirebaseReferences', user)
         dispatch('bindUserData', {usersRef, id})
-        usersRef.child(user.uid).child('exist').set(true)
+
+        usersRef.child(id).once('value', function (snapshot) {
+          snapshot.hasChild('displayName') ? null : snapshot.child('displayName').set(displayName)
+          snapshot.hasChild('photoURL') ? null : dispatch('updatePhotoURL', '/undefined_user.png')
+          snapshot.hasChild('exist') ? null : snapshot.child('exist').set(true)
+        })
       }
       if (!user) {
         dispatch('unbindFirebaseReferences')
@@ -228,7 +217,7 @@ export default {
       bindFirebaseRef(toBind, reference)
     })
   }),
-  bindUserData: firebaseAction(({state, dispatch}, {usersRef, id}) => {
+  bindUserData: firebaseAction(({dispatch}, {usersRef, id}) => {
     dispatch('bindFirebaseReference', {reference: usersRef.child(id), toBind: 'userData'})
   }),
   /**
@@ -242,8 +231,5 @@ export default {
       return
     }
   }),
-  unbindUserData: firebaseAction(({state, dispatch, commit}) => {
-    commit('setDisplayName', '')
-    dispatch('unbindFirebaseReferences', {toUnbind: 'userData'})
-  })
+  unbindUserData: firebaseAction(({commit}) => commit('clearUserData'))
 }
