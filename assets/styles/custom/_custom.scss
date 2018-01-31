@@ -26,7 +26,11 @@ h5 {
   border-radius: 50%;
 }
 
-.btn__content::before {
+.btn--depressed {
+  box-shadow: none!important;
+}
+
+.btn__content::before, .btn__content > i {
   cursor: pointer;
 }
 
@@ -46,6 +50,16 @@ h5 {
   z-index: 1!important;
 }
 
+#account-speed {
+  right: -24px!important;
+  bottom: 24px;
+}
+
 .container {
   max-width: 100%;
+}
+
+.square {
+  border-radius: 0!important;
+  box-shadow: none!important;
 }

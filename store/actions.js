@@ -177,6 +177,7 @@ export default {
 
       if (user && !user.isAnonymous) {
         let displayName = user.displayName || user.email.split('@')[0]
+        let photoURL = user.photoURL ? user.photoURL : '/undefined_user.png'
         let id = user.uid
 
         if (!user.displayName) { dispatch('updateUserName', {displayName, id}) }
@@ -185,7 +186,7 @@ export default {
 
         usersRef.child(id).once('value', function (snapshot) {
           snapshot.hasChild('displayName') ? null : snapshot.child('displayName').set(displayName)
-          snapshot.hasChild('photoURL') ? null : dispatch('updatePhotoURL', '/undefined_user.png')
+          snapshot.hasChild('photoURL') ? null : dispatch('updatePhotoURL', photoURL)
           snapshot.hasChild('exist') ? null : snapshot.child('exist').set(true)
         })
       }

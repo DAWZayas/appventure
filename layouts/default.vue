@@ -17,9 +17,7 @@
 
   export default {
     components: { HeaderComponent, FooterComponent },
-    computed: {
-      ...mapGetters({ isDark: 'getDarkTheme' })
-    },
+    computed: { ...mapGetters({ isDark: 'getDarkTheme' }) },
     created () {
       if (process.browser) {
         window.onNuxtReady((app) => { this.bindAuth() })
