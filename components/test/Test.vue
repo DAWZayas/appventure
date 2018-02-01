@@ -1,58 +1,38 @@
 <template>
   <div>
-    <label>
-      <GmapAutocomplete @place_changed="setPlace">
-      </GmapAutocomplete>
-      <v-btn @click="usePlace">Add</v-btn>
-    </label>
+    <google-autocomplete @placechanged="updateCoords"></google-autocomplete>
     <br/>
-
-    <GmapMap style="width: 400px; height: 300px;" :zoom="1" :center="{lat: 0, lng: 0}">
-      <GmapMarker v-for="(marker, index) in markers"
-        :key="index"
-        :position="marker.position"
-        />
-      <GmapMarker
-        v-if="this.place"
-        label="★"
-        :position="{
-          lat: this.place.geometry.location.lat(),
-          lng: this.place.geometry.location.lng()
-        }"
-        />
+    <GmapMap style="width: 100%; height: 300px;" :zoom="12" :center="marker.position">
+      <GmapMarker :position="marker.position"/>
     </GmapMap>
-    {{ this.markers }}
+    {{ marker }}
   </div>
 </template>
 
 <script>
+  import { GoogleAutocomplete } from '~/components/test'
 
-export default {
-  data () {
-    return {
-      markers: [],
-      place: null
-    }
-  },
-  description: 'Autocomplete Example (#164)',
-  methods: {
-    setDescription (description) {
-      this.description = description
-    },
-    setPlace (place) {
-      this.place = place
-    },
-    usePlace (place) {
-      if (this.place) {
-        this.markers.push({
-          position: {
-            lat: this.place.geometry.location.lat(),
-            lng: this.place.geometry.location.lng()
-          }
-        })
-        this.place = null
+  export default {
+    data () {
+      return {
+        marker: {position: { lat: 0, lng: 0 }},
+        place: null,
+        input: ''
       }
-    }
+    },
+    mounted: function () {
+      this.geolocate()
+    },
+    methods: {
+      geolocate () {
+        navigator.geolocation.getCurrentPosition(position => {
+          this.marker.position = { lat: parseFloat(position.coords.latitude), lng: parseFloat(position.coords.longitude) }
+        })
+      },
+      updateCoords (event) {
+        this.marker = event
+      }
+    },
+    components: { GoogleAutocomplete }
   }
-}
 </script>
