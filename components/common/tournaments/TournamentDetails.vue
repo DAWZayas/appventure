@@ -21,7 +21,7 @@
 
     <section class="pa-2 white">
       <h5 class="pl-0 pb-2">Información practica</h5>
-      <GmapMap style="width: 100%; height: 300px;" :zoom="12" :center="tournament.location.position">
+      <GmapMap style="width: 100%; height: 300px;" :zoom="15" :center="tournament.location.position">
         <GmapMarker :position="tournament.location.position"/>
       </GmapMap>
       <h6>Transporte público</h6>

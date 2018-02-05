@@ -4,6 +4,18 @@ import uuidv1 from 'uuid/v1'
 
 export default {
   /**
+   * Uploads individual profilePic
+   * @param {object} state
+   * @param file
+   * @returns {firebase.Promise}
+   */
+  uploadProfilePic ({state}, file) {
+    let ref = firebaseApp.storage().ref().child('images/profilePics')
+    return ref.child(state.user.uid).child(state.user.uid).put(file).then(snapshot => {
+      return snapshot.downloadURL
+    })
+  },
+  /**
    * Uploads individual file
    * @param file
    * @returns {firebase.Promise}
@@ -125,18 +137,18 @@ export default {
    * @param commit
    * @param {string} displayName
    */
-  updateUserName ({state}, displayName) {
-    state.user.updateProfile({ displayName: displayName })
-    state.usersRef.child(state.user.uid).child('displayName').set(displayName)
+  updateUserName ({state}, userName) {
+    state.user.updateProfile({ displayName: userName })
+    state.usersRef.child(state.user.uid).child('displayName').set(userName)
   },
   /**
    * Updates user's profile pic
    * @param state
    * @param {string} photoURL
    */
-  updatePhotoURL ({state}, photoURL) {
-    state.user.updateProfile({ photoURL: photoURL })
-    state.usersRef.child(state.user.uid).child('photoURL').set(photoURL)
+  updatePhotoURL ({state}, profilePic) {
+    state.user.updateProfile({ photoURL: profilePic })
+    state.usersRef.child(state.user.uid).child('photoURL').set(profilePic)
   },
   /**
    * Updates user's email address
@@ -149,6 +161,9 @@ export default {
     }, error => {
       console.log(error)
     })
+  },
+  setUserType ({state}, type) {
+    state.usersRef.child(state.user.uid).child('type').set(type)
   },
   /**
    * Resets authentication error
@@ -180,14 +195,13 @@ export default {
         let photoURL = user.photoURL ? user.photoURL : '/undefined_user.png'
         let id = user.uid
 
-        if (!user.displayName) { dispatch('updateUserName', {displayName, id}) }
         dispatch('bindFirebaseReferences', user)
         dispatch('bindUserData', {usersRef, id})
 
         usersRef.child(id).once('value', function (snapshot) {
-          snapshot.hasChild('displayName') ? null : snapshot.child('displayName').set(displayName)
+          snapshot.hasChild('displayName') ? null : dispatch('userName', displayName)
           snapshot.hasChild('photoURL') ? null : dispatch('updatePhotoURL', photoURL)
-          snapshot.hasChild('exist') ? null : snapshot.child('exist').set(true)
+          snapshot.hasChild('type') ? null : dispatch('setUserType', 'venture')
         })
       }
       if (!user) {

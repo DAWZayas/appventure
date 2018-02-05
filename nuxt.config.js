@@ -57,7 +57,7 @@ module.exports = {
   /*
   ** Load Vuetify into the app
   */
-  plugins: ['~/plugins/vuetify', '~/plugins/preLoad.js', '~plugins/maps.js'],
+  plugins: ['~/plugins/vuetify', '~/plugins/preLoad', '~/plugins/maps', '~/plugins/vueCroppa'],
   /*
   ** Load Vuetify CSS globally
   */
