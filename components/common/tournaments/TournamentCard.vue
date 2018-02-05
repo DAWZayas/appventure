@@ -7,7 +7,7 @@
             <v-card-title>
               <div>
                 <span>{{ tournament.name }}</span><br>
-                <span class="grey--text">{{ tournament.location }}</span><br>
+                <span class="grey--text">{{ tournament.location.name }} - {{ tournament.location.locality }} </span><br>
                 <span class="grey--text">{{ tournament.level }}</span>
               </div>
             </v-card-title>

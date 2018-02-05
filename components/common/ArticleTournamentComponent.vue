@@ -7,7 +7,7 @@
       </nuxt-link>
     </div>
     <strong class="tournament-strong">{{ tournament.name }}</strong>
-    <p class="tournament-text t-overflow"><v-icon>fa-globe</v-icon> {{ tournament.location }}</p>
+    <p class="tournament-text t-overflow"><v-icon>fa-globe</v-icon> {{ tournament.location.locality }}</p>
     <p class="tournament-text"><v-icon>fa-gears</v-icon> {{ tournament.level }}</p>
 
     <v-layout row justify-center>
@@ -18,7 +18,7 @@
           <span class="headline">{{ tournament.name }}</span>
         </v-card-title>
         <v-card-text>
-          <p class="tournament-text"><v-icon>fa-globe</v-icon> {{ tournament.location }}</p>
+          <p class="tournament-text"><v-icon>fa-globe</v-icon> {{ tournament.location.locality }}</p>
           <p class="tournament-text"><v-icon>fa-gears</v-icon> {{ tournament.level }}</p>
           <p class="tournament-text"><v-icon>fa-calendar</v-icon> {{ tournament.initDate }} </p>
         </v-card-text>

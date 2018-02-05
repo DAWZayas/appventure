@@ -6,7 +6,7 @@
 
     <section class="mt-0 pa-2 white">
       <h1>{{ tournament.name }}</h1>
-      <p><span class="icon-location"></span> {{ tournament.location }}</p>
+      <p><span class="icon-location"></span> {{ tournament.location.name }} - {{ tournament.location.locality }}</p>
       <p>Nivel: {{ tournament.level }}</p>
     </section>
 
@@ -21,7 +21,9 @@
 
     <section class="pa-2 white">
       <h5 class="pl-0 pb-2">Información practica</h5>
-      <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48568.21108244509!2d-3.898194344274192!3d40.46391031592675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4184ecb204803f%3A0xcafdc908f78db4ef!2sMajadahonda%2C+Madrid!5e0!3m2!1ses!2ses!4v1512993521697"></iframe>
+      <GmapMap style="width: 100%; height: 300px;" :zoom="12" :center="tournament.location.position">
+        <GmapMarker :position="tournament.location.position"/>
+      </GmapMap>
       <h6>Transporte público</h6>
       <p>Autobuses 685, 651, 652, 653, 654</p>
       <h6>Hora de inicio del torneo</h6>

@@ -60,7 +60,7 @@ export default {
 
       newArt: {
         name: '',
-        location: '',
+        location: {},
         gauging: '',
         prize: '',
         level: '',

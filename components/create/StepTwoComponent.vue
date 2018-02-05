@@ -1,6 +1,13 @@
 <template>
   <v-form>
-    <v-text-field v-model="location" label="Lugar del torneo" required></v-text-field>
+    <div>
+      <google-autocomplete @placechanged="updateCoords"></google-autocomplete>
+      <br/>
+      <GmapMap style="width: 100%; height: 300px;" :zoom="12" :center="marker.position">
+        <GmapMarker :position="marker.position"/>
+      </GmapMap>
+      {{ marker }}
+    </div>
     
     <v-dialog
       v-model="date"
@@ -33,10 +40,15 @@
   </v-form>
 </template>
 <script>
+import { GoogleAutocomplete } from '~/components/create/utils'
+
 export default {
+  mounted: function () {
+    this.geolocate()
+  },
   methods: {
     submit () {
-      this.$emit('stepTwo', { location: this.location, initDate: this.formatDate(), createDate: this.getDate(), prize: this.prize, gauging: this.gauging, nextStep: this.nextStep })
+      this.$emit('stepTwo', { location: this.marker, initDate: this.formatDate(), createDate: this.getDate(), prize: this.prize, gauging: this.gauging, nextStep: this.nextStep })
     },
     getDate () {
       var today = new Date()
@@ -51,20 +63,32 @@ export default {
     },
     formatDate () {
       return this.initDate.split('-').reverse().join('-')
+    },
+    geolocate () {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.marker.position = { lat: parseFloat(position.coords.latitude), lng: parseFloat(position.coords.longitude) }
+      })
+    },
+    updateCoords (event) {
+      this.marker = event
     }
   },
+  components: { GoogleAutocomplete },
   data () {
     return {
       date: false,
       menu: '',
 
-      location: '',
       initDate: '',
       createDate: '',
       prize: '',
       gauging: '',
 
-      nextStep: 3
+      nextStep: 3,
+
+      marker: {position: { lat: 40.4381311, lng: -3.8196195 }},
+      place: null,
+      input: ''
     }
   }
 }
