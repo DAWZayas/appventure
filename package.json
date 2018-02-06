@@ -18,7 +18,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "deploy": "nuxt generate && firebase deploy"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

@@ -1,24 +1,31 @@
 <template>
   <div>
-    <v-stepper v-model="step">
+    <v-toolbar>
+      <v-btn icon @click.native="cleanExit">
+          <v-icon>close</v-icon>
+        </v-btn>
+        <v-toolbar-title>Crear torneo</v-toolbar-title>
+        <v-spacer></v-spacer>
+    </v-toolbar>
+    <v-stepper v-model="step" class="no-shadow">
       <v-stepper-header>
-        <v-stepper-step step="1" :complete="step > 1">Name of step 1</v-stepper-step>
+        <v-stepper-step step="1" :complete="step > 1">Info. básica</v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step step="2" :complete="step > 2">Name of step 2</v-stepper-step>
+        <v-stepper-step step="2" :complete="step > 2">Localización</v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step step="3">Name of step 3</v-stepper-step>
+        <v-stepper-step step="3">Imágenes</v-stepper-step>
       </v-stepper-header>
       <v-stepper-items>
         <v-stepper-content class="pt-2" step="1">
-          <step-one-component @stepOne="stepOneInputs"></step-one-component>
+          <step-one-component @toStep="toStep" :newArt.sync="newArt"></step-one-component>
         </v-stepper-content>
 
         <v-stepper-content class="pt-2" step="2">
-          <step-two-component @stepBack="step = 1" @stepTwo="stepTwoInputs" :step="step"></step-two-component>      
+          <step-two-component @toStep="toStep" :newArt.sync="newArt" :step="step"></step-two-component>      
         </v-stepper-content>
 
         <v-stepper-content step="3">
-          <step-three-component @stepBack="step = 2" :newArt="newArt"></step-three-component>
+          <step-three-component @toStep="toStep" :newArt="newArt"></step-three-component>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -29,50 +36,21 @@ import { StepOneComponent, StepTwoComponent, StepThreeComponent } from '~/compon
 
 export default {
   methods: {
-    stepOneInputs (event) {
-      this.newArt.name = event.name
-      this.newArt.description = event.description
-      this.newArt.genre = event.genre
-      this.newArt.category = event.category
-      this.newArt.subCategory = event.subCategory
-      this.newArt.level = event.level
-
-      this.step = event.nextStep
+    cleanExit () {
+      let clean = new Promise(() => {
+        this.newArt = {}
+        this.step = 1
+      })
+      clean.then(this.$emit('cleanExit'))
     },
-    stepTwoInputs (event) {
-      this.newArt.location = event.location
-      this.newArt.initDate = event.initDate
-      this.newArt.createDate = event.createDate
-      this.newArt.prize = event.prize
-      this.newArt.gauging = event.gauging
-
-      this.step = event.nextStep
-    }
+    toStep (event) { this.step = event }
   },
-  components: {
-    StepOneComponent,
-    StepTwoComponent,
-    StepThreeComponent
-  },
+  components: { StepOneComponent, StepTwoComponent, StepThreeComponent },
   data () {
     return {
       step: 1,
-
-      newArt: {
-        name: '',
-        location: {},
-        gauging: '',
-        prize: '',
-        level: '',
-        genre: '',
-        category: ''
-      }
+      newArt: {}
     }
   }
 }
 </script>
-<style lang="scss" scoped>
-  .stepper {
-    box-shadow: none!important;
-  }
-</style>

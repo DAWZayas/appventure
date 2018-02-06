@@ -20,7 +20,7 @@
   </div>
   <div>
     <v-btn :disabled="imageSrc.length === 0" color="secondary" @click="addTournament">Crear torneo</v-btn>
-    <v-btn flat @click.stop="back">Volver</v-btn>
+    <v-btn flat @click.stop="toStep(2)">Volver</v-btn>
   </div>
 </div>
 </template>
@@ -40,7 +40,7 @@
           this.createdF()
         })
       },
-      back () { this.$emit('stepBack') },
+      toStep (step) { this.$emit('toStep', step) },
       previewImage (event) {
         var vm = this
 

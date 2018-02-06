@@ -1,11 +1,10 @@
 <template>
-  <div>
+  <div >
     <google-autocomplete @placechanged="updateCoords"></google-autocomplete>
-    <br/>
-    <gmap-map style="width: 100%; height: 300px;" :zoom="12" :center="marker.position">
+    <br>
+    <gmap-map @tilesloaded="emitPosition" style="width: 100%; height: 300px;" :zoom="12" :center="marker.position">
       <gmap-marker :position="marker.position"/>
     </gmap-map>
-    {{ marker }}
   </div>
 </template>
 <script>
@@ -22,7 +21,8 @@
           this.marker.position = { lat: parseFloat(position.coords.latitude), lng: parseFloat(position.coords.longitude) }
         })
       },
-      updateCoords (event) { this.marker = event }
+      updateCoords (event) { this.marker = event },
+      emitPosition () { this.$emit('location', this.marker) }
     },
     data () {
       return {

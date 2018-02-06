@@ -1,0 +1,38 @@
+.date-picker-header__value {
+  pointer-events: none;
+}
+
+.date-picker-table > * > * > * > td {
+  &:has() {
+    color: black!important;
+    background-color: black!important;
+  }
+
+  & > .btn.btn--flat.btn--floating.btn--outline.accent--text {
+    background-color: #66BB6A!important;
+    color: white!important;
+    border: none!important;
+  }
+
+  & > .date-picker-table__event {
+    bottom: 1px!important;
+  }
+  
+  & > button {
+  margin: 0!important;
+  padding: 0 8px!important;
+  }
+
+  & > .btn--active {
+    background-color: #29B6F6!important;
+    border: none!important;
+  }
+}
+
+#date-picker {
+  width: 100%!important;
+}
+
+.date-dialog {
+  border: none!important;
+}

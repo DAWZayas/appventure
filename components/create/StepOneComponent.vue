@@ -1,34 +1,30 @@
 <template>
   <v-form>
-    <v-text-field v-model="name" label="Nombre del torneo" required></v-text-field>
-    <v-text-field v-model="description" multi-line label="Descripción del torneo" required></v-text-field>
-    <v-radio-group v-model="genre" required>
+    <v-text-field v-model="newArt.name" label="Nombre del torneo" required></v-text-field>
+    <v-text-field v-model="newArt.description" multi-line label="Descripción del torneo" required></v-text-field>
+    <v-radio-group v-model="newArt.genre" required>
       <v-radio label="Masculino" value="m"></v-radio>
       <v-radio label="Femenino" value="f"></v-radio>
       <v-radio label="Mixtos" value="mf"></v-radio>
     </v-radio-group>
-    <v-select :items="categories.main" v-model="category" label="Categoría" required></v-select>
-    <v-select :items="categories[category]" v-if="category !== ''" :label="categories['label'][category]" v-model="subCategory" required></v-select>
-    <v-select :items="difficulty" v-model="level" label="Dificultad" required></v-select>
-    <v-btn color="primary" @click="submit">Siguiente</v-btn>
+    <v-select :items="categories.main" v-model="newArt.category" label="Categoría" required></v-select>
+    <v-select :items="categories[newArt.category]" v-if="newArt.category" :label="categories['label'][newArt.category]" v-model="newArt.subCategory" required></v-select>
+    <v-select :items="difficulty" v-model="newArt.level" label="Dificultad" required></v-select>
+    <v-btn color="primary" @click.stop="submit">Siguiente</v-btn>
   </v-form>
 </template>
 <script>
   export default {
+    props: ['newArt'],
     methods: {
+      toStep (step) { this.$emit('toStep', step) },
       submit () {
-        this.$emit('stepOne', { name: this.name, description: this.description, genre: this.genre, category: this.category, subCategory: this.subCategory, level: this.level, nextStep: this.nextStep })
+        this.$emit('update:newArt', this.newArt)
+        this.toStep(2)
       }
     },
     data () {
       return {
-        name: '',
-        description: '',
-        genre: '',
-        category: '',
-        subCategory: '',
-        level: '',
-
         categories: {
           main: [
             { text: 'Deportes', value: 'sports' },
@@ -68,9 +64,7 @@
           { text: 'Medio', value: 'Medio' },
           { text: 'Alto', value: 'Alto' },
           { text: 'Maestro', value: 'Maestro' }
-        ],
-
-        nextStep: 2
+        ]
       }
     }
   }
