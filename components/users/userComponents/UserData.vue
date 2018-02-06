@@ -9,7 +9,7 @@
         </v-flex>
         <v-flex xs8>
           <v-text-field
-            v-model="userName"
+            v-model="displayName"
             name="input-3"
             label="Nombre: "
           ></v-text-field>
@@ -23,7 +23,7 @@
           <v-text-field
             name="input-3"
             label="Email: "
-            :value="user.email"
+            :value="email"
             disabled
           ></v-text-field>
         </v-flex>
@@ -47,7 +47,7 @@
 
   export default {
     computed: {
-      ...mapGetters({ user: 'getUser', userData: 'getUserData', displayName: 'getDisplayName' })
+      ...mapGetters({ user: 'getUser', userData: 'getUserData', displayName: 'getDisplayName', email: 'getEmail' })
     },
     data () {
       return {
@@ -55,11 +55,6 @@
         loader: null,
         loading: false
       }
-    },
-    mounted: function () {
-      this.$nextTick(function () {
-        this.userName = this.displayName
-      })
     },
     methods: {
       changeDisplayName () {
