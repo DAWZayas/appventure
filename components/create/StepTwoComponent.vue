@@ -17,12 +17,36 @@
     >
       <v-text-field
         slot="activator"
-        label="Fecha"
+        label="Inicio"
         v-model="initDate"
         prepend-icon="event"
         readonly
       ></v-text-field>
-      <v-date-picker v-model="initDate" scrollable actions locale="es-es">
+      <v-date-picker v-model="initDate" locale="es-es">
+        <template slot-scope="{ save, cancel }">
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn flat color="primary" @click="cancel">Cancelar</v-btn>
+            <v-btn flat color="primary" @click="save">OK!</v-btn>
+          </v-card-actions>
+        </template>
+      </v-date-picker>
+    </v-dialog>
+
+    <v-dialog
+      v-model="date"
+      lazy
+      full-width
+      width="290px"
+    >
+      <v-text-field
+        slot="activator"
+        label="Final"
+        v-model="finishDate"
+        prepend-icon="event"
+        readonly
+      ></v-text-field>
+      <v-date-picker v-model="initDate" locale="es-es">
         <template slot-scope="{ save, cancel }">
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -41,6 +65,7 @@
 </template>
 <script>
 import { GoogleAutocomplete } from '~/components/create/utils'
+import { format } from 'date-fns'
 
 export default {
   mounted: function () {
@@ -48,30 +73,16 @@ export default {
   },
   methods: {
     submit () {
-      this.$emit('stepTwo', { location: this.marker, initDate: this.formatDate(), createDate: this.getDate(), prize: this.prize, gauging: this.gauging, nextStep: this.nextStep })
+      this.$emit('stepTwo', { location: this.marker, initDate: this.formatDate(), finishDate: this.finishDate, createDate: this.getDate(), prize: this.prize, gauging: this.gauging, nextStep: this.nextStep })
     },
-    getDate () {
-      var today = new Date()
-      var dd = today.getDate()
-      var mm = today.getMonth() + 1
-      var yyyy = today.getFullYear()
-
-      dd < 10 ? dd = '0' + dd : dd
-      mm < 10 ? mm = '0' + mm : mm
-
-      return (dd + '/' + mm + '/' + yyyy)
-    },
-    formatDate () {
-      return this.initDate.split('-').reverse().join('-')
-    },
+    getDate () { return format(new Date(), 'DD-MM-YYYY') },
+    formatDate () { return this.initDate.split('-').reverse().join('-') },
     geolocate () {
       navigator.geolocation.getCurrentPosition(position => {
         this.marker.position = { lat: parseFloat(position.coords.latitude), lng: parseFloat(position.coords.longitude) }
       })
     },
-    updateCoords (event) {
-      this.marker = event
-    }
+    updateCoords (event) { this.marker = event }
   },
   components: { GoogleAutocomplete },
   data () {
@@ -80,6 +91,7 @@ export default {
       menu: '',
 
       initDate: '',
+      finishDate: '',
       createDate: '',
       prize: '',
       gauging: '',

@@ -68,3 +68,7 @@ h5 {
 .gm-svpc {
   display: none!important;
 }
+
+.date-picker-header__value {
+  pointer-events: none;
+}
