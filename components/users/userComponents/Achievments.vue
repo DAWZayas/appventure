@@ -4,8 +4,8 @@
       <div>
         Logros: <br>
         <v-chip color="orange" text-color="white" class="ml-0" small>
-          <v-icon left>build</v-icon>
-          Administrador
+          <v-icon left>{{ type === 'Venture' ? 'person' : 'build' }}</v-icon>
+          {{ type }}
         </v-chip> <br>
         <v-chip color="indigo" text-color="white" class="ml-0" small>
           <v-avatar>
@@ -17,3 +17,10 @@
     </div>
   </v-card>
 </template>
+<script>
+  import { mapGetters } from 'vuex'
+
+  export default {
+    computed: { ...mapGetters({ type: 'getUserType' }) }
+  }
+</script>

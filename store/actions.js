@@ -163,6 +163,7 @@ export default {
     })
   },
   setUserType ({state}, type) {
+    type = type.charAt(0).toUpperCase() + type.slice(1)
     state.usersRef.child(state.user.uid).child('type').set(type)
   },
   /**

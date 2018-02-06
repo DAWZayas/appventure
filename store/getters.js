@@ -24,6 +24,7 @@ export default {
   getDarkTheme: state => state.userData ? state.userData.darkTheme : false,
   getDisplayName: state => state.userData ? state.userData.displayName : null,
   getUserPhoto: state => state.userData ? state.userData.photoURL : null,
+  getUserType: state => state.userData ? state.userData.type : null,
   getUserTournaments: state => state.userData ? (state.userData.participating ? Object.keys(state.userData.participating) : null) : null,
   /**
    * Aux data Getters

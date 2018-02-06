@@ -10,12 +10,12 @@
       </v-avatar>
     </div>
     <div>
-      {{this.displayName}} <br>
+      {{ displayName }} <br>
       <v-chip color="orange" text-color="white" class="ml-0" small>
         <v-avatar>
-          <v-icon>build</v-icon>
+          <v-icon>{{ type === 'Venture' ? 'person' : 'build' }}</v-icon>
         </v-avatar>
-        Administrador
+        {{ type }}
       </v-chip> <br>
       <v-chip color="indigo" text-color="white" class="ml-0" small>
         <v-avatar>
@@ -31,7 +31,7 @@
 
   export default {
     props: ['isAuthenticated', 'isMobile'],
-    computed: { ...mapGetters({ displayName: 'getDisplayName', userPhoto: 'getUserPhoto' }) },
+    computed: { ...mapGetters({ displayName: 'getDisplayName', userPhoto: 'getUserPhoto', type: 'getUserType' }) },
     data () {
       return {
         color: this.$vuetify.theme.neutral
