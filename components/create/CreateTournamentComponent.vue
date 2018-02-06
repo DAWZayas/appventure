@@ -14,11 +14,11 @@
         </v-stepper-content>
 
         <v-stepper-content class="pt-2" step="2">
-          <step-two-component @stepTwo="stepTwoInputs"></step-two-component>      
+          <step-two-component @stepBack="step = 1" @stepTwo="stepTwoInputs" :step="step"></step-two-component>      
         </v-stepper-content>
 
         <v-stepper-content step="3">
-          <step-three-component :newArt="newArt"></step-three-component>
+          <step-three-component @stepBack="step = 2" :newArt="newArt"></step-three-component>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>

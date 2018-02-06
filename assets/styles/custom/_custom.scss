@@ -7,7 +7,7 @@
 .toolbar {
   transform: translateY(0px)!important;
   padding-left: 0!important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12)!important;
 }
 
 .icon {
@@ -17,13 +17,13 @@
 }
 
 h5 {
-  margin: 0;
-  padding: .5em 1em 0;
-  color: #757575;
+  margin: 0!important;
+  padding: .5em 1em 0!important;
+  color: #757575!important;
 }
 
 .btn--floating {
-  border-radius: 50%;
+  border-radius: 50%!important;
 }
 
 .btn--depressed {
@@ -31,7 +31,7 @@ h5 {
 }
 
 .btn__content::before, .btn__content > i {
-  cursor: pointer;
+  cursor: pointer!important;
 }
 
 #carousel {
@@ -53,11 +53,11 @@ h5 {
 #account-speed {
   background-color: #29B6F6!important;
   right: -24px!important;
-  bottom: 24px;
+  bottom: 24px!important;
 }
 
 .container {
-  max-width: 100%;
+  max-width: 100%!important;
 }
 
 .square {
@@ -71,4 +71,17 @@ h5 {
 
 .date-picker-header__value {
   pointer-events: none;
+}
+
+.date-picker-table > * > * > * > td > button {
+  margin: 0!important;
+  padding: 0 8px!important; 
+}
+
+.date-dialog {
+  border: none!important;
+}
+
+.no-shadow {
+  box-shadow: none!important;
 }

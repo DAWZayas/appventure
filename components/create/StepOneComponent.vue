@@ -10,8 +10,7 @@
     <v-select :items="categories.main" v-model="category" label="Categoría" required></v-select>
     <v-select :items="categories[category]" v-if="category !== ''" :label="categories['label'][category]" v-model="subCategory" required></v-select>
     <v-select :items="difficulty" v-model="level" label="Dificultad" required></v-select>
-    <v-btn color="primary" @click="submit">Continue</v-btn>
-    <v-btn flat>Cancelar</v-btn>
+    <v-btn color="primary" @click="submit">Siguiente</v-btn>
   </v-form>
 </template>
 <script>

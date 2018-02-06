@@ -19,14 +19,14 @@
     </div>
   </div>
   <div>
-    <v-btn flat>Cancelar</v-btn>
     <v-btn :disabled="imageSrc.length === 0" color="secondary" @click="addTournament">Crear torneo</v-btn>
+    <v-btn flat @click.stop="back">Volver</v-btn>
   </div>
 </div>
 </template>
 <script>
   import { mapActions, mapMutations } from 'vuex'
-  import { CreatedOverlay, DismissImg, ProgressBar, Overlay } from '~/components/create/utils'
+  import { CreatedOverlay, DismissImg, ProgressBar, Overlay } from '~/components/create/StepThree'
 
   export default {
     props: ['newArt'],
@@ -40,6 +40,7 @@
           this.createdF()
         })
       },
+      back () { this.$emit('stepBack') },
       previewImage (event) {
         var vm = this
 
