@@ -48,7 +48,7 @@ export default {
           {
             title: 'Ayuda',
             icon: 'chat_bubble_outline',
-            link: '/'
+            link: '/chat'
           },
           {
             title: 'Cerrar sesión',
@@ -65,7 +65,7 @@ export default {
           {
             title: 'Mis torneos',
             icon: 'fa-trophy',
-            link: '/'
+            link: '/login'
           },
           {
             title: 'Clasificación',
@@ -75,7 +75,7 @@ export default {
           {
             title: 'Ayuda',
             icon: 'chat_bubble_outline',
-            link: '/'
+            link: '/login'
           }
         ]
       }

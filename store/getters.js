@@ -22,6 +22,7 @@ export default {
   getUser: state => state.user,
   getUserData: state => state.userData,
   getDarkTheme: state => state.userData ? state.userData.darkTheme : false,
+  getUserMessages: state => state.user.messages,
   getDisplayName: state => state.userData ? state.userData.displayName : null,
   getUserPhoto: state => state.userData ? state.userData.photoURL : null,
   getUserType: state => state.userData ? state.userData.type : null,

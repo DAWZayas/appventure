@@ -16,7 +16,6 @@ export default {
   /*
    * Tournaments mutations
    */
-  setArticleAppventure (state, newTournament) { state.tournaments.push(newTournament) },
   setTournamentsRef (state, value) { state.tournamentsRef = value },
   setFilteredTournaments (state, value) { state.tFiltered = value },
   /**

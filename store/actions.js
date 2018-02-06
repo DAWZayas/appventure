@@ -91,11 +91,7 @@ export default {
    * @param {object} newTournament
    */
   setArticleAppventure ({commit, state}, newTournament) {
-    if (state.tournamentsRef) {
-      state.tournamentsRef.push(newTournament)
-    } else {
-      commit('setArticleAppventure', newTournament)
-    }
+    state.tournamentsRef.push(newTournament)
   },
   /**
    * Set theme to Dark (light by default)
@@ -247,5 +243,16 @@ export default {
       return
     }
   }),
-  unbindUserData: firebaseAction(({commit}) => commit('clearUserData'))
+  unbindUserData: firebaseAction(({commit}) => commit('clearUserData')),
+  /**
+  * Binds tournaments to firebase
+  * @param { object } state
+  * @param newMessage
+  */
+  addMessage ({ state }, newMessage) {
+    let db = firebaseApp.database()
+    let id = state.user.uid
+    let messagesRef = db.ref(`/users/` + id + `/messages`)
+    messagesRef.push(newMessage)
+  }
 }
