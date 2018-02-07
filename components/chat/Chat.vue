@@ -53,7 +53,7 @@
     methods: {
       ...mapActions(['addMessage']),
       pushMessage () {
-        this.addMessage(this.newMessage)
+        this.newMessage === '' ? null : this.addMessage(this.newMessage)
         this.newMessage = ''
       }
     }
