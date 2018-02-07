@@ -1,27 +1,31 @@
 <template>
   <div d-flex> 
-    <div v-if="firstTime ? firstTime : messages ? firstTime : firstTime = true" class="d-flex">
-      <v-avatar
-        :size="'30px'"
-        class="grey lighten-4"
-        style="max-width: 30px"
-      >
-        <img src="http://dhpsolucionesonline.com/mediapool/143/1431874/resources/big_31817754_0_350-350.jpg" alt="avatar">
-      </v-avatar>
-      <p>Hola buenas en que pudeo ayudarte</p>
-    </div>
-    <div v-for="message in messages" :key="message" :message="message" class="d-flex m-2">
-      <v-avatar
-        :size="'30px'"
-        class="grey lighten-4"
-        style="max-width: 30px"
-      >
-        <img :src="userPhoto" alt="avatar">
-      </v-avatar>
-      <div> 
-        <p>{{ message }}</p>  
-      </div>
-    </div>
+    <v-list two-linev class="mx-2 pb-0">
+      <template>
+        <div class="d-flex my-3 px-2 align-items-center">
+          <v-list-tile-avatar>
+            <img src="http://dhpsolucionesonline.com/mediapool/143/1431874/resources/big_31817754_0_350-350.jpg" alt="avatar">
+          </v-list-tile-avatar>
+          <v-list-tile-content style="width: 100%">
+            <v-list-tile-title> Hola, ¿ en que podemos ayudarle ? </v-list-tile-title>
+          </v-list-tile-content>
+        </div>
+        <v-divider class="m-0"></v-divider>
+      </template>
+    </v-list>
+    <v-list two-linev class="mx-2 pb-0 pt- px-2">
+      <template  v-for="(message, index) in messages"  :message="message">
+        <div :key="index" class="d-flex my-3 align-items-center">
+          <v-list-tile-content style="width: 100%">
+            <v-list-tile-title v-html="message"></v-list-tile-title>
+          </v-list-tile-content>
+          <v-list-tile-avatar>
+            <img :src="userPhoto" alt="avatar">
+          </v-list-tile-avatar>
+        </div>
+        <v-divider class="m-0" style="width: calc( 100% - 60px )"></v-divider>
+      </template>
+    </v-list>
     <div class="kk m-2 d-flex">
       <v-text-field
         name="input-1"
