@@ -48,7 +48,10 @@
     },
     computed: {
       today () { this.newArt.createDate = this.formatDate(new Date()) },
-      thisDay () { return format(new Date(), 'YYYY-MM-DD') }
+      thisDay () {
+        this.newArt.createDate = format(new Date(), 'DD-MM-YYYY')
+        return format(new Date(), 'YYYY-MM-DD')
+      }
     },
     data () {
       return {
