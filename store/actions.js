@@ -243,7 +243,10 @@ export default {
       return
     }
   }),
-  unbindUserData: firebaseAction(({commit}) => commit('clearUserData')),
+  unbindUserData: firebaseAction(({commit, state}) => {
+    state.usersRef.child(state.user.uid).child('messages').set({})
+    commit('clearUserData')
+  }),
   /**
   * Binds tournaments to firebase
   * @param { object } state

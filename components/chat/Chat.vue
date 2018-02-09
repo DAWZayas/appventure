@@ -14,7 +14,7 @@
       </template>
     </v-list>
     <v-list two-linev class="mx-2 pb-0 pt- px-2">
-      <template  v-for="(message, index) in messages"  :message="message">
+      <template  v-for="(message, index, key) in messages"  :message="message">
         <div :key="index" class="d-flex my-3 align-items-center">
           <v-list-tile-content style="width: 100%">
             <v-list-tile-title v-html="message"></v-list-tile-title>
@@ -23,7 +23,7 @@
             <img :src="userPhoto" alt="avatar">
           </v-list-tile-avatar>
         </div>
-        <v-divider class="m-0" style="width: calc( 100% - 60px )"></v-divider>
+        <v-divider class="m-0" style="width: calc( 100% - 60px )" :key="key"></v-divider>
       </template>
     </v-list>
     <div class="kk m-2 d-flex">
