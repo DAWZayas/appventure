@@ -201,10 +201,7 @@ export default {
           snapshot.hasChild('type') ? null : dispatch('setUserType', 'venture')
         })
       }
-      if (!user) {
-        dispatch('unbindFirebaseReferences')
-        dispatch('unbindUserData')
-      }
+      if (!user) { dispatch('unbindFirebaseReferences') }
     })
   },
   /**

@@ -7,11 +7,7 @@
 import { mapActions } from 'vuex'
 
 export default {
-  methods: {
-    ...mapActions(['bindAuth'])
-  },
-  beforeMount () {
-    this.bindAuth()
-  }
+  methods: { ...mapActions(['bindAuth']) },
+  beforeMount () { this.bindAuth() }
 }
 </script>
