@@ -11,8 +11,10 @@
       </ul>
 
       <div class="tab-content">
-        <sign-up-component v-if="this.isSignUp"></sign-up-component>
-        <log-in-component v-else></log-in-component>
+        <transition name="fade" mode="out-in">
+          <sign-up-component v-if="this.isSignUp" key="signup"></sign-up-component>
+          <log-in-component v-else key="login"></log-in-component>
+        </transition>
       </div>
     </div>
   </section>
