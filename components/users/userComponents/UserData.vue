@@ -9,7 +9,7 @@
         </v-flex>
         <v-flex xs8>
           <v-text-field
-            v-model="displayName"
+            v-model="userName"
             name="input-3"
             label="Nombre: "
           ></v-text-field>
@@ -32,7 +32,7 @@
         :loading="loading"
         @click.native="loader = 'loading'"
         @click="changeDisplayName()"
-        :disabled="loading"
+        :disabled="loading || userName == ''"
         color="blue-grey"
         class="white--text"
       >
@@ -46,23 +46,23 @@
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    computed: {
-      ...mapGetters({ user: 'getUser', userData: 'getUserData', displayName: 'getDisplayName', email: 'getEmail' })
-    },
+    computed: { ...mapGetters({ user: 'getUser', userData: 'getUserData', displayName: 'getDisplayName', email: 'getEmail' }) },
     data () {
       return {
-        userName: null,
+        userName: '',
         loader: null,
         loading: false
       }
     },
+    mounted: function () {
+      this.$nextTick(function () { this.userName = this.displayName })
+    },
     methods: {
-      changeDisplayName () {
-        this.updateUserName(this.userName)
-      },
+      changeDisplayName () { this.updateUserName(this.userName) },
       ...mapActions(['updateUserName'])
     },
     watch: {
+      displayName () { this.userName = this.displayName },
       loader () {
         const l = this.loader
         this[l] = !this[l]

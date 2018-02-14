@@ -1,5 +1,5 @@
 const user = null
-const users = null
+const users = {}
 const usersRef = null
 const userData = null
 const uploadProgress = []
