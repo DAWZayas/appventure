@@ -48,7 +48,7 @@ export default {
           {
             title: 'Ayuda',
             icon: 'chat_bubble_outline',
-            link: '/chat'
+            link: '/chatadmin'
           },
           {
             title: 'Cerrar sesión',

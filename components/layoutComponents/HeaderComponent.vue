@@ -8,8 +8,8 @@
         <v-toolbar-title v-if="!isMobile">AppVenture</v-toolbar-title>
       </div>
       <v-spacer></v-spacer>
-      <v-btn icon style="opacity: 0;">
-        <v-icon>search</v-icon>
+      <v-btn icon>
+        <v-icon>power_settings_new</v-icon>
       </v-btn>
       <v-avatar
           v-show="isAuthenticated"

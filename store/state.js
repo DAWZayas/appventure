@@ -1,4 +1,5 @@
 const user = null
+const users = null
 const usersRef = null
 const userData = null
 const uploadProgress = []
@@ -8,6 +9,7 @@ const tFiltered = null
 
 export default {
   user,
+  users,
   usersRef,
   userData,
   authError: '',

@@ -19,6 +19,19 @@ export default {
   /**
    * User Getters
    */
+  getUsers: state => {
+    delete state.users['.key']
+    return state.users
+  },
+  getArrayUsers: state => {
+    const xs = []
+    delete state.users['.key']
+    for (var i in state.users) {
+      xs.push(state.users[i])
+      xs[xs.length - 1]['key'] = i
+    }
+    return xs
+  },
   getUser: state => state.user,
   getUserData: state => state.userData,
   getDarkTheme: state => state.userData ? state.userData.darkTheme : false,

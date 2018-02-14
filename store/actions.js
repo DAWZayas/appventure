@@ -211,9 +211,13 @@ export default {
   bindFirebaseReferences: firebaseAction(({state, commit, dispatch}, user) => {
     let db = firebaseApp.database()
     let tournamentsRef = db.ref(`/tournaments`)
+    let usersRef = db.ref(`/users`)
 
     dispatch('bindFirebaseReference', {reference: tournamentsRef, toBind: 'tournaments'}).then(() => {
       commit('setTournamentsRef', tournamentsRef)
+    })
+    dispatch('bindFirebaseReference', {reference: usersRef, toBind: 'users'}).then(() => {
+      commit('setUsersRef', usersRef)
     })
   }),
   bindFirebaseReference: firebaseAction(({bindFirebaseRef, state}, {reference, toBind}) => {
@@ -236,6 +240,12 @@ export default {
     commit('setTournamentsRef', null)
     try {
       unbindFirebaseRef('tournaments')
+    } catch (error) {
+      return
+    }
+    commit('setUsersRef', null)
+    try {
+      unbindFirebaseRef('users')
     } catch (error) {
       return
     }
