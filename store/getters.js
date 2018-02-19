@@ -1,3 +1,5 @@
+const getId = (rp, state) => { return state.urls[rp.date][rp.slug] }
+
 const deleteKey = (obj) => {
   const clone = {...obj}
   delete clone['.key']
@@ -19,6 +21,7 @@ export default {
    * Tournament Getters
    */
   getTournaments: state => state.tournaments ? deleteKey(state.tournaments) : null,
+  getSingleTournament: state => state.tournaments ? (rp) => state.tournaments[getId(rp, state)] : null,
   getArrayTournaments: state => state.tournaments ? getArray(state.tournaments) : null,
   getFilteredTournaments: state => state.tFiltered,
   /**

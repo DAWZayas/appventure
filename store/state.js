@@ -5,6 +5,7 @@ const userData = null
 const uploadProgress = []
 const tournaments = {}
 const tournamentsRef = null
+const urls = null
 const tFiltered = null
 
 export default {
@@ -16,5 +17,6 @@ export default {
   uploadProgress,
   tournaments,
   tournamentsRef,
+  urls,
   tFiltered
 }
