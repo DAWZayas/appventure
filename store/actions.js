@@ -1,6 +1,7 @@
 import firebaseApp from '~/firebaseapp'
 import { firebaseAction } from 'vuexfire'
 import uuidv1 from 'uuid/v1'
+import speakingurl from 'speakingurl'
 
 export default {
   /**
@@ -91,7 +92,15 @@ export default {
    * @param {object} newTournament
    */
   setArticleAppventure ({commit, state}, newTournament) {
-    state.tournamentsRef.push(newTournament)
+    let urls = firebaseApp.database().ref(`/urls`)
+    state.tournamentsRef.push(newTournament).then((snapshot) => {
+      let sp = {
+        date: speakingurl(newTournament.createDate),
+        name: speakingurl(newTournament.name),
+        key: snapshot.key
+      }
+      urls.child(sp.date).child(sp.name).set(sp.key)
+    })
   },
   /**
    * Set theme to Dark (light by default)
@@ -216,6 +225,7 @@ export default {
     let db = firebaseApp.database()
     let tournamentsRef = db.ref(`/tournaments`)
     let usersRef = db.ref(`/users`)
+    let urlsRef = db.ref(`/urls`)
 
     dispatch('bindFirebaseReference', {reference: tournamentsRef, toBind: 'tournaments'}).then(() => {
       commit('setTournamentsRef', tournamentsRef)
@@ -223,6 +233,7 @@ export default {
     dispatch('bindFirebaseReference', {reference: usersRef, toBind: 'users'}).then(() => {
       commit('setUsersRef', usersRef)
     })
+    dispatch('bindFirebaseReference', {reference: urlsRef, toBind: 'urls'})
   }),
   bindFirebaseReference: firebaseAction(({bindFirebaseRef, state}, {reference, toBind}) => {
     return reference.once('value').then(snapshot => {

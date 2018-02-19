@@ -6,7 +6,7 @@
         <div class="tournament-img p-0"><img style="width: 100%; overflow:hidden;" v-img="src"></div>
       </nuxt-link>
     </div>
-    <strong class="tournament-strong">{{ tournament.name }}</strong>
+    <strong class="tournament-strong t-overflow">{{ tournament.name }}</strong>
     <p class="tournament-text t-overflow"><v-icon>fa-globe</v-icon> {{ tournament.location.locality }}</p>
     <p class="tournament-text"><v-icon>fa-gears</v-icon> {{ tournament.level }}</p>
 

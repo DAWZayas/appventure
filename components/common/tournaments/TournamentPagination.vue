@@ -7,6 +7,7 @@
 <script>
   import { TournamentCard, TournamentsPaginationComponent } from '~/components/common/tournaments'
   import { mapGetters } from 'vuex'
+
   export default {
     data () {
       return {
