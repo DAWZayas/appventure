@@ -31,6 +31,7 @@ export default {
   getDarkTheme: state => state.userData ? state.userData.darkTheme : false,
   getUserMessages: state => state.userData ? state.userData.messages : null,
   getDisplayName: state => state.userData ? state.userData.displayName : null,
+  getParticipating: state => state.userData ? (key) => state.userData.participating ? key in state.userData.participating : false : null,
   getEmail: state => state.user ? state.user.email : '',
   getUserPhoto: state => state.userData ? state.userData.photoURL : null,
   getUserType: state => state.userData ? state.userData.type : null,

@@ -31,7 +31,7 @@
       <h6>Hora de fin del torneo</h6>
       <p>Entre las 15:00 y las 16:00</p>
       <br>
-      <v-btn :color="isParticipating ? 'secondary' : 'info'" @click="addTournamentToUser">{{ isParticipating ? 'Desapuntarse' : '¡ Apuntarte !' }}</v-btn>
+      <v-btn :color="isParticipating ? 'secondary' : 'info'" @click="addTournament">{{ isParticipating ? 'Desapuntarse' : '¡ Apuntarte !' }}</v-btn>
     </section>
 
     <div id="alert">
@@ -46,37 +46,27 @@
   </div>
 </template>
 <script>
+  import { mapActions, mapGetters } from 'vuex'
 
-import {mapGetters} from 'vuex'
-import firebaseApp from '~/firebaseapp'
-
-export default {
-  props: ['tournament', 'id'],
-  data () {
-    return {
-      isParticipating: false
-    }
-  },
-  computed: {
-    ...mapGetters({user: 'getUser'})
-  },
-  methods: {
-    addTournamentToUser () {
-      let db = firebaseApp.database()
-      let addTournamentRef = db.ref(`/users/` + this.user.uid + `/participating`)
-      addTournamentRef.child(this.$route.params.id).set('')
-      this.isParticipating = true
-    }
-  },
-  watch: {
-    isParticipating: function () {
-      document.getElementById('alert').style.marginTop = 0
-      setTimeout(function () {
-        document.getElementById('alert').style.marginTop = '-6rem'
-      }, 2500)
+  export default {
+    props: ['tournament'],
+    computed: {
+      isParticipating () { return this.$store.getters.getParticipating(this.$route.params.id) },
+      ...mapGetters({user: 'getUser'})
+    },
+    methods: {
+      addTournament () { this.addTournamentToUser(this.$route.params.id) },
+      ...mapActions(['addTournamentToUser'])
+    },
+    watch: {
+      isParticipating: function () {
+        document.getElementById('alert').style.marginTop = 0
+        setTimeout(function () {
+          document.getElementById('alert').style.marginTop = '-6rem'
+        }, 2500)
+      }
     }
   }
-}
 </script>
 <style lang="scss" scoped>
   p, h1 {

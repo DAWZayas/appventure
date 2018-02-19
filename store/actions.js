@@ -162,6 +162,10 @@ export default {
     type = type.charAt(0).toUpperCase() + type.slice(1)
     state.usersRef.child(state.user.uid).child('type').set(type)
   },
+  addTournamentToUser ({state}, key) {
+    let addTournamentRef = firebaseApp.database().ref(`/users/` + state.userData['.key'] + `/participating`)
+    addTournamentRef.child(key).set('')
+  },
   /**
    * Resets authentication error
    * @param commit
