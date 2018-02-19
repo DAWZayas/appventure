@@ -192,7 +192,7 @@ export default {
         let photoURL = user.photoURL ? user.photoURL : '/undefined_user.png'
         let id = user.uid
 
-        dispatch('bindFirebaseReferences', user)
+        dispatch('bindFirebaseReferences')
         dispatch('bindUserData', {usersRef, id})
 
         usersRef.child(id).once('value', function (snapshot) {
@@ -208,7 +208,7 @@ export default {
   * Binds tournaments to firebase
   * @param {object} store
   */
-  bindFirebaseReferences: firebaseAction(({state, commit, dispatch}, user) => {
+  bindFirebaseReferences: firebaseAction(({commit, dispatch}) => {
     let db = firebaseApp.database()
     let tournamentsRef = db.ref(`/tournaments`)
     let usersRef = db.ref(`/users`)

@@ -1,13 +1,14 @@
-const deleteKey = (stat) => {
-  delete stat['.key']
-  return stat
+const deleteKey = (obj) => {
+  const clone = {...obj}
+  delete clone['.key']
+  return clone
 }
 
-function getArray (stat) {
-  // deleteKey(stat)
+const getArray = (stat) => {
+  const clone = deleteKey(stat)
   const xs = []
-  for (var i in stat) {
-    xs.push(stat[i])
+  for (var i in clone) {
+    xs.push(clone[i])
     xs[xs.length - 1]['key'] = i
   }
   return xs

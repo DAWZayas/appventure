@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div @click="hola">
     <v-card v-for="user in users" :key="user.key" >
       {{ user.type }}
+      {{ user.key }}
     </v-card>
   </div>
 </template>
