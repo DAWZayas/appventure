@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-list-tile v-for="item in items[isAuthenticated]" :key="item.title" @click="goTo(item)">
+    <v-list-tile v-for="item in items[typeUser]" :key="item.title" @click="goTo(item)">
       <v-list-tile-action>
         <v-icon>{{ item.icon }}</v-icon>
       </v-list-tile-action>
@@ -11,10 +11,13 @@
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   props: ['isAuthenticated'],
+  computed: {
+    ...mapGetters({typeUser: 'getUserType'})
+  },
   methods: {
     ...mapActions(['logout']),
     goTo (item) {
@@ -29,7 +32,7 @@ export default {
   data () {
     return {
       items: {
-        true: [
+        Venture: [
           {
             title: 'Tu cuenta',
             icon: 'home',
@@ -48,7 +51,34 @@ export default {
           {
             title: 'Ayuda',
             icon: 'chat_bubble_outline',
-            link: '/chatadmin'
+            link: '/chat'
+          },
+          {
+            title: 'Cerrar sesión',
+            icon: 'close',
+            link: '/login'
+          }
+        ],
+        Administrador: [
+          {
+            title: 'Tu cuenta',
+            icon: 'home',
+            link: '/users'
+          },
+          {
+            title: 'Mis torneos',
+            icon: 'fa-trophy',
+            link: '/userTournaments'
+          },
+          {
+            title: 'Clasificación',
+            icon: 'trending_up',
+            link: '/test'
+          },
+          {
+            title: 'Ayuda',
+            icon: 'chat_bubble_outline',
+            link: '/activeChats'
           },
           {
             title: 'Cerrar sesión',

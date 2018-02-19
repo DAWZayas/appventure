@@ -1,5 +1,5 @@
 <template>
-  <v-chip color="secondary" small selected>
+  <v-chip class="no-shadow" color="secondary" small selected>
     {{ numberOfMessage }}
   </v-chip>
 </template>

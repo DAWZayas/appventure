@@ -259,14 +259,16 @@ export default {
     commit('clearUserData')
   }),
   /**
-  * Binds tournaments to firebase
   * @param { object } state
   * @param newMessage
+  * @param uidUser
   */
-  addMessage ({ state }, newMessage) {
+  addMessage ({ state }, {newMessage, issuing, uidUser}) {
     let db = firebaseApp.database()
-    let id = state.user.uid
-    let messagesRef = db.ref(`/users/` + id + `/messages`)
-    messagesRef.push(newMessage)
+    let messagesRef = db.ref(`/users/` + uidUser + `/messages`)
+    messagesRef.push({
+      message: newMessage,
+      issuing: issuing
+    })
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div d-flex> 
-    <v-list two-linev class="mx-2 pb-0">
+    <v-list two-linev class="mx-2 pb-0"  v-if="this.userData.type === 'Venture'">
       <template>
         <div class="d-flex my-3 px-2 align-items-center">
           <v-list-tile-avatar>
@@ -14,13 +14,13 @@
       </template>
     </v-list>
     <v-list two-linev class="mx-2 pb-0 pt- px-2">
-      <template  v-for="(message, index, key) in messages"  :message="message">
+      <template  v-for="(message, index, key) in this.userData.type === 'Venture' ? this.userData.messages : users[id].messages"  :message="message">
         <div :key="index" class="d-flex my-3 align-items-center">
           <v-list-tile-content style="width: 100%">
-            <v-list-tile-title v-html="message"></v-list-tile-title>
+            <v-list-tile-title v-html="message.message"></v-list-tile-title>
           </v-list-tile-content>
           <v-list-tile-avatar>
-            <img :src="userPhoto" alt="avatar">
+            <img :src="users[message.issuing].photoURL" alt="avatar">
           </v-list-tile-avatar>
         </div>
         <v-divider class="m-0" style="width: calc( 100% - 60px )" :key="key"></v-divider>
@@ -43,17 +43,17 @@
   export default {
     data () {
       return {
-        newMessage: '',
-        firstTime: false
+        newMessage: ''
       }
     },
+    props: ['id'],
     computed: {
-      ...mapGetters({messages: 'getUserMessages', userPhoto: 'getUserPhoto'})
+      ...mapGetters({userData: 'getUserData', user: 'getUser', users: 'getUsers'})
     },
     methods: {
       ...mapActions(['addMessage']),
       pushMessage () {
-        this.newMessage === '' ? null : this.addMessage(this.newMessage)
+        this.newMessage === '' ? null : this.addMessage({newMessage: this.newMessage, issuing: this.user.uid, uidUser: this.userData.type === 'Venture' ? this.user.uid : this.id})
         this.newMessage = ''
       }
     }
