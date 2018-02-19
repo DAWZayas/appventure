@@ -1,7 +1,7 @@
 <template>
     <v-layout>
       <v-flex xs12 sm6 offset-sm3 m-1>
-        <nuxt-link :to="{ name: 'tournaments', params: { date: slugDate, slug: slugName, id: id } }">
+        <nuxt-link :to="{ name: 'tournaments', params: { date: slugDate, slug: slugName } }">
           <v-card>
             <card-image-component :src="src"></card-image-component>
             <v-card-title>

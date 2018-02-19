@@ -1,5 +1,5 @@
 <template>
-  <div class="neutral lighten-3">
+  <div v-if="tournament" class="neutral lighten-3">
     <v-carousel id="carousel" hide-delimiters hide-controls>
       <v-carousel-item v-for="(src,i) in tournament.imagesURL" :src="src" :key="i" class="m-0 p-0 carousel-image"></v-carousel-item>
     </v-carousel>
@@ -31,7 +31,7 @@
       <h6>Hora de fin del torneo</h6>
       <p>Entre las 15:00 y las 16:00</p>
       <br>
-      <v-btn :color="isParticipating ? 'secondary' : 'info'" @click="addTournament">{{ isParticipating ? 'Desapuntarse' : '¡ Apuntarte !' }}</v-btn>
+      <v-btn :color="id in participating ? 'success' : 'info'" @click="id in participating ? null : addTournament(id)">{{ id in participating ? 'Desapuntarse': '¡ Apuntarte !' }}</v-btn>
     </section>
 
     <div id="alert">
@@ -49,22 +49,17 @@
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    props: ['tournament'],
-    computed: {
-      isParticipating () { return this.$store.getters.getParticipating(this.$route.params.id) },
-      ...mapGetters({user: 'getUser'})
-    },
+    props: ['tournament', 'id'],
+    computed: { ...mapGetters({participating: 'getParticipating'}) },
     methods: {
-      addTournament () { this.addTournamentToUser(this.$route.params.id) },
-      ...mapActions(['addTournamentToUser'])
-    },
-    watch: {
-      isParticipating: function () {
+      addTournament (id) { this.addTournamentToUser(id).then(() => this.displayAlert()) },
+      displayAlert () {
         document.getElementById('alert').style.marginTop = 0
         setTimeout(function () {
           document.getElementById('alert').style.marginTop = '-6rem'
         }, 2500)
-      }
+      },
+      ...mapActions(['addTournamentToUser'])
     }
   }
 </script>
