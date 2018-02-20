@@ -67,10 +67,12 @@
         {{ isParticipating ? 'Desapuntarse': '¡ Unirse !' }}
       </v-btn>
     </div>
+    {{isInDate}}
   </div>
 </template>
 <script>
   import { mapActions, mapGetters } from 'vuex'
+  import { format } from 'date-fns'
 
   export default {
     props: ['tournament', 'id'],
@@ -78,7 +80,11 @@
       ...mapGetters({participating: 'getParticipating'}),
       isParticipating () { return (this.id in this.participating) },
       color () { return ['error', 'warning', 'success'][Math.floor(this.gauging / 40)] },
-      gauging () { return (this.tournament.participants / this.tournament.gauging) * 100 }
+      gauging () { return (this.tournament.participants / this.tournament.gauging) * 100 },
+      isInDate () {
+        var date = this.tournament.initDate.split('-')
+        return new Date(date[2], date[1] - 1, date[0]) + '---' + format(new Date())
+      }
     },
     methods: {
       addTournament () { this.addTournamentToUser({key: this.id, category: this.tournament.category}).then(this.displayAlert()) },
