@@ -18,14 +18,14 @@
     },
     computed: {
       ...mapGetters({ tournaments: 'getArrayTournaments', userLocation: 'getUserLocation' }),
-      tournamentsDisplay: function () {
+      tournamentsDisplay () {
         var xs = []
         for (var i = 0; i < this.tournaments.length; i++) {
-          let latUp = this.tournaments[i].location.position.lat + 0.090000
-          let latDown = this.tournaments[i].location.position.lat - 0.090000
-          let lngUp = this.tournaments[i].location.position.lng + 0.090000
-          let lngDown = this.tournaments[i].location.position.lng - 0.090000
-          if (this.userLocation.lat < latUp && this.userLocation.lat < latDown && this.userLocation.lng < lngUp && this.userLocation.lng < lngDown) {
+          let latUp = this.tournaments[i].location.position.lat + 0.15
+          let latDown = this.tournaments[i].location.position.lat - 0.15
+          let lngUp = this.tournaments[i].location.position.lng + 0.15
+          let lngDown = this.tournaments[i].location.position.lng - 0.15
+          if (this.userLocation.lat < latUp && this.userLocation.lat > latDown && this.userLocation.lng < lngUp && this.userLocation.lng > lngDown) {
             xs.push(this.tournaments[i])
           }
         }

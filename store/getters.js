@@ -31,12 +31,12 @@ export default {
   getDarkTheme: state => state.userData ? state.userData.darkTheme : false,
   getUserMessages: state => state.userData ? state.userData.messages : null,
   getDisplayName: state => state.userData ? state.userData.displayName : null,
-  getParticipating: state => state.userData ? (state.userData.participating ? state.userData.participating : {}) : {},
+  getParticipating: state => state.userData ? (state.userData.participating || {}) : {},
   getEmail: state => state.user ? state.user.email : '',
   getUserPhoto: state => state.userData ? state.userData.photoURL : null,
   getUserType: state => state.userData ? state.userData.type : null,
   getUserTournaments: state => state.userData ? (state.userData.participating ? Object.keys(state.userData.participating) : null) : null,
-  getUserLocation: state => state.userLocation ? state.userLocation : { lat: 40.479111499999995, lng: -3.8553606000000005 },
+  getUserLocation: state => state.userLocation || { lat: 40.4381311, lng: -3.8196195 },
   /**
    * Aux data Getters
    */

@@ -20,15 +20,15 @@
     computed: { ...mapGetters({ isDark: 'getDarkTheme' }) },
     created () {
       if (process.browser) {
-        window.onNuxtReady((app) => { this.bindAuth() })
+        window.onNuxtReady((app) => {
+          this.bindAuth()
+          if ('geolocation' in navigator) { this.geolocate() }
+        })
       }
-    },
-    mounted: function () {
-      this.geolocate()
     },
     methods: {
       ...mapActions(['bindAuth']),
-      ...mapMutations({setUserLocation: 'setUserLocation'}),
+      ...mapMutations(['setUserLocation']),
       changeTheme (theme) { this.$vuetify.theme = theme },
       geolocate () {
         navigator.geolocation.getCurrentPosition(position => {
