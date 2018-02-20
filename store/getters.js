@@ -36,6 +36,7 @@ export default {
   getUserPhoto: state => state.userData ? state.userData.photoURL : null,
   getUserType: state => state.userData ? state.userData.type : null,
   getUserTournaments: state => state.userData ? (state.userData.participating ? Object.keys(state.userData.participating) : null) : null,
+  getUserLocation: state => state.userLocation ? state.userLocation : { lat: 40.479111499999995, lng: -3.8553606000000005 },
   /**
    * Aux data Getters
    */

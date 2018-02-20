@@ -17,9 +17,19 @@
       ShowMoreComponent
     },
     computed: {
-      ...mapGetters({ tournaments: 'getArrayTournaments' }),
+      ...mapGetters({ tournaments: 'getArrayTournaments', userLocation: 'getUserLocation' }),
       tournamentsDisplay: function () {
-        return this.tournaments.slice(0, 8)
+        var xs = []
+        for (var i = 0; i < this.tournaments.length; i++) {
+          let latUp = this.tournaments[i].location.position.lat + 0.090000
+          let latDown = this.tournaments[i].location.position.lat - 0.090000
+          let lngUp = this.tournaments[i].location.position.lng + 0.090000
+          let lngDown = this.tournaments[i].location.position.lng - 0.090000
+          if (this.userLocation.lat < latUp && this.userLocation.lat < latDown && this.userLocation.lng < lngUp && this.userLocation.lng < lngDown) {
+            xs.push(this.tournaments[i])
+          }
+        }
+        return xs.slice(0, 6)
       }
     }
   }

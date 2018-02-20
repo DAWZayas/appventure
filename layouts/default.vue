@@ -13,7 +13,7 @@
 </template>
 <script>
   import { HeaderComponent, FooterComponent } from '~/components/layoutComponents'
-  import { mapActions, mapGetters } from 'vuex'
+  import { mapActions, mapGetters, mapMutations } from 'vuex'
 
   export default {
     components: { HeaderComponent, FooterComponent },
@@ -23,9 +23,18 @@
         window.onNuxtReady((app) => { this.bindAuth() })
       }
     },
+    mounted: function () {
+      this.geolocate()
+    },
     methods: {
+      ...mapActions(['bindAuth']),
+      ...mapMutations({setUserLocation: 'setUserLocation'}),
       changeTheme (theme) { this.$vuetify.theme = theme },
-      ...mapActions(['bindAuth'])
+      geolocate () {
+        navigator.geolocation.getCurrentPosition(position => {
+          this.setUserLocation({ lat: parseFloat(position.coords.latitude), lng: parseFloat(position.coords.longitude) })
+        })
+      }
     },
     watch: {
       isDark: function () { this.isDark ? this.changeTheme(this.darkTheme) : this.changeTheme(this.lightTheme) }

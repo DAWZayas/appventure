@@ -12,6 +12,7 @@ export default {
    */
   setUser (state, value) { state.user = value },
   setUsersRef (state, value) { state.usersRef = value },
+  setUserLocation (state, obj) { state.userLocation = obj },
   clearUserData (state) { state.userData = null },
   /*
    * Tournaments mutations

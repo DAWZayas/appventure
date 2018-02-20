@@ -7,6 +7,7 @@ const tournaments = {}
 const tournamentsRef = null
 const urls = null
 const tFiltered = null
+const userLocation = {}
 
 export default {
   user,
@@ -18,5 +19,6 @@ export default {
   tournaments,
   tournamentsRef,
   urls,
-  tFiltered
+  tFiltered,
+  userLocation
 }
