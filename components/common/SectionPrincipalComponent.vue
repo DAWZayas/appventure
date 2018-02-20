@@ -29,7 +29,7 @@
             xs.push(this.tournaments[i])
           }
         }
-        return xs.slice(0, 6)
+        return xs.slice(0, 8)
       }
     }
   }

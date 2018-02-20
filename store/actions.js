@@ -173,10 +173,11 @@ export default {
     type = type.charAt(0).toUpperCase() + type.slice(1)
     state.usersRef.child(state.user.uid).child('type').set(type)
   },
-  addTournamentToUser ({state}, key) {
-    let addTournamentRef = db.ref(`/users/` + state.userData['.key'] + `/participating`)
+  addTournamentToUser ({state}, {key, category}) {
+    console.log('key', key, 'category', category)
+    let addTournamentRef = db.ref(`/users/${state.userData['.key']}/participating`)
     let tournamentRef = db.ref(`/tournaments/${key}/participants`)
-    tournamentRef.once('value', (snapshot) => { tournamentRef.set(parseInt(snapshot.val()) + 1) }).then(addTournamentRef.child(key).set(''))
+    tournamentRef.once('value', (snapshot) => { tournamentRef.set(parseInt(snapshot.val()) + 1) }).then(addTournamentRef.child(key).set(category))
   },
   /**
    * Resets authentication error

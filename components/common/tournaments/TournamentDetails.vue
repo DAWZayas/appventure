@@ -42,9 +42,9 @@
       <h6>Hora de fin del torneo</h6>
       <p>Entre las 15:00 y las 16:00</p>
       <br>
-      <v-btn :disabled="!(gauging < 100) && !(id in participating)" :color="id in participating ? 'success' : 'info'" @click="id in participating ? null : addTournament(id)">{{ id in participating ? 'Desapuntarse': '¡ Apuntarte !' }}</v-btn>
+      <v-btn :disabled="!(gauging < 100) && !(id in participating)" :color="id in participating ? 'success' : 'info'" @click="id in participating ? null : addTournament()">{{ id in participating ? 'Desapuntarse': '¡ Apuntarte !' }}</v-btn>
     </section>
-
+    
     <div id="alert">
       <v-alert
         type="success"
@@ -67,7 +67,7 @@
       gauging () { return (this.tournament.participants / this.tournament.gauging) * 100 }
     },
     methods: {
-      addTournament (id) { this.addTournamentToUser(id).then(() => this.displayAlert()) },
+      addTournament () { this.addTournamentToUser({key: this.id, category: this.tournament.category}).then(() => this.displayAlert()) },
       displayAlert () {
         document.getElementById('alert').style.marginTop = 0
         setTimeout(function () {
