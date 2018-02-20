@@ -20,6 +20,7 @@ export default {
    */
   getTournaments: state => state.tournaments ? deleteKey(state.tournaments) : null,
   getArrayTournaments: state => state.tournaments ? getArray(state.tournaments) : null,
+  getURLs: state => state.urls || {},
   getFilteredTournaments: state => state.tFiltered,
   /**
    * User Getters

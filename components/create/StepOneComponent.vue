@@ -1,6 +1,6 @@
 <template>
   <v-form>
-    <v-text-field v-model="newArt.name" label="Nombre del torneo" required></v-text-field>
+    <v-text-field v-model="newArt.name" label="Nombre del torneo" required :rules="isEqual ? [() => 'Ya existe este torneo.'] : []" :error="isEqual"></v-text-field>
     <v-text-field v-model="newArt.description" multi-line label="Descripción del torneo" required></v-text-field>
     <v-radio-group v-model="newArt.genre" required>
       <v-radio label="Masculino" value="m"></v-radio>
@@ -10,12 +10,23 @@
     <v-select :items="categories.main" v-model="newArt.category" label="Categoría" required></v-select>
     <v-select :items="categories[newArt.category]" v-if="newArt.category" :label="categories['label'][newArt.category]" v-model="newArt.subCategory" required></v-select>
     <v-select :items="difficulty" v-model="newArt.level" label="Dificultad" required></v-select>
-    <v-btn color="primary" @click.stop="submit">Siguiente</v-btn>
+    <v-btn color="primary" :disabled="isEqual" @click.stop="submit">Siguiente</v-btn>
   </v-form>
 </template>
 <script>
+  import { format } from 'date-fns'
+  import { mapGetters } from 'vuex'
+  import speakingurl from 'speakingurl'
+
   export default {
     props: ['newArt'],
+    computed: {
+      ...mapGetters({urls: 'getURLs'}),
+      isEqual () {
+        var today = this.urls[format(new Date(), 'DD-MM-YYYY')]
+        return speakingurl(this.newArt.name) in today
+      }
+    },
     methods: {
       toStep (step) { this.$emit('toStep', step) },
       submit () {
