@@ -42,17 +42,30 @@
       <h6>Hora de fin del torneo</h6>
       <p>Entre las 15:00 y las 16:00</p>
       <br>
-      <v-btn :disabled="!(gauging < 100) && !(id in participating)" :color="id in participating ? 'success' : 'info'" @click="id in participating ? null : addTournament()">{{ id in participating ? 'Desapuntarse': '¡ Apuntarte !' }}</v-btn>
     </section>
     
     <div id="alert">
       <v-alert
-        type="success"
+        :type="isParticipating ? 'success' : 'error'"
         :value="true"
         transition="scale-transition"
       >
-        ¡ La inscripcion se ha realizado con exito !
+        {{ isParticipating ? '¡ La inscripcion se ha realizado con exito !' : 'Te has desapuntado con éxito' }}
       </v-alert>
+    </div>
+    
+    <div
+      style="position: sticky; bottom: .5rem; width: calc( 100% - 1rem )"
+      class="mx-2"
+    >
+      <v-btn
+        block
+        :disabled="!(gauging < 100) && !isParticipating"
+        :color="!isParticipating ? 'info' : 'error'"
+        @click.stop="isParticipating ? disTournament() : addTournament()"      
+      >
+        {{ isParticipating ? 'Desapuntarse': '¡ Unirse !' }}
+      </v-btn>
     </div>
   </div>
 </template>
@@ -63,18 +76,20 @@
     props: ['tournament', 'id'],
     computed: {
       ...mapGetters({participating: 'getParticipating'}),
+      isParticipating () { return (this.id in this.participating) },
       color () { return ['error', 'warning', 'success'][Math.floor(this.gauging / 40)] },
       gauging () { return (this.tournament.participants / this.tournament.gauging) * 100 }
     },
     methods: {
-      addTournament () { this.addTournamentToUser({key: this.id, category: this.tournament.category}).then(() => this.displayAlert()) },
+      addTournament () { this.addTournamentToUser({key: this.id, category: this.tournament.category}).then(this.displayAlert()) },
+      disTournament () { this.disengageTournamentFromUser(this.id).then(this.displayAlert()) },
       displayAlert () {
         document.getElementById('alert').style.marginTop = 0
         setTimeout(function () {
           document.getElementById('alert').style.marginTop = '-6rem'
         }, 2500)
       },
-      ...mapActions(['addTournamentToUser'])
+      ...mapActions(['addTournamentToUser', 'disengageTournamentFromUser'])
     }
   }
 </script>

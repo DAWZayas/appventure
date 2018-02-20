@@ -179,6 +179,11 @@ export default {
     let tournamentRef = db.ref(`/tournaments/${key}/participants`)
     tournamentRef.once('value', (snapshot) => { tournamentRef.set(parseInt(snapshot.val()) + 1) }).then(addTournamentRef.child(key).set(category))
   },
+  disengageTournamentFromUser ({state}, id) {
+    let addTournamentRef = db.ref(`/users/${state.userData['.key']}/participating`)
+    let tournamentRef = db.ref(`/tournaments/${id}/participants`)
+    tournamentRef.once('value', (snapshot) => { tournamentRef.set(parseInt(snapshot.val()) - 1) }).then(addTournamentRef.child(id).set(null))
+  },
   /**
    * Resets authentication error
    * @param commit
