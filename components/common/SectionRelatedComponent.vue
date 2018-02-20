@@ -41,6 +41,12 @@
           for (let i = 0; i < this.tournaments.length; i++) {
             this.tournaments[i].category === maxCategory || this.tournaments[i].category === maxCategory2 ? xs.push(this.tournaments[i]) : null
           }
+          for (let i = xs.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1))
+            var temp = xs[i]
+            xs[i] = xs[j]
+            xs[j] = temp
+          }
           return xs.slice(0, 8)
         } else {
           return this.tournaments
