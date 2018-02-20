@@ -3,6 +3,8 @@ import { firebaseAction } from 'vuexfire'
 import uuidv1 from 'uuid/v1'
 import speakingurl from 'speakingurl'
 
+const db = firebaseApp.database()
+
 export default {
   /**
    * Uploads individual profilePic
@@ -66,7 +68,7 @@ export default {
    * @param {object} category & subcategory
    */
   filterBy ({commit}, { category, subcategory }) {
-    var ref = firebaseApp.database().ref('tournaments')
+    var ref = db.ref('tournaments')
     var field, query
     var tournaments = []
 
@@ -92,7 +94,7 @@ export default {
    * @param {object} newTournament
    */
   setArticleAppventure ({commit, state}, newTournament) {
-    let urls = firebaseApp.database().ref(`/urls`)
+    let urls = db.ref(`/urls`)
     state.tournamentsRef.push(newTournament).then((snapshot) => {
       let sp = {
         date: speakingurl(newTournament.createDate),
@@ -172,8 +174,9 @@ export default {
     state.usersRef.child(state.user.uid).child('type').set(type)
   },
   addTournamentToUser ({state}, key) {
-    let addTournamentRef = firebaseApp.database().ref(`/users/` + state.userData['.key'] + `/participating`)
-    addTournamentRef.child(key).set('')
+    let addTournamentRef = db.ref(`/users/` + state.userData['.key'] + `/participating`)
+    let tournamentRef = db.ref(`/tournaments/${key}/participants`)
+    tournamentRef.once('value', (snapshot) => { tournamentRef.set(parseInt(snapshot.val()) + 1) }).then(addTournamentRef.child(key).set(''))
   },
   /**
    * Resets authentication error
@@ -194,7 +197,6 @@ export default {
    * @param {object} store
    */
   bindAuth ({commit, dispatch}) {
-    let db = firebaseApp.database()
     let usersRef = db.ref(`/users`)
     firebaseApp.auth().onAuthStateChanged(user => {
       commit('setUser', user)
@@ -222,7 +224,6 @@ export default {
   * @param {object} store
   */
   bindFirebaseReferences: firebaseAction(({commit, dispatch}) => {
-    let db = firebaseApp.database()
     let tournamentsRef = db.ref(`/tournaments`)
     let usersRef = db.ref(`/users`)
     let urlsRef = db.ref(`/urls`)
@@ -275,7 +276,6 @@ export default {
   * @param uidUser
   */
   addMessage ({ state }, {newMessage, issuing, uidUser}) {
-    let db = firebaseApp.database()
     let messagesRef = db.ref(`/users/` + uidUser + `/messages`)
     messagesRef.push({
       message: newMessage,

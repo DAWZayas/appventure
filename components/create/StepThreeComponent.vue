@@ -36,6 +36,7 @@
         this.uploadImages([...this.imagesBuffer]).then(picUrls => {
           this.newArt.defaultImg = this.defaultImg
           this.newArt.imagesURL = picUrls
+          this.newArt.participants = 0
           this.setArticleAppventure(this.newArt)
           this.createdF()
         })

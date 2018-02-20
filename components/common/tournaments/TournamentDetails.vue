@@ -4,10 +4,21 @@
       <v-carousel-item v-for="(src,i) in tournament.imagesURL" :src="src" :key="i" class="m-0 p-0 carousel-image"></v-carousel-item>
     </v-carousel>
 
-    <section class="mt-0 pa-2 white">
+    <section class="mt-0 pa-2 white" style="position: relative;">
       <h1>{{ tournament.name }}</h1>
       <p><span class="icon-location"></span> {{ tournament.location.name }} - {{ tournament.location.locality }}</p>
       <p>Nivel: {{ tournament.level }}</p>
+
+      <v-progress-circular
+        style="position: absolute; left: calc( 100% - 75px ); top: calc( 50% - 25px );"
+        :size="50"
+        :width="5"
+        :rotate="360"
+        :value="gauging"
+        :color="color"
+      >
+        {{ tournament.participants }}/{{ tournament.gauging }}
+      </v-progress-circular>
     </section>
 
     <v-card color="white darken-2 ma-2" class="black--text square">
@@ -31,7 +42,7 @@
       <h6>Hora de fin del torneo</h6>
       <p>Entre las 15:00 y las 16:00</p>
       <br>
-      <v-btn :color="id in participating ? 'success' : 'info'" @click="id in participating ? null : addTournament(id)">{{ id in participating ? 'Desapuntarse': '¡ Apuntarte !' }}</v-btn>
+      <v-btn :disabled="!(gauging < 100) && !(id in participating)" :color="id in participating ? 'success' : 'info'" @click="id in participating ? null : addTournament(id)">{{ id in participating ? 'Desapuntarse': '¡ Apuntarte !' }}</v-btn>
     </section>
 
     <div id="alert">
@@ -50,7 +61,11 @@
 
   export default {
     props: ['tournament', 'id'],
-    computed: { ...mapGetters({participating: 'getParticipating'}) },
+    computed: {
+      ...mapGetters({participating: 'getParticipating'}),
+      color () { return ['error', 'warning', 'success'][Math.floor(this.gauging / 40)] },
+      gauging () { return (this.tournament.participants / this.tournament.gauging) * 100 }
+    },
     methods: {
       addTournament (id) { this.addTournamentToUser(id).then(() => this.displayAlert()) },
       displayAlert () {
