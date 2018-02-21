@@ -130,8 +130,4 @@
     transition: margin-top 1s ease-out;
     z-index: 1000;
   }
-  .square {
-    border-radius: 0!important;
-    box-shadow: none!important;
-  }
 </style>

@@ -1,16 +1,16 @@
 import { format, isBefore, subDays } from 'date-fns'
 
+/* const ObjFilter = (obj, predicate) =>
+    Object.keys(obj)
+          .filter(key => predicate(obj[key]))
+          .reduce((res, key) => Object.assign(res, { [key]: obj[key] }), {}) */
+
 const isOutDate = (obj) => {
   let date = obj.finishDate.split('-')
   let compareDate = new Date(date[2], date[1] - 1, date[0])
   let today = subDays(format(new Date()), 10)
   return isBefore(today, compareDate)
 }
-
-/* const ObjFilter = (obj, predicate) =>
-    Object.keys(obj)
-          .filter(key => predicate(obj[key]))
-          .reduce((res, key) => Object.assign(res, { [key]: obj[key] }), {}) */
 
 const deleteKey = (obj) => {
   const clone = {...obj}
@@ -31,8 +31,7 @@ const getArray = (obj) => {
 const randomNumber = x => Math.floor(Math.random() * (x + 1))
 
 const getSingleTournament = (tournaments) => {
-  const array = getArray(tournaments)
-  console.log(array)
+  const array = getArray(tournaments).filter(tournament => isOutDate(tournament))
   return array[randomNumber(array.length)]
 }
 

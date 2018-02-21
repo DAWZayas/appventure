@@ -1,7 +1,7 @@
 <template>
   <section>
     <h5>Torneo patrocinado</h5>
-    <main-article :tournament="this.tournament"></main-article>
+    <main-article v-if="tournament" :tournament="tournament"></main-article>
   </section>
 </template>
 <script>

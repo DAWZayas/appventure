@@ -1,74 +1,52 @@
 <template>
-  <v-layout align-center>
-    <img style="width: 100%; overflow:hidden;" src="">
-      <strong class="tournament-strong t-overflow">{{ tournament }}</strong>
-  </v-layout>
+  <div v-if="tournament">
+    <article class="tournament">
+      <div>
+        <nuxt-link :to="{ name: 'tournaments', params: { date: slugDate, slug: slugName } }">
+          <div class="tournament-img p-0">
+            <v-carousel id="carousel" class="no-shadow" hide-delimiters hide-controls>
+              <v-carousel-item v-for="(src,i) in tournament.imagesURL" :src="src" :key="i" class="m-0 p-0 carousel-image"></v-carousel-item>
+            </v-carousel>
+          </div>
+        </nuxt-link>
+        <div class="tournament-strong t-overflow">{{ tournament.name }}</div>
+      </div>
+    </article>
+  </div>
 </template>
 <script>
+  import speakingurl from 'speakingurl'
+
   export default {
+    props: ['tournament'],
     data () {
       return {
-        // src: this.tournament.imagesURL[this.tournament.defaultImg]
+        slugDate: speakingurl(this.tournament.createDate),
+        slugName: speakingurl(this.tournament.name)
       }
-    },
-    props: ['tournament']
+    }
   }
 </script>
 <style lang="scss" scoped>
-.aaa {
-  display: block
-}
   .tournament {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    border-radius: 0.20em;
-    border-bottom-right-radius: 0;
-    width: 10em;
-    height: 11em;
+    position: relative!important;
     cursor: pointer;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
-    position: relative;
-    margin: 1em;
+    padding: 0 1rem;
+    margin: 1rem 0;
   }
 
   .tournament-strong {
     background-color: #00BCD4;
     color: #FFFFFF;
-    border-bottom: 1px solid #BDBDBD;
     padding: .2em;
-  }
-
-  .tournament-text {
-    color: #757575;
-    padding: .1em .5em;
-    margin: 0;
-  }
-
-  .t-overflow {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 10rem;
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    right: 1rem;
   }
 
   .tournament-img {
-    width: 10rem!important;
-    height: ( 10rem / (16/9) )!important;
-  }
-
-  .see-more {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    border: none;
-    cursor: pointer;
-    background-color: #8BC34A;
-    border-top-left-radius: 20%;
-    transition: background-color .2s;
-    padding: 0 .5em;
-    margin: 0;
-    
-    &:hover { background-color: rgba(139, 195, 74, .8); }
+    width: 100%!important;
+    height: auto!important;
   }
 </style>
