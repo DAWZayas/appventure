@@ -2,11 +2,6 @@
   <div>
     <section>
       <h5>Torneos cerca de ti</h5>
-      <v-container fill-height class="py-0 mt-2">
-        <v-layout align-center>
-          <img style="width: 100%; overflow:hidden;" src="http://images.etn.eltiempo.digital/files/article_main/files/crop/uploads/2018/01/15/5a5ccc121a381.r_1518986819330.0-0-3000-1500.jpeg">
-        </v-layout>
-      </v-container>
       <section class="d-flex slide">
         <article-tournament-component v-for="(tournament, key) in tournamentsDisplay" :key="key" :tournament="tournament" :id="tournament['key']"></article-tournament-component>
         <nuxt-link to="/moreTournaments"><show-more-component></show-more-component></nuxt-link>

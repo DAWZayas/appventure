@@ -14,6 +14,10 @@ const getArray = (stat) => {
   return xs
 }
 
+const randomNumber = () => {
+  return Math.floor(Math.random() * 101)
+}
+
 export default {
   /**
    * Tournament Getters
@@ -22,6 +26,7 @@ export default {
   getArrayTournaments: state => state.tournaments ? getArray(state.tournaments) : null,
   getURLs: state => state.urls || {},
   getFilteredTournaments: state => state.tFiltered,
+  getTournamentSponsored: state => { state.tournaments ? getArray(state.tournaments[randomNumber()]) : null },
   /**
    * User Getters
    */

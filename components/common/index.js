@@ -1,4 +1,5 @@
 export {default as ArticleTournamentComponent} from '~/components/common/ArticleTournamentComponent'
+export {default as MainArticle} from '~/components/common/MainArticle'
 export {default as ShowMoreComponent} from '~/components/common/ShowMoreComponent'
 export {default as FilterButtonComponent} from '~/components/common/FilterButtonComponent'
 export {default as SectionPrincipalComponent} from '~/components/common/SectionPrincipalComponent'
