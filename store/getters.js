@@ -14,8 +14,14 @@ const getArray = (stat) => {
   return xs
 }
 
-const randomNumber = () => {
-  return Math.floor(Math.random() * 101)
+const randomNumber = (x) => {
+  return Math.floor(Math.random() * (x + 1))
+}
+
+const getSingleTournament = (tournaments) => {
+  const array = getArray(tournaments)
+  console.log(array)
+  return array[randomNumber(array.length)]
 }
 
 export default {
@@ -26,7 +32,7 @@ export default {
   getArrayTournaments: state => state.tournaments ? getArray(state.tournaments) : null,
   getURLs: state => state.urls || {},
   getFilteredTournaments: state => state.tFiltered,
-  getTournamentSponsored: state => { state.tournaments ? getArray(state.tournaments[randomNumber()]) : null },
+  getTournamentSponsored: state => state.tournaments ? getSingleTournament(state.tournaments) : {},
   /**
    * User Getters
    */

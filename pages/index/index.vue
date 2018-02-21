@@ -1,6 +1,6 @@
 <template>
   <v-container class="p-0 m-0">
-    <main-article></main-article>
+    <section-sponsored></section-sponsored>
     <section-principal-component></section-principal-component>
     <section-categories-component></section-categories-component>
     <section-related-component></section-related-component>
@@ -8,11 +8,11 @@
   </v-container>
 </template>
 <script>
-  import { MainArticle, SectionPrincipalComponent, SectionCategoriesComponent, SectionRelatedComponent, FilterButtonComponent } from '~/components/common'
+  import { SectionSponsored, SectionPrincipalComponent, SectionCategoriesComponent, SectionRelatedComponent, FilterButtonComponent } from '~/components/common'
 
   export default {
     components: {
-      MainArticle,
+      SectionSponsored,
       SectionPrincipalComponent,
       SectionCategoriesComponent,
       SectionRelatedComponent,

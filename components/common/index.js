@@ -2,6 +2,7 @@ export {default as ArticleTournamentComponent} from '~/components/common/Article
 export {default as MainArticle} from '~/components/common/MainArticle'
 export {default as ShowMoreComponent} from '~/components/common/ShowMoreComponent'
 export {default as FilterButtonComponent} from '~/components/common/FilterButtonComponent'
+export {default as SectionSponsored} from '~/components/common/SectionSponsored'
 export {default as SectionPrincipalComponent} from '~/components/common/SectionPrincipalComponent'
 export {default as SectionCategoriesComponent} from '~/components/common/SectionCategoriesComponent'
 export {default as SectionRelatedComponent} from '~/components/common/SectionRelatedComponent'

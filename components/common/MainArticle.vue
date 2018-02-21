@@ -1,18 +1,17 @@
 <template>
-  <section>
-    <h5>Torneo patrocinado</h5>
-    <v-layout align-center>
-      <img style="width: 100%; overflow:hidden;" src="">
-        <strong class="tournament-strong t-overflow">AAAA</strong>
-    </v-layout>
-  </section>
+  <v-layout align-center>
+    <img style="width: 100%; overflow:hidden;" src="">
+      <strong class="tournament-strong t-overflow">{{ tournament }}</strong>
+  </v-layout>
 </template>
 <script>
-  import { mapGetters } from 'vuex'
   export default {
-    computed: {
-      ...mapGetters({ tournament: 'getTournamentSponsored' })
-    }
+    data () {
+      return {
+        // src: this.tournament.imagesURL[this.tournament.defaultImg]
+      }
+    },
+    props: ['tournament']
   }
 </script>
 <style lang="scss" scoped>
