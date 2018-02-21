@@ -38,11 +38,10 @@
       </GmapMap>
       <h6>Transporte público</h6>
       <p>Autobuses 685, 651, 652, 653, 654</p>
-      <h6>Hora de inicio del torneo</h6>
-      <p>13:00</p>
-      <h6>Hora de fin del torneo</h6>
-      <p>Entre las 15:00 y las 16:00</p>
-      <br>
+      <h6>Fecha de inicio del torneo</h6>
+      <p>{{ tournament.initDate }}</p>
+      <h6>Fecha de fin del torneo</h6>
+      <p>{{ tournament.finishDate }}</p>
     </section>
     
     <div id="alert">
@@ -53,6 +52,13 @@
       >
         {{ isParticipating ? '¡ La inscripcion se ha realizado con exito !' : 'Te has desapuntado con éxito' }}
       </v-alert>
+    </div>
+
+    <div
+      style="position: sticky; bottom: .5rem; width: calc( 100% - 1.2rem ); margin: 0 .6rem"
+      v-if="isOutDate"
+    >
+      <v-btn block :ripple="false" style="pointer-events: none;" class="no-shadow" color="error">Inscripción cerrada</v-btn>
     </div>
     
     <div

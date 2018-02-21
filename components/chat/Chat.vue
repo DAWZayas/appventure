@@ -32,8 +32,6 @@
         label="Mensaje"
         v-model="newMessage"
         @keyup.enter="pushMessage"
-        multi-line
-        rows="2"
       ></v-text-field>
       <v-btn small fab color="primary" @click="pushMessage"><v-icon >send</v-icon></v-btn>
     </div>
