@@ -1,7 +1,7 @@
 <template>
   <v-form>
     <v-text-field v-model="newArt.name" label="Nombre del torneo" required :rules="isEqual ? [() => 'Ya existe este torneo.'] : []" :error="isEqual"></v-text-field>
-    <v-text-field v-model="newArt.description" multi-line label="Descripción del torneo" required></v-text-field>
+    <v-text-field v-model="newArt.description" rows="1" multi-line label="Descripción del torneo" required></v-text-field>
     <v-radio-group v-model="newArt.genre" required>
       <v-radio label="Masculino" value="m"></v-radio>
       <v-radio label="Femenino" value="f"></v-radio>
@@ -23,8 +23,9 @@
     computed: {
       ...mapGetters({urls: 'getURLs'}),
       isEqual () {
-        var today = this.urls[format(new Date(), 'DD-MM-YYYY')]
-        return speakingurl(this.newArt.name) in today
+        let today = format(new Date(), 'DD-MM-YYYY')
+        let exists = today in this.urls
+        return exists ? speakingurl(this.newArt.name) in this.urls[today] : false
       }
     },
     methods: {

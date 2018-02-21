@@ -3,6 +3,7 @@ import { firebaseAction } from 'vuexfire'
 import uuidv1 from 'uuid/v1'
 import speakingurl from 'speakingurl'
 
+// Database reference
 const db = firebaseApp.database()
 
 export default {
@@ -169,20 +170,24 @@ export default {
       console.log(error)
     })
   },
+  /**
+   * Setter for type of user to UserData
+   * @param {object} state
+   * @param {string} type
+   */
   setUserType ({state}, type) {
     type = type.charAt(0).toUpperCase() + type.slice(1)
     state.usersRef.child(state.user.uid).child('type').set(type)
   },
-  addTournamentToUser ({state}, {key, category}) {
-    console.log('key', key, 'category', category)
+  /**
+   * Add or disengage tournaments from User
+   * @param {object} state
+   * @param {object} parameters (key of tournament, category of tournament, number (+1 or -1))
+   */
+  addDissTournament ({state}, {key, category, number}) {
     let addTournamentRef = db.ref(`/users/${state.userData['.key']}/participating`)
     let tournamentRef = db.ref(`/tournaments/${key}/participants`)
-    tournamentRef.once('value', (snapshot) => { tournamentRef.set(parseInt(snapshot.val()) + 1) }).then(addTournamentRef.child(key).set(category))
-  },
-  disengageTournamentFromUser ({state}, id) {
-    let addTournamentRef = db.ref(`/users/${state.userData['.key']}/participating`)
-    let tournamentRef = db.ref(`/tournaments/${id}/participants`)
-    tournamentRef.once('value', (snapshot) => { tournamentRef.set(parseInt(snapshot.val()) - 1) }).then(addTournamentRef.child(id).set(null))
+    tournamentRef.once('value', (snapshot) => { tournamentRef.set(parseInt(snapshot.val()) + number) }).then(addTournamentRef.child(key).set(category))
   },
   /**
    * Resets authentication error
@@ -242,6 +247,9 @@ export default {
     })
     dispatch('bindFirebaseReference', {reference: urlsRef, toBind: 'urls'})
   }),
+  /**
+   * Binds individual items to firebase
+   */
   bindFirebaseReference: firebaseAction(({bindFirebaseRef, state}, {reference, toBind}) => {
     return reference.once('value').then(snapshot => {
       if (!snapshot.val()) {
@@ -272,11 +280,15 @@ export default {
       return
     }
   }),
+  /**
+   * Deletes UserData from state and messages from firebase
+   */
   unbindUserData: firebaseAction(({commit, state}) => {
     state.usersRef.child(state.user.uid).child('messages').set({})
     commit('clearUserData')
   }),
   /**
+  * Adds all new messages to each chat
   * @param { object } state
   * @param newMessage
   * @param uidUser

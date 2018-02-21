@@ -16,6 +16,7 @@
         :rotate="360"
         :value="gauging"
         :color="color"
+        v-if="!isOutDate"
       >
         {{ tournament.participants }}/{{ tournament.gauging }}
       </v-progress-circular>
@@ -57,22 +58,22 @@
     <div
       style="position: sticky; bottom: .5rem; width: calc( 100% - 1rem )"
       class="mx-2"
+      v-if="!isOutDate"
     >
       <v-btn
         block
-        :disabled="!(gauging < 100) && !isParticipating"
+        :disabled="(!(gauging < 100) && !isParticipating)"
         :color="!isParticipating ? 'info' : 'error'"
         @click.stop="isParticipating ? disTournament() : addTournament()"      
       >
         {{ isParticipating ? 'Desapuntarse': '¡ Unirse !' }}
       </v-btn>
     </div>
-    {{isInDate}}
   </div>
 </template>
 <script>
   import { mapActions, mapGetters } from 'vuex'
-  import { format } from 'date-fns'
+  import { format, isBefore, isEqual } from 'date-fns'
 
   export default {
     props: ['tournament', 'id'],
@@ -81,21 +82,23 @@
       isParticipating () { return (this.id in this.participating) },
       color () { return ['error', 'warning', 'success'][Math.floor(this.gauging / 40)] },
       gauging () { return (this.tournament.participants / this.tournament.gauging) * 100 },
-      isInDate () {
-        var date = this.tournament.initDate.split('-')
-        return new Date(date[2], date[1] - 1, date[0]) + '---' + format(new Date())
+      isOutDate () {
+        let date = this.tournament.initDate.split('-')
+        let compareDate = new Date(date[2], date[1] - 1, date[0])
+        let today = format(new Date())
+        return isBefore(compareDate, today) || isEqual(compareDate, today)
       }
     },
     methods: {
-      addTournament () { this.addTournamentToUser({key: this.id, category: this.tournament.category}).then(this.displayAlert()) },
-      disTournament () { this.disengageTournamentFromUser(this.id).then(this.displayAlert()) },
+      addTournament () { this.addDissTournament({key: this.id, category: this.tournament.category, number: 1}).then(this.displayAlert()) },
+      disTournament () { this.addDissTournament({key: this.id, category: null, number: -1}).then(this.displayAlert()) },
       displayAlert () {
         document.getElementById('alert').style.marginTop = 0
         setTimeout(function () {
           document.getElementById('alert').style.marginTop = '-6rem'
         }, 2500)
       },
-      ...mapActions(['addTournamentToUser', 'disengageTournamentFromUser'])
+      ...mapActions(['addDissTournament'])
     }
   }
 </script>
