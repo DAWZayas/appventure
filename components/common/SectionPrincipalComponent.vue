@@ -3,7 +3,7 @@
     <section>
       <h5>Torneos cerca de ti</h5>
       <section class="d-flex slide">
-        <article-tournament-component v-for="(tournament, key) in tournamentsDisplay" :key="key" :tournament="tournament" :id="tournament['key']"></article-tournament-component>
+        <article-tournament-component v-for="tournament in tournamentsDisplay" :key="tournament.key" :tournament="tournament" :id="tournament.key"></article-tournament-component>
         <nuxt-link to="/moreTournaments"><show-more-component></show-more-component></nuxt-link>
       </section>
     </section>
@@ -24,13 +24,10 @@
         var xs = []
 
         for (let i = 0; i < this.tournaments.length; i++) {
-          let latUp = this.tournaments[i].location.position.lat + 0.15
-          let latDown = this.tournaments[i].location.position.lat - 0.15
-          let lngUp = this.tournaments[i].location.position.lng + 0.15
-          let lngDown = this.tournaments[i].location.position.lng - 0.15
-          if (this.userLocation.lat < latUp && this.userLocation.lat > latDown && this.userLocation.lng < lngUp && this.userLocation.lng > lngDown) {
-            xs.push(this.tournaments[i])
-          }
+          const x = Math.pow((this.tournaments[i].location.position.lat - this.userLocation.lat), 2)
+          const y = Math.pow((this.tournaments[i].location.position.lng - this.userLocation.lng), 2)
+
+          if (x + y < 0.05) { xs.push(this.tournaments[i]) }
         }
 
         for (let i = xs.length - 1; i > 1; i--) {
