@@ -8,7 +8,7 @@
         <v-toolbar-title v-if="!isMobile">AppVenture</v-toolbar-title>
       </div>
       <v-spacer></v-spacer>
-      <create-tournament-component v-if="isAuthenticated && userType === 'Admin'"></create-tournament-component>
+      <create-tournament-component v-if="isAuthenticated && userType !== 'Venture'"></create-tournament-component>
       <form-to-be-a-creator v-else></form-to-be-a-creator>
       <v-avatar
           v-show="isAuthenticated"
