@@ -47,11 +47,23 @@ module.exports = {
   },
   router: {
     extendRoutes (routes, resolve) {
-      routes.push({
-        path: '/tournaments/:date/:slug',
-        name: 'tournaments',
-        component: resolve(__dirname, 'pages/tournaments/_date/_slug.vue')
-      })
+      routes.push(
+        {
+          path: '/tournaments/:date/:slug',
+          name: 'tournaments',
+          component: resolve(__dirname, 'pages/tournaments/_date/_slug.vue')
+        },
+        {
+          path: '/tournaments/search',
+          name: 'search',
+          component: resolve(__dirname, 'pages/tournaments/_search.vue')
+        },
+        {
+          path: '/tournaments/category',
+          name: 'filterByCat',
+          component: resolve(__dirname, 'pages/tournaments/_filterByCat.vue')
+        }
+      )
     }
   },
   /*

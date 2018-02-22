@@ -1,93 +1,54 @@
 <template>
-  <v-dialog v-model="dialog" max-width="500px">
-    <v-btn fixed
-      bottom
+  <v-dialog v-model="searchD" max-width="500px">
+    <v-btn
       small
       fab
-      right
       color="primary"
-      class="mb-5" 
       slot="activator"
     >
-       <v-icon>search</v-icon>
+      <v-icon>search</v-icon>
     </v-btn>
     <v-card>
       <v-card-text>
-        <v-flex>
-          <v-text-field color="primary" placeholder=" Search..." hide-details autofocus :append-icon="'search'" :append-icon-cb="searchCb"></v-text-field>
-          <v-select
-            :items="categories.main"
-            v-model="category"
-            label="Categoría"
-            single-line
-            auto
-            append-icon="touch_app"
-            hide-details
-          ></v-select>
-          <v-select 
-            :items="categories[category]" 
-            v-if="category !== ''" 
-            :label="categories['label'][category]" 
-            v-model="subCategory"
-            single-line
-            auto
-            append-icon="touch_app"
-            hide-details
-          ></v-select>
-        </v-flex>
+        <v-text-field 
+          color="primary" 
+          v-model="searchText"
+          placeholder=" Search..."
+          hide-details
+          autofocus
+          :append-icon="'search'"
+          @keyup.enter="search"
+          :append-icon-cb="search"
+        >
+        </v-text-field>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="blue darken-1" flat @click.native="dialog = false">Cerrar</v-btn>
-        <v-btn color="blue darken-1" flat @click.native="dialog = false">Buscar</v-btn>
+        <v-btn color="error" flat @click.native="searchD = false">Cerrar</v-btn>
+        <v-btn color="primary" flat @click.native="search" :disabled="searchFor === ''">Buscar</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 <script>
-export default {
-  methods: {
-    searchCb () { console.log('search-cb') }
-  },
-  data () {
-    return {
-      dialog: false,
-      category: '',
-      subCategory: '',
-      categories: {
-        main: [
-          { text: 'Deportes', value: 'sports' },
-          { text: 'e-Sports', value: 'esports' },
-          { text: 'Juegos de cartas', value: 'cardgames' },
-          { text: 'Motor', value: 'motor' }
-        ],
-        sports: [
-          { text: 'Fútbol', value: 'football' },
-          { text: 'Baloncesto', value: 'basketball' },
-          { text: 'Padel', value: 'padel' },
-          { text: 'Golf', value: 'golf' }
-        ],
-        esports: [
-          { text: 'League of Legends', value: 'lol-esport' },
-          { text: 'CSGO', value: 'csgo' },
-          { text: 'Dota 2', value: 'dota2' },
-          { text: 'FIFA', value: 'fifa-esport' }
-        ],
-        cardgames: [
-          { text: 'Poker', value: 'Poker' }
-        ],
-        motor: [
-          { text: 'Karts', value: 'Karts' },
-          { text: 'Rally', value: 'Rally' },
-          { text: 'Motos', value: 'Motos' }
-        ],
-        label: {
-          sports: 'Deporte',
-          esports: 'Videojuego',
-          cardgames: 'Juego',
-          motor: 'Carrera'
-        }
+  import speakingurl from 'speakingurl'
+
+  export default {
+    methods: { search () { this.searchFor !== '' ? this.$router.push({ name: 'search', query: { q: this.searchFor } }) : null } },
+    watch: { searchText () { this.searchFor = speakingurl(this.searchText) } },
+    data () {
+      return {
+        searchD: false,
+        searchText: '',
+        searchFor: ''
       }
     }
   }
-}
 </script>
+<style lang="scss" scoped>
+  .dialog__container {
+    margin-top: -3rem!important;
+    position: sticky!important;
+    bottom: 0!important;
+    left: 100%!important;
+  }
+</style>

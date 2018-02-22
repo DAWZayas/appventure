@@ -9,7 +9,7 @@
       </div>
       <v-spacer></v-spacer>
       <create-tournament-component v-if="isAuthenticated && userType !== 'Venture'"></create-tournament-component>
-      <form-to-be-a-creator v-else></form-to-be-a-creator>
+      <form-to-be-creator v-else></form-to-be-creator>
       <v-avatar
           v-show="isAuthenticated"
           v-if="!isMobile"
@@ -45,7 +45,7 @@
   import { mapActions, mapGetters } from 'vuex'
   import { itemsListComponent, userInfo } from './header'
   import { CreateTournamentComponent } from '~/components/create'
-  import { FormToBeACreator } from '~/components/users/userForm'
+  import { FormToBeCreator } from '~/components/users/userForm'
 
   export default {
     methods: {
@@ -77,7 +77,7 @@
       itemsListComponent,
       userInfo,
       CreateTournamentComponent,
-      FormToBeACreator
+      FormToBeCreator
     },
     data () {
       return {

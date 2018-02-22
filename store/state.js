@@ -6,7 +6,7 @@ const uploadProgress = []
 const tournaments = {}
 const tournamentsRef = null
 const urls = null
-const tFiltered = null
+const tFiltered = {}
 const userLocation = null
 
 export default {

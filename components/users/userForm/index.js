@@ -1,1 +1,1 @@
-export {default as FormToBeACreator} from '~/components/users/userForm/FormToBeACreator'
+export {default as FormToBeCreator} from '~/components/users/userForm/FormToBeCreator'

@@ -36,7 +36,7 @@
             count[i] > max ? (max = count[i], maxCategory = i) : null
           }
           for (let i in count) {
-            count[i] > max2 && count[i] < max ? (max2 = count[i], maxCategory2 = i) : null
+            count[i] > max2 && count[i] <= max && i !== maxCategory ? (max2 = count[i], maxCategory2 = i) : null
           }
           for (let i = 0; i < this.tournaments.length; i++) {
             this.tournaments[i].category === maxCategory || this.tournaments[i].category === maxCategory2 ? xs.push(this.tournaments[i]) : null

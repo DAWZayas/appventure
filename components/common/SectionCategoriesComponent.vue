@@ -19,7 +19,7 @@
     methods: {
       goToCategory (category, subcategory) {
         this.filterBy({ category, subcategory })
-        this.$router.push('filteredTournaments')
+        this.$router.push({ name: 'filterByCat', query: { q: (subcategory === '' ? category : subcategory) } })
       },
       ...mapActions(['filterBy'])
     }
@@ -30,6 +30,7 @@
     max-width: 8rem;
     justify-content: center;
   }
+
   .categories {
     margin: 0;
     padding: 0.5rem 0;

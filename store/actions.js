@@ -2,6 +2,7 @@ import firebaseApp from '~/firebaseapp'
 import { firebaseAction } from 'vuexfire'
 import uuidv1 from 'uuid/v1'
 import speakingurl from 'speakingurl'
+import { isOutDate } from '~/utils/utils'
 
 // Database reference
 const db = firebaseApp.database()
@@ -87,7 +88,7 @@ export default {
       xs[xs.length - 1]['key'] = i
     }
 
-    commit('setFilteredTournaments', xs)
+    commit('setFilteredTournaments', xs.filter(tournament => isOutDate(tournament)))
   },
   /**
    * Add new tournaments to firebase

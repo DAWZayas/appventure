@@ -17,6 +17,10 @@
   }
 }
 
+.toolbar__side-icon {
+  color: rgba(0, 0, 0, .54)!important;  
+}
+
 h5 {
   margin: 0!important;
   padding: .5em 1em 0!important;
@@ -39,7 +43,7 @@ h5 {
   height: 25vh;
   
   .carousel-image {
-    background-color: white!important;
+    background-color: white;
 
     & > * > img {
       position: absolute;
