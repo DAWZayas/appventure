@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" lazy>
-    <v-icon slot="activator">library_add</v-icon>
+    <v-icon slot="activator" class="noselect">library_add</v-icon>
     <v-card>
       <div >
         <v-toolbar>
