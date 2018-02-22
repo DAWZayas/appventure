@@ -70,10 +70,25 @@
         block
         :disabled="(!(gauging < 100) && !isParticipating)"
         :color="!isParticipating ? 'info' : 'error'"
-        @click.stop="isParticipating ? disTournament() : addTournament()"      
+        @click.stop="isParticipating ? disTournament() : tournament.type === 'individual' ? addTournament() : dialog2 = true"      
       >
         {{ isParticipating ? 'Desapuntarse': '¡ Unirse !' }}
       </v-btn>
+      <v-dialog v-model="dialog2" max-width="500px">
+        <v-card class="p-1">
+          <h5>Nombre de integrantes del equipo</h5>
+          <v-flex xs12 sm6 v-for="participante in labels" :key="participante">
+            <v-text-field box v-model="p[participante]" :label="participante"></v-text-field>
+          </v-flex>
+          <v-btn 
+            color="info"
+            :disabled="!(p['Capitán'] !== '' && p['2º participante'] !== '' && p['3º participante'] !== ''  && p['4º participante'] !== ''  && p['5º participante'] !== '')"
+            @click="(addTournament(), dialog2 = false)"
+          >
+          ¡ Unirse !
+          </v-btn>
+        </v-card>
+      </v-dialog>
     </div>
   </div>
 </template>
@@ -105,6 +120,19 @@
         }, 2500)
       },
       ...mapActions(['addDissTournament'])
+    },
+    data () {
+      return {
+        dialog2: false,
+        labels: ['Capitán', '2º participante', '3º participante', '4º participante', '5º participante'],
+        p: {
+          'Capitán': '',
+          '2º participante': '',
+          '3º participante': '',
+          '4º participante': '',
+          '5º participante': ''
+        }
+      }
     }
   }
 </script>
