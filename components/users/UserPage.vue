@@ -9,19 +9,17 @@
     <user-data></user-data>
     <br>
     <dark-selector></dark-selector>
-    <create></create>
   </v-flex>
 </template>
 <script>
-  import { UserCard, Achievments, UserData, DarkSelector, Create } from '~/components/users/userComponents'
+  import { UserCard, Achievments, UserData, DarkSelector } from '~/components/users/userComponents'
 
   export default {
     components: {
       UserCard,
       Achievments,
       UserData,
-      DarkSelector,
-      Create
+      DarkSelector
     }
   }
 </script>

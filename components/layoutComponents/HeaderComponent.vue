@@ -8,9 +8,8 @@
         <v-toolbar-title v-if="!isMobile">AppVenture</v-toolbar-title>
       </div>
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>power_settings_new</v-icon>
-      </v-btn>
+      <create-tournament-component v-if="isAuthenticated && userType === 'Admin'"></create-tournament-component>
+      <form-to-be-a-creator v-else></form-to-be-a-creator>
       <v-avatar
           v-show="isAuthenticated"
           v-if="!isMobile"
@@ -45,6 +44,8 @@
 <script>
   import { mapActions, mapGetters } from 'vuex'
   import { itemsListComponent, userInfo } from './header'
+  import { CreateTournamentComponent } from '~/components/create'
+  import { FormToBeACreator } from '~/components/users/userForm'
 
   export default {
     methods: {
@@ -70,11 +71,13 @@
       window.removeEventListener('resize', this.onResize)
     },
     computed: {
-      ...mapGetters({ isAuthenticated: 'isAuthenticated', userPhoto: 'getUserPhoto' })
+      ...mapGetters({ isAuthenticated: 'isAuthenticated', userPhoto: 'getUserPhoto', userType: 'getUserType' })
     },
     components: {
       itemsListComponent,
-      userInfo
+      userInfo,
+      CreateTournamentComponent,
+      FormToBeACreator
     },
     data () {
       return {
@@ -82,6 +85,7 @@
         mini: null,
         latDrawer: null,
         sBar: false,
+        dialog: false,
         logo: require('~/assets/logo.svg')
       }
     }

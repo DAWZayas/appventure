@@ -36,8 +36,8 @@
       <GmapMap style="width: 100%; height: 300px;" :zoom="15" :center="tournament.location.position">
         <GmapMarker :position="tournament.location.position"/>
       </GmapMap>
-      <h6>Transporte público</h6>
-      <p>Autobuses 685, 651, 652, 653, 654</p>
+      <h6>Precio de la inscripción</h6>
+      <p>{{ tournament.prize }} € </p> 
       <h6>Fecha de inicio del torneo</h6>
       <p>{{ tournament.initDate }}</p>
       <h6>Fecha de fin del torneo</h6>
