@@ -28,6 +28,10 @@
   }
 </script>
 <style lang="scss" scoped>
+  .carousel-image {
+      background-color: #00BCD4!important;
+  }
+
   .tournament {
     position: relative!important;
     cursor: pointer;
@@ -45,8 +49,10 @@
     right: 1rem;
   }
 
-  .tournament-img {
-    width: 100%!important;
-    height: auto!important;
+  .t-overflow {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: calc( 100% - 2rem );
   }
 </style>

@@ -36,11 +36,18 @@ h5 {
 }
 
 #carousel {
-  height: 30vh;
-  top: 60%!important;
+  height: 25vh;
+  
+  .carousel-image {
+    background-color: white!important;
 
-  .carousel-image > * > img {
-    max-width: 100%!important;
+    & > * > img {
+      position: absolute;
+      top: 0%!important;
+      left: 0%!important;
+      transform: translate(0)!important;
+      max-width: 100%!important;
+    }
   }
 }
 
