@@ -50,5 +50,6 @@
     position: sticky!important;
     bottom: 0!important;
     left: 100%!important;
+    z-index: 1;
   }
 </style>

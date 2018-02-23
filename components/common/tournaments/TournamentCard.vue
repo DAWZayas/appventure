@@ -21,7 +21,7 @@
   import { CardImageComponent } from '~/components/common/tournaments'
 
   export default {
-    props: ['tournament', 'id'],
+    props: ['tournament'],
     data () {
       return {
         src: this.tournament.imagesURL[this.tournament.defaultImg],

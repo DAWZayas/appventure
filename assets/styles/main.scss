@@ -19,6 +19,10 @@
   opacity: 0;
 }
 
+.flip-list-move {
+  transition: transform 1s;
+}
+
 .noselect {
   -webkit-touch-callout: none;
     -webkit-user-select: none;

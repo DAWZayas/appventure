@@ -1,5 +1,7 @@
 import { isBefore, isEqual } from 'date-fns'
 
+const comparator = (arr, predicate) => arr.sort(predicate)
+
 // Util functions
 const generateDate = (date) => {
   let newDate = date.split('-')
@@ -15,8 +17,8 @@ const compareByDate = (obj1, obj2) => {
 }
 
 const compareByPrize = (obj1, obj2) =>
-  obj1.prize > obj2.prize ? 1
-: obj1.prize < obj2.prize ? -1 : 0
+  parseInt(obj1.prize) > parseInt(obj2.prize) ? 1
+: parseInt(obj1.prize) < parseInt(obj2.prize) ? -1 : 0
 
 const compareByParticipants = (obj1, obj2) =>
   obj1.participants > obj2.participants ? 1
@@ -25,5 +27,6 @@ const compareByParticipants = (obj1, obj2) =>
 export {
   compareByDate,
   compareByPrize,
-  compareByParticipants
+  compareByParticipants,
+  comparator
 }
