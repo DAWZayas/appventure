@@ -1,6 +1,6 @@
 <template>
     <div id="login">
-      <h1>Welcome Back!</h1>
+      <h1>¡Bienvenido de nuevo!</h1>
 
     <v-form v-model="valid" ref="form" lazy-validation>
       <v-text-field
@@ -11,7 +11,7 @@
       ></v-text-field>
 
       <v-text-field
-        label="Password"
+        label="Contraseña"
         v-model="password"
         :rules="passRules"
         type="password"
@@ -23,7 +23,7 @@
         block
         :disabled="!valid"
       >
-        Log In
+        Entrar
       </v-btn>
 
       <div class="d-flex justify-content-between align-items-center">
@@ -36,10 +36,10 @@
         </div>
       </div>
       <div class="d-flex flex-wrap">
-        <div class="loginBtn loginBtn--facebook" @click="loginWithFacebook"> Login with Facebook</div>
-        <div class="loginBtn loginBtn--google" @click="loginWithGoogle"> Login with Google</div>
+        <div class="loginBtn loginBtn--facebook" @click="loginWithFacebook"> Entrar con Facebook</div>
+        <div class="loginBtn loginBtn--google" @click="loginWithGoogle"> Entrar con Google</div>
       </div>
-      <p class="home-forgot"><a href="#">Forgot Password?</a></p>
+      <p class="home-forgot"><a href="#">¿Olvidaste la contraseña?</a></p>
     </v-form>
     <v-alert v-show="this.authError !== ''" type="error" :value="true">
       {{ this.authError }}
@@ -58,12 +58,12 @@
         email: '',
         password: '',
         emailRules: [
-          (v) => !!v || 'E-mail is required',
-          (v) => /^\w([.-]?\w)*@\w([.-]?\w)*(\.\w{2,3})$/.test(v) || 'E-mail must be valid'
+          (v) => !!v || 'Este campo es obligatorio',
+          (v) => /^\w([.-]?\w)*@\w([.-]?\w)*(\.\w{2,3})$/.test(v) || 'E-mail no valido'
         ],
         passRules: [
-          (v) => !!v || 'Name is required',
-          (v) => v.length >= 6 || 'Password must be at least 6 characters'
+          (v) => !!v || 'Este campo es obligatorio',
+          (v) => v.length >= 6 || 'La contraseña debe tener más de 5 caracteres'
         ]
       }
     },

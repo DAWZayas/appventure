@@ -1,6 +1,6 @@
 <template>
   <div id="signup">
-    <h1>Sign Up for Free</h1>
+    <h1>Registrate gratis</h1>
 
     <v-form v-model="valid" ref="form" lazy-validation>
 
@@ -12,7 +12,7 @@
       ></v-text-field>
 
       <v-text-field
-        label="Password"
+        label="Contraseña"
         v-model="password"
         :rules="passRules"
         type="password"
@@ -20,7 +20,7 @@
       ></v-text-field>
 
       <v-text-field
-        label="Confirm password"
+        label="Confirmar contraseña"
         v-model="confirmPassword"
         :rules="confirmPassRules"
         type="password"
@@ -32,9 +32,9 @@
         block
         :disabled="!valid"
       >
-        Sign Up
+        Registrarse
       </v-btn>
-      <p class="home-forgot"><nuxt-link to="/">Go home</nuxt-link></p>
+      <p class="home-forgot"><nuxt-link to="/">Ir a la web</nuxt-link></p>
     </v-form>
   </div>
 </template>
@@ -50,16 +50,16 @@
         confirmPassword: '',
         isCreator: false,
         emailRules: [
-          (v) => !!v || 'E-mail is required',
-          (v) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+          (v) => !!v || 'Este campo es obligatorio',
+          (v) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail no valido'
         ],
         passRules: [
           (v) => !!v || 'Password is required',
-          (v) => v.length >= 6 || 'Password must be at least 6 characters'
+          (v) => v.length >= 6 || 'La contraseña debe tener mas de 5 caracteres'
         ],
         confirmPassRules: [
-          (v) => !!v || 'Please confirm your password',
-          (v) => (v === this.password) || "Passwords don't match"
+          (v) => !!v || 'Porfavor confirme la contraseña',
+          (v) => (v === this.password) || 'La contraseña no coincide'
         ]
       }
     },
