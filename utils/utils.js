@@ -1,9 +1,9 @@
 import { format, isBefore, subDays } from 'date-fns'
 
-/* const ObjFilter = (obj, predicate) =>
-    Object.keys(obj)
-          .filter(key => predicate(obj[key]))
-          .reduce((res, key) => Object.assign(res, { [key]: obj[key] }), {}) */
+const ObjFilter = (obj, predicate) =>
+  Object.keys(obj)
+        .filter(key => predicate(obj[key]))
+        .reduce((res, key) => Object.assign(res, { [key]: obj[key] }), {})
 
 const isOutDate = (obj) => {
   let date = obj.finishDate.split('-')
@@ -29,6 +29,7 @@ const getArray = (obj) => {
 }
 
 const randomNumber = x => Math.floor(Math.random() * (x + 1))
+const ObjMathMax = arr => Math.max.apply(Math, arr.map((obj) => obj.prize))
 
 const getSingleTournament = (tournaments) => {
   const array = getArray(tournaments).filter(tournament => isOutDate(tournament))
@@ -40,5 +41,7 @@ export {
   deleteKey,
   getArray,
   randomNumber,
+  ObjMathMax,
+  ObjFilter,
   getSingleTournament
 }

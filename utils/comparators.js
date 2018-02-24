@@ -9,6 +9,11 @@ const generateDate = (date) => {
 }
 
 // Compares
+const compareByName = (obj1, obj2) => {
+  obj1.name > obj2.name ? 1
+: obj1.name < obj2.name ? -1 : 0
+}
+
 const compareByDate = (obj1, obj2) => {
   let date1 = generateDate(obj1.initDate)
   let date2 = generateDate(obj2.initDate)
@@ -25,6 +30,7 @@ const compareByParticipants = (obj1, obj2) =>
 : obj1.participants < obj2.participants ? -1 : 0
 
 export {
+  compareByName,
   compareByDate,
   compareByPrize,
   compareByParticipants,
