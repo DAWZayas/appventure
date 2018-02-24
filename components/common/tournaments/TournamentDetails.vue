@@ -68,7 +68,7 @@
     >
       <v-btn
         block
-        :disabled="(!(gauging < 100) && !isParticipating)"
+        :disabled="((!(gauging < 100) && !isParticipating) || !isAuthenticated)"
         :color="!isParticipating ? 'info' : 'error'"
         @click.stop="isParticipating ? disTournament() : tournament.type === 'individual' ? addTournament() : dialog2 = true"      
       >
@@ -99,7 +99,7 @@
   export default {
     props: ['tournament', 'id'],
     computed: {
-      ...mapGetters({participating: 'getParticipating'}),
+      ...mapGetters({participating: 'getParticipating', isAuthenticated: 'isAuthenticated'}),
       isParticipating () { return (this.id in this.participating) },
       color () { return ['error', 'warning', 'success'][Math.floor(this.gauging / 40)] },
       gauging () { return (this.tournament.participants / this.tournament.gauging) * 100 },

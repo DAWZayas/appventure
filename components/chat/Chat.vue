@@ -15,7 +15,7 @@
     </v-list>
     <v-list two-linev class="mx-2 pb-0 pt- px-2">
       <template  v-for="(message, index, key) in this.userData.type === 'Venture' ? this.userData.messages : users[id].messages"  :message="message">
-        <div :key="index" class="d-flex my-3 align-items-center">
+        <div v-if="user.uid === message.issuing " :key="index" class="d-flex my-3 align-items-center">
           <v-list-tile-content style="width: 100%;">
             <span>{{message.message}}</span>
           </v-list-tile-content>
@@ -23,7 +23,15 @@
             <img :src="users[message.issuing].photoURL" alt="avatar">
           </v-list-tile-avatar>
         </div>
-        <v-divider class="m-0" style="width: calc( 100% - 60px )" :key="key"></v-divider>
+        <div v-else :key="index" class="d-flex my-3 align-items-center">
+          <v-list-tile-avatar>
+            <img :src="users[message.issuing].photoURL" alt="avatar">
+          </v-list-tile-avatar>
+          <v-list-tile-content style="width: 100%;">
+            <span>{{message.message}}</span>
+          </v-list-tile-content>
+        </div>
+        <v-divider class="m-0" style="width: 100%" :key="key"></v-divider>
       </template>
     </v-list>
     <div class="send p-2 d-flex">
