@@ -29,7 +29,7 @@ const getArray = (obj) => {
 }
 
 const randomNumber = x => Math.floor(Math.random() * (x + 1))
-const ObjMathMax = arr => Math.max.apply(Math, arr.map((obj) => obj.prize))
+const ObjMathMax = (arr, field) => Math.max.apply(Math, arr.map((obj) => obj[field]))
 
 const getSingleTournament = (tournaments) => {
   const array = getArray(tournaments).filter(tournament => isOutDate(tournament))

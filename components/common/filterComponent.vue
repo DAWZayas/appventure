@@ -1,14 +1,6 @@
 <template>
-  <div v-if="results">
-    <div class="d-flex mx-2 mt-2 mb-1 align-items-center">
-      <h5 class="p-0">Resultados de la búsqueda</h5>
-      <v-icon @click="filterD = !filterD" style="flex-grow: 0!important;">filter_list</v-icon>
-    </div>
-    <transition-group name="flip-list">
-      <tournament-card v-for="tournament in filterBy()" :key="tournament['key']" :tournament="tournament"></tournament-card>
-    </transition-group>
-    <tournaments-pagination-component @loadMore="onLoadMore" :hasMore="hasMore"></tournaments-pagination-component>
-
+  <div>
+    <v-icon @click="filterD = !filterD">filter_list</v-icon>
     <v-navigation-drawer temporary fixed touchless right v-model="filterD">
       <v-toolbar color="white" flat>
         <h5 class="d-flex align-items-center p-0 pl-2"><v-icon @click="filterD = !filterD">keyboard_arrow_right</v-icon>Organizar resultados:</h5>
@@ -55,42 +47,14 @@
       </v-list>
     </v-navigation-drawer>
   </div>
-  <v-alert v-else :value="true" type="error">
-    ¡No se han encontrado resultados!
-  </v-alert>
 </template>
 <script>
-  import { mapGetters } from 'vuex'
   import { getArray, ObjMathMax } from '~/utils/utils'
   import { genericComparator, reverseComparator, compareByDate } from '~/utils/comparators'
-  import { TournamentCard, TournamentsPaginationComponent } from '~/components/common/tournaments'
-  import speakingurl from 'speakingurl'
 
   export default {
+    props: ['tournaments'],
     computed: {
-      ...mapGetters({ tm: 'getTournaments' }),
-      tPaginated () { return this.tournaments.slice(0, this.actualSize) },
-      hasMore () { return this.tournaments.length > this.actualSize },
-      tournaments () {
-        var tournaments = {}
-
-        for (var t in this.tm) {
-          var lok = this.tm[t]['location']
-          var info = this.tm[t]['description'] + ' ' +
-                     this.tm[t]['name'] + ' ' +
-                     this.tm[t]['category'] + ' ' +
-                     this.tm[t]['subCategory'] + ' ' +
-                     lok['administrative_area_level_1'] + ' ' +
-                     lok['country'] + ' ' + lok['locality'] + ' ' +
-                     lok['name'] + ' ' +
-                     lok['route']
-
-          speakingurl(info).search(this.$route.query.q) > -1 ? tournaments[t] = this.tm[t] : null
-        }
-
-        return getArray(tournaments)
-      },
-      results () { return Object.keys(this.tournaments).length > 0 },
       max () { return ObjMathMax(this.tournaments, 'prize') },
       range: {
         get: function () { return this.max - this.prizeRange },
@@ -98,16 +62,14 @@
       }
     },
     methods: {
-      onLoadMore () { this.actualSize = this.actualSize + this.pageSize },
       filterBy () {
-        let filtered = this.tPaginated
+        let filtered = this.tournaments
           .filter(obj => obj['prize'] <= this.range)
           .sort(this.filter)
 
         return this.reverse ? filtered.reverse() : filtered
       }
     },
-    components: { TournamentCard, TournamentsPaginationComponent },
     data () {
       return {
         filterD: false,
@@ -119,8 +81,6 @@
           { title: 'Por precio', status: false, comparator: genericComparator('prize') },
           { title: 'Por participantes', status: false, comparator: genericComparator('participants') }
         ],
-        pageSize: 5,
-        actualSize: 5,
         prizeRange: 0,
         reverse: false,
         disable: false
