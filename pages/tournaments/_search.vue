@@ -5,7 +5,7 @@
   import { mapGetters } from 'vuex'
   import { getArray } from '~/utils/utils'
   import speakingurl from 'speakingurl'
-  import TournamentsPagination from '~/components/tournaments/pagination/TournamentsPagination.vue'
+  import { TournamentsPagination } from '~/components/tournaments/pagination/TournamentsPagination.vue'
 
   export default {
     components: { TournamentsPagination },

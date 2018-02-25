@@ -3,7 +3,7 @@
 </template>
 <script>
   import { mapGetters } from 'vuex'
-  import TournamentsPagination from '~/components/tournaments/pagination/TournamentsPagination.vue'
+  import { TournamentsPagination } from '~/components/tournaments/pagination/TournamentsPagination.vue'
 
   export default {
     computed: { ...mapGetters({ tournaments: 'getFilteredTournaments' }) },
