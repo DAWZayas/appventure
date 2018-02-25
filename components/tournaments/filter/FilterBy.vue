@@ -23,40 +23,33 @@
         ></organize-menu>
 
         <transition-group name="list-complete" tag="div">
-          <div :key="0" v-if="disable" class="list-complete-item">
-            <v-list-tile>
-              <v-list-tile-content>
-                <v-switch
-                  :label="!this.reverse ? 'Ascendente' : 'Descendente'"
-                  v-model="reverse"
-                ></v-switch>
-              </v-list-tile-content>
-            </v-list-tile>
-          </div>
 
-          <div :key="1" class="list-complete-item">
-            <v-toolbar flat >
-              <h5 class="d-flex align-items-center p-0 pl-3">Filtrar por:</h5>
-            </v-toolbar>
+          <upside-down
+            :key="0"
+            :reverse.sync="reverse"
+            v-if="disable"
+            class="list-complete-item"
+          ></upside-down>
 
-            <v-list-tile>
-              <v-list-tile-content>
-                <v-slider class="pt-2" :label="`0 - ${range} €`" v-model="range" :max="max"></v-slider><br>
-              </v-list-tile-content>
-            </v-list-tile>
-          </div>
+          <filter-section
+            class="list-complete-item"
+            :key="1"
+            :range.sync="range"
+            :max="max"
+          ></filter-section>
+
         </transition-group>
       </v-list>
     </v-navigation-drawer>
   </div>
 </template>
 <script>
-  import { NavToggler, TopToolbar, OrganizeMenu } from './components'
+  import { NavToggler, TopToolbar, OrganizeMenu, UpsideDown, FilterSection } from './components'
   import { ObjMathMax } from '~/utils/utils'
   import { reverseComparator } from '~/utils/comparators'
 
   export default {
-    components: { NavToggler, TopToolbar, OrganizeMenu },
+    components: { NavToggler, TopToolbar, OrganizeMenu, UpsideDown, FilterSection },
     props: {
       // Tournaments Props
       tournaments: { default: [], type: Array },
