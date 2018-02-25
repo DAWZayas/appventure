@@ -81,8 +81,7 @@ module.exports = {
     '~/plugins/vuetify',
     '~/plugins/preLoad',
     '~/plugins/maps',
-    '~/plugins/vueCroppa',
-    '~/plugins/global'
+    '~/plugins/vueCroppa'
   ],
   /*
   ** Loads CSS globally

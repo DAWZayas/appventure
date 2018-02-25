@@ -38,6 +38,7 @@
 <script>
   import { TournamentsPaginationComponent } from './components'
   import { TournamentCard } from '../cards/cards'
+  import { FilterBy } from '../filter'
 
   export default {
     props: {
@@ -55,7 +56,7 @@
       color: { default: 'primary', type: String },
       flex: { default: true, type: Boolean }
     },
-    components: { TournamentCard, TournamentsPaginationComponent },
+    components: { TournamentCard, TournamentsPaginationComponent, FilterBy },
     computed: { results () { return Object.keys(this.arrayTournaments).length > 0 } },
     data () {
       return {
