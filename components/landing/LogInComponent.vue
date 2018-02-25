@@ -39,7 +39,7 @@
         <div class="loginBtn loginBtn--facebook" @click="loginWithFacebook"> Entrar con Facebook</div>
         <div class="loginBtn loginBtn--google" @click="loginWithGoogle"> Entrar con Google</div>
       </div>
-      <p class="home-forgot"><a href="#">¿Olvidaste la contraseña?</a></p>
+      <p class="home-forgot"><nuxt-link to="forgotPassword" >¿Olvidaste la contraseña?</nuxt-link></p>
     </v-form>
     <v-alert v-show="this.authError !== ''" type="error" :value="true">
       {{ this.authError }}

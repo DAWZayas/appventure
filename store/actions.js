@@ -221,9 +221,8 @@ export default {
 
         dispatch('bindFirebaseReferences')
         dispatch('bindUserData', {usersRef, id})
-
         usersRef.child(id).once('value', function (snapshot) {
-          snapshot.hasChild('displayName') ? null : dispatch('userName', displayName)
+          snapshot.hasChild('displayName') ? null : dispatch('updateUserName', displayName)
           snapshot.hasChild('photoURL') ? null : dispatch('updatePhotoURL', photoURL)
           snapshot.hasChild('type') ? null : dispatch('setUserType', 'venture')
         })
@@ -300,5 +299,16 @@ export default {
       message: newMessage,
       issuing: issuing
     })
+  },
+  recoverPassword ({state}, {email}) {
+    console.log(email)
+    firebaseApp.auth().sendPasswordResetEmail(
+      email)
+      .then(function () {
+        // Password reset email sent.
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 }

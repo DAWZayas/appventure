@@ -58,7 +58,7 @@
           (v) => v.length >= 6 || 'La contraseña debe tener mas de 5 caracteres'
         ],
         confirmPassRules: [
-          (v) => !!v || 'Porfavor confirme la contraseña',
+          (v) => !!v || 'Por favor confirme la contraseña',
           (v) => (v === this.password) || 'La contraseña no coincide'
         ]
       }
