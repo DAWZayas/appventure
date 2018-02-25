@@ -14,7 +14,7 @@
   </v-card>
 </template>
 <script>
-  import { CardImageComponent } from '~/components/common/tournaments'
+  import { CardImageComponent } from '~/components/tournaments/cards/cards'
 
   export default {
     props: ['tournament'],

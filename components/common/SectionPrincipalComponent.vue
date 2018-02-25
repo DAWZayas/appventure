@@ -3,14 +3,14 @@
     <section>
       <h5>Torneos cerca de ti</h5>
       <section class="d-flex slide">
-        <article-tournament-component v-for="tournament in tournamentsDisplay" :key="tournament.key" :tournament="tournament" :id="tournament.key"></article-tournament-component>
-        <nuxt-link to="/moreTournaments"><show-more-component></show-more-component></nuxt-link>
+        <article-tournament-component v-for="tournament in tournamentsDisplay" :key="tournament.key" :tournament="tournament"></article-tournament-component>
+        <show-more-component></show-more-component>
       </section>
     </section>
   </div>
 </template>
 <script>
-  import { ArticleTournamentComponent, ShowMoreComponent } from '~/components/common'
+  import { ArticleTournamentComponent, ShowMoreComponent } from '~/components/tournaments/cards/index'
   import { mapGetters } from 'vuex'
 
   export default {

@@ -35,7 +35,9 @@
             class="list-complete-item"
             :key="1"
             :range.sync="range"
+            :category.sync="category"
             :max="max"
+            :categories="categories"
           ></filter-section>
 
         </transition-group>
@@ -59,6 +61,8 @@
       loadMore: Boolean,
       hasMore: Boolean,
       pageSize: { default: 5, type: Number },
+      // Filter Props
+      categories: Boolean,
       // Style Props
       button: Boolean,
       small: Boolean,
@@ -103,6 +107,7 @@
         filterD: false,
         filter: reverseComparator('key'),
         prizeRange: 0,
+        category: '',
         reverse: false,
         disable: false
       }

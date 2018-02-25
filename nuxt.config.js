@@ -65,6 +65,11 @@ module.exports = {
           path: '/tournaments/category',
           name: 'filterByCat',
           component: resolve(__dirname, 'pages/tournaments/_filterByCat.vue')
+        },
+        {
+          path: '/tournaments/all',
+          name: 'allTournaments',
+          component: resolve(__dirname, 'pages/tournaments/_allTournaments.vue')
         }
       )
     }

@@ -37,7 +37,7 @@
   import speakingurl from 'speakingurl'
 
   export default {
-    props: ['tournament', 'id'],
+    props: ['tournament'],
     data () {
       return {
         src: this.tournament.imagesURL[this.tournament.defaultImg],

@@ -4,7 +4,5 @@
 <script>
   import { TournamentsFiltered } from '~/components/common'
 
-  export default {
-    components: { TournamentsFiltered }
-  }
+  export default { components: { TournamentsFiltered } }
 </script>

@@ -19,7 +19,7 @@
     methods: {
       goToCategory (category, subcategory) {
         this.filterBy({ category, subcategory })
-        this.$router.push({ name: 'filterByCat', query: { q: (subcategory === '' ? category : subcategory) } })
+        this.$router.push({ name: 'filterByCat', query: { q: (!subcategory ? category : subcategory) } })
       },
       ...mapActions(['filterBy'])
     }

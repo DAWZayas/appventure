@@ -6,9 +6,9 @@
 </template>
 <script>
   import { mapGetters } from 'vuex'
-  import { MainArticle } from '~/components/common'
+  import { MainArticle } from '~/components/tournaments/cards/index'
   export default {
-    computed: { ...mapGetters({tournament: 'getTournamentSponsored'}) },
+    computed: { ...mapGetters({ tournament: 'getTournamentSponsored' }) },
     components: { MainArticle }
   }
 </script>

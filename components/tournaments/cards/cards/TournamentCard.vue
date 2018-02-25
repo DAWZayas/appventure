@@ -1,6 +1,6 @@
 <template>
   <nuxt-link :to="{ name: 'tournaments', params: { date: slugDate, slug: slugName } }">
-    <v-card class="my-1 square">
+    <v-card class="m-1 square">
       <card-image-component :src="src"></card-image-component>
       <v-card-title>
         <div>
@@ -14,7 +14,7 @@
 </template>
 <script>
   import speakingurl from 'speakingurl'
-  import { CardImageComponent } from '~/components/common/tournaments'
+  import { CardImageComponent } from './'
 
   export default {
     props: ['tournament'],

@@ -2,13 +2,13 @@
   <section class="d-flex flex-column">
     <h5>Relacionado con tus gustos</h5>
     <section class="d-flex slide">
-      <article-tournament-component v-for="tournament in tournamentsDisplay" :key="tournament.key" :tournament="tournament" :id="tournament['key']"></article-tournament-component>
+      <article-tournament-component v-for="tournament in tournamentsDisplay" :key="tournament.key" :tournament="tournament"></article-tournament-component>
       <show-more-component></show-more-component>
     </section>
   </section>
 </template>
 <script>
-  import { ArticleTournamentComponent, ShowMoreComponent } from '~/components/common'
+  import { ArticleTournamentComponent, ShowMoreComponent } from '~/components/tournaments/cards/index'
   import { mapGetters } from 'vuex'
 
   export default {

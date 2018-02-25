@@ -17,17 +17,17 @@
 
   export default {
     components: { HeaderComponent, FooterComponent },
-    computed: { ...mapGetters({ isDark: 'getDarkTheme' }) },
+    computed: { ...mapGetters({ isDark: 'getDarkTheme', isAuthenticated: 'isAuthenticated' }) },
     created () {
       if (process.browser) {
         window.onNuxtReady((app) => {
-          this.bindAuth()
+          this.isAuthenticated ? this.bindAuth() : this.bindFirebaseReferences()
           if ('geolocation' in navigator) { this.geolocate() }
         })
       }
     },
     methods: {
-      ...mapActions(['bindAuth']),
+      ...mapActions(['bindAuth', 'bindFirebaseReferences']),
       ...mapMutations(['setUserLocation']),
       changeTheme (theme) { this.$vuetify.theme = theme },
       geolocate () {

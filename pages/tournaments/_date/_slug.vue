@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-  import { TournamentDetails } from '~/components/common/tournaments'
+  import { TournamentDetails } from '~/components/common'
   import { mapGetters } from 'vuex'
   import firebaseApp from '~/firebaseapp'
   function getId (rp) { return firebaseApp.database().ref(`/urls/${rp.date}/${rp.slug}`).once('value', (snapshot) => snapshot) }

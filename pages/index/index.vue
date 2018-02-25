@@ -8,15 +8,14 @@
   </v-container>
 </template>
 <script>
-  import { SectionSponsored, SectionPrincipalComponent, SectionCategoriesComponent, SectionRelatedComponent, FilterButtonComponent } from '~/components/common'
+  import { SectionSponsored, SectionPrincipalComponent, SectionCategoriesComponent, SectionRelatedComponent } from '~/components/common'
 
   export default {
     components: {
       SectionSponsored,
       SectionPrincipalComponent,
       SectionCategoriesComponent,
-      SectionRelatedComponent,
-      FilterButtonComponent
+      SectionRelatedComponent
     }
   }
 </script>

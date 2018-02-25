@@ -13,7 +13,7 @@
 </template>
 <script>
   export default {
-    props: ['range', 'max'],
+    props: ['range', 'max', 'categories', 'category'],
     watch: { localRange () { this.$emit('update:range', this.localRange) } },
     data () { return { localRange: this.range } }
   }
