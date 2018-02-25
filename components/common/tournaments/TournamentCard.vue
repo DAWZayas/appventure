@@ -1,20 +1,16 @@
 <template>
-    <v-layout>
-      <v-flex xs12 sm6 offset-sm3 m-1>
-        <nuxt-link :to="{ name: 'tournaments', params: { date: slugDate, slug: slugName } }">
-          <v-card>
-            <card-image-component :src="src"></card-image-component>
-            <v-card-title>
-              <div>
-                <span>{{ tournament.name }}</span><br>
-                <span class="grey--text">{{ tournament.location.name }} - {{ tournament.location.locality }} </span><br>
-                <span class="grey--text">{{ tournament.level }}</span>
-              </div>
-            </v-card-title>
-          </v-card>
-        </nuxt-link>
-      </v-flex>
-    </v-layout>
+  <nuxt-link :to="{ name: 'tournaments', params: { date: slugDate, slug: slugName } }">
+    <v-card class="my-1 square">
+      <card-image-component :src="src"></card-image-component>
+      <v-card-title>
+        <div>
+          <span>{{ tournament.name }}</span><br>
+          <span class="grey--text">{{ tournament.location.name }} - {{ tournament.location.locality }} </span><br>
+          <span class="grey--text">{{ tournament.level }}</span>
+        </div>
+      </v-card-title>
+    </v-card>
+  </nuxt-link>
 </template>
 <script>
   import speakingurl from 'speakingurl'

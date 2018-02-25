@@ -1,5 +1,6 @@
 @import 'vendors/module';
 @import 'custom/custom';
+@import 'transitions/transitions';
 
 /*  CUSTOM GLOBAL STYLES  */
 
@@ -9,32 +10,6 @@
 }
 ::-webkit-scrollbar {
   display: none;
-}
-
-.fade-enter-active, .fade-leave-active, .flip-list-enter-active, .flip-list-leave-active {
-  transition: opacity .25s;
-}
-
-.fade-enter, .fade-leave-to, .flip-list-enter, .flip-list-leave-to {
-  opacity: 0;
-}
-
-.flip-list-move {
-  transition: transform 1s;
-}
-
-.list-complete-item {
-  width: 100%;
-  transition: all .25s;
-  display: inline-block;
-}
-
-.list-complete-enter, .list-complete-leave-to {
-  opacity: 0;
-}
-
-.list-complete-leave-active {
-  position: absolute;
 }
 
 .noselect {

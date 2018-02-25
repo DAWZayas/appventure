@@ -5,6 +5,8 @@ const ObjFilter = (obj, predicate) =>
         .filter(key => predicate(obj[key]))
         .reduce((res, key) => Object.assign(res, { [key]: obj[key] }), {})
 
+const ObjMathMax = (arr, field) => Math.max.apply(Math, arr.map((obj) => obj[field]))
+
 const isOutDate = (obj) => {
   let date = obj.finishDate.split('-')
   let compareDate = new Date(date[2], date[1] - 1, date[0])
@@ -29,7 +31,6 @@ const getArray = (obj) => {
 }
 
 const randomNumber = x => Math.floor(Math.random() * (x + 1))
-const ObjMathMax = (arr, field) => Math.max.apply(Math, arr.map((obj) => obj[field]))
 
 const getSingleTournament = (tournaments) => {
   const array = getArray(tournaments).filter(tournament => isOutDate(tournament))

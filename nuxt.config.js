@@ -3,7 +3,7 @@ const nodeExternals = require('webpack-node-externals')
 module.exports = {
   /*
   ** Head elements
-  ** Add Roboto font and Material Icons
+  ** Adds Roboto font and Material Icons
   */
   head: {
     title: 'AppVenture',
@@ -22,7 +22,7 @@ module.exports = {
     ]
   },
   /*
-  ** Add Vuetify into vendor.bundle.js
+  ** Adds Vuetify & eslint into vendor.bundle.js
   */
   build: {
     vendor: ['vuetify'],
@@ -45,6 +45,9 @@ module.exports = {
       }
     }
   },
+  /**
+   * Custom route names for pages
+   */
   router: {
     extendRoutes (routes, resolve) {
       routes.push(
@@ -67,11 +70,17 @@ module.exports = {
     }
   },
   /*
-  ** Load Vuetify into the app
+  ** Loads plugins into the app
   */
-  plugins: ['~/plugins/vuetify', '~/plugins/preLoad', '~/plugins/maps', '~/plugins/vueCroppa'],
+  plugins: [
+    '~/plugins/vuetify',
+    '~/plugins/preLoad',
+    '~/plugins/maps',
+    '~/plugins/vueCroppa',
+    '~/plugins/global'
+  ],
   /*
-  ** Load Vuetify CSS globally
+  ** Loads CSS globally
   */
   css: [
     '~/assets/app.styl',

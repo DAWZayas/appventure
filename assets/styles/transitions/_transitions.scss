@@ -1,0 +1,40 @@
+/* FADE TRANSITION */
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .25s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+/* LIST COMPLETE TRANSITION */
+
+.list-complete-item {
+  width: 100%;
+  transition: all .25s;
+  display: inline-block;
+}
+
+.list-complete-enter, .list-complete-leave-to {
+  opacity: 0;
+}
+
+.list-complete-leave-active {
+  position: absolute;
+}
+
+/* FLIP LIST TRANSITION */
+
+.flip-list-item {
+  transition: all 1s;
+  display: block;
+}
+
+.flips-list-enter, .flip-list-leave-to {
+  opacity: 0;
+}
+
+.flip-list-leave-active {
+  position: absolute
+}

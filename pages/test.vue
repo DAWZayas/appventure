@@ -2,12 +2,12 @@
   <div v-if="results">
     <div class="d-flex mx-2 mt-2 mb-1 align-items-center">
       <h5 class="p-0">Resultados de la búsqueda</h5>
-            
+
       <filter-by
         :tournaments.sync="tournaments"
         :arrTournaments="arrayTournaments"
         :hasMore.sync="hasMore"
-        :loadMore="loadMore"
+        :loadMore.sync="loadMore"
       ></filter-by>
     </div>
 
@@ -25,6 +25,7 @@
       v-if="hasMore"
     ></tournaments-pagination-component>
   </div>
+
   <v-alert v-else :value="true" type="error">
     ¡No se han encontrado resultados!
   </v-alert>
@@ -33,30 +34,11 @@
   import { mapGetters } from 'vuex'
   import { getArray } from '~/utils/utils'
   import { TournamentCard, TournamentsPaginationComponent } from '~/components/common/tournaments'
-  import speakingurl from 'speakingurl'
 
   export default {
     computed: {
       ...mapGetters({ tm: 'getTournaments' }),
-      arrayTournaments () {
-        var tournaments = {}
-
-        for (var t in this.tm) {
-          var lok = this.tm[t]['location']
-          var info = this.tm[t]['description'] + ' ' +
-                     this.tm[t]['name'] + ' ' +
-                     this.tm[t]['category'] + ' ' +
-                     this.tm[t]['subCategory'] + ' ' +
-                     lok['administrative_area_level_1'] + ' ' +
-                     lok['country'] + ' ' + lok['locality'] + ' ' +
-                     lok['name'] + ' ' +
-                     lok['route']
-
-          speakingurl(info).search(this.$route.query.q) > -1 ? tournaments[t] = this.tm[t] : null
-        }
-
-        return getArray(tournaments).reverse()
-      },
+      arrayTournaments () { return getArray(this.tm).reverse() },
       results () { return Object.keys(this.arrayTournaments).length > 0 }
     },
     components: { TournamentCard, TournamentsPaginationComponent },
