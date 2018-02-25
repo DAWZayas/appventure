@@ -36,10 +36,13 @@
       </v-btn>
       <p class="home-forgot"><nuxt-link to="/">Ir a la web</nuxt-link></p>
     </v-form>
+    <v-alert v-show="signUpError" type="error" :value="true">
+      {{ signUpError }}
+    </v-alert>
   </div>
 </template>
 <script>
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
 
   export default {
     data () {
@@ -63,11 +66,14 @@
         ]
       }
     },
+    computed: {
+      ...mapGetters({signUpError: 'signUpError'})
+    },
     methods: {
       ...mapActions(['createUser']),
       onRegister () {
         if (this.$refs.form.validate()) {
-          this.createUser({email: this.email, password: this.password, name: this.username, creator: this.isCreator})
+          this.createUser({ email: this.email, password: this.password })
         }
       }
     }

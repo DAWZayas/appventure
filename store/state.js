@@ -10,6 +10,7 @@ const tFiltered = {}
 const userLocation = null
 const authErrorLogIn = ''
 const authErrorForgotPassword = ''
+const signUpError = ''
 
 export default {
   user,
@@ -18,6 +19,7 @@ export default {
   userData,
   authErrorLogIn,
   authErrorForgotPassword,
+  signUpError,
   uploadProgress,
   tournaments,
   tournamentsRef,

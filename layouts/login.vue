@@ -8,6 +8,10 @@ import { mapActions } from 'vuex'
 
 export default {
   methods: { ...mapActions(['bindAuth']) },
-  beforeMount () { this.bindAuth() }
+  created () {
+    if (process.browser) {
+      window.onNuxtReady((app) => { this.bindAuth() })
+    }
+  }
 }
 </script>

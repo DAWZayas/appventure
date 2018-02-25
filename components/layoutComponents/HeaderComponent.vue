@@ -56,10 +56,7 @@
       goHome () {
         this.$router.push('/')
       },
-      ...mapActions(['logout', 'bindAuth', 'bindFirebaseReferences'])
-    },
-    beforeMount () {
-      this.isAuthenticated ? this.bindAuth() : this.bindFirebaseReferences()
+      ...mapActions(['logout'])
     },
     mounted () {
       this.$nextTick(() => {

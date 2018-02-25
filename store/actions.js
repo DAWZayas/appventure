@@ -117,12 +117,14 @@ export default {
    * @param {object} store
    * @param {object} email and password
    */
-  createUser ({commit}, {email, password}) {
+  createUser ({commit, dispatch}, {email, password}) {
     firebaseApp.auth().createUserWithEmailAndPassword(email, password)
     .then(() => {
-      commit('setAuthError', '')
+      commit('setSignUpError', '')
+      dispatch('authenticate', {email, password})
+      this.$router.push('/')
     }).catch(error => {
-      commit('setAuthError', error.message)
+      commit('setSignUpError', error.message)
     })
   },
   /**
@@ -130,12 +132,13 @@ export default {
    * @param {object} store
    * @param {object} email and password
    */
-  authenticate ({state, commit}, {email, password}, router) {
+  authenticate ({commit, dispatch}, {email, password}) {
     firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
       commit('setAuthErrorLogIn', '')
+      dispatch('bindAuth')
       this.$router.push('/')
     }).catch(error => {
-      commit('setAuthErrorLogIn', error.message)
+      commit('setAuthError', error.message)
     })
   },
   /**
@@ -298,14 +301,17 @@ export default {
       issuing: issuing
     })
   },
+  /**
+   * Recover password
+   * @param {object} commit
+   * @param {object} email User email
+   */
   recoverPassword ({commit}, {email}) {
-    console.log(email)
-    firebaseApp.auth().sendPasswordResetEmail(
-      email)
-      .then(function () {
+    firebaseApp.auth().sendPasswordResetEmail(email)
+      .then(() => {
         // Password reset email sent.
       })
-      .catch(function (error) {
+      .catch((error) => {
         commit('setAuthErrorForgotPassword', error.message)
       })
   }

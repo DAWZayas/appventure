@@ -24,5 +24,6 @@ export default {
    */
   setAuthErrorLogIn (state, value) { state.authErrorLogIn = value },
   setAuthErrorForgotPassword (state, value) { state.authErrorForgotPassword = value },
+  setSignUpError (state, value) { state.signUpError = value },
   setIsAuthenticated (state, value) { state.isAuthenticated = value }
 }

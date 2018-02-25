@@ -31,5 +31,6 @@ export default {
   isAuthenticated: state => state.user && !state.user.isAnonymous,
   authErrorLogIn: state => state.authErrorLogIn,
   authErrorForgotPassword: state => state.authErrorForgotPassword,
+  signUpError: state => state.signUpError,
   getProgress: state => state.uploadProgress
 }
