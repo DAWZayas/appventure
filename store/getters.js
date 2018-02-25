@@ -29,6 +29,7 @@ export default {
    * Aux data Getters
    */
   isAuthenticated: state => state.user && !state.user.isAnonymous,
-  authError: state => state.authError,
+  authErrorLogIn: state => state.authErrorLogIn,
+  authErrorForgotPassword: state => state.authErrorForgotPassword,
   getProgress: state => state.uploadProgress
 }

@@ -123,7 +123,6 @@ export default {
       commit('setAuthError', '')
     }).catch(error => {
       commit('setAuthError', error.message)
-      console.log(error.message)
     })
   },
   /**
@@ -133,11 +132,10 @@ export default {
    */
   authenticate ({state, commit}, {email, password}, router) {
     firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
-      commit('setAuthError', '')
+      commit('setAuthErrorLogIn', '')
       this.$router.push('/')
     }).catch(error => {
-      commit('setAuthError', error.message)
-      console.log(error.message)
+      commit('setAuthErrorLogIn', error.message)
     })
   },
   /**
@@ -300,7 +298,7 @@ export default {
       issuing: issuing
     })
   },
-  recoverPassword ({state}, {email}) {
+  recoverPassword ({commit}, {email}) {
     console.log(email)
     firebaseApp.auth().sendPasswordResetEmail(
       email)
@@ -308,7 +306,7 @@ export default {
         // Password reset email sent.
       })
       .catch(function (error) {
-        console.log(error)
+        commit('setAuthErrorForgotPassword', error.message)
       })
   }
 }

@@ -22,6 +22,7 @@ export default {
   /**
    * Connection mutations
    */
-  setAuthError (state, value) { state.authError = value },
+  setAuthErrorLogIn (state, value) { state.authErrorLogIn = value },
+  setAuthErrorForgotPassword (state, value) { state.authErrorForgotPassword = value },
   setIsAuthenticated (state, value) { state.isAuthenticated = value }
 }

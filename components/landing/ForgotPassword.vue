@@ -24,13 +24,16 @@
             Entrar
           </v-btn>
           <p class="home-forgot"><nuxt-link to="/">Ir a la web</nuxt-link></p>
+          <v-alert v-show="this.authErrorForgotPassword" type="error" :value="true">
+            {{ this.authErrorForgotPassword }}
+          </v-alert>
         </div>
       </div>
     </div>
   </section>
 </template>
 <script>
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
   export default {
     data () {
       return {
@@ -42,6 +45,9 @@
           (v) => /^\w([.-]?\w)*@\w([.-]?\w)*(\.\w{2,3})$/.test(v) || 'E-mail no valido'
         ]
       }
+    },
+    computed: {
+      ...mapGetters({authErrorForgotPassword: 'authErrorForgotPassword'})
     },
     methods: {
       ...mapActions(['recoverPassword']),

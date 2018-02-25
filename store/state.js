@@ -8,13 +8,16 @@ const tournamentsRef = null
 const urls = null
 const tFiltered = {}
 const userLocation = null
+const authErrorLogIn = ''
+const authErrorForgotPassword = ''
 
 export default {
   user,
   users,
   usersRef,
   userData,
-  authError: '',
+  authErrorLogIn,
+  authErrorForgotPassword,
   uploadProgress,
   tournaments,
   tournamentsRef,

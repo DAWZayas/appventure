@@ -41,8 +41,8 @@
       </div>
       <p class="home-forgot"><nuxt-link to="forgotPassword" >¿Olvidaste la contraseña?</nuxt-link></p>
     </v-form>
-    <v-alert v-show="this.authError !== ''" type="error" :value="true">
-      {{ this.authError }}
+    <v-alert v-show="this.authErrorLogIn" type="error" :value="true">
+      {{ this.authErrorLogIn }}
     </v-alert>
   </div>
 </template>
@@ -68,7 +68,7 @@
       }
     },
     computed: {
-      ...mapGetters(['authError'])
+      ...mapGetters({authErrorLogIn: 'authErrorLogIn'})
     },
     methods: {
       ...mapActions(['authenticate']),
