@@ -9,7 +9,7 @@
 </template>
 <script>
   import { SectionSponsored, SectionPrincipalComponent, SectionCategoriesComponent, SectionRelatedComponent } from '~/components/common'
-  import { FilterButtonComponent } from '~/components/tournaments/filter/FilterButtonComponent.vue'
+  import { FilterButtonComponent } from '~/components/tournaments/filter'
 
   export default {
     components: {
