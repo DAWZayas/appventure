@@ -18,14 +18,27 @@
           <span class="headline">{{ tournament.name }}</span>
         </v-card-title>
         <v-card-text>
-          <p class="tournament-text"><v-icon>fa-globe</v-icon> {{ tournament.location.locality }}</p>
-          <p class="tournament-text"><v-icon>fa-gears</v-icon> {{ tournament.level }}</p>
-          <p class="tournament-text"><v-icon>fa-calendar</v-icon> {{ tournament.initDate }} </p>
+          <p>En este torneo podras ganar las siguientes insignias</p>
+          <v-chip color="indigo" text-color="white" small>
+            <v-avatar>
+              <v-icon>star</v-icon>
+            </v-avatar>
+            Nivel {{tournament.level}} en {{tournament.subCategory}}
+          </v-chip>
+          <div class="mt-4">
+            <p>Datos del torneo: </p>
+            <p class="tournament-text"><v-icon>location_city</v-icon> {{ tournament.location.locality }}</p>
+            <p class="tournament-text"><v-icon>swap_vert</v-icon> {{ tournament.level }}</p>
+            <p class="tournament-text"><v-icon>date_range</v-icon> {{ tournament.initDate }}</p>
+            <p class="tournament-text"><v-icon>euro_symbol</v-icon> {{ tournament.prize }}</p>
+          </div>
         </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="green darken-1" flat @click="dialog = false">Disagree</v-btn>
-            <v-btn color="green darken-1" flat @click="dialog = false">Agree</v-btn>
+            <v-btn color="error" flat @click="dialog = false">Cerrar</v-btn>
+            <nuxt-link :to="{ name: 'tournaments', params: { date: slugDate, slug: slugName } }">
+              <v-btn color="primary" flat @click="dialog = false">Ver más</v-btn>
+            </nuxt-link>
           </v-card-actions>
         </v-card>
       </v-dialog>

@@ -138,7 +138,7 @@ export default {
       dispatch('bindAuth')
       this.$router.push('/')
     }).catch(error => {
-      commit('setAuthError', error.message)
+      commit('setAuthErrorLogIn', error.message)
     })
   },
   /**
