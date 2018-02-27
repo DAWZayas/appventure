@@ -1,17 +1,13 @@
 <template>
-<div @click="goToAllTournaments">
+<nuxt-link :to="{ name: 'allTournaments' }">
   <article class="tournament">
     <div class="more-text">
       <i class="material-icons plus-icon">add_circle_outline</i>
       <p>Ver más</p>
     </div>
   </article>
-</div>
+</nuxt-link>
 </template>
-<script>
-  export default { methods: { goToAllTournaments () { this.$router.push({ name: 'allTournaments' }) } } }
-</script>
-
 <style lang="scss" scoped>
   .more-text {
     position: absolute;

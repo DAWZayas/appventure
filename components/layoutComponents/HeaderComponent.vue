@@ -1,30 +1,12 @@
 <template>
   <div>
-    <v-toolbar absolute :clipped-left="!isMobile" scroll-off-screen flat app>
-      <v-toolbar-side-icon v-if="isMobile" @click.stop="latDrawer = !latDrawer"></v-toolbar-side-icon>
-      <v-spacer v-if="isMobile"></v-spacer>
-      <div class="d-flex flex-row align-items-center" @click="goHome">
-        <v-avatar :tile="true"><img :src="logo" :tile="false" /></v-avatar>
-        <v-toolbar-title v-if="!isMobile">AppVenture</v-toolbar-title>
-      </div>
-      <v-spacer></v-spacer>
-      <create-tournament-component v-if="isAuthenticated && userType !== 'Venture'"></create-tournament-component>
-      <form-to-be-creator v-else></form-to-be-creator>
-      <v-avatar
-          v-show="isAuthenticated"
-          v-if="!isMobile"
-          :size="'35px'"
-          class="grey lighten-4"
-        >
-          <img :src="userPhoto" alt="avatar">
-      </v-avatar>
-    </v-toolbar>
-
     <v-navigation-drawer
       v-model="latDrawer"
       :mini-variant.sync="mini"
-      absolute
+      fixed
       :clipped="!isMobile"
+      :dark="dark"
+      :class="dark ? '' : 'light'"
       app
     >
       <v-list v-if="isMobile" class="pa-0">
@@ -33,12 +15,32 @@
           <v-list-tile-title>AppVenture</v-list-tile-title>
         </v-list-tile>
       </v-list>
+
       <v-list class="pt-0" dense>
-        <v-divider v-if="isMobile" class="mt-0"></v-divider>
-        <user-info :isAuthenticated="isAuthenticated" :isMobile="isMobile"></user-info>
+        <v-divider class="mt-0"></v-divider>
+        <user-info v-if="isAuthenticated" :isMobile="isMobile" :class="dark ? '' : 'light-profile'"></user-info>
+        <v-divider class="mt-0" v-if="isMobile"></v-divider>        
         <items-list-component :isAuthenticated="isAuthenticated"></items-list-component>
       </v-list>
     </v-navigation-drawer>
+
+    <v-toolbar fixed :clipped-left="!isMobile" scroll-off-screen flat app>
+      <v-toolbar-side-icon v-if="isMobile" @click.stop="latDrawer = !latDrawer"></v-toolbar-side-icon>
+      <v-spacer v-if="isMobile"></v-spacer>
+
+      <div class="d-flex flex-row align-items-center" @click="goHome">
+        <v-avatar :tile="true"><img :src="logo" :tile="false" /></v-avatar>
+        <v-toolbar-title v-if="!isMobile">AppVenture</v-toolbar-title>
+      </div>
+      <v-spacer></v-spacer>
+
+      <div v-if="isAuthenticated">
+        <create-tournament-component v-if="userType !== 'Venture'"></create-tournament-component>
+        <form-to-be-creator v-else></form-to-be-creator>
+      </div>
+
+      <nuxt-link v-else to="login"><v-icon>portrait</v-icon></nuxt-link>
+    </v-toolbar>
   </div>
 </template>
 <script>
@@ -48,24 +50,10 @@
   import { FormToBeCreator } from '~/components/users/userForm'
 
   export default {
+    props: ['isMobile', 'mini', 'dark'],
     methods: {
-      onResize () {
-        this.isMobile = window.innerWidth < 1264
-        this.mini = window.innerWidth < 350
-      },
-      goHome () {
-        this.$router.push('/')
-      },
+      goHome () { this.$router.push('/') },
       ...mapActions(['logout'])
-    },
-    mounted () {
-      this.$nextTick(() => {
-        window.addEventListener('resize', this.onResize)
-        this.onResize()
-      })
-    },
-    beforeDestroy () {
-      window.removeEventListener('resize', this.onResize)
     },
     computed: {
       ...mapGetters({ isAuthenticated: 'isAuthenticated', userPhoto: 'getUserPhoto', userType: 'getUserType' })
@@ -78,8 +66,6 @@
     },
     data () {
       return {
-        isMobile: null,
-        mini: null,
         latDrawer: null,
         sBar: false,
         dialog: false,
@@ -92,6 +78,15 @@
   hr {
     margin: 0;
   }
+
+  .light {
+    background-color: #f5f5f5!important;
+  }
+  
+  .light-profile {
+    background-color: white!important;      
+  }
+
   .avatar-menu {
     padding: 1em 1.2em;
     margin: 0;

@@ -1,7 +1,6 @@
 <template>
   <v-dialog v-model="searchD" max-width="500px">
     <v-btn
-      small
       fab
       color="primary"
       slot="activator"

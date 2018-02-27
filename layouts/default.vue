@@ -1,14 +1,16 @@
 <template>
   <v-app :dark="isDark">
-    <header-component></header-component>
+    <header-component :mini="mini" :isMobile="isMobile" :dark="isDark"></header-component>
 
-    <transition name="fade"><v-content class="pb-5 mb-2">
-      <v-container fluid class="p-0">
-        <nuxt/>
-        <footer-component></footer-component>
-      </v-container>
-    </v-content></transition>
+      <v-content>
+    <transition name="fade">
+        <v-container fluid class="p-0">
+          <nuxt/>
+        </v-container>
+    </transition>
+      </v-content>
 
+    <footer-component :isMobile="isMobile" :dark="isDark"></footer-component>
   </v-app>
 </template>
 <script>
@@ -35,13 +37,32 @@
         navigator.geolocation.getCurrentPosition(position => {
           this.setUserLocation({ lat: parseFloat(position.coords.latitude), lng: parseFloat(position.coords.longitude) })
         })
-      }
+      },
+      onResize () {
+        this.isMobile = window.innerWidth < 1264
+        this.mini = window.innerWidth < 350
+      },
+      goHome () {
+        this.$router.push('/')
+      },
+      ...mapActions(['logout'])
+    },
+    mounted () {
+      this.$nextTick(() => {
+        window.addEventListener('resize', this.onResize)
+        this.onResize()
+      })
+    },
+    beforeDestroy () {
+      window.removeEventListener('resize', this.onResize)
     },
     watch: {
       isDark: function () { this.isDark ? this.changeTheme(this.darkTheme) : this.changeTheme(this.lightTheme) }
     },
     data () {
       return {
+        isMobile: true,
+        mini: false,
         isClosed: true,
         lightTheme: { primary: '#29B6F6', secondary: '#66BB6A', accent: '#F44336', error: '#F44336', warning: '#ffeb3b', info: '#2196F3', success: '#4CAF50' },
         darkTheme: { primary: '#D32F2F', secondary: '#FF5252', accent: '#546E7A', error: '#D50000', warning: '#FFA000', info: '#42A5F5', success: '#81C784' }
