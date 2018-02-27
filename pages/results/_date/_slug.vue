@@ -1,6 +1,6 @@
 <template>
   <div>
-    <result-tournament :tournament="tournaments[id]" :id="id"></result-tournament>
+    <result-tournament :tournament="tournaments[id]"></result-tournament>
   </div>
 </template>
 <script>

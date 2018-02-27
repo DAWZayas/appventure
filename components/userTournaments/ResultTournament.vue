@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="tournament">
     <div class="m-2">
       <div class="podium d-flex align-items-end">
         <div class="kk d-flex flex-column justify-content-between">
@@ -15,7 +15,7 @@
           <div style="background-color: green"> 3º </div>
         </div>
       </div>
-      {{participants}}
+      {{ participants }}
     </div>
   </div>
 </template>
@@ -24,19 +24,12 @@
   import _ from 'lodash'
 
   export default {
-    props: ['tournament', 'id'],
-    comnputed: {
-      ...mapGetters({ users: 'getUsers' })
-    },
-    methods: {
-      arrayParticipants () {
+    props: ['tournament'],
+    computed: {
+      ...mapGetters({ users: 'getUsers' }),
+      participants () {
         let xs = Object.keys(this.tournament.userParticipants)
-        this.participants = _.shuffle(xs)
-      }
-    },
-    data () {
-      return {
-        participants: this.arrayParticipants()
+        return _.shuffle(xs)
       }
     }
   }
