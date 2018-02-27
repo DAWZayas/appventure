@@ -18,10 +18,11 @@
   export default {
     components: { HeaderComponent, FooterComponent },
     computed: { ...mapGetters({ isDark: 'getDarkTheme', isAuthenticated: 'isAuthenticated' }) },
+    beforeMount () { this.bindFirebaseReferences() },
     created () {
       if (process.browser) {
         window.onNuxtReady((app) => {
-          this.isAuthenticated ? this.bindAuth() : this.bindFirebaseReferences()
+          this.bindAuth()
           if ('geolocation' in navigator) { this.geolocate() }
         })
       }
