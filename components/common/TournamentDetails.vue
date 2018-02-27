@@ -82,7 +82,7 @@
           </v-flex>
           <v-btn 
             color="info"
-            :disabled="!(p['Capitán'] !== '' && p['2º participante'] !== '' && p['3º participante'] !== ''  && p['4º participante'] !== ''  && p['5º participante'] !== '')"
+            :disabled="!(p['Capitán'] !== '' && p['2º participante'] !== '' && p['3º participante'] !== ''  && p['4º participante'] !== ''  && p['5º participante'] !== '' && p['Nombre del equipo'] !== '')"
             @click="(addTournament(), dialog2 = false)"
           >
           ¡ Unirse !
@@ -111,8 +111,8 @@
       }
     },
     methods: {
-      addTournament () { this.addDissTournament({key: this.id, category: this.tournament.category, number: 1}).then(this.displayAlert()) },
-      disTournament () { this.addDissTournament({key: this.id, category: null, number: -1}).then(this.displayAlert()) },
+      addTournament () { this.addDissTournament({key: this.id, category: this.tournament.category, number: 1, option: true, name: this.tournament.type === 'individual' ? false : this.p['Nombre del equipo']}).then(this.displayAlert()) },
+      disTournament () { this.addDissTournament({key: this.id, category: null, number: -1, option: false}).then(this.displayAlert()) },
       displayAlert () {
         document.getElementById('alert').style.marginTop = 0
         setTimeout(function () {
@@ -124,8 +124,9 @@
     data () {
       return {
         dialog2: false,
-        labels: ['Capitán', '2º participante', '3º participante', '4º participante', '5º participante'],
+        labels: ['Nombre del equipo', 'Capitán', '2º participante', '3º participante', '4º participante', '5º participante'],
         p: {
+          'Nombre del equipo': '',
           'Capitán': '',
           '2º participante': '',
           '3º participante': '',

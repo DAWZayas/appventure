@@ -70,6 +70,11 @@ module.exports = {
           path: '/tournaments/all',
           name: 'allTournaments',
           component: resolve(__dirname, 'pages/tournaments/_allTournaments.vue')
+        },
+        {
+          path: '/results/:date/:slug',
+          name: 'results',
+          component: resolve(__dirname, 'pages/results/_date/_slug.vue')
         }
       )
     }

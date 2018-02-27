@@ -186,10 +186,18 @@ export default {
    * @param {object} state
    * @param {object} parameters (key of tournament, category of tournament, number (+1 or -1))
    */
-  addDissTournament ({state}, {key, category, number}) {
+  addDissTournament ({state}, {key, category, number, option, name}) {
     let addTournamentRef = db.ref(`/users/${state.userData['.key']}/participating`)
     let tournamentRef = db.ref(`/tournaments/${key}/participants`)
-    tournamentRef.once('value', (snapshot) => { tournamentRef.set(parseInt(snapshot.val()) + number) }).then(addTournamentRef.child(key).set(category))
+    let userParticipantsRef = db.ref(`/tournaments/${key}/userParticipants`)
+
+    name = name || state.userData.displayName
+
+    tournamentRef.once('value', (snapshot) => {
+      tournamentRef.set(parseInt(snapshot.val()) + number)
+    }).then(addTournamentRef.child(key).set(category))
+
+    option ? userParticipantsRef.child(state.userData['.key']).set(name) : userParticipantsRef.remove(state.userData['.key'])
   },
   /**
    * Resets authentication error
