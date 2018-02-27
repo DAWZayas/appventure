@@ -71,7 +71,7 @@
       ...mapGetters({authErrorLogIn: 'authErrorLogIn'})
     },
     methods: {
-      ...mapActions(['authenticate']),
+      ...mapActions(['authenticate', 'bindAuth']),
       onLogIn () {
         if (this.$refs.form.validate()) {
           this.authenticate({email: this.email, password: this.password})
@@ -85,8 +85,10 @@
       },
       loginWithProvider (provider) {
         firebaseApp.auth().signInWithPopup(provider)
-          .then(() => this.$router.push('/'))
-          .catch((error) => { this.authError = error })
+          .then(() => {
+            this.bindAuth()
+            this.$router.push('/')
+          }).catch((error) => { this.authError = error })
       }
     }
   }
