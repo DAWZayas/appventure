@@ -66,6 +66,7 @@
     computed: {
       ...mapGetters({ users: 'getUsers' }),
       suffleParticipants () {
+        console.log(this.tournament)
         let xs = Object.keys(this.tournament.userParticipants)
         return _.shuffle(xs)
       }

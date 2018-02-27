@@ -4,7 +4,7 @@
 
       <v-content>
     <transition name="fade">
-        <v-container fluid class="p-0">
+        <v-container fluid class="p-0 layout-querys">
           <nuxt/>
         </v-container>
     </transition>
@@ -39,8 +39,8 @@
         })
       },
       onResize () {
-        this.isMobile = window.innerWidth < 1264
-        this.mini = window.innerWidth < 350
+        this.isMobile = window.innerWidth <= 1264
+        this.mini = window.innerWidth <= 350
       },
       goHome () {
         this.$router.push('/')

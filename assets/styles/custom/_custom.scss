@@ -80,3 +80,18 @@ h5 {
 .no-shadow {
   box-shadow: none!important;
 }
+
+$isMobile: 1264px;
+$isMini: 600px;
+
+@media (min-width: $isMobile) {
+  #carousel {
+    height: 50vh;
+  }
+}
+
+@media (min-width: $isMini) and (max-width: $isMobile) {
+  #carousel {
+    height: 50vh;
+  }
+}

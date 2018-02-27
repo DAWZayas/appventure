@@ -19,7 +19,7 @@
         </v-chip>
         <v-chip color="indigo" text-color="white" class="ml-0" small>
           <v-avatar>
-            <v-icon>star</v-icon>
+            <v-icon>gamepad</v-icon>
           </v-avatar>
           Maestro en CSGO
         </v-chip>

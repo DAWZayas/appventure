@@ -17,7 +17,7 @@
       </v-list>
 
       <v-list class="pt-0" dense>
-        <v-divider class="mt-0"></v-divider>
+        <v-divider class="mt-0" v-if="isMobile"></v-divider>
         <user-info v-if="isAuthenticated" :isMobile="isMobile" :class="dark ? '' : 'light-profile'"></user-info>
         <v-divider class="mt-0" v-if="isMobile"></v-divider>        
         <items-list-component :isAuthenticated="isAuthenticated"></items-list-component>

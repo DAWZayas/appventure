@@ -20,3 +20,28 @@
         -ms-user-select: none;
             user-select: none;
 }
+
+.d-desktop {
+  display: none;
+}
+
+$isMobile: 1264px;
+$isMini: 600px;
+
+@media (min-width: $isMobile) {
+  .layout-querys {
+    max-width: 65%!important;
+  }
+  .d-desktop {
+    display: inline;
+  }
+}
+
+@media (min-width: $isMini) and (max-width: $isMobile) {
+  .layout-querys {
+    max-width: 80%!important;
+  }
+  .d-desktop {
+    display: inline;
+  }
+}
