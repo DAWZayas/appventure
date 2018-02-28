@@ -1,7 +1,7 @@
 <template>
   <div class="move-slider">
-    <div class="see-less" v-if="!(offset <= 10)" @click="seeLess"><v-icon class="noselect">keyboard_arrow_left</v-icon></div>
-    <div class="see-more" v-if="rightOffset === 0" @click="seeMore"><v-icon class="noselect">keyboard_arrow_right</v-icon></div>
+    <div class="see-less" @click="seeLess"><v-icon class="noselect">keyboard_arrow_left</v-icon></div>
+    <div class="see-more" @click="seeMore"><v-icon class="noselect">keyboard_arrow_right</v-icon></div>
   </div>
 </template>
 <script>
