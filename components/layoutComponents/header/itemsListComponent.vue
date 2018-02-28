@@ -44,11 +44,6 @@ export default {
             link: '/userTournaments'
           },
           {
-            title: 'Clasificación',
-            icon: 'trending_up',
-            link: '/login'
-          },
-          {
             title: 'Ayuda',
             icon: 'chat_bubble_outline',
             link: '/chat'
@@ -71,11 +66,6 @@ export default {
             link: '/userTournaments'
           },
           {
-            title: 'Clasificación',
-            icon: 'trending_up',
-            link: '/login'
-          },
-          {
             title: 'Ayuda',
             icon: 'chat_bubble_outline',
             link: '/activeChats'
@@ -95,11 +85,6 @@ export default {
           {
             title: 'Mis torneos',
             icon: 'fa-trophy',
-            link: '/login'
-          },
-          {
-            title: 'Clasificación',
-            icon: 'trending_up',
             link: '/login'
           },
           {

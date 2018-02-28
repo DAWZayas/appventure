@@ -1,11 +1,13 @@
 <template>
-  <section class="d-flex flex-column">
+  <section>
     <h5>Relacionado con tus gustos</h5>
-    <section class="d-flex slide">
-      <article-tournament-component v-for="tournament in tournamentsDisplay" :key="tournament.key" :tournament="tournament"></article-tournament-component>
-      <show-more-component></show-more-component>
+    <div class="fix">
+      <section class="d-flex slide">
+        <article-tournament-component v-for="tournament in tournamentsDisplay" :key="tournament.key" :tournament="tournament"></article-tournament-component>
+        <show-more-component></show-more-component>
+      </section>
       <desktop-slide class="d-desktop"></desktop-slide>
-    </section>
+    </div>
   </section>
 </template>
 <script>
@@ -59,6 +61,10 @@
   }
 </script>
 <style scoped>
+  .fix {
+    position: relative;
+  }
+
   .slide {
     overflow-x: scroll;
   }

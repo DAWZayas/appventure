@@ -1,18 +1,26 @@
 <template>
-  <div>
-    <div class="see-less" @click="seeLess"><v-icon class="noselect">keyboard_arrow_left</v-icon></div>
-    <div class="see-more" @click="seeMore"><v-icon class="noselect">keyboard_arrow_right</v-icon></div>
+  <div class="move-slider">
+    <div class="see-less" v-if="!(offset <= 10)" @click="seeLess"><v-icon class="noselect">keyboard_arrow_left</v-icon></div>
+    <div class="see-more" v-if="rightOffset === 0" @click="seeMore"><v-icon class="noselect">keyboard_arrow_right</v-icon></div>
   </div>
 </template>
 <script>
   export default {
-    props: ['scroll'],
+    props: ['offset'],
+    computed: {
+      // rightOffset () { return document.getElementById('scroll-ref').offsetWidth }
+    },
     methods: {
+      seeLess () { this.$emit('seeLess') },
       seeMore () { this.$emit('seeMore') }
     }
   }
 </script>
 <style lang="scss" scoped>
+  .move-slider {
+    margin: 1em 0;
+  }
+
   .see-less {
     background: linear-gradient(right, rgba(250,250,250,0) 0%, rgba(255,255,250,.9) 50%, rgba(250,250,250,1) 100%);
     left: 0;
@@ -41,8 +49,7 @@
       cursor: pointer;
       position: absolute;
       color: transparent;
-      height: 100%;
-      margin: auto;
+      bottom: 50%;
       transform: scale(2, 3)
     }
 

@@ -28,7 +28,7 @@
             </v-stepper-content>
 
             <v-stepper-content step="3">
-              <step-three-component @toStep="toStep" :newArt="newArt"></step-three-component>
+              <step-three-component @toStep="toStep" @created="cleanExit" :newArt="newArt"></step-three-component>
             </v-stepper-content>
           </v-stepper-items>
         </v-stepper>

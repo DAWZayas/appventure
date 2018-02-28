@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <section>
-      <h5>Torneos cerca de ti</h5>
-      <section class="d-flex slide">
+  <section id="scroll-ref">
+    <h5>Torneos cerca de ti</h5>
+    <div class="fix">
+      <section class="d-flex slide" v-scroll="onScroll">
         <article-tournament-component v-for="tournament in tournamentsDisplay" :key="tournament.key" :tournament="tournament"></article-tournament-component>
         <show-more-component></show-more-component>
-        <desktop-slide class="d-desktop"></desktop-slide>
       </section>
-    </section>
-  </div>
+      <desktop-slide :offset="offset" class="d-desktop"></desktop-slide>
+    </div>
+  </section>
 </template>
 <script>
   import { ArticleTournamentComponent, ShowMoreComponent } from '~/components/tournaments/cards/index'
@@ -42,14 +42,27 @@
 
         return xs.slice(0, 8)
       }
+    },
+    methods: {
+      onScroll (e) { this.offset = e.target.scrollLeft }
+    },
+    data () {
+      return {
+        offset: 0
+      }
     }
   }
 </script>
 <style scoped>
+  .fix {
+    position: relative;
+  }
+
   .slide-top {
     background-color: white;
   }
   .slide {
     overflow-x: scroll;
+    position: relative;
   }
 </style>

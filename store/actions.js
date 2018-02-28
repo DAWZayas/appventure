@@ -228,7 +228,9 @@ export default {
         let photoURL = user.photoURL ? user.photoURL : '/undefined_user.png'
         let id = user.uid
 
+        dispatch('bindFirebaseReferences')
         dispatch('bindUserData', {usersRef, id})
+
         usersRef.child(id).once('value', function (snapshot) {
           snapshot.hasChild('displayName') ? null : dispatch('updateUserName', displayName)
           snapshot.hasChild('photoURL') ? null : dispatch('updatePhotoURL', photoURL)

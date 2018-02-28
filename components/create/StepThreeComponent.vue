@@ -69,12 +69,16 @@
         this.imagesBuffer = []
         this.imageSrc = []
         this.clearProgress()
+
+        this.confirm = false
+        this.uploading = false
+        this.created = false
       },
       createdF () {
         this.created = true
         setTimeout(() => {
           this.reset()
-          this.$router.push('/')
+          this.$emit('created')
         }, 3000)
       },
       onClick () { this.$refs.imageFile.click() },
