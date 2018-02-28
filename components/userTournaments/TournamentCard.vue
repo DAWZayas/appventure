@@ -4,7 +4,7 @@
     <v-card-title class="mb-2">
       <div>
         <p>{{tournament.name}}</p>
-        <span class="grey--text">Deporte: {{tournament.subcategory}}</span><br>
+        <span class="grey--text">Categoria: {{tournament.subCategory}}</span><br>
         <span class="grey--text">Fecha: {{tournament.initDate}}</span>
       </div>
     </v-card-title>
