@@ -24,7 +24,7 @@
                 <img :src="tile.img" :alt="tile.title">
               </v-avatar>
             </v-list-tile-avatar>
-            <v-list-tile-title>{{ url }}</v-list-tile-title>
+            <v-list-tile-title>{{ tile.title }}</v-list-tile-title>
           </network>
          </social-sharing>
         </v-list-tile>

@@ -29,6 +29,8 @@
 
       <v-btn
         @click="onRegister"
+        class="square"
+        depressed
         block
         :disabled="!valid"
       >
