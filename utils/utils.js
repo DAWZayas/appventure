@@ -17,7 +17,7 @@ const isOutDate = (obj) => {
 const isOutDateD = (date) => {
   date = date.split('-')
   let compareDate = new Date(date[2], date[1] - 1, date[0])
-  let today = subDays(format(new Date()), 2)
+  let today = format(new Date())
   return isBefore(today, compareDate)
 }
 

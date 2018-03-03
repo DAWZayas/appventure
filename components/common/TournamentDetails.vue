@@ -14,7 +14,7 @@
       <v-card-text>
         <div class="grey--text" style="text-align: justify;">{{ tournament.description }}</div>
       </v-card-text>
-      <v-card-text class="py-0" v-if="!outIns">
+      <v-card-text class="py-0" v-if="outIns">
         <div>Participantes: {{ tournament.participants }}/{{ tournament.gauging }}</div>
         <v-progress-linear
           class="mt-0"
@@ -57,7 +57,7 @@
         color="secondary"
         :to="{ name: 'results', params: { date: slugDate, slug: slugName } }"
       >
-       Ver resultado
+        Ver resultado
       </v-btn>
       <v-btn v-else block :ripple="false" style="pointer-events: none;" class="no-shadow" color="error">Inscripción cerrada</v-btn>
     </div>
