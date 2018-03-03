@@ -13,6 +13,7 @@
       ...mapGetters({ tm: 'getTournaments' }),
       tournaments () {
         var tournaments = {}
+        var query = this.$route.query.q.split('-')
 
         for (var t in this.tm) {
           var lok = this.tm[t]['location']
@@ -25,7 +26,11 @@
                      lok['name'] + ' ' +
                      lok['route']
 
-          speakingurl(info).search(this.$route.query.q) > -1 ? tournaments[t] = this.tm[t] : null
+          for (let i = 0; i < query.length; i++) {
+            speakingurl(info).search(query[i]) > -1
+              ? tournaments[t] ? null : tournaments[t] = this.tm[t]
+              : null
+          }
         }
 
         return getArray(tournaments).reverse()

@@ -54,7 +54,7 @@
           }
           return xs.slice(0, 8)
         } else {
-          return this.tournaments
+          return this.tournaments.slice(0, 8)
         }
       }
     }

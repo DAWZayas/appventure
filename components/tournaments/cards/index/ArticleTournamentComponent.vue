@@ -17,13 +17,16 @@
         <v-card-title>
           <span class="headline">{{ tournament.name }}</span>
         </v-card-title>
+        <v-alert color="error" icon="warning" class="m-0 mx-3 py-1" :value="outIns">
+          ¡ Este torneo ya ha comenzado !
+        </v-alert>      
         <v-card-text>
           <p>En este torneo podras ganar las siguientes insignias</p>
           <v-chip color="indigo" text-color="white" small>
-            <v-avatar>
+            <v-avatar class="mr-0">
               <v-icon>star</v-icon>
             </v-avatar>
-            Nivel {{tournament.level}} en {{tournament.subCategory}}
+            Nivel {{tournament.level}} en {{ins[tournament.subCategory]}}
           </v-chip>
           <div class="mt-4">
             <p>Datos del torneo: </p>
@@ -48,15 +51,33 @@
 </template>
 <script>
   import speakingurl from 'speakingurl'
+  import { isOutDateD } from '~/utils/utils'
 
   export default {
     props: ['tournament'],
+    computed: {
+      outIns () { return !isOutDateD(this.tournament.initDate) }
+    },
     data () {
       return {
         src: this.tournament.imagesURL[this.tournament.defaultImg],
         slugDate: speakingurl(this.tournament.createDate),
         slugName: speakingurl(this.tournament.name),
-        dialog: false
+        dialog: false,
+        ins: {
+          'football': 'Fútbol',
+          'padel': 'Padel',
+          'basketball': 'Baloncesto',
+          'golf': 'Golf',
+          'poker': 'Poker',
+          'karts': 'Karts',
+          'rally': 'Rally',
+          'motos': 'Motos',
+          'lol-esport': 'League of Legends',
+          'csgo': 'CSGO',
+          'dota2': 'Dota 2',
+          'fifa-esport': 'FIFA'
+        }
       }
     }
   }
