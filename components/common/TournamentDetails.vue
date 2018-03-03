@@ -50,22 +50,22 @@
 
     <div
       style="position: sticky; bottom: .5rem; width: calc( 100% - 1.2rem ); margin: 0 .6rem"
-      v-if="outIns"
+      v-if="!outIns"
     >
-      <v-btn v-if="outFinish" block :ripple="false" style="pointer-events: none;" class="no-shadow" color="error">Inscripción cerrada</v-btn>
       <v-btn
-        v-else block depressed nuxt
+        v-if="!outFinish" block depressed nuxt
         color="secondary"
         :to="{ name: 'results', params: { date: slugDate, slug: slugName } }"
       >
        Ver resultado
       </v-btn>
+      <v-btn v-else block :ripple="false" style="pointer-events: none;" class="no-shadow" color="error">Inscripción cerrada</v-btn>
     </div>
 
     <div
       style="position: sticky; bottom: .5rem; width: calc( 100% - 1rem )"
       class="mx-2 d-flex"
-      v-if="!outIns"
+      v-else
     >
       <v-btn
         block
