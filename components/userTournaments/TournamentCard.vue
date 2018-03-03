@@ -17,7 +17,7 @@
 </template>
 <script>
   import { CardImageComponent } from '~/components/tournaments/cards/cards'
-  import { isOutDate } from '~/utils/utils'
+  import { isOutDateD } from '~/utils/utils'
   import speakingurl from 'speakingurl'
 
   export default {
@@ -29,11 +29,7 @@
         slugName: speakingurl(this.tournament.name)
       }
     },
-    computed: {
-      outDate () {
-        return isOutDate(this.tournament)
-      }
-    },
+    computed: { outDate () { return isOutDateD(this.tournament.finishDate) } },
     methods: {
       link () { return this.outDate ? { name: 'tournaments', params: { date: this.slugDate, slug: this.slugName } } : { name: 'results', params: { date: this.slugDate, slug: this.slugName } } }
     },

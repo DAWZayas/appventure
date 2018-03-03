@@ -14,6 +14,13 @@ const isOutDate = (obj) => {
   return isBefore(today, compareDate)
 }
 
+const isOutDateD = (date) => {
+  date = date.split('-')
+  let compareDate = new Date(date[2], date[1] - 1, date[0])
+  let today = subDays(format(new Date()), 2)
+  return isBefore(today, compareDate)
+}
+
 const deleteKey = (obj) => {
   const clone = {...obj}
   delete clone['.key']
@@ -39,6 +46,7 @@ const getSingleTournament = (tournaments) => {
 
 export {
   isOutDate,
+  isOutDateD,
   deleteKey,
   getArray,
   randomNumber,

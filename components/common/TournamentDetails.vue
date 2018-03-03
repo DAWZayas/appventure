@@ -4,35 +4,29 @@
       <v-carousel-item v-for="(src,i) in tournament.imagesURL" :src="src" :key="i" class="m-0 p-0 carousel-image"></v-carousel-item>
     </v-carousel>
 
-    <section class="mt-0 pa-2 white" style="position: relative;">
+    <v-card class="mt-0 pa-2 square" style="position: relative;">
       <h1>{{ tournament.name }}</h1>
       <p><span class="icon-location"></span> {{ tournament.location.name }} - {{ tournament.location.locality }}</p>
       <p>Nivel: {{ tournament.level }}</p>
+    </v-card>
 
-      <v-progress-circular
-        style="position: absolute; left: calc( 100% - 75px ); top: calc( 50% - 25px );"
-        :size="50"
-        :width="5"
-        :rotate="360"
-        :value="gauging"
-        :color="color"
-        v-if="!isOutDate"
-      >
-        {{ tournament.participants }}/{{ tournament.gauging }}
-      </v-progress-circular>
-    </section>
-
-    <v-card color="white darken-2 ma-2" class="black--text square">
-      <v-card-title primary-title>
-        <div class="headline">Una pequeña descripción</div>
-      </v-card-title>
+    <v-card color="darken-2 ma-2" class="square">
       <v-card-text>
-        <div class="grey--text">{{ tournament.description }}</div>
+        <div class="grey--text" style="text-align: justify;">{{ tournament.description }}</div>
+      </v-card-text>
+      <v-card-text class="py-0" v-if="!outIns">
+        <div>Participantes: {{ tournament.participants }}/{{ tournament.gauging }}</div>
+        <v-progress-linear
+          class="mt-0"
+          :value="gauging"
+          :color="color"
+        >
+        </v-progress-linear>
       </v-card-text>
     </v-card>
 
-    <section class="pa-2 white">
-      <h5 class="pl-0 pb-2">Información practica</h5>
+    <v-card class="pa-2 square">
+      <h5 class="pl-0 pb-2 grey--text">Información practica</h5>
       <GmapMap style="width: 100%; height: 300px;" :zoom="15" :center="tournament.location.position">
         <GmapMarker :position="tournament.location.position"/>
       </GmapMap>
@@ -42,8 +36,8 @@
       <p>{{ tournament.initDate }}</p>
       <h6>Fecha de fin del torneo</h6>
       <p>{{ tournament.finishDate }}</p>
-    </section>
-    
+    </v-card>
+
     <div id="alert">
       <v-alert
         :type="isParticipating ? 'success' : 'error'"
@@ -56,15 +50,22 @@
 
     <div
       style="position: sticky; bottom: .5rem; width: calc( 100% - 1.2rem ); margin: 0 .6rem"
-      v-if="isOutDate"
+      v-if="outIns"
     >
-      <v-btn block :ripple="false" style="pointer-events: none;" class="no-shadow" color="error">Inscripción cerrada</v-btn>
+      <v-btn v-if="outFinish" block :ripple="false" style="pointer-events: none;" class="no-shadow" color="error">Inscripción cerrada</v-btn>
+      <v-btn
+        v-else block depressed nuxt
+        color="secondary"
+        :to="{ name: 'results', params: { date: slugDate, slug: slugName } }"
+      >
+       Ver resultado
+      </v-btn>
     </div>
-    
+
     <div
       style="position: sticky; bottom: .5rem; width: calc( 100% - 1rem )"
       class="mx-2 d-flex"
-      v-if="!isOutDate"
+      v-if="!outIns"
     >
       <v-btn
         block
@@ -96,8 +97,9 @@
 </template>
 <script>
   import { mapActions, mapGetters } from 'vuex'
-  import { format, isBefore, isEqual } from 'date-fns'
   import { ShareButton } from '~/components/layoutComponents'
+  import { isOutDateD } from '~/utils/utils'
+  import speakingurl from 'speakingurl'
 
   export default {
     props: ['tournament', 'id'],
@@ -107,12 +109,10 @@
       isParticipating () { return (this.id in this.participating) },
       color () { return ['error', 'warning', 'success'][Math.floor(this.gauging / 40)] },
       gauging () { return (this.tournament.participants / this.tournament.gauging) * 100 },
-      isOutDate () {
-        let date = this.tournament.initDate.split('-')
-        let compareDate = new Date(date[2], date[1] - 1, date[0])
-        let today = format(new Date())
-        return isBefore(compareDate, today) || isEqual(compareDate, today)
-      }
+      outIns () { return isOutDateD(this.tournament.initDate) },
+      outFinish () { return isOutDateD(this.tournament.finishDate) },
+      slugDate () { return speakingurl(this.tournament.createDate) },
+      slugName () { return speakingurl(this.tournament.name) }
     },
     methods: {
       addTournament () {

@@ -34,9 +34,7 @@
 <script>
   export default {
     props: ['name'],
-    computed: {
-      url () { return 'https://appventure-web.firebaseapp.com/' + this.$route.params.date + '/' + this.$route.params.slug }
-    },
+    computed: { url () { return 'https://appventure-web.firebaseapp.com/tournaments/' + this.$route.params.date + '/' + this.$route.params.slug } },
     data: () => ({
       sheet: false,
       tiles: [
@@ -49,11 +47,6 @@
           img: '/social/facebook.png',
           title: 'Facebook',
           network: 'facebook'
-        },
-        {
-          img: '/social/google-plus.png',
-          title: 'Google+',
-          network: 'googleplus'
         },
         {
           img: '/social/whatsapp.png',

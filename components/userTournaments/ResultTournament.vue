@@ -47,9 +47,6 @@
                 <p>4º participante: {{tournament.userParticipants[participant]['4º participante']}}</p>
                 <p>5º participante: {{tournament.userParticipants[participant]['5º participante']}}</p>
               </v-card-text>
-              <v-card-text v-else class="grey lighten-3">
-                Holi
-              </v-card-text>
             </v-card>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -66,7 +63,6 @@
     computed: {
       ...mapGetters({ users: 'getUsers' }),
       suffleParticipants () {
-        console.log(this.tournament)
         let xs = Object.keys(this.tournament.userParticipants)
         return _.shuffle(xs)
       }
