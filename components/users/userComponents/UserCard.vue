@@ -43,7 +43,7 @@
     data () {
       return {
         uploadProfilePic: false,
-        src: require('~/assets/images/social/material.png')
+        src: '/social/material.png'
       }
     },
     components: { CroppaDialog }

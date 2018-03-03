@@ -63,17 +63,19 @@
     
     <div
       style="position: sticky; bottom: .5rem; width: calc( 100% - 1rem )"
-      class="mx-2"
+      class="mx-2 d-flex"
       v-if="!isOutDate"
     >
       <v-btn
         block
         :disabled="((!(gauging < 100) && !isParticipating) || !isAuthenticated)"
         :color="!isParticipating ? 'info' : 'error'"
+        depressed
         @click.stop="isParticipating ? disTournament() : tournament.type === 'individual' ? addTournament() : dialog2 = true"      
       >
         {{ isParticipating ? 'Desapuntarse': '¡ Unirse !' }}
       </v-btn>
+      <share-button v-if="tournament" :name="tournament.name"></share-button>
       <v-dialog v-model="dialog2" max-width="500px">
         <v-card class="p-1">
           <h5>Nombre de integrantes del equipo</h5>
@@ -95,9 +97,11 @@
 <script>
   import { mapActions, mapGetters } from 'vuex'
   import { format, isBefore, isEqual } from 'date-fns'
+  import { ShareButton } from '~/components/layoutComponents'
 
   export default {
     props: ['tournament', 'id'],
+    components: { ShareButton },
     computed: {
       ...mapGetters({participating: 'getParticipating', isAuthenticated: 'isAuthenticated'}),
       isParticipating () { return (this.id in this.participating) },
@@ -118,9 +122,7 @@
             category: this.tournament.category,
             number: 1,
             option: true,
-            info: this.tournament.type === 'individual'
-            ? false
-            : this.p
+            info: this.tournament.type === 'individual' ? false : this.p
           }
         ).then(this.displayAlert())
       },
@@ -132,6 +134,12 @@
         }, 2500)
       },
       ...mapActions(['addDissTournament'])
+    },
+    head () {
+      return {
+        title: this.tournament ? this.tournament.name : 'AppVenture',
+        meta: [ { hid: 'description', name: 'description', content: this.tournament ? this.tournament.description : 'Un gran torneo' } ]
+      }
     },
     data () {
       return {

@@ -7,13 +7,15 @@
     "axios": "^0.17.1",
     "date-fns": "^1.29.0",
     "lodash": "^4.17.5",
-    "nuxt": "next",
+    "nuxt": "^1.4.0 ",
+    "nuxt-device-detect": "^1.1.0",
     "speakingurl": "^14.0.1",
     "uuid": "^3.1.0",
     "vform": "^0.8.1",
     "vue-croppa": "^1.2.0",
+    "vue-social-sharing": "^2.3.3",
     "vue2-google-maps": "^0.8.4",
-    "vuetify": "next"
+    "vuetify": "1.0.0-beta.6"
   },
   "scripts": {
     "dev": "nuxt",

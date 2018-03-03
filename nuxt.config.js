@@ -10,7 +10,7 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'url', property: 'og:url', name: 'og:url', content: 'https://www.appventure.com' },
+      { hid: 'url', property: 'og:url', name: 'og:url', content: 'https://www.appventure-web.firebaseapp.com' },
       { hid: 'title', property: 'og:title', name: 'og:title', content: 'AppVenture' }
     ],
     link: [
@@ -21,6 +21,10 @@ module.exports = {
       { type: 'text/javascript', src: 'https://use.fontawesome.com/6492ecb9b0.js' }
     ]
   },
+  /**
+   * Module to detect if device is mobile or desktop
+   */
+  modules: ['nuxt-device-detect'],
   /*
   ** Adds Vuetify & eslint into vendor.bundle.js
   */
@@ -45,6 +49,10 @@ module.exports = {
       }
     }
   },
+  /**
+   * Forces nuxtjs to generate a 404.html error page
+   */
+  generate: { fallback: true },
   /**
    * Custom route names for pages
    */
@@ -83,10 +91,11 @@ module.exports = {
   ** Loads plugins into the app
   */
   plugins: [
-    '~/plugins/vuetify',
-    '~/plugins/preLoad',
     '~/plugins/maps',
-    '~/plugins/vueCroppa'
+    '~/plugins/preLoad',
+    '~/plugins/socialSharing',
+    '~/plugins/vueCroppa',
+    '~/plugins/vuetify'
   ],
   /*
   ** Loads CSS globally
