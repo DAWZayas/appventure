@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/images/social/logo.png" alt="AppVenture Logo" width="200" />
+  <img src="static/social/logo.png" alt="AppVenture Logo" width="200" />
 </p>
 <h1 align="center">AppVenture</h1>
 
@@ -10,24 +10,9 @@ search for tournaments or sports and fight for trophies versus other people.
 
 [Test our website! :metal:](https://appventure-web.firebaseapp.com/)
 
-## Build Setup
-
-``` bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://nuxtjs.org/).
+<p align="center">
+  <img src="static/social/readme.png" alt="AppVenture Logo" />
+</p>
 
 ## Licensing
 
