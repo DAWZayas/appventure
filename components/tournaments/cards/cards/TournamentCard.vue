@@ -1,9 +1,6 @@
 <template>
   <nuxt-link :to="{ name: 'tournaments', params: { date: slugDate, slug: slugName } }">
     <v-card class="m-1 square">
-      <v-alert :color="outFinish ? 'error' : 'amber accent-2'" :icon="outFinish ? 'warning' : 'priority_high'" class="m-0 py-1 card-alert square black--text" :value="outIns">
-        {{ outFinish ? '¡ Ya ha terminado !' : '¡ Ya ha comenzado !' }}
-      </v-alert>
       <card-image-component :src="src"></card-image-component>
       <v-card-title>
         <div>
@@ -12,6 +9,9 @@
           <span class="grey--text">{{ tournament.level }}</span>
         </div>
       </v-card-title>
+      <v-alert :color="outFinish ? 'error' : 'amber accent-2'" :icon="outFinish ? 'warning' : 'priority_high'" class="m-0 py-1 card-alert square black--text" :value="outIns">
+        {{ outFinish ? '¡ Ya ha terminado !' : '¡ Ya ha comenzado !' }}
+      </v-alert>
     </v-card>
   </nuxt-link>
 </template>

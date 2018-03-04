@@ -16,6 +16,7 @@
           hide-details
           autofocus
           :append-icon="'search'"
+          v-if="searchD"
           @keyup.enter="search"
           :append-icon-cb="search"
         >

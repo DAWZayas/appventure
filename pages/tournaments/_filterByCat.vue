@@ -3,6 +3,11 @@
 </template>
 <script>
   import { TournamentsFiltered } from '~/components/common'
+  import { mapMutations } from 'vuex'
 
-  export default { components: { TournamentsFiltered } }
+  export default {
+    methods: { ...mapMutations(['setFilteredTournaments']) },
+    beforeDestroy () { this.setFilteredTournaments({}) },
+    components: { TournamentsFiltered }
+  }
 </script>

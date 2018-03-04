@@ -17,17 +17,17 @@
 
         for (var t in this.tm) {
           var lok = this.tm[t]['location']
-          var info = this.tm[t]['description'] + ' ' +
-                     this.tm[t]['name'] + ' ' +
-                     this.tm[t]['category'] + ' ' +
-                     this.tm[t]['subCategory'] + ' ' +
-                     lok['administrative_area_level_1'] + ' ' +
-                     lok['country'] + ' ' + lok['locality'] + ' ' +
-                     lok['name'] + ' ' +
-                     lok['route']
+          var inf = this.tm[t]['description'] + ' ' +
+                    this.tm[t]['name'] + ' ' +
+                    this.tm[t]['category'] + ' ' +
+                    this.tm[t]['subCategory'] + ' ' +
+                    lok['administrative_area_level_1'] + ' ' +
+                    lok['country'] + ' ' + lok['locality'] + ' ' +
+                    lok['name'] + ' ' +
+                    lok['route']
 
           for (let i = 0; i < query.length; i++) {
-            speakingurl(info).search(query[i]) > -1
+            speakingurl(inf).search(query[i]) > -1
               ? tournaments[t] ? null : tournaments[t] = this.tm[t]
               : null
           }

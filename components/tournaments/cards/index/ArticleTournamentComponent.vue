@@ -14,13 +14,13 @@
       <v-dialog v-model="dialog" width="600px">
         <button class="see-more" color="primary" dark slot="activator">...</button>
         <v-card>
-        <v-card-title>
+        <v-card-title class="pt-3 pb-2">
           <span class="headline">{{ tournament.name }}</span>
         </v-card-title>
         <v-alert color="error" icon="warning" class="m-0 mx-3 py-1" :value="outIns">
           ¡ Este torneo ya ha comenzado !
         </v-alert>      
-        <v-card-text>
+        <v-card-text class="pt-2">
           <p>En este torneo podras ganar las siguientes insignias</p>
           <v-chip color="indigo" text-color="white" small>
             <v-avatar class="mr-0">
