@@ -9,9 +9,8 @@
       </div>
     </v-card-title>
     <v-card-actions>
-      <nuxt-link :to="link()" style="width: 100%">
-        <v-btn flat block outline class="m-0" :color="outDate ? 'primary' : 'secondary'">{{ outDate ? 'Ver torneo' : 'Ver resultado'}}</v-btn>
-      </nuxt-link>
+      <v-btn nuxt :to="link('tournaments')" flat block outline class="ml-0" color="primary">Ver torneo</v-btn>
+      <v-btn nuxt v-if="!outDate" :to="link('results')" flat block outline class="mr-0" color="secondary">Ver resultado</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -31,7 +30,7 @@
     },
     computed: { outDate () { return isOutDateD(this.tournament.finishDate) } },
     methods: {
-      link () { return this.outDate ? { name: 'tournaments', params: { date: this.slugDate, slug: this.slugName } } : { name: 'results', params: { date: this.slugDate, slug: this.slugName } } }
+      link (name) { return { name: name, params: { date: this.slugDate, slug: this.slugName } } }
     },
     components: { CardImageComponent }
   }
